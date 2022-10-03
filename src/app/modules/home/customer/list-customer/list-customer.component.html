@@ -1,0 +1,51 @@
+<main id="main" class="main">
+    <div class="pagetitle d-flex justify-content-between">
+        <div>
+            <h1>Danh sách khách hàng</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Khách Hàng</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <form id="search">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" nz-input placeholder="Nhập mã, tên, sđt khách hàng" [(ngModel)]="searchData" (change)="SearchList()"/>
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch>
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                    <nz-option nzValue="searchID" nzLabel="Mã khách hàng"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên khách hàng"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="Số điện thoại"></nz-option>
+                  </nz-select>
+            </button>
+        </ng-template>
+    </form>
+    <section class="section">
+        <nz-table #basicTable [nzData]="listUpdate">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (click)="detail(data.name)" style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.age }}</td>
+                    <td>{{ data.address }}</td>
+                    <td>
+                        <a>Action 一 {{ data.name }}</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </section>
+</main>

@@ -1,0 +1,55 @@
+<main id="main" class="main">
+    <div class="pagetitle d-flex justify-content-between">
+        <div>
+            <h1>Danh sách thành phần thuốc</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thành phần thuốc</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <button id="create-button" nz-button nzType="primary" nzSize="large">
+                <a routerLink="/dashboard/create-staff">
+                    <i class="bi bi-plus"></i>
+                    <span>Tạo thành phần thuốc</span>
+                </a>
+            </button>
+        </div>
+    </div>
+    <div id="search">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" nz-input placeholder="Nhập mã, tên loại thuốc" />
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch>
+                Tìm kiếm
+            </button>
+        </ng-template>
+    </div>
+    <section class="section">
+        <nz-table #basicTable [nzData]="listOfData">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (click)="detail(data.name)" style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.age }}</td>
+                    <td>{{ data.address }}</td>
+                    <td>
+                        <a>Action 一 {{ data.name }}</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </section>
+ </main>

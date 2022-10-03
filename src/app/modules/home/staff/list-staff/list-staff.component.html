@@ -1,0 +1,67 @@
+<main id="main" class="main">
+    <div class="pagetitle d-flex justify-content-between">
+        <div>
+            <h1>Danh sách nhân viên</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Nhân viên</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <button id="create-button" nz-button nzType="primary" nzSize="large">
+                <a routerLink="/dashboard/create-staff">
+                    <i class="bi bi-plus"></i>
+                    <span>Tạo nhân viên</span>
+                </a>
+            </button>
+        </div>
+    </div>
+    <div id="search">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData" />
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch>
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                    <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
+                    <nz-option nzValue="SearchEmail" nzLabel="Email nhân viên"></nz-option>
+                </nz-select>
+            </button>
+        </ng-template>
+    </div>
+    <section class="section">
+        <nz-table #basicTable [nzLoading]="loading">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Họ và Tên</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (click)="detail(data.user.fullname)" style="cursor: pointer;"
+                    *ngFor="let data of listData | pipeSearchFilter:searchData:selectedProvince" 
+                    
+                    >
+                    <td>{{ data.user.id}}</td>
+                    <td>{{ data.user.fullname || null }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>
+                        <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <button type="button" class="btn btn-outline-success action__button"
+                            (click)="clickUnBan(data.user.id)">Bỏ chặn</button>
+                    </td>
+                </tr>
+                <ng-template #ListDataNull>
+                    <td>không có kết quả</td>
+                </ng-template>
+            </tbody>
+        </nz-table>
+    </section>
+</main>

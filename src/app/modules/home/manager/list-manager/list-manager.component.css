@@ -1,0 +1,13 @@
+#search{
+    min-width: 350px;
+    max-width: 550px;
+    margin: auto;
+    padding: 0 0 30px 0;
+    
+}
+.action__button{
+    width: 100px;
+}
+[nz-form] {
+    max-width: 600px;
+  }
