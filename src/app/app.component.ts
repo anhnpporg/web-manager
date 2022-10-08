@@ -36,7 +36,7 @@ export class AppComponent {
     s.src = "../assets/js/main.js";
     this.elementRef.nativeElement.appendChild(s);
 
-    this.bnIdle.startWatching(300).subscribe((res) => {
+    this.bnIdle.startWatching(1800).subscribe((res) => {
       if (res) {
         this.auth.logout();
       }

@@ -24,6 +24,7 @@ import { MedicineCategoryComponent } from './medicine/category/medicine-category
 import { MedicineIngredientComponent } from './medicine/ingredient/medicine-ingredient/medicine-ingredient.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipeSearchFilterPipe } from 'src/app/_core/pipe/pipe-search-filter.pipe';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 const homeRoutes: Routes = [
   {
@@ -50,6 +51,7 @@ const homeRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    DashboardComponent,
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
@@ -76,8 +78,9 @@ const homeRoutes: Routes = [
     ReactiveFormsModule,
     CommonModule,
     AntdModule,
-
-
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ],
   providers: [
     

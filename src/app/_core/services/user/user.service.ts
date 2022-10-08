@@ -33,12 +33,15 @@ export class UserService {
     return this.httpClient.get(DOMAIN + `user-management/managers?pageIndex=1&pageSize=5`, { headers: this.headers });
   }
   getProfile(): Observable<any> {
-    return this.httpClient.get(DOMAIN + `user-management/auth/managers/profile`, { headers: this.headers })
+    return this.httpClient.get(DOMAIN + `user-management/auth/user/profile`, { headers: this.headers })
   }
 
   // Staff
-  getStaffs(index: string, size: string): Observable<any> {
-    return this.httpClient.get(DOMAIN + `user-management/staffs?pageIndex=${index}&pageSize=${size}`, { headers: this.headers })
+  getStaffs(): Observable<any> {
+    return this.httpClient.get(DOMAIN + `user-management/staffs`, { headers: this.headers })
+  }
+  createStaff(staffData: FormData): Observable<any> {
+    return this.httpClient.post(DOMAIN + `user-management/staffs`, { staffData }, { headers: this.headers })
   }
   // Customer
 

@@ -1,8 +1,7 @@
 import { UserService } from './../../../../_core/services/user/user.service';
 import { StaffInterface } from './../../../../_core/utils/interface';
-
 import { Router } from '@angular/router';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-staff',
@@ -19,19 +18,21 @@ export class ListStaffComponent implements OnInit {
   constructor(
     private user: UserService,
     private router: Router,
+
   ) {
 
   }
 
   ngOnInit(): void {
-    this.user.getStaffs('1', '10').subscribe((result) => {
-      this.listData = result?.items
+    this.user.getStaffs().subscribe((result) => {
+      console.log(result)
+      this.listData = result
       this.loading = false
       console.log(this.listData)
     })
   }
 
-  detail(id: string) {
+  detail(id: number) {
     this.router.navigate(['dashboard/detail-staff/' + id]);
   }
 
@@ -65,5 +66,7 @@ export class ListStaffComponent implements OnInit {
     this.selectedProvince = value
     console.log(this.selectedProvince);
   }
+
+
 
 }

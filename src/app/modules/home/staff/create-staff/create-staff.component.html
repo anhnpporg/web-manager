@@ -1,82 +1,84 @@
 <main id="main" class="main">
-    <div class="pagetitle d-flex justify-content-between">
-        <div>
-            <h1>Create a Staff</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a routerLink="/dashboard/staff">Staff</a></li>
-                    <li class="breadcrumb-item active">Create a staff</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <section>
-        <div class="col-12">
-            <div class="card recent-sales overflow-auto">
-               <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                     <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                     </li>
-                     <li><a class="dropdown-item" href="#">Today</a></li>
-                     <li><a class="dropdown-item" href="#">This Month</a></li>
-                     <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
+   <div class="pagetitle d-flex justify-content-between">
+      <div>
+         <h1>Tạo nhân viên</h1>
+         <nav>
+            <ol class="breadcrumb">
+               <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+               <li class="breadcrumb-item"><a routerLink="/dashboard/staff">Nhân viên</a></li>
+               <li class="breadcrumb-item active">Tạo nhân viên</li>
+            </ol>
+         </nav>
+      </div>
+   </div>
+   <section class="section">
+      <div class="card container">
+         <div class="card-body">
+            <h5 class="card-title"></h5>
+            <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="StaffData">
+               <div class="col-md-12">
+                  <label for="inputName5" class="form-label">Tài khoản</label>
+                  <input type="text" class="form-control" id="inputName" formControlName="loginName">
+                  <div
+                     *ngIf="statusError.loginName.invalid && (statusError.loginName.dirty || statusError.loginName.touched) ">
+                     <div *ngIf="statusError.loginName.errors">
+                        <div *ngIf="statusError.loginName.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập tài khoản</small>
+                        </div>
+                        <div *ngIf="statusError.loginName.errors!['pattern']">
+                           <small style="color: red;">Tài khoản không đúng định dạng (8-20 kí tự và không chứa kí tự đặt biệt)</small>
+                        </div>
+                     </div>
+                  </div>
                </div>
-               <div class="card-body">
-                  <h5 class="card-title">Recent Sales <span>| Today</span></h5>
-                  <table class="table table-borderless datatable">
-                     <thead>
-                        <tr>
-                           <th scope="col">#</th>
-                           <th scope="col">Customer</th>
-                           <th scope="col">Product</th>
-                           <th scope="col">Price</th>
-                           <th scope="col">Status</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <tr>
-                           <th scope="row"><a href="#">#2457</a></th>
-                           <td>Brandon Jacob</td>
-                           <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                           <td>$64</td>
-                           <td><span class="badge bg-success">Approved</span></td>
-                        </tr>
-                        <tr>
-                           <th scope="row"><a href="#">#2147</a></th>
-                           <td>Bridie Kessler</td>
-                           <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                           <td>$47</td>
-                           <td><span class="badge bg-warning">Pending</span></td>
-                        </tr>
-                        <tr>
-                           <th scope="row"><a href="#">#2049</a></th>
-                           <td>Ashleigh Langosh</td>
-                           <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                           <td>$147</td>
-                           <td><span class="badge bg-success">Approved</span></td>
-                        </tr>
-                        <tr>
-                           <th scope="row"><a href="#">#2644</a></th>
-                           <td>Angus Grady</td>
-                           <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                           <td>$67</td>
-                           <td><span class="badge bg-danger">Rejected</span></td>
-                        </tr>
-                        <tr>
-                           <th scope="row"><a href="#">#2644</a></th>
-                           <td>Raheem Lehner</td>
-                           <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                           <td>$165</td>
-                           <td><span class="badge bg-success">Approved</span></td>
-                        </tr>
-                     </tbody>
-                  </table>
+               <div class="col-md-6">
+                  <label for="inputPassword" class="form-label">Mật khẩu</label>
+                  <input type="password" class="form-control" id="inputPassword" formControlName="password" placeholder="******">
                </div>
-            </div>
+               <div class="col-md-6">
+                  <label for="inputComfirmPassword" class="form-label">nhập lại mật khẩu</label>
+                  <input type="password" class="form-control" id="inputComfirmPassword"
+                     formControlName="passwordConfirm" placeholder="******">
+               </div>
+               <div class="col-12">
+                  <label for="inputFullname" class="form-label">Họ và tên</label>
+                  <input type="text" class="form-control" id="inputFullname" placeholder="Nguyễn Văn A"
+                     formControlName="fullname">
+               </div>
+               <div class="col-md-4">
+                  <label for="inputPhonenumber" class="form-label">Số điện thoại</label>
+                  <input type="text" class="form-control" id="inputPhonenumber" placeholder="0912345678"
+                     formControlName="phoneNumber">
+               </div>
+               <div class="col-md-4">
+                  <label for="inputDate" class="form-label">Ngày sinh</label>
+                  <input type="date" class="form-control" formControlName="dob">
+               </div>
+               <div class="col-md-4">
+                  <label class="form-label">Giới tính</label>
+                  <select class="form-control" formControlName="isMale">
+                     <option value="true" selected>Nam</option>
+                     <option value="false">Nữ</option>
+                  </select>
+               </div>
+               <div class="col-6">
+                  <label for="inputAvatar">Ảnh đại diện</label>
+                  <input type="file" (change)="uploadImage($event)" class="form-control">
+               </div>
+               <div class="col-6">
+                  <div style="width: 100px; height: 134px; border: 1px solid;">
+                     <img [src]="imageURL" alt="avatar" width="100" height="134">
+                     <input type="hidden" formControlName="avatar" [value]="imageURL">
+                  </div>
+               </div>
+               <div class="d-flex justify-content-end">
+                  <div class="col-3 mt-4">
+                     <button class="w-100" nz-button nzType="primary" nzSize="large">Tạo nhân viên</button>
+                  </div>
+               </div>
+            </form>
          </div>
-    </section>
+      </div>
+
+   </section>
 </main>

@@ -36,11 +36,6 @@ export class CreateManagerComponent implements OnInit {
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
-      nickname: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
-      website: [null, [Validators.required]],
-      captcha: [null, [Validators.required]],
-      agree: [false]
     });
   }
 }
