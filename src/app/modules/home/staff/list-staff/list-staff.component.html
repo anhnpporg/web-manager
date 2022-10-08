@@ -27,40 +27,44 @@
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
-                    <nz-option nzValue="SearchEmail" nzLabel="Email nhân viên"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="SĐT nhân viên"></nz-option>
                 </nz-select>
             </button>
         </ng-template>
     </div>
     <section class="section">
-        <nz-table #basicTable [nzLoading]="loading">
+        <nz-table #basicTable [nzLoading]="loading" [nzData]="listData">
             <thead>
                 <tr>
+                    <th>Hình</th>
                     <th>Mã</th>
                     <th>Họ và Tên</th>
-                    <th>Email</th>
-                    <th>Address</th>
+                    <th>Số điện thoại</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="detail(data.user.fullname)" style="cursor: pointer;"
-                    *ngFor="let data of listData | pipeSearchFilter:searchData:selectedProvince" 
-                    
-                    >
-                    <td>{{ data.user.id}}</td>
-                    <td>{{ data.user.fullname || null }}</td>
-                    <td>{{ data.email }}</td>
+                <tr style="cursor: pointer;"
+                    *ngFor="let data of listData | pipeSearchFilter:searchData:selectedProvince">
+                    <td (click)="detail(data.userId)">
+                        <img src={{data.avatar}} alt="avatar" width="50">
+                    </td>
+                    <td (click)="detail(data.userId)">{{ data.userId}}</td>
+                    <td (click)="detail(data.userId)">{{ data.fullname || null }}</td>
+                    <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
                     <td>
                         <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
                         <nz-divider nzType="vertical"></nz-divider>
-                        <button type="button" class="btn btn-outline-success action__button"
-                            (click)="clickUnBan(data.user.id)">Bỏ chặn</button>
+                        <span *ngIf="data.isActive == true; else ElseBan ">
+                            <button type="button" class="btn btn-outline-success action__button"
+                                (click)="clickUnBan(data.userId)">Bỏ chặn</button>
+                        </span>
                     </td>
+                    <ng-template #ElseBan>
+                        <button type="button" class="btn btn-outline-danger action__button"
+                            (click)="clickBan(data.userId)">chặn</button>
+                    </ng-template>
                 </tr>
-                <ng-template #ListDataNull>
-                    <td>không có kết quả</td>
-                </ng-template>
             </tbody>
         </nz-table>
     </section>

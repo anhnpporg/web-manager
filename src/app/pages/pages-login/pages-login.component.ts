@@ -13,14 +13,16 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 })
 export class PagesLoginComponent implements OnInit {
 
-  // email: string = "";
-  // password: string = "";
+  username: string = "";
+  password: string = "";
+  token: string = ''
 
   constructor(
     private auth: AuthService,
     private noti: NzNotificationService,
-    public translate: TranslateService
-  ) { 
+    public translate: TranslateService,
+    private route: Router
+  ) {
     translate.setDefaultLang('en');
     translate.use('en');
   }
@@ -33,7 +35,26 @@ export class PagesLoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.GoogleAuth();
+    var formData: any = new FormData();
+    formData.append(
+      'username', this.username
+    )
+    formData.append(
+      'password', this.password
+    )
+    console.log(this.username + "-" + this.password)
+
+    this.auth.login(formData).subscribe((result: any) => {
+
+      if (result.accessToken) {
+        this.token = `Bearer ${result.accessToken}`
+        localStorage.setItem(ACCESS_TOKEN, this.token)
+        if (localStorage.getItem(ACCESS_TOKEN)) {
+          this.route.navigate(['dashboard'])
+        }
+      }
+
+    })
   }
 
 

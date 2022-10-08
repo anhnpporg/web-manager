@@ -710,13 +710,17 @@
 	color: #4154f1;
 	background: #f6f6fe;
   }
+  .dashboard .expense-card .card-icon {
+	color: #df2c2c;
+	background: #f7e4e4;
+  }
   .dashboard .revenue-card .card-icon {
 	color: #2eca6a;
 	background: #e0f8e9;
   }
-  .dashboard .customers-card .card-icon {
-	color: #ff771d;
-	background: #ffecdf;
+  .dashboard .profit-card .card-icon {
+	color: #fde444;
+	background: #f8f6d5;
   }
   
   /* Activity */

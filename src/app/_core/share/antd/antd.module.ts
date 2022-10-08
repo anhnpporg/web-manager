@@ -6,7 +6,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 
@@ -22,7 +25,11 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzInputModule,
     NzIconModule,
     NzFormModule,
-    NzSelectModule
+    NzSelectModule,
+    NzLayoutModule,
+    NzTabsModule,
+    NzDatePickerModule,
+    NzModalModule
   ]
 })
 export class AntdModule { }

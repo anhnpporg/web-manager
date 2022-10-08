@@ -1,4 +1,3 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PagesError404Component } from './pages/pages-error404/pages-error404.component';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './modules/home/home.module';
@@ -17,7 +16,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { vi_VN } from 'ng-zorro-antd/i18n';
-import { PipeSearchFilterPipe } from './_core/pipe/pipe-search-filter.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // PipeSearchFilterPipe,
   ],
   imports: [
-    FormsModule,
+    
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

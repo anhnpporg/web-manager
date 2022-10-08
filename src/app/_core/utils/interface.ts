@@ -6,16 +6,14 @@ export interface Person {
 }
 
 export interface Profile {
-    email?: string;
-    family_name?: string;
-    given_name?: string
-    granted_scopes?: string
-    hd?: string
-    id?: string
-    locale?: string
-    name?: string
-    picture?: string
-    verified_email?: boolean
+    avatar: string
+    createdAt: string
+    dateOfBirth: String
+    fullname: string
+    isActive: boolean
+    isMale: boolean
+    phoneNumber: string
+    userId: number
 }
 
 export interface ManagerInterface {
@@ -37,18 +35,23 @@ export interface ManagerInterface {
 }
 
 export interface StaffInterface {
-    email: string,
-    user: {
-        id: number,
-        fullname: string,
-        createDate: string,
-        updateDate: string,
-        avatar: string,
-        phoneNumber: string,
-        genderId: number,
-        dateOfBirth: string,
-        isBan: boolean,
-        banDate: string,
-        gender: boolean,
-    }
+    avatar: string
+    createdAt: string
+    dateOfBirth: String
+    fullname: string
+    isActive: boolean
+    isMale: boolean
+    phoneNumber: string
+    userId: number
+}
+
+export interface CreateStaffInterface {
+    loginName: string,
+    password: string,
+    passwordConfirm: string,
+    fullname: string,
+    avatar: string,
+    dob: Date
+    phoneNumber: string,
+    isMale: boolean
 }

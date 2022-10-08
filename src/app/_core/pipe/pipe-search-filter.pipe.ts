@@ -15,11 +15,11 @@ export class PipeSearchFilterPipe implements PipeTransform {
     console.log(searchType + "-" + searchValue);
 
     if (searchType == "searchID") {
-      return listdata.filter(data => data.user.id.toString().includes(searchValue.toLocaleLowerCase()))
-    } else if (searchType == "SearchEmail") {
-      return listdata.filter(data => data.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+      return listdata.filter(data => data.userId.toString().includes(searchValue.toLocaleLowerCase()))
+    } else if (searchType == "SearchPhone") {
+      return listdata.filter(data => data.phoneNumber.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
     } else if (searchType == "SearchName") {
-      return listdata.filter(data => data.user.fullname.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+      return listdata.filter(data => data.fullname.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
     }
     return this.listnull
   }

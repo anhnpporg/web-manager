@@ -1,3 +1,4 @@
+import { UserService } from './../../_core/services/user/user.service';
 import { Profile } from './../../_core/utils/interface';
 import { PROFILE, USER_NAME, AVATAR } from './../../_core/utils/configApp';
 import { AuthService } from './../../_core/services/auth/auth.service';
@@ -18,10 +19,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private auth: AuthService
+    private auth: AuthService,
+    private user: UserService
   ) { }
 
   ngOnInit(): void {
+    this.user.getProfile().subscribe((result: any) => {
+      // let profile = 
+      console.log(result);
+      
+    })
   }
   sidebarToggle() {
     this.document.body.classList.toggle('toggle-sidebar');
