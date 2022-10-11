@@ -47,6 +47,8 @@ export class UserService {
     return this.httpClient.post(DOMAIN + `user-management/staffs`, { staffData }, { headers: this.headers })
   }
   // Customer
-
+  getCustomers(): Observable<any> {
+    return this.httpClient.get(DOMAIN + `user-management/customers`, { headers: this.headers })
+  }
 
 }

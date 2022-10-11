@@ -1,8 +1,9 @@
-export interface Person {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
+export interface Customer {
+    userId: string;
+    fullname: string;
+    phoneNumber: number;
+    createAt: string;
+    isActive: boolean;
 }
 
 export interface Profile {

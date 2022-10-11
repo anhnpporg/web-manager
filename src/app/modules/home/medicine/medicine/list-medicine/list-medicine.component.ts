@@ -1,4 +1,4 @@
-import { Person } from 'src/app/_core/utils/interface';
+// import { Person } from 'src/app/_core/utils/interface';
 import { Router } from '@angular/router';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
@@ -17,31 +17,31 @@ export class ListMedicineComponent implements OnInit {
   }
 
 
-  listOfData: Person[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
+  // listOfData: Person[] = [
+  //   {
+  //     key: '1',
+  //     name: 'John Brown',
+  //     age: 32,
+  //     address: 'New York No. 1 Lake Park'
+  //   },
+  //   {
+  //     key: '2',
+  //     name: 'Jim Green',
+  //     age: 42,
+  //     address: 'London No. 1 Lake Park'
+  //   },
+  //   {
+  //     key: '3',
+  //     name: 'Joe Black',
+  //     age: 32,
+  //     address: 'Sidney No. 1 Lake Park'
+  //   }
+  // ];
 
   detail(id: string) {
     this.router.navigate(['dashboard/detail-medicine/' + id]);
     console.log('dashboard/detail-medicine/' + id);
-    
+
   }
 
 }
