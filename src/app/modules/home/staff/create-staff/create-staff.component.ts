@@ -21,7 +21,7 @@ export class CreateStaffComponent implements OnInit {
     password: ['', [Validators.required]],
     passwordConfirm: ['', [Validators.required],],
     fullname: ['', [Validators.required]],
-    phoneNumber: [''],
+    phoneNumber: ['',[Validators.required],Validators.pattern('(\\+84|0)[0-9]{9}')],
     dob: [''],
     isMale: [true],
     avatar: [''],
