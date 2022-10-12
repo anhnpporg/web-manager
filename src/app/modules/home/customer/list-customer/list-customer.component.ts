@@ -38,6 +38,32 @@ export class ListCustomerComponent implements OnInit {
     console.log(this.selectedProvince);
   }
 
+  clickBan(id: number) {
+    this.user.isBan(id).subscribe(() => {
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+        console.log(currentUrl);
+      });
+    }, err => {
+      console.log(err);
+
+    })
+  }
+
+  clickUnBan(id: number) {
+    this.user.isUnBan(id).subscribe((rs: string) => {
+      console.log('rs:', rs);
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+        console.log(currentUrl);
+      });
+    }, err => {
+      console.log(err)
+    })
+  }
+
   // SearchList() {
   //   console.log(this.searchData)
   //   if (this.selectedProvince == "searchID") {
