@@ -31,16 +31,16 @@
                   <th>ID</th>
                   <th>Họ và tên</th>
                   <th>Số điện thoại</th>
-                  <th>Ngày tạo</th>
+                  <th>Ngày tạo tài khoản</th>
                   <!-- <th>Action</th> -->
               </tr>
           </thead>
           <tbody>
             <tr *ngFor="let data of listOfData">
-                    <td >{{ data.userId}}</td>
-                    <td >{{ data.fullname }}</td>
-                    <td >{{ data.phoneNumber }}</td>
-                    <td >{{ data.createdAt.substring(8,10) }} - {{ data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
+                    <td (click)="detail(data.userId)">{{ data.userId}}</td>
+                    <td (click)="detail(data.userId)">{{ data.fullname }}</td>
+                    <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
+                    <td (click)="detail(data.userId)">{{ data.createdAt.substring(8,10) }} - {{ data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
                     <!-- <td>
                       <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
                       <nz-divider nzType="vertical"></nz-divider>
