@@ -32,7 +32,7 @@
                   <th>Họ và tên</th>
                   <th>Số điện thoại</th>
                   <th>Ngày tạo</th>
-                  <th>Action</th>
+                  <!-- <th>Action</th> -->
               </tr>
           </thead>
           <tbody>
@@ -40,8 +40,8 @@
                     <td >{{ data.userId}}</td>
                     <td >{{ data.fullname }}</td>
                     <td >{{ data.phoneNumber }}</td>
-                    <td >{{ data.createAt }}</td>
-                    <td>
+                    <td >{{ data.createdAt.substring(8,10) }} - {{ data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
+                    <!-- <td>
                       <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
                       <nz-divider nzType="vertical"></nz-divider>
                       <span *ngIf="data.isActive == true; else ElseBan ">
@@ -52,7 +52,7 @@
                   <ng-template #ElseBan>
                       <button type="button" class="btn btn-outline-danger action__button"
                           (click)="clickBan(data.userId)">chặn</button>
-                  </ng-template>
+                  </ng-template> -->
             </tr>
               <!-- <tr style="cursor: pointer;"
                   *ngFor="let data of listOfData  | pipeSearchFilter:searchDataCustomer:selectedProvince">

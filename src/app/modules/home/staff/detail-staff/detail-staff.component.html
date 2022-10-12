@@ -30,7 +30,7 @@
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-4 label">Sinh ngày</div>
-              <div class="col-lg-9 col-md-8">{{ dateOfBirth }}</div>
+              <div class="col-lg-9 col-md-8">{{ dateOfBirth.substring(8,10) }} - {{ dateOfBirth.substring(5,7) }} - {{ dateOfBirth.substring(0,4) }}</div>
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-4 label">Giới tính</div>
@@ -43,7 +43,7 @@
             </div>
             <div class="row">
               <div class="col-lg-3 col-md-4 label">Ngày tạo tài khoản</div>
-              <div class="col-lg-9 col-md-8">{{ createdAt }}</div>
+              <div class="col-lg-9 col-md-8">{{ createdAt.substring(8,10) }} - {{ createdAt.substring(5,7) }} - {{ createdAt.substring(0,4) }}</div>
             </div>
           </nz-tab>
 

@@ -1,8 +1,10 @@
+import { DateLocale } from "ng-zorro-antd/i18n";
+
 export interface Customer {
     userId: number;
     fullname: string;
     phoneNumber: number;
-    createAt: string;
+    createdAt: string;
     isActive: boolean;
 }
 
