@@ -14,16 +14,20 @@ export class UserService {
     private httpClient: HttpClient
   ) {
     console.log(this.token);
-    this.headers = new HttpHeaders({ 'authorization': this.token! });
+    this.headers = new HttpHeaders({
+      'authorization': this.token!,
+      'accept': '*/*',
+      'Access-Control-Allow-Origin': '*'
+    });
   }
 
 
   isBan(id: number): Observable<any> {
-    return this.httpClient.put(DOMAIN + `user-management/users/ban/${id}`, {}, { headers: this.headers });
+    return this.httpClient.patch(DOMAIN + `user-management/users/ban/${id}`, {}, { headers: this.headers });
   }
 
   isUnBan(id: number): Observable<any> {
-    return this.httpClient.put(DOMAIN + `user-management/users/unban/${id}`, {}, { headers: this.headers });
+    return this.httpClient.patch(DOMAIN + `user-management/users/unban/${id}`, {}, { headers: this.headers });
   }
 
   //Manager
@@ -35,7 +39,7 @@ export class UserService {
   getProfile(): Observable<any> {
     return this.httpClient.get(DOMAIN + `user-management/auth/user/profile`, { headers: this.headers })
   }
-  getProfilebyID(id: number): Observable<any>{
+  getProfilebyID(id: number): Observable<any> {
     return this.httpClient.get(DOMAIN + `user-management/profile/${id}`, { headers: this.headers })
   }
 
@@ -44,7 +48,7 @@ export class UserService {
     return this.httpClient.get(DOMAIN + `user-management/staffs`, { headers: this.headers })
   }
   createStaff(staffData: FormData): Observable<any> {
-    return this.httpClient.post(DOMAIN + `user-management/staffs`, { staffData }, { headers: this.headers })
+    return this.httpClient.post(DOMAIN + `user-management/staffs`, staffData, { headers: this.headers })
   }
   // Customer
   getCustomers(): Observable<any> {

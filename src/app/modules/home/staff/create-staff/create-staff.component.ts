@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../../../_core/services/user/user.service';
 // import { CustomValidators } from './../../../../providers/CustomValidators';
 import { ImageService } from './../../../../_core/services/image/image.service';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, ref } from 'firebase/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-create-staff',
@@ -14,21 +16,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateStaffComponent implements OnInit {
   path: string = '';
   nameImage: string = '';
-  imageURL: string = '';
+  imageURL: string = './assets/img/avatar.png';
 
   StaffData = this.fb.group({
-    loginName: ['',[Validators.required,Validators.pattern('^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$'),],],
+    loginName: ['', [Validators.required, Validators.pattern('^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$'),],],
     password: ['', [Validators.required]],
     passwordConfirm: ['', [Validators.required],],
     fullname: ['', [Validators.required]],
-    phoneNumber: ['',[Validators.required],Validators.pattern('(\\+84|0)[0-9]{9}')],
+    phoneNumber: ['', [Validators.required], Validators.pattern('(\\+84|0)[0-9]{9}')],
     dob: [''],
     isMale: [true],
     avatar: [''],
   },
-  {
-    // validators: this.mustMatch('password','passwordConfirm')
-  }
+    {
+      // validators: this.mustMatch('password','passwordConfirm')
+    }
   );
 
   get statusError() {
@@ -38,9 +40,11 @@ export class CreateStaffComponent implements OnInit {
     private storageImage: AngularFireStorage,
     private GetImg: ImageService,
     private fb: FormBuilder,
-    private user: UserService
-  ) {}
-  ngOnInit(): void {}
+    private user: UserService,
+    private router: Router,
+    private notification: NzNotificationService
+  ) { }
+  ngOnInit(): void { }
 
   onSubmit() {
     var formData: any = new FormData();
@@ -57,6 +61,19 @@ export class CreateStaffComponent implements OnInit {
 
     this.user.createStaff(formData).subscribe((rs) => {
       console.log(rs);
+      this.notification.create(
+        'success',
+        'Tạo nhân viên mới thành công', ''
+      )
+      this.router.navigate(['dashboard/staff'])
+    }, err => {
+      console.log(err);
+
+      this.notification.create(
+        'error',
+        (err.error.title ||err.error.massage) ,
+        ''
+      )
     });
   }
 
@@ -78,16 +95,16 @@ export class CreateStaffComponent implements OnInit {
         result.downloadTokens;
     });
   }
-  mustMatch(password:any, passwordConfirm:any){
-    return (formGroup:FormGroup)=>{
+  mustMatch(password: any, passwordConfirm: any) {
+    return (formGroup: FormGroup) => {
       const passwordControl = formGroup.controls[password];
       const passwordConfirmControl = formGroup.controls[passwordConfirm];
-      if(passwordConfirmControl.errors && !passwordConfirmControl.errors['mustMatch']){
+      if (passwordConfirmControl.errors && !passwordConfirmControl.errors['mustMatch']) {
         return;
       }
-      if(passwordControl.value!==passwordConfirmControl.value){
-        passwordConfirmControl.setErrors({mustMatch:true});
-      }else{
+      if (passwordControl.value !== passwordConfirmControl.value) {
+        passwordConfirmControl.setErrors({ mustMatch: true });
+      } else {
         passwordConfirmControl.setErrors(null);
       }
     }
