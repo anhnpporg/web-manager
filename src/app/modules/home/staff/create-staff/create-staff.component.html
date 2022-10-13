@@ -26,14 +26,16 @@
                            <small style="color: red;">Vui lòng nhập tài khoản</small>
                         </div>
                         <div *ngIf="statusError.loginName.errors!['pattern']">
-                           <small style="color: red;">Tài khoản không đúng định dạng (8-20 kí tự và không chứa kí tự đặt biệt)</small>
+                           <small style="color: red;">Tài khoản không đúng định dạng (6-20 kí tự và không chứa kí tự đặt
+                              biệt)</small>
                         </div>
                      </div>
                   </div>
                </div>
                <div class="col-md-6">
                   <label for="inputPassword" class="form-label">Mật khẩu</label>
-                  <input type="password" class="form-control" id="inputPassword" formControlName="password" placeholder="******">
+                  <input type="password" class="form-control" id="inputPassword" formControlName="password"
+                     placeholder="******">
                   <div
                      *ngIf="statusError.password.invalid && (statusError.password.dirty || statusError.password.touched) ">
                      <div *ngIf="statusError.password.errors">
@@ -47,7 +49,7 @@
                   <label for="inputComfirmPassword" class="form-label">Nhập lại mật khẩu</label>
                   <input type="password" class="form-control" id="inputComfirmPassword"
                      formControlName="passwordConfirm" placeholder="******">
-                     <div
+                  <div
                      *ngIf="statusError.passwordConfirm.invalid && (statusError.passwordConfirm.dirty || statusError.passwordConfirm.touched) ">
                      <div *ngIf="statusError.passwordConfirm.errors">
                         <div *ngIf="statusError.passwordConfirm.errors!['required']">
@@ -63,7 +65,7 @@
                   <label for="inputFullname" class="form-label">Họ và tên</label>
                   <input type="text" class="form-control" id="inputFullname" placeholder="Nguyễn Văn A"
                      formControlName="fullname">
-                     <div
+                  <div
                      *ngIf="statusError.fullname.invalid && (statusError.fullname.dirty || statusError.fullname.touched) ">
                      <div *ngIf="statusError.fullname.errors">
                         <div *ngIf="statusError.fullname.errors!['required']">
@@ -93,8 +95,8 @@
                   <input type="file" (change)="uploadImage($event)" class="form-control">
                </div>
                <div class="col-6">
-                  <div style="width: 100px; height: 134px; border: 1px solid;">
-                     <img [src]="imageURL" alt="avatar" width="100" height="134">
+                  <div style="width: 100px; height: 100px;border-radius: 50px;">
+                     <img [src]="imageURL" alt="avatar" width="100" height="100" style="border-radius: 50px;">
                      <input type="hidden" formControlName="avatar" [value]="imageURL">
                   </div>
                </div>

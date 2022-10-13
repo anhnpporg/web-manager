@@ -10,6 +10,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 
 
@@ -29,7 +30,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzLayoutModule,
     NzTabsModule,
     NzDatePickerModule,
-    NzModalModule
+    NzModalModule,
+    NzNotificationModule
   ]
 })
 export class AntdModule { }

@@ -25,10 +25,8 @@ export class ListStaffComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.getStaffs().subscribe((result) => {
-      console.log(result)
       this.listData = result
       this.loading = false
-      console.log(this.listData)
     })
   }
 
