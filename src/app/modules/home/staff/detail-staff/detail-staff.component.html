@@ -1,30 +1,55 @@
 <main id="main" class="main">
-    <div class="pagetitle d-flex justify-content-between">
-        <div>
-            <h1>Thông tin nhân viên {{id}}</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a routerLink="/dashboard/staff">Nhân viên</a></li>
-                    <li class="breadcrumb-item active">thông tin nhân viên {{id}}</li>
-                </ol>
-            </nav>
-        </div>
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Thông tin nhân viên {{ id }}</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/staff">Nhân viên</a>
+          </li>
+          <li class="breadcrumb-item active">thông tin nhân viên {{ id }}</li>
+        </ol>
+      </nav>
     </div>
+  </div>
 
-    <section class="container-fluid">
-        <div class="row">
-            <div class="col-4 text-right">
-                <img src="https://picsum.photos/200/300" alt="" width="100%">
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-4 text-right">
+        <img src="{{ avatar }}" alt="" width="100%" />
+      </div>
+      <div class="col-8">
+        <nz-tabset>
+          <nz-tab nzTitle="Thông tin cá nhân">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Họ và tên</div>
+              <div class="col-lg-9 col-md-8">{{ fullname }}</div>
             </div>
-            <div class="col-8">
-                <nz-tabset>
-                    <nz-tab nzTitle="Thông tin cá nhân">
-                        <h1>id:{{id}}</h1>
-                    </nz-tab>
-                    <nz-tab nzTitle="Thông tin bán hàng">Content of Tab Pane 2</nz-tab>
-                </nz-tabset>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Sinh ngày</div>
+              <div class="col-lg-9 col-md-8">{{ dateOfBirth.substring(8,10) }} - {{ dateOfBirth.substring(5,7) }} - {{ dateOfBirth.substring(0,4) }}</div>
             </div>
-        </div>
-    </section>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Giới tính</div>
+              <div class="col-lg-9 col-md-8" *ngIf="isMale">Nam</div>
+              <div class="col-lg-9 col-md-8" *ngIf="!isMale">Nữ</div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
+              <div class="col-lg-9 col-md-8">{{ phoneNumber }}</div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Ngày tạo tài khoản</div>
+              <div class="col-lg-9 col-md-8">{{ createdAt.substring(8,10) }} - {{ createdAt.substring(5,7) }} - {{ createdAt.substring(0,4) }}</div>
+            </div>
+          </nz-tab>
+
+          <nz-tab nzTitle="Thông tin bán hàng">Content of Tab Pane 2</nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+  </section>
 </main>

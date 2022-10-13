@@ -1,8 +1,11 @@
-export interface Person {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
+import { DateLocale } from "ng-zorro-antd/i18n";
+
+export interface Customer {
+    userId: number;
+    fullname: string;
+    phoneNumber: number;
+    createdAt: string;
+    isActive: boolean;
 }
 
 export interface Profile {

@@ -1,3 +1,47 @@
 <main id="main" class="main">
-    <p>detail-customer works!</p>
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Thông tin khách hàng {{ id }}</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/customer">khách hàng</a>
+          </li>
+          <li class="breadcrumb-item active">thông tin khách hàng {{ id }}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <section class="container-fluid">
+    <div class="row">
+      <!-- <div class="col-4 text-right"> -->
+        <!-- <img src="{{ avatar }}" alt="" width="100%" /> -->
+      </div>
+      <div class="col-8">
+        <nz-tabset>
+          <nz-tab nzTitle="Thông tin cá nhân">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Họ và tên</div>
+              <div class="col-lg-9 col-md-8">{{ fullname }}</div>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Số điện thoại</div>
+              <div class="col-lg-9 col-md-8">{{ phoneNumber }}</div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 label">Ngày tạo tài khoản</div>
+              <div class="col-lg-9 col-md-8">{{ createdAt.substring(8,10) }} - {{ createdAt.substring(5,7) }} - {{ createdAt.substring(0,4) }}</div>
+            </div>
+          </nz-tab>
+
+          <nz-tab nzTitle="Thông tin mua hàng">Content of Tab Pane 2</nz-tab>
+        </nz-tabset>
+      </div>
+   </section>
 </main>

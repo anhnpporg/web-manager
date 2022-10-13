@@ -1,7 +1,7 @@
 import { UserService } from './../../../../_core/services/user/user.service';
 import { IS_ADMIN } from './../../../../_core/utils/configApp';
 import { Router } from '@angular/router';
-import { Person, ManagerInterface } from './../../../../_core/utils/interface';
+import { Customer, ManagerInterface } from './../../../../_core/utils/interface';
 import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
 import { NzTableFilterFn, NzTableFilterList } from 'ng-zorro-antd/table';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
@@ -12,7 +12,7 @@ interface ColumnItem {
   filterMultiple: boolean;
 }
 
- 
+
 
 @Component({
   selector: 'app-list-manager',
