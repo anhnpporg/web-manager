@@ -18,13 +18,13 @@
                               <label for="yourUsername" class="form-label">Tài khoản</label>
                               <div class="input-group has-validation">
                                  <input type="text" name="username" class="form-control" id="yourUsername" required [(ngModel)]="username">
-                                 <div class="invalid-feedback">Please enter your username.</div>
+                                 <div class="invalid-feedback">Vui lòng nhập tên đăng nhập</div>
                               </div>
                            </div>
                            <div class="col-12">
                               <label for="yourPassword" class="form-label">Mật khẩu</label>
                               <input type="password" name="password" class="form-control" id="yourPassword" required [(ngModel)]="password">
-                              <div class="invalid-feedback">Please enter your password!</div>
+                              <div class="invalid-feedback">Vui lòng nhập mật khẩu</div>
                            </div>
                            <div class="col-12 mt-4 mb-3"> <button (click)="login()" class="btn btn-primary w-100" type="submit">Đăng
                                  nhập</button></div>

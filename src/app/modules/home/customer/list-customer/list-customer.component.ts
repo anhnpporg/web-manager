@@ -1,5 +1,6 @@
+import { UserService } from './../../../../_core/services/user/user.service';
 import { Router } from '@angular/router';
-import { Person } from 'src/app/_core/utils/interface';
+import { Customer } from 'src/app/_core/utils/interface';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
@@ -9,60 +10,71 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class ListCustomerComponent implements OnInit {
 
-  searchData: string = ''
-  selectedProvince = 'SearchName'
-  listOfData: Person[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
-  listUpdate: Person[] = this.listOfData
+  searchDataCustomer: string = ''
+  selectedProvince = 'SearchID'
+  loading: boolean = true;
+  listOfData: Customer[] = []
 
   constructor(
-    private router: Router
+    private user: UserService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
+    this.user.getCustomers().subscribe((result)=>{
+      console.log(result)
+      this.listOfData = result
+      this.loading = false
+      console.log(this.listOfData)
+    })
+  }
+  detail(id: number) {
+    this.router.navigate(["dashboard/detail-customer/" + id]);
   }
 
-  SearchOption(value: string) {
+  SearchOptionForCustomer(value: string) {
     this.selectedProvince = value
     console.log(this.selectedProvince);
   }
 
-  SearchList() {
-    console.log(this.searchData)
-    if (this.selectedProvince == "searchID") {
-      this.listUpdate = this.listOfData.filter(data => data.key == this.searchData)
-    } else if (this.selectedProvince == "SearchPhone") {
-      this.listUpdate = this.listOfData.filter(data => data.name == this.searchData)
-    } else if (this.selectedProvince == "SearchName"){
-      this.listUpdate = this.listOfData.filter(data => data.address == this.searchData)
-    }else{
-      this.listUpdate = this.listOfData
-    }
+  clickBan(id: number) {
+    this.user.isBan(id).subscribe(() => {
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+        console.log(currentUrl);
+      });
+    }, err => {
+      console.log(err);
 
-    console.log(this.listUpdate);
-    
+    })
   }
 
-  detail(id: string) {
-    this.router.navigate(["dashboard/detail-manager/" + id]);
+  clickUnBan(id: number) {
+    this.user.isUnBan(id).subscribe((rs: string) => {
+      console.log('rs:', rs);
+      let currentUrl = this.router.url;
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentUrl]);
+        console.log(currentUrl);
+      });
+    }, err => {
+      console.log(err)
+    })
   }
 
+  // SearchList() {
+  //   console.log(this.searchData)
+  //   if (this.selectedProvince == "searchID") {
+  //     this.listUpdate = this.listOfData.filter(data => data.key == this.searchData)
+  //   } else if (this.selectedProvince == "SearchPhone") {
+  //     this.listUpdate = this.listOfData.filter(data => data.name == this.searchData)
+  //   } else if (this.selectedProvince == "SearchName"){
+  //     this.listUpdate = this.listOfData.filter(data => data.address == this.searchData)
+  //   }else{
+  //     this.listUpdate = this.listOfData
+  //   }
+  //   console.log(this.listUpdate);
+  // }
 }

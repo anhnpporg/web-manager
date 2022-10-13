@@ -35,6 +35,9 @@ export class UserService {
   getProfile(): Observable<any> {
     return this.httpClient.get(DOMAIN + `user-management/auth/user/profile`, { headers: this.headers })
   }
+  getProfilebyID(id: number): Observable<any>{
+    return this.httpClient.get(DOMAIN + `user-management/profile/${id}`, { headers: this.headers })
+  }
 
   // Staff
   getStaffs(): Observable<any> {
@@ -44,6 +47,8 @@ export class UserService {
     return this.httpClient.post(DOMAIN + `user-management/staffs`, { staffData }, { headers: this.headers })
   }
   // Customer
-
+  getCustomers(): Observable<any> {
+    return this.httpClient.get(DOMAIN + `user-management/customers`, { headers: this.headers })
+  }
 
 }
