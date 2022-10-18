@@ -1,78 +1,76 @@
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
-// import { Person } from 'src/app/_core/utils/interface';
 import { Router } from '@angular/router';
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ProductService } from 'src/app/_core/services/product/product.service';
+import { Component, OnInit } from '@angular/core';
+import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
+import { BrandsService } from 'src/app/_core/services/brands/brands.service';
 
 @Component({
-  selector: 'app-list-medicine',
-  templateUrl: './list-medicine.component.html',
-  styleUrls: ['./list-medicine.component.css']
+  selector: 'app-list-brand',
+  templateUrl: './list-brand.component.html',
+  styleUrls: ['./list-brand.component.css']
 })
-export class ListMedicineComponent implements OnInit {
+export class ListBrandComponent implements OnInit {
 
-  searchData: string = ''
-  listData: any[] = []
-  listsearch: any[] = []
   loading: boolean = true
+  listsearch: any[] = []
+  listData: any[] = []
   searchValue: string = ''
   selectedProvince: string = 'searchID'
-  width: number = 1
-  height: number = 50
-  isVisible: boolean = false
-  confirmModal?: NzModalRef;
-  activeSubstanceName: string = ''
+  isVisible = false;
+  factoryName: string = ''
   checkError: boolean = false
+  confirmModal?: NzModalRef;
+  nameList = [
+    { text: 'còn hoạt động', value: true },
+    { text: 'ngừng hoạt động', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
+    private brand: BrandsService,
     private router: Router,
-    private product: ProductService,
-    private modal: NzModalService,
     private notification: NzNotificationService,
+    private modal: NzModalService
   ) { }
 
   ngOnInit(): void {
-
-    this.product.getAllProduct().subscribe((result) => {
+    this.brand.getAllBrand().subscribe((result) => {
       console.log(result);
-      this.listData = result;
-      this.listsearch = this.listData
+
+      this.listData = result,
+        this.listsearch = this.listData
+      this.loading = false
     })
-
-    this.loading = false
   }
-
 
   SearchOption(value: string) {
     this.selectedProvince = value
-    console.log(this.selectedProvince);
   }
-
   getListSearch() {
-    console.log(this.searchData);
+    console.log(this.searchValue);
+
 
     if (this.selectedProvince == "searchID") {
-      this.listsearch = this.listData.filter(data => data.barcode.toString().includes(this.searchData.toLocaleLowerCase()))
+      this.listsearch = this.listData.filter(data => data.id.toString().includes(this.searchValue.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {
-      this.listsearch = this.listData.filter(data => data.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+      this.listsearch = this.listData.filter(data => data.name.toLocaleLowerCase().includes(this.searchValue.toLocaleLowerCase()))
     }
   }
   showModal(): void {
     this.isVisible = true;
   }
   handleOk(): void {
-    if (this.activeSubstanceName == '') {
+    if (this.factoryName == '') {
       this.checkError = true
     } else {
       var formdata = new FormData()
-      formdata.append('name', this.activeSubstanceName);
+      formdata.append('name', this.factoryName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result) => {
+      this.brand.createBrand(formdata).subscribe((result) => {
         this.notification.create(
           'success',
-          'Tạo phân loại thuốc mới thành công', ''
+          'Tạo nhà sản xuất mới thành công', ''
         )
         let currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -82,7 +80,7 @@ export class ListMedicineComponent implements OnInit {
       }, err => {
         this.notification.create(
           'error',
-          'Tạo phân loại thuốc mới thất bại', ''
+          'Tạo nhà sản xuất mới thất bại', ''
         )
       })
     }
@@ -95,7 +93,7 @@ export class ListMedicineComponent implements OnInit {
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
       nzOnOk: () => {
-        this.product.deleteCategory(id).subscribe(() => {
+        this.brand.deleteBrand(id).subscribe(() => {
           let currentUrl = this.router.url;
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
@@ -107,12 +105,6 @@ export class ListMedicineComponent implements OnInit {
         })
       },
     });
-  }
-
-  detail(id: string) {
-    this.router.navigate(['dashboard/detail-medicine/' + id]);
-    console.log('dashboard/detail-medicine/' + id);
-
   }
 
 }

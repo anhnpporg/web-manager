@@ -7,7 +7,7 @@ import { StaffInterface } from '../utils/interface';
 export class PipeSearchFilterPipe implements PipeTransform {
 
   listnull: StaffInterface[] = []
-  transform(listdata: StaffInterface[], searchValue: string, searchType: string): StaffInterface[] {
+  transform(listdata: StaffInterface[], searchValue: string, searchType: string){
 
     if (!listdata || !searchValue) {
       return listdata

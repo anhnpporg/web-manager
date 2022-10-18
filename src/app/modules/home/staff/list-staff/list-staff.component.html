@@ -20,7 +20,8 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData" />
+            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData"
+                (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
@@ -33,10 +34,9 @@
         </ng-template>
     </div>
     <section class="section">
-        <nz-table 
-        [nzLoading]="loading" 
-        [nzData]="listData"
-        [nzScroll]="{ x: '1150px', y: '600px' }">
+        <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+        <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
                     <th>Ảnh đại diện</th>
@@ -47,8 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;"
-                    *ngFor="let data of listData | pipeSearchFilter:searchData:selectedProvince">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
                     <td (click)="detail(data.userId)">
                         <img src={{data.avatar}} alt="avatar" width="50" height="50">
                     </td>

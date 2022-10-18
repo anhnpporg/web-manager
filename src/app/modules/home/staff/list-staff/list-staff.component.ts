@@ -2,6 +2,7 @@ import { UserService } from './../../../../_core/services/user/user.service';
 import { StaffInterface } from './../../../../_core/utils/interface';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-list-staff',
@@ -12,21 +13,24 @@ export class ListStaffComponent implements OnInit {
 
   searchData: string = ''
   listData: StaffInterface[] = []
+  listsearch: any
   selectedProvince = 'searchID'
   loading: boolean = true;
+  confirmModal?: NzModalRef;
 
   constructor(
     private user: UserService,
     private router: Router,
-
-  ) {
-
-  }
+    private modal: NzModalService
+  ) { }
 
   ngOnInit(): void {
     this.user.getStaffs().subscribe((result) => {
+      console.log(result);
+      
       this.listData = result
       this.loading = false
+      this.listsearch = this.listData
     })
   }
 
@@ -35,29 +39,43 @@ export class ListStaffComponent implements OnInit {
   }
 
   clickBan(id: number) {
-    this.user.isBan(id).subscribe(() => {
-      let currentUrl = this.router.url;
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentUrl]);
-        console.log(currentUrl);
-      });
-    }, err => {
-      console.log(err);
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Chặn',
+      nzContent: 'Bạn có muốn chặn nhân viên này',
+      nzOnOk: () => {
+        this.user.isBan(id).subscribe(() => {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
 
-    })
+        })
+      },
+    });
+
   }
 
   clickUnBan(id: number) {
-    this.user.isUnBan(id).subscribe((rs: string) => {
-      console.log('rs:', rs);
-      let currentUrl = this.router.url;
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentUrl]);
-        console.log(currentUrl);
-      });
-    }, err => {
-      console.log(err)
-    })
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Bỏ chặn',
+      nzContent: 'Bạn có muốn bỏ chặn nhân viên này',
+      nzOnOk: () => {
+        this.user.isUnBan(id).subscribe((rs: string) => {
+          console.log('rs:', rs);
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
+        })
+      },
+
+    });
   }
 
   SearchOption(value: string) {
@@ -65,6 +83,16 @@ export class ListStaffComponent implements OnInit {
     console.log(this.selectedProvince);
   }
 
+  getListSearch() {
+    console.log(this.searchData);
 
+    if (this.selectedProvince == "searchID") {
+      this.listsearch = this.listData.filter(data => data.userId.toString().includes(this.searchData.toLocaleLowerCase()))
+    } else if (this.selectedProvince == "SearchPhone") {
+      this.listsearch = this.listData.filter(data => data.phoneNumber.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    } else if (this.selectedProvince == "SearchName") {
+      this.listsearch = this.listData.filter(data => data.fullname.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    }
+  }
 
 }

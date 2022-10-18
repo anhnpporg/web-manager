@@ -38,13 +38,13 @@ export interface ManagerInterface {
 }
 
 export interface StaffInterface {
-    avatar: string
-    createdAt: string
-    dateOfBirth: String
-    fullname: string
-    isActive: boolean
-    isMale: boolean
-    phoneNumber: string
+    avatar: string,
+    createdAt: string,
+    dateOfBirth: String,
+    fullname: string,
+    isActive: boolean,
+    isMale: boolean,
+    phoneNumber: string,
     userId: number
 }
 
