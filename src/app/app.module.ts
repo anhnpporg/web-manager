@@ -26,10 +26,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     PagesError404Component,
-    // PipeSearchFilterPipe,
   ],
   imports: [
-    
+
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -38,8 +37,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     HomeModule,
     RouterModule,
+    
     TranslateModule.forRoot({
-      loader:{
+      loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
@@ -50,7 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     { provide: NZ_I18N, useValue: vi_VN },
     NzNotificationService,
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

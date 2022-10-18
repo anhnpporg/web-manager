@@ -17,21 +17,19 @@ export class CreateStaffComponent implements OnInit {
   path: string = '';
   nameImage: string = '';
   imageURL: string = './assets/img/avatar.png';
+  isSubmit: boolean = true
 
   StaffData = this.fb.group({
     loginName: ['', [Validators.required, Validators.pattern('^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$'),],],
-    password: ['', [Validators.required]],
-    passwordConfirm: ['', [Validators.required],],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    passwordConfirm: ['', [Validators.required, Validators.minLength(6)],],
     fullname: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required], Validators.pattern('(\\+84|0)[0-9]{9}')],
-    dob: [''],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^0[0-9]{9}$')]],
+    dob: ['', [Validators.required]],
     isMale: [true],
-    avatar: [''],
-  },
-    {
-      // validators: this.mustMatch('password','passwordConfirm')
-    }
-  );
+    avatar: ['', Validators.required],
+  }, {
+  });
 
   get statusError() {
     return this.StaffData.controls;
@@ -47,6 +45,9 @@ export class CreateStaffComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit() {
+    console.log(this.statusError);
+    console.log(this.StaffData);
+    
     var formData: any = new FormData();
     this.StaffData.value.avatar = this.imageURL;
     var date = this.StaffData.value.dob;
@@ -61,6 +62,7 @@ export class CreateStaffComponent implements OnInit {
 
     this.user.createStaff(formData).subscribe((rs) => {
       console.log(rs);
+      this.isSubmit = true
       this.notification.create(
         'success',
         'Tạo nhân viên mới thành công', ''
@@ -71,8 +73,8 @@ export class CreateStaffComponent implements OnInit {
 
       this.notification.create(
         'error',
-        (err.error.title ||err.error.massage) ,
-        ''
+        'Không thành công',
+        (err.error.message)
       )
     });
   }
@@ -94,19 +96,5 @@ export class CreateStaffComponent implements OnInit {
         '?alt=media&token=' +
         result.downloadTokens;
     });
-  }
-  mustMatch(password: any, passwordConfirm: any) {
-    return (formGroup: FormGroup) => {
-      const passwordControl = formGroup.controls[password];
-      const passwordConfirmControl = formGroup.controls[passwordConfirm];
-      if (passwordConfirmControl.errors && !passwordConfirmControl.errors['mustMatch']) {
-        return;
-      }
-      if (passwordControl.value !== passwordConfirmControl.value) {
-        passwordConfirmControl.setErrors({ mustMatch: true });
-      } else {
-        passwordConfirmControl.setErrors(null);
-      }
-    }
   }
 }

@@ -1,48 +1,49 @@
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
-// import { Person } from 'src/app/_core/utils/interface';
+import { ProductService } from './../../../../../_core/services/product/product.service';
+import { UserService } from './../../../../../_core/services/user/user.service';
+import { StaffInterface } from './../../../../../_core/utils/interface';
 import { Router } from '@angular/router';
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ProductService } from 'src/app/_core/services/product/product.service';
-
+import { Component, OnInit } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 @Component({
-  selector: 'app-list-medicine',
-  templateUrl: './list-medicine.component.html',
-  styleUrls: ['./list-medicine.component.css']
+  selector: 'app-list-active-substance',
+  templateUrl: './list-active-substance.component.html',
+  styleUrls: ['./list-active-substance.component.css']
 })
-export class ListMedicineComponent implements OnInit {
+export class ListActiveSubstanceComponent implements OnInit {
 
+  value:string = '127381'
   searchData: string = ''
   listData: any[] = []
-  listsearch: any[] = []
-  loading: boolean = true
-  searchValue: string = ''
-  selectedProvince: string = 'searchID'
-  width: number = 1
-  height: number = 50
-  isVisible: boolean = false
+  listsearch: any
+  selectedProvince = 'searchID'
+  loading: boolean = true;
   confirmModal?: NzModalRef;
   activeSubstanceName: string = ''
   checkError: boolean = false
+  isVisible: boolean = false
 
   constructor(
-    private router: Router,
     private product: ProductService,
+    private router: Router,
     private modal: NzModalService,
     private notification: NzNotificationService,
   ) { }
 
   ngOnInit(): void {
 
-    this.product.getAllProduct().subscribe((result) => {
+    this.product.getAllActiveSubstance().subscribe((result) => {
       console.log(result);
-      this.listData = result;
+
+      this.listData = result
+      this.loading = false
       this.listsearch = this.listData
     })
-
-    this.loading = false
   }
 
+  detail(id: number) {
+    // this.router.navigate(['dashboard/detail-staff/' + id]);
+  }
 
   SearchOption(value: string) {
     this.selectedProvince = value
@@ -53,7 +54,7 @@ export class ListMedicineComponent implements OnInit {
     console.log(this.searchData);
 
     if (this.selectedProvince == "searchID") {
-      this.listsearch = this.listData.filter(data => data.barcode.toString().includes(this.searchData.toLocaleLowerCase()))
+      this.listsearch = this.listData.filter(data => data.id.toString().includes(this.searchData.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {
       this.listsearch = this.listData.filter(data => data.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     }
@@ -69,10 +70,10 @@ export class ListMedicineComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result) => {
+      this.product.createActiveSubstance(formdata).subscribe((result) => {
         this.notification.create(
           'success',
-          'Tạo phân loại thuốc mới thành công', ''
+          'Tạo hoạt chất mới thành công', ''
         )
         let currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -82,7 +83,7 @@ export class ListMedicineComponent implements OnInit {
       }, err => {
         this.notification.create(
           'error',
-          'Tạo phân loại thuốc mới thất bại', ''
+          'Tạo hoạt chất mới thất bại', ''
         )
       })
     }
@@ -95,7 +96,7 @@ export class ListMedicineComponent implements OnInit {
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
       nzOnOk: () => {
-        this.product.deleteCategory(id).subscribe(() => {
+        this.product.deleteActiveSubstance(id).subscribe(() => {
           let currentUrl = this.router.url;
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
@@ -108,11 +109,4 @@ export class ListMedicineComponent implements OnInit {
       },
     });
   }
-
-  detail(id: string) {
-    this.router.navigate(['dashboard/detail-medicine/' + id]);
-    console.log('dashboard/detail-medicine/' + id);
-
-  }
-
 }

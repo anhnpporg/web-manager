@@ -13,7 +13,6 @@ export class UserService {
   constructor(
     private httpClient: HttpClient
   ) {
-    console.log(this.token);
     this.headers = new HttpHeaders({
       'authorization': this.token!,
       'accept': '*/*',
@@ -49,6 +48,9 @@ export class UserService {
   }
   createStaff(staffData: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + `user-management/staffs`, staffData, { headers: this.headers })
+  }
+  changePassword(userID: string, data: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `user-management/users/recovery-password/${userID}`, data, { headers: this.headers })
   }
   // Customer
   getCustomers(): Observable<any> {

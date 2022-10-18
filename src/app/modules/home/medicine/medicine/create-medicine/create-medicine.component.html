@@ -1,3 +1,38 @@
 <main id="main" class="main">
-    <p>create-medicine works!</p>
+    <div class="pagetitle d-flex justify-content-between">
+        <div>
+            <h1>Tạo thuốc mới</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/dashboard/staff">Thuốc</a></li>
+                    <li class="breadcrumb-item active">Tạo thuốc mới</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <section class="section">
+        <div class="card container">
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <form class="row g-3" (ngSubmit)="onSubmit()">
+                    <div class="col-md-12">
+                        <!-- <nz-form-label nzRequired for="inputName5" class="form-label">Tài khoản</nz-form-label> -->
+                        <input type="text" class="form-control" id="inputName" formControlName="loginName">
+                        <div class="d-flex justify-content-end">
+                            <div class="col-3 mt-4">
+                                <button class="w-100" nz-button
+                                    nzType="primary" nzSize="large">Tạo nhân viên</button>
+                            </div>
+                            <ng-template #submitButton>
+                                <button class="w-100" nz-button nzType="primary" nzSize="large"
+                                    title="điền thông tin để tạo nhân viên">Tạo nhân viên</button>
+                            </ng-template>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
 </main>

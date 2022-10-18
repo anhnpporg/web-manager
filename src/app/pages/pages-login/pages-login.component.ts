@@ -1,10 +1,10 @@
 import { AuthService } from './../../_core/services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ACCESS_TOKEN, IS_ADMIN } from './../../_core/utils/configApp';
+import { ACCESS_TOKEN } from './../../_core/utils/configApp';
 import { Router } from '@angular/router';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Component, OnInit } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { dataTool } from 'echarts';
 
 @Component({
   selector: 'app-pages-login',
@@ -45,25 +45,26 @@ export class PagesLoginComponent implements OnInit {
     console.log(this.username + "-" + this.password)
 
     this.auth.login(formData).subscribe((result: any) => {
+      console.log(result);
 
       if (result.accessToken) {
         this.token = `Bearer ${result.accessToken}`
         localStorage.setItem(ACCESS_TOKEN, this.token)
         if (localStorage.getItem(ACCESS_TOKEN)) {
           this.route.navigate(['dashboard'])
+          this.noti.create(
+            'success',
+            'Đăng nhập thành công', ''
+          )
         }
+      } else {
+        this.noti.create(
+          'error',
+          'không hợp lệ',
+          'vui lòng kiểm tra lại thông tin tài khoản và mật khẩu'
+        )
       }
 
     })
-  }
-
-
-
-  createNotification(type: string): void {
-    this.noti.create(
-      type,
-      'Invalid',
-      'please! check your email or password'
-    );
   }
 }

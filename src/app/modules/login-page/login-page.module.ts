@@ -8,7 +8,6 @@ import { AntdModule } from 'src/app/_core/share/antd/antd.module';
 const loginRoutes: Routes = [
   {
     path: '', component: PagesLoginComponent, children: [
-
     ]
   }
 ]

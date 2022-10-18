@@ -1,52 +1,51 @@
 <main id="main" class="main">
     <div class="pagetitle d-flex justify-content-between">
         <div>
-            <h1>Danh sách phân loại thuốc</h1>
+            <h1>Danh sách hoạt chất</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">phân loại thuốc</li>
+                    <li class="breadcrumb-item active">hoạt chất</li>
                 </ol>
             </nav>
         </div>
         <div>
             <button nz-button nzType="primary" (click)="showModal()" nzSize="large"><i class="bi bi-plus"></i>
-                <span>Tạo phân loại thuốc</span></button>
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo phân loại thuốc" nzOkText="Tạo phân loại thuốc"
-                nzCancelText="hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                <span>Tạo hoạt chất</span></button>
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo hoạt chất" nzOkText="Tạo hoạt chất" nzCancelText="hủy"
+                (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                 <ng-container *nzModalContent>
-                    <nz-form-label nzRequired for="inputName5" class="form-label">Tên phân loại thuốc</nz-form-label>
+                    <nz-form-label nzRequired for="inputName5" class="form-label">Tên hoạt chất</nz-form-label>
                     <input type="text" class="form-control" id="inputName" [(ngModel)]="activeSubstanceName">
                     <div *ngIf="checkError == true">
-                        <small style="color: red;">vui lòng nhập phân loại thuốc</small>
+                        <small style="color: red;">vui lòng nhập hoạt chất</small>
                     </div>
                 </ng-container>
             </nz-modal>
         </div>
     </div>
-
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="nhập mã, tên phân loại thuốc" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="nhập mã, tên hoạt chất" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
-                    <nz-option nzValue="searchID" nzLabel="Mã loại thuốc"></nz-option>
-                    <nz-option nzValue="SearchName" nzLabel="Tên loại thuốc"></nz-option>
+                    <nz-option nzValue="searchID" nzLabel="Mã hoạt chất"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên hoạt chất"></nz-option>
                 </nz-select>
             </button>
         </ng-template>
     </div>
     <section class="section">
-        <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+        
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger [nzScroll]="{ x: '1150px', y: '600px' }">
             <thead>
                 <tr>
                     <th>Mã</th>
-                    <th>Tên loại thuốc</th>
+                    <th>Tên hoạt chất</th>
                     <th>Ngày tạo</th>
                     <th>Hoạt động</th>
                 </tr>
@@ -70,4 +69,6 @@
             </tbody>
         </nz-table>
     </section>
+
+    
 </main>

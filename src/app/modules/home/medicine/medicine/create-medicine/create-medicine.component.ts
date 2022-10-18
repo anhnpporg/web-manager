@@ -12,4 +12,8 @@ export class CreateMedicineComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+
+  }
+
 }

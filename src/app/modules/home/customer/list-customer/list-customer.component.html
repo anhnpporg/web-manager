@@ -10,37 +10,39 @@
             </nav>
         </div>
     </div>
-    <form id="search">
+    <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên, sđt khách hàng" [(ngModel)]="searchDataCustomer"/>
+            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData"
+                (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
-                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOptionForCustomer($event)">
-                    <nz-option nzValue="searchID" nzLabel="Mã khách hàng"></nz-option>
-                    <nz-option nzValue="SearchName" nzLabel="Tên khách hàng"></nz-option>
-                    <nz-option nzValue="SearchPhone" nzLabel="Số điện thoại"></nz-option>
-                  </nz-select>
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                    <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="SĐT nhân viên"></nz-option>
+                </nz-select>
             </button>
         </ng-template>
-    </form>
+    </div>
     <section class="section">
-      <nz-table #basicTable [nzLoading]="loading" [nzData]="listOfData">
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Họ và tên</th>
-                  <th>Số điện thoại</th>
-                  <th>Ngày tạo tài khoản</th>
-                  <!-- <th>Action</th> -->
-              </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of listOfData">
+        <nz-table #basicTable [nzLoading]="loading" [nzData]="listsearch" [nzPageSize]="5"  [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ và tên</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày tạo tài khoản</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
                     <td (click)="detail(data.userId)">{{ data.userId}}</td>
                     <td (click)="detail(data.userId)">{{ data.fullname }}</td>
                     <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
-                    <td (click)="detail(data.userId)">{{ data.createdAt.substring(8,10) }} - {{ data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
+                    <td (click)="detail(data.userId)">{{ data.createdAt.substring(8,10) }} - {{
+                        data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
                     <!-- <td>
                       <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
                       <nz-divider nzType="vertical"></nz-divider>
@@ -53,8 +55,8 @@
                       <button type="button" class="btn btn-outline-danger action__button"
                           (click)="clickBan(data.userId)">chặn</button>
                   </ng-template> -->
-            </tr>
-              <!-- <tr style="cursor: pointer;"
+                </tr>
+                <!-- <tr style="cursor: pointer;"
                   *ngFor="let data of listOfData  | pipeSearchFilter:searchDataCustomer:selectedProvince">
                   <td (click)="detail(data.userId)">
                       <img src={{data.avatar}} alt="avatar" width="50">
@@ -63,7 +65,7 @@
                   <td (click)="detail(data.userId)">{{ data.fullname || null }}</td>
                   <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
                   <td (click)="detail(data.userId)">{{ data.createdAt }}</td>) -->
-                  <!-- <td>
+                <!-- <td>
                       <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a>
                       <nz-divider nzType="vertical"></nz-divider>
                       <span *ngIf="data.isActive == true; else ElseBan ">
@@ -75,8 +77,8 @@
                       <button type="button" class="btn btn-outline-danger action__button"
                           (click)="clickBan(data.userId)">chặn</button>
                   </ng-template> -->
-              <!-- </tr> -->
-          </tbody>
-      </nz-table>
-  </section>
+                <!-- </tr> -->
+            </tbody>
+        </nz-table>
+    </section>
 </main>

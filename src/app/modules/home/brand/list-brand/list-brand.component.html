@@ -1,0 +1,85 @@
+<main id="main" class="main">
+    <div class="pagetitle d-flex justify-content-between">
+        <div>
+            <h1>Danh nhà sản xuất</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Nhà sản xuất</li>
+                </ol>
+            </nav>
+        </div>
+        <div>
+            <!-- <button id="create-button" nz-button nzType="primary" nzSize="large">
+                <a routerLink="/dashboard/create-medicine">
+                    <i class="bi bi-plus"></i>
+                    <span>Tạo nhà sản xuất</span>
+                </a>
+            </button> -->
+            <!-- <nz-modal>ok</nz-modal> -->
+            <div>
+                <button nz-button nzType="primary" (click)="showModal()"><i class="bi bi-plus"></i>
+                    <span>Tạo nhà sản xuất</span></button>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo nhà sản xuất" nzOkText="Tạo nhà sản xuất"
+                    nzCancelText="hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                    <ng-container *nzModalContent>
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Tên nhà sản xuất</nz-form-label>
+                        <input type="text" class="form-control" id="inputName" [(ngModel)]="factoryName">
+                        <div *ngIf="checkError == true">
+                            <small style="color: red;">vui lòng nhập tên nhà sản xuất</small>
+                        </div>
+                    </ng-container>
+                </nz-modal>
+            </div>
+        </div>
+    </div>
+    <div id="search">
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchValue"
+                (ngModelChange)="getListSearch()" />
+        </nz-input-group>
+        <ng-template #suffixButton>
+            <button nz-button nzType="primary" nzSize="large" nzSearch>
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                    <nz-option nzValue="searchID" nzLabel="Mã nhà sản xuất"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên nhà sản xuất"></nz-option>
+                </nz-select>
+            </button>
+        </ng-template>
+    </div>
+    <section class="section">
+        <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên nhà sản xuất</th>
+                    <th>ngày tạo</th>
+                    <th 
+                    [nzFilters]="nameList" 
+                    [nzFilterMultiple]="true" 
+                    [nzFilterFn]="nameFilterFn"
+                    >Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                    <td>{{ data.id}}</td>
+                    <td>{{ data.name || null }}</td>
+                    <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
+                    <td>
+                        <div *ngIf="data.isActive == true; else isActive">
+                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">còn hoạt động</nz-tag>
+                        </div>
+                        <ng-template #isActive>
+                            <div>
+                                <nz-tag [nzColor]="'red'">ngừng hoạt động</nz-tag>
+                            </div>
+                        </ng-template>
+                    </td>
+
+                </tr>
+            </tbody>
+        </nz-table>
+    </section>
+</main>

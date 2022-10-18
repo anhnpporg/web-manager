@@ -1,4 +1,4 @@
-<!-- <main id="main" class="main">
+<main id="main" class="main">
     <div class="pagetitle d-flex justify-content-between">
         <div>
             <h1>Danh sách thuốc</h1>
@@ -10,46 +10,69 @@
             </nav>
         </div>
         <div>
-            <button id="create-button" nz-button nzType="primary" nzSize="large">
-                <a routerLink="/dashboard/create-medicine">
-                    <i class="bi bi-plus"></i>
-                    <span>Tạo thuốc</span>
-                </a>
-            </button>
+        </div>
+        <div>
+            <div>
+                <button id="create-button" nz-button nzType="primary" nzSize="large">
+                    <a routerLink="/dashboard/create-medicine">
+                        <i class="bi bi-plus"></i>
+                        <span>Tạo thuốc</span>
+                    </a>
+                </button>
+            </div>
         </div>
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên thuốc" />
+            <input type="text" nz-input placeholder="nhập mã, tên thuốc" [(ngModel)]="searchData"
+                (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
-                Tìm kiếm
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                    <nz-option nzValue="searchID" nzLabel="Mã thuốc"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên thuốc"></nz-option>
+                </nz-select>
             </button>
         </ng-template>
     </div>
     <section class="section">
-        <nz-table #basicTable [nzData]="listOfData">
+        <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+        <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Address</th>
-                    <th>Action</th>
+                    <th>mã số đăng kí</th>
+                    <th>Mã barcode</th>
+                    <th>Tên thuốc</th>
+                    <th>giá bán</th>
+                    <th>còn bán</th>
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="detail(data.name)" style="cursor: pointer;" *ngFor="let data of basicTable.data">
-                    <td>{{ data.name }}</td>
-                    <td>{{ data.age }}</td>
-                    <td>{{ data.address }}</td>
-                    <td>
-                        <a>Action 一 {{ data.name }}</a>
-                        <nz-divider nzType="vertical"></nz-divider>
-                        <a>Delete</a>
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                    <td (click)="detail(data.userId)">
+                        {{data.drugRegistrationNumber}}
                     </td>
+                    <td (click)="detail(data.userId)">
+                        <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
+                            [bc-height]="height"></ngx-barcode>
+                    </td>
+                    <td (click)="detail(data.userId)">{{ data.name || null }}</td>
+                    <td (click)="detail(data.userId)">{{ data.price }}</td>
+                    <td>
+                        <div *ngIf="data.isActive == true; else isActive">
+                            <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                        </div>
+                        <ng-template #isActive>
+                            <div>
+                                <nz-tag [nzColor]="'red'">ngừng bán</nz-tag>
+                            </div>
+                        </ng-template>
+                    </td>
+
                 </tr>
             </tbody>
         </nz-table>
     </section>
- </main> -->
+</main>
