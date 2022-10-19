@@ -40,14 +40,20 @@ export class ProductService {
   //product
 
   getAllCategory(): Observable<any> {
-    return this.httpClient.get(DOMAIN + 'categorie-management/categories', { headers: this.headers })
+    return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
   }
   createCategory(name: FormData): Observable<any> {
-    return this.httpClient.post(DOMAIN + 'categorie-management/categories', name, { headers: this.headers })
+    return this.httpClient.post(DOMAIN + 'shelves-management/shelves', name, { headers: this.headers })
   }
   deleteCategory(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'categorie-management/categories', id, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + 'shelves-management/shelves', id, { headers: this.headers })
   }
+
+  //Shelf
+  getAllShelf(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
+  }
+  
 
 
 }

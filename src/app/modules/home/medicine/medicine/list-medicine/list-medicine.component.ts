@@ -38,9 +38,10 @@ export class ListMedicineComponent implements OnInit {
       console.log(result);
       this.listData = result;
       this.listsearch = this.listData
+      this.loading = false
     })
 
-    this.loading = false
+    
   }
 
 
@@ -52,10 +53,12 @@ export class ListMedicineComponent implements OnInit {
   getListSearch() {
     console.log(this.searchData);
 
-    if (this.selectedProvince == "searchID") {
+    if (this.selectedProvince == "searchBarcode") {
       this.listsearch = this.listData.filter(data => data.barcode.toString().includes(this.searchData.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {
       this.listsearch = this.listData.filter(data => data.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    } else if (this.selectedProvince == "searchID") {
+      this.listsearch = this.listData.filter(data => data.drugRegistrationNumber.toString().includes(this.searchData.toLocaleLowerCase()))
     }
   }
   showModal(): void {

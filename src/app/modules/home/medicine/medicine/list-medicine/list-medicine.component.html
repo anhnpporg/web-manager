@@ -28,10 +28,12 @@
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch>
+            <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;">
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã thuốc"></nz-option>
+                    <nz-option nzValue="searchBarcode" nzLabel="mã barcode"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên thuốc"></nz-option>
+
                 </nz-select>
             </button>
         </ng-template>
