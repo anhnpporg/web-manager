@@ -25,6 +25,7 @@ import { isSubmitGuard } from 'src/app/_core/guards/isSubmit.guard';
 import { ListBrandComponent } from './brand/list-brand/list-brand.component';
 import { ListActiveSubstanceComponent } from './medicine/activeSubstance/list-active-substance/list-active-substance.component';
 import { ListProductOfActiveSubstanceComponent } from './medicine/activeSubstance/list-product-of-active-substance/list-product-of-active-substance.component';
+import { TagInputModule } from 'ngx-chips';
 
 const homeRoutes: Routes = [
   {
@@ -66,12 +67,14 @@ const homeRoutes: Routes = [
     PipeSearchFilterPipe,
     ListBrandComponent,
     ListActiveSubstanceComponent,
-    ListProductOfActiveSubstanceComponent
+    ListProductOfActiveSubstanceComponent,
+    CreateMedicineComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(homeRoutes),
     FormsModule,
+    TagInputModule,
     ReactiveFormsModule,
     CommonModule,
     AntdModule,
@@ -79,7 +82,7 @@ const homeRoutes: Routes = [
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     }),
-    
+
   ],
   providers: [
     isSubmitGuard

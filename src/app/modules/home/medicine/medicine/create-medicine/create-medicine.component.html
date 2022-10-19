@@ -16,23 +16,94 @@
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <form class="row g-3" (ngSubmit)="onSubmit()">
-                    <div class="col-md-12">
-                        <!-- <nz-form-label nzRequired for="inputName5" class="form-label">Tài khoản</nz-form-label> -->
-                        <input type="text" class="form-control" id="inputName" formControlName="loginName">
-                        <div class="d-flex justify-content-end">
-                            <div class="col-3 mt-4">
-                                <button class="w-100" nz-button
-                                    nzType="primary" nzSize="large">Tạo nhân viên</button>
-                            </div>
-                            <ng-template #submitButton>
+                    <div class="col-md-6">
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Mã số đăng kí</nz-form-label>
+                        <input type="text" class="form-control" id="inputName" formControlName="drugRegistrationNumber">
+                    </div>
+                    <div class="col-md-6">
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
+                        <input type="text" class="form-control" id="inputName" formControlName="name">
+                    </div>
+                    <div class="col-4">
+                        <nz-form-label nzRequired for="inputName5" class="form-label">nhà cung cấp</nz-form-label>
+                        <select class="form-select" aria-label="Default select example" formControlName="brandId">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <nz-form-label nzRequired for="inputName5" class="form-label">kệ hàng số</nz-form-label>
+                        <select class="form-select" aria-label="Default select example" formControlName="shelfId">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Số lượng tối thiểu trong kho
+                        </nz-form-label>
+                        <input type="text" class="form-control" id="minimumQuantity" formControlName="minimumQuantity">
+                    </div>
+                    <div class="col-4">
+                        <nz-form-label nzRequired for="stockStrength" class="form-label">Liều lượng</nz-form-label>
+                        <input type="text" class="form-control" id="stockStrength" formControlName="stockStrength">
+                    </div>
+                    <div class="col-2">
+                        <nz-form-label nzRequired for="stockStrength" class="form-label">đơn vị</nz-form-label>
+                        <select class="form-select" aria-label="Default select example" formControlName="shelfId">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <nz-form-label nzRequired for="stockStrength" class="form-label">cách dùng
+                        </nz-form-label>
+                        <select class="form-select" formControlName="routeOfAdministrationId">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <nz-form-label [nzSpan]="6">Dược phẩm</nz-form-label>
+                        <nz-switch (click)="clickIsMedicine()" id="isMedicine" formControlName="isMedicine"></nz-switch>
+                    </div>
+                    <div class="col-12">
+                        <nz-form-label [nzSpan]="6">Lô, Hạn sữ dụng</nz-form-label>
+                        <nz-switch (click)="clickIsConsignment()" id="isMedicine" formControlName="isConsignment">
+                        </nz-switch>
+                    </div>
+                    <div class="col-12">
+                        <tag-input [onlyFromAutocomplete]="true" formControlName="activeSubstances"
+                            [theme]="'bootstrap'">
+                            <tag-input-dropdown [showDropdownIfEmpty]="true" [displayBy]="'value'" [identifyBy]="'id'"
+                                [autocompleteItems]="autocompleteItemsAsObjects">
+                                <ng-template let-item="item">
+                                    {{ item.id }}: {{ item.value }}
+                                </ng-template>
+                            </tag-input-dropdown>
+                        </tag-input>
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-end">
+                        <div class="col-3 mt-4">
+                            <button class="w-100" nz-button nzType="primary" nzSize="large">Tạo thuốc</button>
+                        </div>
+                        <!-- <ng-template #submitButton>
                                 <button class="w-100" nz-button nzType="primary" nzSize="large"
                                     title="điền thông tin để tạo nhân viên">Tạo nhân viên</button>
-                            </ng-template>
-                        </div>
+                            </ng-template> -->
                     </div>
                 </form>
             </div>
         </div>
-
     </section>
 </main>
