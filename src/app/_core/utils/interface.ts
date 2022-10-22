@@ -92,3 +92,13 @@ export interface routeOfAdministration {
   id: string,
   name: string
 }
+
+export interface ActiveSubstance {
+    id: string,
+    name: string,
+    isActive: boolean,
+    createdAt: string,
+    createdBy: string,
+    updatedAt: string,
+    updatedBy: string
+}

@@ -1,5 +1,5 @@
 import { ProductService } from 'src/app/_core/services/product/product.service';
-import { routeOfAdministration } from './../../../../../_core/utils/interface';
+import { routeOfAdministration, ActiveSubstance } from './../../../../../_core/utils/interface';
 import { BrandsService } from 'src/app/_core/services/brands/brands.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +24,7 @@ export class CreateMedicineComponent implements OnInit {
     { value: 'item8', id: 7 },
     { value: 'item2', id: 1 },
   ];
+  listActiveSubstance: ActiveSubstance[] = []
   listBrand: Brand[]=[]
   listShelf: Shelf[]=[]
   listUnit: Unit[]=[]
@@ -72,6 +73,10 @@ export class CreateMedicineComponent implements OnInit {
     this.product.getROA().subscribe((listROA)=>{
       console.log(listROA)
       this.listROA = listROA
+    })
+    this.product.getAllActiveSubstance().subscribe((listActiveSubstance)=>{
+      console.log(listActiveSubstance)
+      this.listActiveSubstance = listActiveSubstance
     })
   }
 
