@@ -19,6 +19,14 @@
                     <div class="col-md-6">
                         <nz-form-label nzRequired for="inputName5" class="form-label">Mã số đăng kí</nz-form-label>
                         <input type="text" class="form-control" id="inputName" formControlName="drugRegistrationNumber">
+                        <div
+                     *ngIf="statusError.drugRegistrationNumber.invalid && (statusError.drugRegistrationNumber.dirty || statusError.drugRegistrationNumber.touched) ">
+                     <div *ngIf="statusError.drugRegistrationNumber.errors">
+                        <div *ngIf="statusError.drugRegistrationNumber.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập mã số đăng kí</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-md-6">
                         <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
@@ -27,19 +35,15 @@
                     <div class="col-4">
                         <nz-form-label nzRequired for="inputName5" class="form-label">nhà cung cấp</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="brandId">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <!-- <option selected>Open this select menu</option> -->
+                            <option *ngFor="let listBrands of listBrand" value="{{listBrands.id}}">{{listBrands.name}}</option>
                         </select>
                     </div>
                     <div class="col-4">
                         <nz-form-label nzRequired for="inputName5" class="form-label">kệ hàng số</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="shelfId">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <!-- <option selected>Open this select menu</option> -->
+                            <option *ngFor="let listShelfs of listShelf" value="{{listShelfs.id}}">{{listShelfs.name}}</option>
                         </select>
                     </div>
                     <div class="col-4">
@@ -53,21 +57,18 @@
                     </div>
                     <div class="col-2">
                         <nz-form-label nzRequired for="stockStrength" class="form-label">đơn vị</nz-form-label>
-                        <select class="form-select" aria-label="Default select example" formControlName="shelfId">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" aria-label="Default select example" formControlName="stockStrengthUnitId">
+                            <!-- <option selected>Open this select menu</option> -->
+                            <option *ngFor="let listUnits of listUnit" value="{{listUnits.id}}">{{listUnits.name}}</option>
+
                         </select>
                     </div>
                     <div class="col-6">
-                        <nz-form-label nzRequired for="stockStrength" class="form-label">cách dùng
+                        <nz-form-label nzRequired for="inputName5" class="form-label">cách dùng
                         </nz-form-label>
                         <select class="form-select" formControlName="routeOfAdministrationId">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <!-- <option selected>Open this select menu</option> -->
+                            <option *ngFor="let listROAs of listROA" value="{{listROAs.id}}">{{listROAs.name}}</option>
                         </select>
                     </div>
                     <div class="col-12">
@@ -90,8 +91,6 @@
                             </tag-input-dropdown>
                         </tag-input>
                     </div>
-
-
 
                     <div class="d-flex justify-content-end">
                         <div class="col-3 mt-4">

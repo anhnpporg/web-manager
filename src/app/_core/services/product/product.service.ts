@@ -53,7 +53,13 @@ export class ProductService {
   getAllShelf(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
   }
-  
 
+  getROA(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/route-of-administrations', { headers: this.headers })
+  }
+
+  getStockStrengthUnit(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/stock-strength-units', { headers: this.headers })
+  }
 
 }

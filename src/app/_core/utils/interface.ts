@@ -58,3 +58,37 @@ export interface CreateStaffInterface {
     phoneNumber: string,
     isMale: boolean
 }
+
+export interface Brand {
+  id: string,
+  name: string,
+  isActive: boolean,
+  createdAt: string,
+  createdBy:{
+    id: string,
+    name: string
+  }
+}
+
+export interface Shelf {
+  id: string,
+  name: string,
+  isActive: boolean,
+  createdAt: string,
+  createdBy: {
+    id: string,
+    name: string
+  },
+  updatedAt: string,
+  updatedBy: string
+}
+
+export interface Unit {
+  id: string,
+  name: string
+}
+
+export interface routeOfAdministration {
+  id: string,
+  name: string
+}

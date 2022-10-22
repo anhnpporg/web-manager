@@ -1,5 +1,9 @@
+import { ProductService } from 'src/app/_core/services/product/product.service';
+import { routeOfAdministration } from './../../../../../_core/utils/interface';
+import { BrandsService } from 'src/app/_core/services/brands/brands.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Brand, Shelf, Unit } from 'src/app/_core/utils/interface';
 
 @Component({
   selector: 'app-create-medicine',
@@ -20,16 +24,20 @@ export class CreateMedicineComponent implements OnInit {
     { value: 'item8', id: 7 },
     { value: 'item2', id: 1 },
   ];
+  listBrand: Brand[]=[]
+  listShelf: Shelf[]=[]
+  listUnit: Unit[]=[]
+  listROA: routeOfAdministration[]=[]
 
   productData = this.fb.group({
-    drugRegistrationNumber: [''],
-    name: [''],
+    drugRegistrationNumber: ['',[Validators.required]],
+    name: ['',Validators.required],
     brandId: [''],
     shelfId: [''],
-    minimumQuantity: [''],
-    stockStrength: [],
-    stockStrengthUnitId: [''],
-    routeOfAdministrationId: [''],
+    minimumQuantity: ['',Validators.required],
+    stockStrength: ['',Validators.required],
+    stockStrengthUnitId: ['',Validators.required],
+    routeOfAdministrationId: ['',Validators.required],
     isMedicine: [false],
     isConsignment: [false],
     activeSubstances: [[]]
@@ -43,10 +51,30 @@ export class CreateMedicineComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-  ) { }
+    private brand: BrandsService,
+    private product: ProductService
+
+    ) { }
 
   ngOnInit(): void {
+    this.brand.getAllBrand().subscribe((listBrand)=>{
+      console.log(listBrand)
+      this.listBrand = listBrand
+    })
+    this.product.getAllShelf().subscribe((listShelf)=>{
+      console.log(listShelf)
+      this.listShelf = listShelf
+    })
+    this.product.getStockStrengthUnit().subscribe((listUnit)=>{
+      console.log(listUnit)
+      this.listUnit = listUnit
+    })
+    this.product.getROA().subscribe((listROA)=>{
+      console.log(listROA)
+      this.listROA = listROA
+    })
   }
+
 
   clickIsMedicine() {
     this.productData.value.isMedicine = !this.productData.value.isMedicine
