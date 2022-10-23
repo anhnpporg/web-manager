@@ -91,7 +91,7 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData);
-
+    console.log(this.productData)
   }
 
 }
