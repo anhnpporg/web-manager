@@ -15,12 +15,12 @@
         <div class="card container">
             <div class="card-body">
                 <h5 class="card-title"></h5>
-                <form class="row g-3" (ngSubmit)="onSubmit()">
+                <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="productData">
                     <div class="col-md-6">
                         <nz-form-label nzRequired for="inputName5" class="form-label">Mã số đăng kí</nz-form-label>
                         <input type="text" class="form-control" id="inputName" formControlName="drugRegistrationNumber">
-                        <div
-                     *ngIf="statusError.drugRegistrationNumber.invalid && (statusError.drugRegistrationNumber.dirty || statusError.drugRegistrationNumber.touched) ">
+                        <div *ngIf="statusError.drugRegistrationNumber.invalid
+                         && (statusError.drugRegistrationNumber.dirty || statusError.drugRegistrationNumber.touched) ">
                      <div *ngIf="statusError.drugRegistrationNumber.errors">
                         <div *ngIf="statusError.drugRegistrationNumber.errors!['required']">
                            <small style="color: red;">Vui lòng nhập mã số đăng kí</small>
@@ -31,45 +31,100 @@
                     <div class="col-md-6">
                         <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
                         <input type="text" class="form-control" id="inputName" formControlName="name">
+                        <div *ngIf="statusError.name.invalid
+                         && (statusError.name.dirty || statusError.name.touched) ">
+                     <div *ngIf="statusError.name.errors">
+                        <div *ngIf="statusError.name.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập tên thuốc</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-4">
                         <nz-form-label nzRequired for="inputName5" class="form-label">nhà cung cấp</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="brandId">
                             <!-- <option selected>Open this select menu</option> -->
-                            <option *ngFor="let listBrands of listBrand" value="{{listBrands.id}}">{{listBrands.name}}</option>
+                            <option *ngFor="let listBrands of listBrand" value={{listBrands.id}}>{{listBrands.name}}</option>
                         </select>
+                        <div *ngIf="statusError.brandId.invalid
+                         && (statusError.brandId.dirty || statusError.brandId.touched) ">
+                     <div *ngIf="statusError.brandId.errors">
+                        <div *ngIf="statusError.brandId.errors!['required']">
+                           <small style="color: red;">Vui lòng chọn nhà cung cấp</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-4">
                         <nz-form-label nzRequired for="inputName5" class="form-label">kệ hàng số</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="shelfId">
                             <!-- <option selected>Open this select menu</option> -->
-                            <option *ngFor="let listShelfs of listShelf" value="{{listShelfs.id}}">{{listShelfs.name}}</option>
+                            <option *ngFor="let listShelfs of listShelf" value={{listShelfs.id}}>{{listShelfs.name}}</option>
                         </select>
+                        <div *ngIf="statusError.shelfId.invalid
+                         && (statusError.shelfId.dirty || statusError.shelfId.touched) ">
+                     <div *ngIf="statusError.shelfId.errors">
+                        <div *ngIf="statusError.shelfId.errors!['required']">
+                           <small style="color: red;">Vui lòng chọn kệ hàng</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-4">
                         <nz-form-label nzRequired for="inputName5" class="form-label">Số lượng tối thiểu trong kho
                         </nz-form-label>
                         <input type="text" class="form-control" id="minimumQuantity" formControlName="minimumQuantity">
+                        <div *ngIf="statusError.minimumQuantity.invalid
+                         && (statusError.minimumQuantity.dirty || statusError.minimumQuantity.touched) ">
+                     <div *ngIf="statusError.minimumQuantity.errors">
+                        <div *ngIf="statusError.minimumQuantity.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập số lượng tối thiểu trong kho</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-4">
                         <nz-form-label nzRequired for="stockStrength" class="form-label">Liều lượng</nz-form-label>
                         <input type="text" class="form-control" id="stockStrength" formControlName="stockStrength">
+                        <div *ngIf="statusError.stockStrength.invalid
+                         && (statusError.stockStrength.dirty || statusError.stockStrength.touched) ">
+                     <div *ngIf="statusError.stockStrength.errors">
+                        <div *ngIf="statusError.stockStrength.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập liều lượng</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-2">
                         <nz-form-label nzRequired for="stockStrength" class="form-label">đơn vị</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="stockStrengthUnitId">
                             <!-- <option selected>Open this select menu</option> -->
-                            <option *ngFor="let listUnits of listUnit" value="{{listUnits.id}}">{{listUnits.name}}</option>
-
+                            <option *ngFor="let listUnits of listUnit" value={{listUnits.id}}>{{listUnits.name}}</option>
                         </select>
+                        <div *ngIf="statusError.stockStrengthUnitId.invalid
+                         && (statusError.stockStrengthUnitId.dirty || statusError.stockStrengthUnitId.touched) ">
+                     <div *ngIf="statusError.stockStrengthUnitId.errors">
+                        <div *ngIf="statusError.stockStrengthUnitId.errors!['required']">
+                           <small style="color: red;">Vui lòng chọn đơn vị</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-6">
                         <nz-form-label nzRequired for="inputName5" class="form-label">cách dùng
                         </nz-form-label>
                         <select class="form-select" formControlName="routeOfAdministrationId">
                             <!-- <option selected>Open this select menu</option> -->
-                            <option *ngFor="let listROAs of listROA" value="{{listROAs.id}}">{{listROAs.name}}</option>
+                            <option *ngFor="let listROAs of listROA" value={{listROAs.id}}>{{listROAs.name}}</option>
                         </select>
+                        <div *ngIf="statusError.routeOfAdministrationId.invalid
+                         && (statusError.routeOfAdministrationId.dirty || statusError.routeOfAdministrationId.touched) ">
+                     <div *ngIf="statusError.routeOfAdministrationId.errors">
+                        <div *ngIf="statusError.routeOfAdministrationId.errors!['required']">
+                           <small style="color: red;">Vui lòng chọn cách dùng</small>
+                        </div>
+                     </div>
+                  </div>
                     </div>
                     <div class="col-12">
                         <nz-form-label [nzSpan]="6">Dược phẩm</nz-form-label>
@@ -80,17 +135,25 @@
                         <nz-switch (click)="clickIsConsignment()" id="isMedicine" formControlName="isConsignment">
                         </nz-switch>
                     </div>
+                    
                     <div class="col-12">
-                      <nz-form-label [nzSpan]="6">Hoạt chất</nz-form-label>
-                        <tag-input [onlyFromAutocomplete]="true" formControlName="activeSubstances"
-                            [theme]="'bootstrap'">
-                            <tag-input-dropdown [showDropdownIfEmpty]="true" [displayBy]="'name'" [identifyBy]="'id'"
-                                [autocompleteItems]="listActiveSubstance">
-                                <ng-template let-item="item">
-                                    {{ item.id }}: {{ item.name }}
-                                </ng-template>
-                            </tag-input-dropdown>
-                        </tag-input>
+                        <nz-select nzAllowClear nzPlaceHolder="Hoạt chất" nzMode="multiple" formControlName="activeSubstances">
+                            <nz-option *ngFor="let listActiveSubstance of listActiveSubstance" nzLabel={{listActiveSubstance.name}} nzValue={{listActiveSubstance.id}}></nz-option>
+                          </nz-select>
+                          <div *ngIf="statusError.activeSubstances.invalid
+                         && (statusError.activeSubstances.dirty || statusError.activeSubstances.touched) ">
+                     <div *ngIf="statusError.activeSubstances.errors">
+                        <div *ngIf="statusError.activeSubstances.errors!['required']">
+                           <small style="color: red;">Vui lòng chọn hoạt chất</small>
+                        </div>
+                     </div>
+                  </div>
+                          <!-- <ng-template #multipleTemplate let-selected>
+                            <div class="ant-select-selection-item-content">
+                              <span nz-icon [nzType]="selected.nzValue"></span>
+                              {{ selected.nzLabel }}
+                            </div>
+                          </ng-template> -->
                     </div>
 
                     <div class="d-flex justify-content-end">

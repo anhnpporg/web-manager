@@ -13,17 +13,6 @@ import { Brand, Shelf, Unit } from 'src/app/_core/utils/interface';
 export class CreateMedicineComponent implements OnInit {
 
   switchValue: boolean = true
-  autocompleteItemsAsObjects = [
-    { value: 'Item1', id: 0 },
-    { value: 'item3', id: 2 },
-    { value: 'item4', id: 3 },
-    { value: 'item5', id: 4 },
-    { value: 'item6', id: 5 },
-    { value: 'item7', id: 6 },
-    { value: 'item9', id: 8 },
-    { value: 'item8', id: 7 },
-    { value: 'item2', id: 1 },
-  ];
   listActiveSubstance: ActiveSubstance[] = []
   listBrand: Brand[]=[]
   listShelf: Shelf[]=[]
@@ -33,15 +22,15 @@ export class CreateMedicineComponent implements OnInit {
   productData = this.fb.group({
     drugRegistrationNumber: ['',[Validators.required]],
     name: ['',Validators.required],
-    brandId: [''],
-    shelfId: [''],
+    brandId: ['',Validators.required],
+    shelfId: ['',Validators.required],
     minimumQuantity: ['',Validators.required],
     stockStrength: ['',Validators.required],
     stockStrengthUnitId: ['',Validators.required],
     routeOfAdministrationId: ['',Validators.required],
     isMedicine: [false],
     isConsignment: [false],
-    activeSubstances: [[]]
+    activeSubstances: [[],Validators.required]
 
   }, {
   });
@@ -58,23 +47,23 @@ export class CreateMedicineComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((listBrand)=>{
+    this.brand.getAllBrand().subscribe((listBrand: Brand[])=>{
       console.log(listBrand)
       this.listBrand = listBrand
     })
-    this.product.getAllShelf().subscribe((listShelf)=>{
+    this.product.getAllShelf().subscribe((listShelf: Shelf[])=>{
       console.log(listShelf)
       this.listShelf = listShelf
     })
-    this.product.getStockStrengthUnit().subscribe((listUnit)=>{
+    this.product.getStockStrengthUnit().subscribe((listUnit: Unit[])=>{
       console.log(listUnit)
       this.listUnit = listUnit
     })
-    this.product.getROA().subscribe((listROA)=>{
+    this.product.getROA().subscribe((listROA: routeOfAdministration[])=>{
       console.log(listROA)
       this.listROA = listROA
     })
-    this.product.getAllActiveSubstance().subscribe((listActiveSubstance)=>{
+    this.product.getAllActiveSubstance().subscribe((listActiveSubstance: ActiveSubstance[])=>{
       console.log(listActiveSubstance)
       this.listActiveSubstance = listActiveSubstance
     })
@@ -91,7 +80,6 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData);
-    console.log(this.productData)
   }
 
 }
