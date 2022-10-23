@@ -52,11 +52,20 @@ export class CreateMedicineComponent implements OnInit {
   ngOnInit(): void {
     this.brand.getAllBrand().subscribe((listBrand: Brand[])=>{
       console.log(listBrand)
-      this.listBrand = listBrand
+      listBrand.forEach(element => {
+        if(element.isActive){
+        this.listBrand.push(element)
+        }
+      });
+      
     })
     this.product.getAllShelf().subscribe((listShelf: Shelf[])=>{
       console.log(listShelf)
-      this.listShelf = listShelf
+      listShelf.forEach(element => {
+        if(element.isActive){
+        this.listShelf.push(element)
+        }
+      });
     })
     this.product.getStockStrengthUnit().subscribe((listUnit: Unit[])=>{
       console.log(listUnit)
@@ -68,7 +77,11 @@ export class CreateMedicineComponent implements OnInit {
     })
     this.product.getAllActiveSubstance().subscribe((listActiveSubstance: ActiveSubstance[])=>{
       console.log(listActiveSubstance)
-      this.listActiveSubstance = listActiveSubstance
+      listActiveSubstance.forEach(element => {
+        if(element.isActive){
+        this.listActiveSubstance.push(element)
+        }
+      });
     })
   }
 
