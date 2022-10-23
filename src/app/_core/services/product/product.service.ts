@@ -48,6 +48,9 @@ export class ProductService {
   deleteCategory(id: number): Observable<any> {
     return this.httpClient.patch(DOMAIN + 'shelves-management/shelves', id, { headers: this.headers })
   }
+  createProduct (product: FormData): Observable<any> {
+    return this.httpClient.post(DOMAIN + 'product-management/products', product, { headers: this.headers })
+  }
 
   //Shelf
   getAllShelf(): Observable<any> {

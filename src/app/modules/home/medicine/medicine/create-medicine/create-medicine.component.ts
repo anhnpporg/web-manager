@@ -4,6 +4,8 @@ import { BrandsService } from 'src/app/_core/services/brands/brands.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Brand, Shelf, Unit } from 'src/app/_core/utils/interface';
+import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-create-medicine',
@@ -13,6 +15,7 @@ import { Brand, Shelf, Unit } from 'src/app/_core/utils/interface';
 export class CreateMedicineComponent implements OnInit {
 
   switchValue: boolean = true
+  
   listActiveSubstance: ActiveSubstance[] = []
   listBrand: Brand[]=[]
   listShelf: Shelf[]=[]
@@ -31,7 +34,6 @@ export class CreateMedicineComponent implements OnInit {
     isMedicine: [false],
     isConsignment: [false],
     activeSubstances: [[],Validators.required]
-
   }, {
   });
 
@@ -42,8 +44,9 @@ export class CreateMedicineComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private brand: BrandsService,
-    private product: ProductService
-
+    private product: ProductService,
+    private router: Router,
+    private notification: NzNotificationService
     ) { }
 
   ngOnInit(): void {
@@ -80,6 +83,35 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData);
+    var product: any = new FormData()
+    product.append('drugRegistrationNumber', this.productData.value.drugRegistrationNumber);
+    product.append('name', this.productData.value.name);
+    product.append('brandId', this.productData.value.brandId);
+    product.append('shelfId', this.productData.value.shelfId);
+    product.append('minimumQuantity', this.productData.value.minimumQuantity);
+    product.append('stockStrength', this.productData.value.stockStrength);
+    product.append('stockStrengthUnitId', this.productData.value.stockStrengthUnitId);
+    product.append('routeOfAdministrationId', this.productData.value.routeOfAdministrationId);
+    product.append('isMedicine', this.productData.value.isMedicine);
+    product.append('isConsignment', this.productData.value.isConsignment);
+    product.append('activeSubstances', this.productData.value.activeSubstances);
+    this.product.createProduct(product).subscribe((rs: any)=>{
+      console.log(rs);
+      // this.isSubmit = true
+      this.notification.create(
+        'success',
+        'Tạo thuốc mới thành công', ''
+      )
+      this.router.navigate(['dashboard/medicine'])
+    }, (err: { error: { message: any; }; }) => {
+      console.log(err);
+
+      this.notification.create(
+        'error',
+        'Không thành công',
+        (err.error.message)
+      )
+    })
   }
 
 }

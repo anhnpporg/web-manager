@@ -51,12 +51,20 @@ export class PagesLoginComponent implements OnInit {
         this.token = `Bearer ${result.accessToken}`
         localStorage.setItem(ACCESS_TOKEN, this.token)
         if (localStorage.getItem(ACCESS_TOKEN)) {
+          if(result.isAdmin == true){
           this.route.navigate(['dashboard'])
           this.noti.create(
             'success',
             'Đăng nhập thành công', ''
           )
+        }else{
+          this.noti.create(
+            'error',
+            'không hợp lệ',
+            'vui lòng sử dụng tài khoản quản lý để đăng nhập'
+          )
         }
+      }
       } else {
         this.noti.create(
           'error',

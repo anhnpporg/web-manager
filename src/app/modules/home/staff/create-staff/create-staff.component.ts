@@ -60,7 +60,7 @@ export class CreateStaffComponent implements OnInit {
     formData.append('isMale', this.StaffData.value.isMale);
     formData.append('avatar', this.StaffData.value.avatar);
 
-    this.user.createStaff(formData).subscribe((rs) => {
+    this.user.createStaff(formData).subscribe((rs: any) => {
       console.log(rs);
       this.isSubmit = true
       this.notification.create(
@@ -68,7 +68,7 @@ export class CreateStaffComponent implements OnInit {
         'Tạo nhân viên mới thành công', ''
       )
       this.router.navigate(['dashboard/staff'])
-    }, err => {
+    }, (err: { error: { message: string; }; }) => {
       console.log(err);
 
       this.notification.create(

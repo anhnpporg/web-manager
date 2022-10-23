@@ -102,3 +102,17 @@ export interface ActiveSubstance {
     updatedAt: string,
     updatedBy: string
 }
+
+// export interface CreateMedicine {
+//   drugRegistrationNumber: string,
+//   name: string,
+//   brandId: number,
+//   shelfId: number,
+//   minimumQuantity: number,
+//   stockStrength: number,
+//   stockStrengthUnitId: number,
+//   routeOfAdministrationId: number,
+//   isMedicine: boolean,
+//   isConsignment: boolean,
+//   activeSubstances: []
+// }
