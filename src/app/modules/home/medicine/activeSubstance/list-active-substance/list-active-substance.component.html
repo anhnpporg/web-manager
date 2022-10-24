@@ -39,7 +39,7 @@
         </ng-template>
     </div>
     <section class="section">
-        
+
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger [nzScroll]="{ x: '1150px', y: '600px' }">
             <thead>
@@ -47,7 +47,7 @@
                     <th>Mã</th>
                     <th>Tên hoạt chất</th>
                     <th>Ngày tạo</th>
-                    <th>Hoạt động</th>
+                    <th [nzFilters]="nameList" [nzFilterMultiple]="true" [nzFilterFn]="nameFilterFn">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,5 +70,5 @@
         </nz-table>
     </section>
 
-    
+
 </main>

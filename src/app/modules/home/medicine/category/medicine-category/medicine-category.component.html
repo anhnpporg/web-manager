@@ -48,7 +48,9 @@
                     <th>Mã</th>
                     <th>Tên loại thuốc</th>
                     <th>Ngày tạo</th>
-                    <th>Hoạt động</th>
+                    <th [nzFilters]="nameList"
+                    [nzFilterMultiple]="true"
+                    [nzFilterFn]="nameFilterFn">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>

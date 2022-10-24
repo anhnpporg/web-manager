@@ -43,7 +43,9 @@
                     <th>Mã</th>
                     <th>Họ và Tên</th>
                     <th>Số điện thoại</th>
-                    <th>Action</th>
+                    <th [nzFilters]="nameList"
+                    [nzFilterMultiple]="true"
+                    [nzFilterFn]="nameFilterFn">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>

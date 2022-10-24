@@ -47,8 +47,10 @@
                     <th>mã số đăng kí</th>
                     <th>Mã barcode</th>
                     <th>Tên thuốc</th>
-                    <th>giá bán</th>
-                    <th>còn bán</th>
+                    <th>Giá bán</th>
+                    <th [nzFilters]="nameList"
+                    [nzFilterMultiple]="true"
+                    [nzFilterFn]="nameFilterFn">Trạng thái hoạt động</th>
                 </tr>
             </thead>
             <tbody>

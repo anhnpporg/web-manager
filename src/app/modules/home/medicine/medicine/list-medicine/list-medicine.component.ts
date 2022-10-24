@@ -24,6 +24,11 @@ export class ListMedicineComponent implements OnInit {
   confirmModal?: NzModalRef;
   activeSubstanceName: string = ''
   checkError: boolean = false
+  nameList = [
+    { text: 'Còn bán', value: true },
+    { text: 'Ngừng bán', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private router: Router,
@@ -41,7 +46,7 @@ export class ListMedicineComponent implements OnInit {
       this.loading = false
     })
 
-    
+
   }
 
 

@@ -22,6 +22,11 @@ export class ListActiveSubstanceComponent implements OnInit {
   activeSubstanceName: string = ''
   checkError: boolean = false
   isVisible: boolean = false
+  nameList = [
+    { text: 'còn hoạt động', value: true },
+    { text: 'ngừng hoạt động', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private product: ProductService,

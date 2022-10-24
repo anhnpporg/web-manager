@@ -15,7 +15,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class CreateMedicineComponent implements OnInit {
 
   switchValue: boolean = true
-  
+
   listActiveSubstance: ActiveSubstance[] = []
   listBrand: Brand[]=[]
   listShelf: Shelf[]=[]
@@ -57,7 +57,7 @@ export class CreateMedicineComponent implements OnInit {
         this.listBrand.push(element)
         }
       });
-      
+
     })
     this.product.getAllShelf().subscribe((listShelf: Shelf[])=>{
       console.log(listShelf)

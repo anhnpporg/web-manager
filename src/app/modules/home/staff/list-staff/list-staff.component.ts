@@ -17,6 +17,11 @@ export class ListStaffComponent implements OnInit {
   selectedProvince = 'searchID'
   loading: boolean = true;
   confirmModal?: NzModalRef;
+  nameList = [
+    { text: 'Còn hoạt động', value: true },
+    { text: 'Đã bị chặn', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private user: UserService,
@@ -27,7 +32,7 @@ export class ListStaffComponent implements OnInit {
   ngOnInit(): void {
     this.user.getStaffs().subscribe((result) => {
       console.log(result);
-      
+
       this.listData = result
       this.loading = false
       this.listsearch = this.listData
