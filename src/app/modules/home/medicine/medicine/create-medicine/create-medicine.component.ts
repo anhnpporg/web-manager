@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Brand, Shelf, Unit } from 'src/app/_core/utils/interface';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { List } from 'echarts';
 
 @Component({
   selector: 'app-create-medicine',
@@ -28,12 +29,19 @@ export class CreateMedicineComponent implements OnInit {
     brandId: ['',Validators.required],
     shelfId: ['',Validators.required],
     minimumQuantity: ['',Validators.required],
-    stockStrength: ['',Validators.required],
-    stockStrengthUnitId: ['',Validators.required],
-    routeOfAdministrationId: ['',Validators.required],
+    stockStrength: [''],
+    stockStrengthUnitId: [''],
+    routeOfAdministrationId: [''],
     isMedicine: [false],
     isConsignment: [false],
-    activeSubstances: [[],Validators.required]
+    activeSubstances: [[''],Validators.required],
+    unitId: ['',Validators.required],
+    price: ['',Validators.required],
+    productUnits: this.fb.group({
+      UnitId: [''],
+      ConversionValue: [''],
+      Price: ['']
+    })
   }, {
   });
 
@@ -107,7 +115,21 @@ export class CreateMedicineComponent implements OnInit {
     product.append('routeOfAdministrationId', this.productData.value.routeOfAdministrationId);
     product.append('isMedicine', this.productData.value.isMedicine);
     product.append('isConsignment', this.productData.value.isConsignment);
+
+    // check data payload
     product.append('activeSubstances', this.productData.value.activeSubstances);
+
+    product.append('unitId', this.productData.value.unitId);
+    product.append('price',this.productData.value.price);
+    var productUnits: any = new FormData()
+    productUnits.forEach((element: any) => {
+      productUnits.append('UnitId', element.value.UnitId)
+      productUnits.append('ConversionValue', element.value.ConversionValue)
+      productUnits.append('Price', element.value.Price)
+      // check data payload
+    product.append('productUnits', this.productData.value.productUnits);
+    });
+
     this.product.createProduct(product).subscribe((rs: any)=>{
       console.log(rs);
       // this.isSubmit = true

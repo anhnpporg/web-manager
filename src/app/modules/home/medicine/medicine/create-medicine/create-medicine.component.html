@@ -41,7 +41,7 @@
                   </div>
                     </div>
                     <div class="col-4">
-                        <nz-form-label nzRequired for="inputName5" class="form-label">nhà cung cấp</nz-form-label>
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Nhà cung cấp</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="brandId">
                             <!-- <option selected>Open this select menu</option> -->
                             <option *ngFor="let listBrands of listBrand" value={{listBrands.id}}>{{listBrands.name}}</option>
@@ -56,7 +56,7 @@
                   </div>
                     </div>
                     <div class="col-4">
-                        <nz-form-label nzRequired for="inputName5" class="form-label">kệ hàng số</nz-form-label>
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Kệ hàng số</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="shelfId">
                             <!-- <option selected>Open this select menu</option> -->
                             <option *ngFor="let listShelfs of listShelf" value={{listShelfs.id}}>{{listShelfs.name}}</option>
@@ -83,8 +83,8 @@
                      </div>
                   </div>
                     </div>
-                    <div class="col-4">
-                        <nz-form-label nzRequired for="stockStrength" class="form-label">Liều lượng</nz-form-label>
+                    <div class="col-3">
+                        <nz-form-label class="form-label">Liều lượng</nz-form-label>
                         <input type="text" class="form-control" id="stockStrength" formControlName="stockStrength">
                         <div *ngIf="statusError.stockStrength.invalid
                          && (statusError.stockStrength.dirty || statusError.stockStrength.touched) ">
@@ -96,7 +96,7 @@
                   </div>
                     </div>
                     <div class="col-2">
-                        <nz-form-label nzRequired for="stockStrength" class="form-label">đơn vị</nz-form-label>
+                        <nz-form-label class="form-label">Đơn vị</nz-form-label>
                         <select class="form-select" aria-label="Default select example" formControlName="stockStrengthUnitId">
                             <!-- <option selected>Open this select menu</option> -->
                             <option *ngFor="let listUnits of listUnit" value={{listUnits.id}}>{{listUnits.name}}</option>
@@ -110,8 +110,8 @@
                      </div>
                   </div>
                     </div>
-                    <div class="col-6">
-                        <nz-form-label nzRequired for="inputName5" class="form-label">cách dùng
+                    <div class="col-2">
+                        <nz-form-label class="form-label">Cách dùng
                         </nz-form-label>
                         <select class="form-select" formControlName="routeOfAdministrationId">
                             <!-- <option selected>Open this select menu</option> -->
@@ -126,16 +126,41 @@
                      </div>
                   </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-2">
+                      <nz-form-label nzRequired for="stockStrength" class="form-label">Số lượng thuốc</nz-form-label>
+                      <input type="text" class="form-control" id="unitId" formControlName="unitId">
+                      <div *ngIf="statusError.unitId.invalid
+                       && (statusError.unitId.dirty || statusError.unitId.touched) ">
+                   <div *ngIf="statusError.unitId.errors">
+                      <div *ngIf="statusError.price.errors!['required']">
+                         <small style="color: red;">Vui lòng nhập số lượng thuốc</small>
+                      </div>
+                   </div>
+                </div>
+                  </div>
+                    <div class="col-3">
+                      <nz-form-label nzRequired for="stockStrength" class="form-label">Giá thuốc</nz-form-label>
+                      <input type="text" class="form-control" id="price" formControlName="price">
+                      <div *ngIf="statusError.price.invalid
+                       && (statusError.price.dirty || statusError.price.touched) ">
+                   <div *ngIf="statusError.price.errors">
+                      <div *ngIf="statusError.price.errors!['required']">
+                         <small style="color: red;">Vui lòng nhập giá thuốc</small>
+                      </div>
+                   </div>
+                </div>
+                  </div>
+
+                    <div class="col-6">
                         <nz-form-label [nzSpan]="6">Dược phẩm</nz-form-label>
                         <nz-switch (click)="clickIsMedicine()" id="isMedicine" formControlName="isMedicine"></nz-switch>
                     </div>
-                    <div class="col-12">
+                    <div class="col-6">
                         <nz-form-label [nzSpan]="6">Lô, Hạn sữ dụng</nz-form-label>
                         <nz-switch (click)="clickIsConsignment()" id="isMedicine" formControlName="isConsignment">
                         </nz-switch>
                     </div>
-                    
+
                     <div class="col-12">
                         <nz-select nzAllowClear nzPlaceHolder="Hoạt chất" nzMode="multiple" formControlName="activeSubstances">
                             <nz-option *ngFor="let listActiveSubstance of listActiveSubstance" nzLabel={{listActiveSubstance.name}} nzValue={{listActiveSubstance.id}}></nz-option>
