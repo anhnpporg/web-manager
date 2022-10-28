@@ -37,11 +37,11 @@ export class CreateMedicineComponent implements OnInit {
     activeSubstances: [[''],Validators.required],
     unitId: ['',Validators.required],
     price: ['',Validators.required],
-    productUnits: this.fb.group({
+    productUnits: [{
       UnitId: [''],
       ConversionValue: [''],
-      Price: ['']
-    })
+      Price: ['']}
+    ]
   }, {
   });
 

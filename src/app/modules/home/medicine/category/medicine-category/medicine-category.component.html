@@ -18,7 +18,7 @@
                     <nz-form-label nzRequired for="inputName5" class="form-label">Tên phân loại thuốc</nz-form-label>
                     <input type="text" class="form-control" id="inputName" [(ngModel)]="activeSubstanceName">
                     <div *ngIf="checkError == true">
-                        <small style="color: red;">vui lòng nhập phân loại thuốc</small>
+                        <small style="color: red;">Vui lòng nhập phân loại thuốc</small>
                     </div>
                 </ng-container>
             </nz-modal>
@@ -60,11 +60,11 @@
                     <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">còn hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Còn hoạt động</nz-tag>
                         </div>
                         <ng-template #isActive>
                             <div>
-                                <nz-tag [nzColor]="'red'">ngừng hoạt động</nz-tag>
+                                <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
                             </div>
                         </ng-template>
                     </td>
