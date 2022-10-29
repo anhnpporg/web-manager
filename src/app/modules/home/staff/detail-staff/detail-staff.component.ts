@@ -52,7 +52,6 @@ export class DetailStaffComponent implements OnInit {
     formdata.append('confirmPassword', this.comfirmPassword)
     this.user.changePassword(this.id, formdata).subscribe((result) => {
       console.log(result);
-
     })
   }
 

@@ -24,6 +24,9 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
   }
 
+  getProductById():Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
+  }
 
   //activesubstance
 

@@ -12,15 +12,15 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="Nhập mã, tên, số điện thoại khách hàng" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
-                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)" style="width: 210px">
                     <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
-                    <nz-option nzValue="SearchPhone" nzLabel="SĐT nhân viên"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="Số điện thoại nhân viên"></nz-option>
                 </nz-select>
             </button>
         </ng-template>

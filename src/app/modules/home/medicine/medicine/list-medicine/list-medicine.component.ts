@@ -117,7 +117,7 @@ export class ListMedicineComponent implements OnInit {
     });
   }
 
-  detail(id: string) {
+  detail(id: number) {
     this.router.navigate(['dashboard/detail-medicine/' + id]);
     console.log('dashboard/detail-medicine/' + id);
 

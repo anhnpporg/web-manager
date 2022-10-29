@@ -9,8 +9,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailMedicineComponent implements OnInit {
 
+  id: string = ''
+  drugRegistrationNumber: string =''
+  barcode: string =''
+  name:string =''
+  brand: {
+    id: string;
+    name: string;
+  } | undefined
+  shelf: {
+    id: string;
+    name: string;
+  } | undefined
+  minimumQuantity: string =''
+  stockStrength: string =''
+  stockStrengthUnit: {
+      id: string
+      name: string
+    }|undefined
+  routeOfAdministration: {
+      id: string
+      name: string
+    }|undefined
+  isMedicine: boolean = true
+  isConsignment: boolean = true
+  isActive: boolean = true
+  createdAt: string =''
+  createdBy: {
+      id: string
+      name: string
+    }|undefined
+    updatedAt: string | null | undefined
+    updatedBy: string | null | undefined
+    activeSubstances: [
+      {
+        id: string
+        name: string
+      }
+    ] | undefined
+    productUnits: [
+      {
+        id: string
+        productId: string
+        unit: {
+          id: string
+          name: string
+        },
+        conversionValue: string
+        price: string
+        isBaseUnit: boolean
+      }
+    ]|undefined;
 
-  id: string = '';
   subParam!: Subscription;
 
   constructor(
@@ -20,6 +70,7 @@ export class DetailMedicineComponent implements OnInit {
   ngOnInit(): void {
     this.subParam = this.atvRoute.params.subscribe((params) => {
       this.id = params['id'];
+
     });
   }
 

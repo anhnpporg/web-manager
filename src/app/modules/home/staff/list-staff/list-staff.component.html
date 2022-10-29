@@ -20,7 +20,7 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="Nhập mã, tên, số điện thoại nhân viên" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
@@ -36,7 +36,7 @@
     <section class="section">
         <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
             <thead>
                 <tr>
                     <th>Ảnh đại diện</th>
