@@ -3,6 +3,7 @@ import { ProductService } from './../../../../../_core/services/product/product.
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+
 @Component({
   selector: 'app-list-active-substance',
   templateUrl: './list-active-substance.component.html',
@@ -13,6 +14,7 @@ export class ListActiveSubstanceComponent implements OnInit {
   value:string = '127381'
   searchData: string = ''
   listData: any[] = []
+  listProductHaveActiveSubstance : any[] = []
   listsearch: any
   selectedProvince = 'searchID'
   loading: boolean = true;
@@ -34,18 +36,27 @@ export class ListActiveSubstanceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.product.getAllActiveSubstance().subscribe((result) => {
       console.log(result);
-
       this.listData = result
       this.loading = false
       this.listsearch = this.listData
+      // result.forEach((element: { id: number }) => {
+      //   this.product.getActiveSubstanceById(element.id).subscribe((productHaveActiveSubstance)=>{
+      //     console.log(productHaveActiveSubstance)
+      //     this.listProductHaveActiveSubstance.push({
+      //       products:productHaveActiveSubstance,
+      //       id: element.id
+      //     })
+      //   })
+      //   console.log(this.listProductHaveActiveSubstance)
+      // });
     })
+
   }
 
   detail(id: number) {
-    // this.router.navigate(['dashboard/detail-staff/' + id]);
+    this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
 
   SearchOption(value: string) {

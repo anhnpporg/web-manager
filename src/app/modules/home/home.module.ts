@@ -42,7 +42,8 @@ const homeRoutes: Routes = [
       { path: 'detail-medicine/:id', component: DetailMedicineComponent },
       { path: 'user-profile', component: UsersProfileComponent },
       { path: 'brands', component: ListBrandComponent },
-      { path: 'medicine-activeSubstance', component: ListActiveSubstanceComponent }
+      { path: 'medicine-activeSubstance', component: ListActiveSubstanceComponent },
+      { path: 'medicine-activeSubstance/:id', component: ListProductOfActiveSubstanceComponent}
     ]
   }
 ]

@@ -48,23 +48,22 @@
                     <th>Tên hoạt chất</th>
                     <th>Ngày tạo</th>
                     <th [nzFilters]="nameList" [nzFilterMultiple]="true" [nzFilterFn]="nameFilterFn">Hoạt động</th>
-                </tr>
             </thead>
             <tbody>
                 <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
-                    <td (click)="detail(data.id)">{{ data.id}}</td>
-                    <td (click)="detail(data.id)">{{ data.name || null }}</td>
-                    <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
-                    <td>
-                        <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Còn hoạt động</nz-tag>
-                        </div>
-                        <ng-template #isActive>
-                            <div>
-                                <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
-                            </div>
-                        </ng-template>
-                    </td>
+                  <td (click)="detail(data.id)">{{ data.id }}</td>
+                  <td (click)="detail(data.id)">{{ data.name || null }}</td>
+                  <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
+                  <td>
+                      <div *ngIf="data.isActive == true; else isActive">
+                          <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Còn hoạt động</nz-tag>
+                      </div>
+                      <ng-template #isActive>
+                          <div>
+                              <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
+                          </div>
+                      </ng-template>
+                  </td>
                 </tr>
             </tbody>
         </nz-table>

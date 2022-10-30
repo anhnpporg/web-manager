@@ -1,3 +1,51 @@
 <main id="main" class="main">
-    
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Danh sách thuốc cùng hoạt chất</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/medicine-activeSubstance">Hoạt chất</a>
+          </li>
+          <li class="breadcrumb-item active">Danh sách thuốc cùng hoạt chất</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <nz-collapse nzAccordion style="border-width: 7px">
+    <nz-collapse-panel
+      *ngFor="let products of productHaveActiveSubstance"
+      [nzHeader]="products.name"
+      [nzActive]="products.active"
+      style="background-color: white; font-size: 25px;"
+    >
+      <div class="container" style="font-size: 18px">
+        <div class="row">
+          <div class="col-sm">Nhà cung cấp: {{ products.brand.name }}</div>
+          <div class="col-sm">Kệ hàng số: {{ products.shelf.name }}</div>
+          <div class="col-sm">
+            <ngx-barcode
+              bc-value="{{ products.barcode }}"
+              [bc-display-value]="true"
+              [bc-width]="1"
+              [bc-height]="30"
+            ></ngx-barcode>
+          </div>
+        </div>
+        <button
+          (click)="detail(products.id)"
+          style="
+            background-color: rgba(0, 132, 255, 0.253);
+            color: rgb(0, 4, 8);
+          "
+        >
+          Xem chi tiết thuốc
+        </button>
+      </div>
+    </nz-collapse-panel>
+  </nz-collapse>
 </main>

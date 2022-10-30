@@ -24,8 +24,8 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
   }
 
-  getProductById():Observable<any> {
-    return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
+  getProductById(id : string):Observable<any> {
+    return this.httpClient.get(DOMAIN + `product-management/products/${id}`, { headers: this.headers })
   }
 
   //activesubstance
@@ -33,11 +33,16 @@ export class ProductService {
   getAllActiveSubstance(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'active-substance-management/active-substances', { headers: this.headers })
   }
+
+  getActiveSubstanceById(id: number): Observable<any>{
+    return this.httpClient.get(DOMAIN + `active-substance-management/active-substances/${id}/products`, {headers: this.headers})
+  }
+
   createActiveSubstance(name: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'active-substance-management/active-substances', name, { headers: this.headers })
   }
   deleteActiveSubstance(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'active-substance-management/active-substances', {}, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + 'active-substance-management/active-substances', id, { headers: this.headers })
   }
 
   //product

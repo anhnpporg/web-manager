@@ -1,4 +1,8 @@
+import { ProductService } from 'src/app/_core/services/product/product.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-list-product-of-active-substance',
@@ -7,11 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProductOfActiveSubstanceComponent implements OnInit {
 
- 
+  id: string = ''
+  width: number = 1
+  height: number = 50
+  productHaveActiveSubstance: any[] = []
+  subParam!: Subscription;
+  constructor(
+    private atvRoute: ActivatedRoute,
+    private router : Router,
+    private product: ProductService
+  ) {
+  }
 
-  constructor() { }
+  detail(id: number) {
+    this.router.navigate(['dashboard/detail-medicine/' + id]);
+  }
 
   ngOnInit(): void {
-  }
+    this.subParam = this.atvRoute.params.subscribe((params) => {
+      this.id = params['id'];
+    console.log(params['id'])
+    this.product.getActiveSubstanceById(params['id']).subscribe((result)=>{
+      console.log(result)
+      this.productHaveActiveSubstance = result
+    })
+  },err => {
+    console.log(err)
+    this.router.navigate(['/404'])
+  });
+}
 
 }
