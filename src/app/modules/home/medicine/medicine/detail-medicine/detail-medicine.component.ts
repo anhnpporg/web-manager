@@ -11,6 +11,26 @@ import { Component, OnInit } from '@angular/core';
 export class DetailMedicineComponent implements OnInit {
 
   id: string = ''
+  panels = [
+    {
+      id: 4,
+      active: false,
+      name: 'active substance 1',
+      disabled: false
+    },
+    {
+      id: 5,
+      active: false,
+      disabled: false,
+      name: 'active substance 2'
+    },
+    {
+      id: 6,
+      active: false,
+      disabled: false,
+      name: 'active substance 3'
+    }
+  ];
   medicineDetail: any[] = []
   // drugRegistrationNumber: string =''
   // barcode: string =''
@@ -68,7 +88,7 @@ export class DetailMedicineComponent implements OnInit {
   constructor(
     private atvRoute: ActivatedRoute,
     private product: ProductService,
-    private route: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -83,8 +103,12 @@ export class DetailMedicineComponent implements OnInit {
       // this.brand = productDetails.brand.name;
     })
     }, err => {
-      this.route.navigate(['/404'])
+      this.router.navigate(['/404'])
     });
+  }
+
+  detail(id: number) {
+    this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
 
 }

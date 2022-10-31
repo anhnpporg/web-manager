@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Chi tiết thuốc {{id}}</h1>
+      <h1>Chi tiết thuốc {{ id }}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -17,21 +17,46 @@
   </div>
   <nz-tabset>
     <nz-tab nzTitle="Thông tin">
-      <div class="container">
+      <div class="container" style="font-size: 18px">
         <div class="row">
-          <div class="col-sm">
-            One of three columns
-          </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
-          <div class="col-sm">
-            One of three columns
-          </div>
+          <div class="col-5">Tên thuốc:</div>
+          <div class="col-7">Barcode</div>
+          <div class="col-3"></div>
+          <div class="col-3">Nhà cung cấp:</div>
+          <div class="col-3">Kệ hàng số:</div>
+          <div class="col-3">Ngày tạo:</div>
+          <div class="col-3">Hạn sử dụng:</div>
         </div>
       </div>
     </nz-tab>
-    <nz-tab nzTitle="Hoạt chất">Content of Tab Pane 2</nz-tab>
+    <nz-tab nzTitle="Hoạt chất">
+      <nz-collapse nzAccordion style="box-shadow: 1px 1px 1px 1px;">
+        <nz-collapse-panel
+          *ngFor="let panel of panels"
+          [nzHeader]="panel.name"
+          [nzActive]="panel.active"
+          [nzDisabled]="panel.disabled"
+          style="background-color: white; font-size: 18px"
+        >
+          <div class="container" style="font-size: 15px">
+            <div class="row">
+              <div class="col-sm">Tên hoạt chất</div>
+              <div class="col-sm">Ngày tạo</div>
+              <div class="col-sm">Trạng thái hoạt động</div>
+            </div>
+            <button
+              (click)="detail(panel.id)"
+              style="
+                background-color: rgba(0, 132, 255, 0.253);
+                color: rgb(0, 4, 8);
+              "
+            >
+              Xem thuốc có cùng hoạt chất
+            </button>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-tab>
 
     <nz-tab nzTitle="Lô - Hạng sử dụng"
       >Chưa có lô trong thông tin trả về</nz-tab
