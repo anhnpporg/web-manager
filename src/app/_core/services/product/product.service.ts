@@ -54,7 +54,7 @@ export class ProductService {
     return this.httpClient.post(DOMAIN + 'shelves-management/shelves', name, { headers: this.headers })
   }
   deleteCategory(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'shelves-management/shelves', id, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + `shelves-management/shelves/${id}`, { headers: this.headers })
   }
   createProduct (product: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'product-management/products', product, { headers: this.headers })
@@ -63,6 +63,9 @@ export class ProductService {
   //Shelf
   getAllShelf(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
+  }
+  getShelfById(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}/products`, { headers: this.headers })
   }
 
   getROA(): Observable<any> {

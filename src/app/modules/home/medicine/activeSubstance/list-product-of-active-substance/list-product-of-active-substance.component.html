@@ -16,17 +16,17 @@
     </div>
   </div>
 
-  <nz-collapse nzAccordion style="border-width: 7px">
+  <nz-collapse nzAccordion>
     <nz-collapse-panel
       *ngFor="let products of productHaveActiveSubstance"
       [nzHeader]="products.name"
       [nzActive]="products.active"
-      style="background-color: white; font-size: 25px;"
+      style="background-color: white;"
     >
-      <div class="container" style="font-size: 18px">
+      <div class="container">
         <div class="row">
-          <div class="col-sm">Nhà cung cấp: {{ products.brand.name }}</div>
           <div class="col-sm">Kệ hàng số: {{ products.shelf.name }}</div>
+          <div class="col-sm">Nhà cung cấp: {{ products.brand.name }}</div>
           <div class="col-sm">
             <ngx-barcode
               bc-value="{{ products.barcode }}"

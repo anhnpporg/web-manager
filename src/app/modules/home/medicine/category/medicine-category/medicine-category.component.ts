@@ -46,8 +46,9 @@ export class MedicineCategoryComponent implements OnInit {
     })
   }
 
-  detail(id: number) {
-    // this.router.navigate(['dashboard/detail-staff/' + id]);
+  detail(id: number,name:string) {
+    this.router.navigate(['dashboard/detail-category/' + id],{queryParams: {}});
+
   }
 
   SearchOption(value: string) {
@@ -99,7 +100,7 @@ export class MedicineCategoryComponent implements OnInit {
   deleteBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
       nzOnOk: () => {
         this.product.deleteCategory(id).subscribe(() => {
           let currentUrl = this.router.url;
