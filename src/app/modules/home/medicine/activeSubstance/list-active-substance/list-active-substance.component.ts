@@ -36,7 +36,7 @@ export class ListActiveSubstanceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.product.getAllActiveSubstance().subscribe((result) => {
+    this.product.getAllActiveSubstance().subscribe((result: any[]) => {
       console.log(result);
       this.listData = result
       this.loading = false
@@ -84,7 +84,7 @@ export class ListActiveSubstanceComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createActiveSubstance(formdata).subscribe((result) => {
+      this.product.createActiveSubstance(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo hoạt chất mới thành công', ''
@@ -94,7 +94,7 @@ export class ListActiveSubstanceComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo hoạt chất mới thất bại', ''
@@ -116,7 +116,7 @@ export class ListActiveSubstanceComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })

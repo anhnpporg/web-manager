@@ -34,7 +34,7 @@ export class ListBrandComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((result) => {
+    this.brand.getAllBrand().subscribe((result: any[]) => {
       console.log(result);
 
       this.listData = result,
@@ -67,7 +67,7 @@ export class ListBrandComponent implements OnInit {
       formdata.append('name', this.factoryName);
       this.isVisible = false;
 
-      this.brand.createBrand(formdata).subscribe((result) => {
+      this.brand.createBrand(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo nhà sản xuất mới thành công', ''
@@ -77,7 +77,7 @@ export class ListBrandComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo nhà sản xuất mới thất bại', ''

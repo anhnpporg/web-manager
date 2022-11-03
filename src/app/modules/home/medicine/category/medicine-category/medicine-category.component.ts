@@ -37,7 +37,7 @@ export class MedicineCategoryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.product.getAllCategory().subscribe((result) => {
+    this.product.getAllCategory().subscribe((result: any[]) => {
       console.log(result);
 
       this.listData = result
@@ -76,7 +76,7 @@ export class MedicineCategoryComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result) => {
+      this.product.createCategory(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo phân loại thuốc mới thành công', ''
@@ -86,7 +86,7 @@ export class MedicineCategoryComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo phân loại thuốc mới thất bại', ''
@@ -108,7 +108,7 @@ export class MedicineCategoryComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })

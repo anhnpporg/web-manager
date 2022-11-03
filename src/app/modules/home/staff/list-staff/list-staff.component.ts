@@ -30,7 +30,7 @@ export class ListStaffComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user.getStaffs().subscribe((result) => {
+    this.user.getStaffs().subscribe((result: StaffInterface[]) => {
       console.log(result);
 
       this.listData = result
@@ -54,7 +54,7 @@ export class ListStaffComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })
@@ -75,7 +75,7 @@ export class ListStaffComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
         })
       },

@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/_core/services/product/product.service';
 import { query } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-detail-category',
@@ -13,26 +13,6 @@ export class DetailCategoryComponent implements OnInit {
 
   id: string = ''
   name: string = ''
-  panels = [
-    {
-      id: 4,
-      active: false,
-      name: 'active substance 1',
-      disabled: false
-    },
-    {
-      id: 5,
-      active: false,
-      disabled: false,
-      name: 'active substance 2'
-    },
-    {
-      id: 6,
-      active: false,
-      disabled: false,
-      name: 'active substance 3'
-    }
-  ];
 
   shelfs: any[]=[]
 
@@ -49,14 +29,14 @@ export class DetailCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subParam = this.atvRoute.params.subscribe((params) => {
-      this.id = params['id'];
-      this.product.getShelfById(params['id']).subscribe((result)=>{
+    this.subParam = this.atvRoute.params.subscribe((params: { [x: string]: number; }) => {
+      // this.id = params['id'];
+      this.product.getShelfById(params['id']).subscribe((result: any[])=>{
         console.log(result)
         this.shelfs = result
         console.log(this.shelfs.length)
       })
-  }, err => {
+  }, (err: any) => {
     this.router.navigate(['/404'])
   });
   }
