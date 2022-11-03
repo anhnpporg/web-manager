@@ -24,11 +24,11 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên thuốc" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="Nhập mã, barcode, tên thuốc" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px">
+            <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã thuốc"></nz-option>
                     <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
@@ -63,7 +63,7 @@
                             [bc-height]="height"></ngx-barcode>
                     </td>
                     <td (click)="detail(data.id)">{{ data.name || null }}</td>
-                    <td (click)="detail(data.id)">{{ data.price }}</td>
+                    <td (click)="detail(data.id)">{{ data.price || 1000 }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
                             <nz-tag [nzColor]="'green'">Còn bán</nz-tag>

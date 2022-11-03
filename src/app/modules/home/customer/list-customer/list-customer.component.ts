@@ -15,7 +15,7 @@ export class ListCustomerComponent implements OnInit {
   listOfData: Customer[] = []
   searchData: string = ''
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchPhone'
 
   constructor(
     private user: UserService,
@@ -74,12 +74,10 @@ export class ListCustomerComponent implements OnInit {
 
   getListSearch() {
     console.log(this.searchData);
-    if (this.selectedProvince == "searchID") {
-      this.listsearch = this.listOfData.filter(data => data.userId.toString().includes(this.searchData.toLocaleLowerCase()))
-    } else if (this.selectedProvince == "SearchPhone") {
+    if (this.selectedProvince == "SearchPhone") {
       this.listsearch = this.listOfData.filter(data => data.phoneNumber.toString().toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {
-      this.listsearch = this.listOfData.filter(data => data.fullname.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+      this.listsearch = this.listOfData.filter(data => data.fullName.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     }
   }
 }

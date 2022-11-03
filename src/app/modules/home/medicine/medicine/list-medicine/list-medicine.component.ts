@@ -63,7 +63,7 @@ export class ListMedicineComponent implements OnInit {
     } else if (this.selectedProvince == "SearchName") {
       this.listsearch = this.listData.filter(data => data.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     } else if (this.selectedProvince == "searchID") {
-      this.listsearch = this.listData.filter(data => data.drugRegistrationNumber.toString().includes(this.searchData.toLocaleLowerCase()))
+      this.listsearch = this.listData.filter(data => data.drugRegistrationNumber.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     }
   }
   showModal(): void {

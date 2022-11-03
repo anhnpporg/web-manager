@@ -56,5 +56,11 @@ export class UserService {
   getCustomers(): Observable<any> {
     return this.httpClient.get(DOMAIN + `user-management/customers`, { headers: this.headers })
   }
+  getCustomer(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `user-management/customers/${id}`, { headers: this.headers })
+  }
+  getInvoices(): Observable<any> {
+    return this.httpClient.get(DOMAIN + `invoice-management/invoices`, { headers: this.headers })
+  }
 
 }

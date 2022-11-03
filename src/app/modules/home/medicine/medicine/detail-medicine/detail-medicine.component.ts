@@ -1,3 +1,4 @@
+import { routeOfAdministration } from './../../../../../_core/utils/interface';
 import { ProductService } from 'src/app/_core/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,109 +7,65 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-detail-medicine',
   templateUrl: './detail-medicine.component.html',
-  styleUrls: ['./detail-medicine.component.css']
+  styleUrls: ['./detail-medicine.component.css'],
 })
 export class DetailMedicineComponent implements OnInit {
-
-  id: string = ''
-  panels = [
-    {
-      id: 4,
-      active: false,
-      name: 'active substance 1',
-      disabled: false
-    },
-    {
-      id: 5,
-      active: false,
-      disabled: false,
-      name: 'active substance 2'
-    },
-    {
-      id: 6,
-      active: false,
-      disabled: false,
-      name: 'active substance 3'
-    }
-  ];
-  medicineDetail: any[] = []
-  // drugRegistrationNumber: string =''
-  // barcode: string =''
-  // name:string =''
-  // brand: {
-  //   id: string;
-  //   name: string;
-  // } | undefined
-  // shelf: {
-  //   id: string;
-  //   name: string;
-  // } | undefined
-  // minimumQuantity: string =''
-  // stockStrength: string =''
-  // stockStrengthUnit: {
-  //     id: string
-  //     name: string
-  //   }|undefined
-  // routeOfAdministration: {
-  //     id: string
-  //     name: string
-  //   }|undefined
-  // isMedicine: boolean = true
-  // isConsignment: boolean = true
-  // isActive: boolean = true
-  // createdAt: string =''
-  // createdBy: {
-  //     id: string
-  //     name: string
-  //   }|undefined
-  //   updatedAt: string | null | undefined
-  //   updatedBy: string | null | undefined
-  //   activeSubstances: [
-  //     {
-  //       id: string
-  //       name: string
-  //     }
-  //   ] | undefined
-  //   productUnits: [
-  //     {
-  //       id: string
-  //       productId: string
-  //       unit: {
-  //         id: string
-  //         name: string
-  //       },
-  //       conversionValue: string
-  //       price: string
-  //       isBaseUnit: boolean
-  //     }
-  //   ]|undefined;
-
+  medicineDetail: any[] = [];
+  id: string = '';
+  drugRegistrationNumber: string = '';
+  barcode: string = '';
+  name: string = '';
+  brand: string = ''
+  shelf : string =''
+  mininumInventory: string = '';
+  routeOfAdministration: string =''
+  isUseDose: boolean = true;
+  isManagedInBatches: boolean = true;
+  isActive: boolean = true;
+  createdAt: string = '';
+  createdBy: string = ''
+  activeSubstances: any[] = [];
+  productUnits: any[] = [];
+  batches: any[] = []
   subParam!: Subscription;
 
   constructor(
     private atvRoute: ActivatedRoute,
     private product: ProductService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.subParam = this.atvRoute.params.subscribe((params) => {
-      this.id = params['id'];
-    // Error: response status is 500, wait BE fix
-    this.product.getProductById(this.id).subscribe((productDetails)=>{
-      console.log(productDetails)
-      // this.drugRegistrationNumber = productDetails.drugRegistrationNumber;
-      // this.barcode = productDetails.barcode;
-      // this.name = productDetails.name;
-      // this.brand = productDetails.brand.name;
-    })
-    }, err => {
-      this.router.navigate(['/404'])
-    });
+    this.subParam = this.atvRoute.params.subscribe(
+      (params) => {
+        this.id = params['id'];
+        this.product.getProductById(this.id).subscribe((productDetails) => {
+          console.log(productDetails);
+          this.medicineDetail = productDetails
+          this.drugRegistrationNumber = productDetails.drugRegistrationNumber
+          this.name = productDetails.name
+          this.barcode = productDetails.barcode
+          this.mininumInventory = productDetails.mininumInventory
+          this.isUseDose = productDetails.isUseDose
+          this.isManagedInBatches = productDetails.isManagedInBatches
+          this.isActive = productDetails.isActive
+          this.brand = productDetails.brand.name
+         this.routeOfAdministration = productDetails.routeOfAdministration.name
+         this.createdAt = productDetails.createdAt
+         this.createdBy = productDetails.createdBy.name
+         this.shelf = productDetails.shelf.name
+         this.activeSubstances = productDetails.activeSubstances
+         this.productUnits = productDetails.productUnits
+         this.batches = productDetails.batches
+        });
+      },
+      (err) => {
+        this.router.navigate(['/404']);
+      }
+    );
   }
 
   detail(id: number) {
     this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
-
 }
