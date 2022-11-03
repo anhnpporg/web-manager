@@ -28,7 +28,7 @@
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
-                    <nz-option nzValue="SearchPhone" nzLabel="SĐT nhân viên"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="Số điện thoại nhân viên"></nz-option>
                 </nz-select>
             </button>
         </ng-template>
@@ -40,7 +40,7 @@
             <thead>
                 <tr>
                     <th>Ảnh đại diện</th>
-                    <th>Mã</th>
+                    <th>Mã nhân viên</th>
                     <th>Họ và Tên</th>
                     <th>Số điện thoại</th>
                     <th [nzFilters]="nameList"

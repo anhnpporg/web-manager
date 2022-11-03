@@ -1,14 +1,14 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Chi tiết kệ hàng số {{ id }}</h1>
+      <h1>Chi tiết kệ hàng</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/dashboard/medicine-category">Phân loại</a>
+            <a routerLink="/dashboard/medicine-category">Quản lý kệ hàng</a>
           </li>
           <li class="breadcrumb-item active">Chi tiết kệ hàng</li>
         </ol>
@@ -27,7 +27,7 @@
     >
       <div class="container" >
       <div class="row">
-        <div class="col-sm">Kệ hàng số: {{ listshelf.shelf.name }}</div>
+        <div class="col-sm">Kệ hàng: {{ listshelf.shelf.name }}</div>
         <div class="col-sm">Nhà cung cấp: {{ listshelf.brand.name }}</div>
         <div class="col-sm">
           <ngx-barcode

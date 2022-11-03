@@ -52,6 +52,10 @@ export class UserService {
   changePassword(userID: string, data: FormData): Observable<any> {
     return this.httpClient.put(DOMAIN + `user-management/users/recovery-password/${userID}`, data, { headers: this.headers })
   }
+  changeInfo(data: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `user-management/managers/profile`, data, { headers: this.headers })
+  }
+
   // Customer
   getCustomers(): Observable<any> {
     return this.httpClient.get(DOMAIN + `user-management/customers`, { headers: this.headers })

@@ -174,3 +174,16 @@ export interface CreateMedicine {
     isDoseBasedOnBodyWeightUnit: boolean,
   }
 }
+
+export interface Supplier{
+  id: string
+  name: string
+  isActive: boolean
+  createdAt: string
+  createBy: {
+    id: string
+    name: string
+  }
+  updatedAt: string
+  updatedBy: string
+}

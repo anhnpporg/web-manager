@@ -62,18 +62,17 @@ export class CreateMedicineComponent implements OnInit {
     routeOfAdministrationId: ['', Validators.required], // đường dùng
     isUseDose: [false], // bán theo liều
     isManagedInBatches: [false], // quản lý theo lô, hạn sử dụng
-    activeSubstances: [[''], Validators.required], // hoạt chất
+    activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
     isPackingSpecification: [false], // hiển thị quy cách đóng gói
     isDoseBasedOnBodyWeightUnit: [false], // đơn vị liều dùng
     productUnits: [{
-      unit: [''],
-      conversionValue: [''], // giá trị quy đổi
-      price: [''],
+      unit: [],
+      conversionValue: [], // giá trị quy đổi
+      price: [],
       isPackingSpecification: [false],
       isDoseBasedOnBodyWeightUnit: [false],
-
     }],
   });
 
@@ -145,26 +144,26 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData);
-    var product: any = new FormData();
-    product.append(
-      'drugRegistrationNumber',
-      this.productData.value.drugRegistrationNumber
-    );
-    product.append('name', this.productData.value.name);
-    product.append('brandId', this.productData.value.brandId);
-    product.append('shelfId', this.productData.value.shelfId);
-    product.append('mininumInventory', this.productData.value.mininumInventory);
-    product.append(
-      'routeOfAdministrationId',
-      this.productData.value.routeOfAdministrationId
-    );
-    product.append('activeSubstances', this.productData.value.activeSubstances);
-    product.append('isUseDose' , this.productData.value.isUseDose)
-    product.append('isManagedInBatches', this.productData.value.isManagedInBatches)
-    product.append('unit', this.productData.value.unit);
-    product.append('price', this.productData.value.price);
+    // var product: any = new FormData();
+    // product.append(
+    //   'drugRegistrationNumber',
+    //   this.productData.value.drugRegistrationNumber
+    // );
+    // product.append('name', this.productData.value.name);
+    // product.append('brandId', this.productData.value.brandId);
+    // product.append('shelfId', this.productData.value.shelfId);
+    // product.append('mininumInventory', this.productData.value.mininumInventory);
+    // product.append(
+    //   'routeOfAdministrationId',
+    //   this.productData.value.routeOfAdministrationId
+    // );
+    // product.append('activeSubstances', this.productData.value.activeSubstances);
+    // product.append('isUseDose' , this.productData.value.isUseDose)
+    // product.append('isManagedInBatches', this.productData.value.isManagedInBatches)
+    // product.append('unit', this.productData.value.unit);
+    // product.append('price', this.productData.value.price);
       console.log(this.productUnits)
-    this.product.createProduct(product).subscribe(
+    this.product.createProduct(this.productData).subscribe(
       (rs: any) => {
         console.log(rs);
         // this.isSubmit = true

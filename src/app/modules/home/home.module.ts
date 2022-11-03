@@ -27,6 +27,8 @@ import { ListActiveSubstanceComponent } from './medicine/activeSubstance/list-ac
 import { ListProductOfActiveSubstanceComponent } from './medicine/activeSubstance/list-product-of-active-substance/list-product-of-active-substance.component';
 import { TagInputModule } from 'ngx-chips';
 import { DetailCategoryComponent } from './medicine/category/detail-category/detail-category.component';
+import { ListSupplierComponent } from './supplier/list-supplier/list-supplier.component';
+import { CreateSupplierComponent } from './supplier/create-supplier/create-supplier.component';
 
 const homeRoutes: Routes = [
   {
@@ -45,7 +47,9 @@ const homeRoutes: Routes = [
       { path: 'brands', component: ListBrandComponent },
       { path: 'medicine-activeSubstance', component: ListActiveSubstanceComponent },
       { path: 'medicine-activeSubstance/:id', component: ListProductOfActiveSubstanceComponent},
-      { path: 'detail-category/:id' , component: DetailCategoryComponent}
+      { path: 'detail-category/:id' , component: DetailCategoryComponent},
+      { path: 'supplier',component: ListSupplierComponent},
+      { path: 'create-supplier', component: CreateSupplierComponent}
     ]
   }
 ]
@@ -73,6 +77,8 @@ const homeRoutes: Routes = [
     ListProductOfActiveSubstanceComponent,
     CreateMedicineComponent,
     DetailCategoryComponent,
+    ListSupplierComponent,
+    CreateSupplierComponent
   ],
   imports: [
     CommonModule,
