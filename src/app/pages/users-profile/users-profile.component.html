@@ -50,7 +50,7 @@
                         </div>
                         <div class="row">
                            <div class="col-lg-3 col-md-4 label">Email</div>
-                           <input class="col-lg-9 col-md-8" type="email" placeholder="{{email || 'utnhandrugstore@gmail.com'}}" formControlName="email" id = "email">
+                           <input class="col-lg-9 col-md-8" type="email" placeholder="{{email}}" formControlName="email" id = "email">
                         </div>
                         <div class="row">
                          <div class="col-lg-3 col-md-4 label">Ngày tạo tài khoản</div>
@@ -62,17 +62,44 @@
                      </form></div>
                       <div class="tab-pane fade pt-3" id="profile-change-password">
                          <form (ngSubmit)="onSubmit()" [formGroup]="newPasswordData">
-                            <!-- <div class="row mb-3">
+                            <div class="row mb-3">
                                <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Mật khẩu hiện tại</label>
-                               <div class="col-md-8 col-lg-9"> <input name="password" type="password" class="form-control" id="currentPassword"></div>
-                            </div> -->
+                               <div class="col-md-8 col-lg-9"> <input name="password" type="password" class="form-control" id="currentPassword" formControlName="currentPassword"></div>
+                               <div
+                               *ngIf="statusError.currentPassword.invalid && (statusError.currentPassword.dirty || statusError.currentPassword.touched) ">
+                               <div *ngIf="statusError.currentPassword.errors">
+                                  <div *ngIf="statusError.newPassword.errors!['required']">
+                                     <small style="color: red;">Vui lòng nhập mật khẩu</small>
+                                  </div>
+                               </div>
+                            </div>
+                              </div>
                             <div class="row mb-3">
                                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới</label>
                                <div class="col-md-8 col-lg-9"> <input name="newpassword" type="password" class="form-control" id="newPassword" formControlName="newPassword"></div>
+                               <div
+                     *ngIf="statusError.newPassword.invalid && (statusError.newPassword.dirty || statusError.newPassword.touched) ">
+                     <div *ngIf="statusError.newPassword.errors">
+                        <div *ngIf="statusError.newPassword.errors!['required']">
+                           <small style="color: red;">Vui lòng nhập mật khẩu</small>
+                        </div>
+                        <div *ngIf="statusError.newPassword.errors!['minlength']">
+                           <small style="color: red;">Vui lòng nhập mật khẩu có ít nhất 6 kí tự</small>
+                        </div>
+                     </div>
+                  </div>
                             </div>
                             <div class="row mb-3">
                                <label for="confirmPassword" class="col-md-4 col-lg-3 col-form-label">Nhập lại mật khẩu mới</label>
                                <div class="col-md-8 col-lg-9"> <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"></div>
+                               <div
+                               *ngIf="statusError.confirmPassword.invalid && (statusError.confirmPassword.dirty || statusError.confirmPassword.touched) ">
+                               <div *ngIf="statusError.confirmPassword.errors">
+                                  <div *ngIf="statusError.confirmPassword.errors!['required']">
+                                     <small style="color: red;">Vui lòng nhập mật khẩu</small>
+                                  </div>
+                               </div>
+                            </div>
                             </div>
                            <div #submitButton class="text-center">
                             <button nz-button nzType="primary" nzSize="large" style="border-radius: 10px;">

@@ -187,3 +187,33 @@ export interface Supplier{
   updatedAt: string
   updatedBy: string
 }
+
+export interface GoodReceiptNote{
+  id: string
+  goodsReceiptNoteType:{
+    id: string
+    name: string
+  }
+  batch:{
+    id: string
+    barcode: string
+    manufacturingDate: string
+    expiryDate: string
+  }
+  invoiceId: string
+  supplier: {
+    id: string
+    name: string
+  }
+  quantity: number
+  unit: string
+  totalPrice: number
+  convertedQuantity: number
+  baseUnitPrice: number
+  createdAt: string
+  createdBy: {
+    id: string
+    name: string
+  }
+  note:[]
+}

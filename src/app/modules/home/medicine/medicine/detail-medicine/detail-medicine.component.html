@@ -20,10 +20,10 @@
       <div class="container" style="font-size: 16px">
         <div class="row" >
           <!-- <div class="col-6">Tên thuốc: {{name}}</div> -->
-          <div class="col-6">
+          <!-- <div class="col-8" style="text-align: center">
             <ngx-barcode bc-value={{barcode}} [bc-display-value]="true" [bc-width]="1"
                             [bc-height]="30"></ngx-barcode>
-          </div>
+          </div> -->
           <div class="col-6">Nhà cung cấp: {{brand}}</div>
           <div class="col-6">Kệ hàng: {{shelf}}</div>
           <div class="col-6">Ngày tạo: {{createdAt | date:"dd-MM-yyyy"}}</div>
@@ -31,25 +31,29 @@
           <!-- <div class="col-6">Hạn sử dụng:</div> -->
           <div class="col-6">Đường dùng: {{routeOfAdministration}}</div>
           <div class="col-6">Mức tồn kho tối thiểu: {{mininumInventory}}</div>
-          <div class="col-4">
-            <nz-form-label [nzSpan]="6">Bán theo liều</nz-form-label>
+          <div class="col-6" *ngIf="isUseDose">Bán theo liều</div>
+          <div class="col-6" *ngIf="isManagedInBatches">Quản lý theo lô, hạn sử dụng</div>
+          <br>
+          <br>
+          <!-- <div class="col-4">
+            <nz-form-label [nzSpan]="10"  style="font-size: 20px">Bán theo liều</nz-form-label>
             <nz-switch
               [ngModel]="isUseDose"
               id="isUseDose"></nz-switch>
           </div>
-          <div class="col-6">
-            <nz-form-label [nzSpan]="8">Quản lý theo lô, hạn sử dụng</nz-form-label>
+          <div class="col-6" style="font-size: 20px">
+            <nz-form-label [nzSpan]="10">Quản lý theo lô, hạn sử dụng</nz-form-label>
             <nz-switch
               [ngModel] = "isManagedInBatches"
               id="isManagedInBatches"></nz-switch>
           </div>
-          <div class="col-6">
-            <nz-form-label [nzSpan]="8">Trạng thái hoạt động</nz-form-label>
+          <div class="col-6" style="font-size: 20px">
+            <nz-form-label [nzSpan]="10">Trạng thái hoạt động</nz-form-label>
             <nz-switch
             [ngModel] = "isActive"
               id="isActive"
             ></nz-switch>
-          </div>
+          </div> -->
 
           <div class="col-12" >
             <nz-table #basicTable [nzData]="productUnits" style="text-align: center; font-size: 18px;">
@@ -63,7 +67,7 @@
               </thead>
               <tbody  *ngFor="let productUnit of basicTable.data" style="text-align: center;">
                 <tr>
-                  <td scope="row">{{productUnit.unit}}</td>
+                  <td scope="row" style="text-transform: capitalize;">{{productUnit.unit}}</td>
                   <td>{{productUnit.conversionValue}}</td>
                   <td>{{productUnit.price}}</td>
                   <td *ngIf="productUnit.isBaseUnit">
@@ -85,48 +89,71 @@
       <b style="font-size: 20px">Danh sách hoạt chất của thuốc {{name}}</b>
       <br>
       <br>
-        <nz-collapse nzAccordion style="box-shadow: 1px 1px 1px 1px;"  >
-          <nz-collapse-panel
-            *ngFor="let activeSubstance of activeSubstances"
-            [nzHeader]="activeSubstance.name"
-            [nzActive]="activeSubstance.active"
-            [nzDisabled]="activeSubstance.disabled"
-            style="background-color: white;">
-            <div class="container">
-              <div class="row">
-                <div class="col-sm">Mã hoạt chất: {{activeSubstance.id}}</div>
-                <div class="col-sm">Tên hoạt chất: {{activeSubstance.name}}</div>
-                <div class="col-sm">
-                  <button
-                (click)="detail(activeSubstance.id)"
+      <div class="col-12" >
+        <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;">
+          <thead style="text-align: center">
+            <tr>
+              <th scope="col" style="text-align: center;">Mã hoạt chất</th>
+              <th scope="col" style="text-align: center;">Tên hoạt chất</th>
+              <th scope="col" style="text-align: center;"></th>
+            </tr>
+          </thead>
+          <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
+            <tr>
+              <td scope="row">{{activeSubstances.id}}</td>
+              <td>{{activeSubstances.name}}</td>
+              <td>
+                <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                <!-- <button
+                (click)="detailActiveSubstence(activeSubstances.id)"
                 style="
                   background-color: rgba(0, 162, 255, 0.836);
                   color: white;
-                  font-size: 18px;
+                  font-size: 16px;
                   border-radius: 18px;
                   border-color: rgba(0, 162, 255, 0.836);
                 ">
                 Xem thuốc có cùng hoạt chất
-              </button>
-                </div>
-              </div>
-            </div>
-          </nz-collapse-panel>
-        </nz-collapse>
+              </button> -->
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
       </div>
     </nz-tab>
 
-    <nz-tab nzTitle="Lô - Hạng sử dụng">
-      <div *ngFor="let batch of batches"> Mã barcode của lô {{batch.id}} :
-        <ngx-barcode bc-value={{batch.batchBarcode}} [bc-display-value]="true" [bc-width]="1"
-                              [bc-height]="50"></ngx-barcode>
-        <div class="col-3">Ngày tạo lô : {{batch.createdAt | date:'dd-MM-yyyy'}}</div>
-        <div class="col-3">Người tạo lô : {{batch.createdBy.name}}</div>
-        <div class="col-3">Hạn sử dụng của lô : {{batch.expiryDate | date:'dd-MM-yyyy'}}</div>
-        <div class="col-3">Ngày sản xuất : {{batch.manufacturingDate | date:'dd-MM-yyyy'}}</div>
-        <br>
-      </div>
-      </nz-tab
-    >
+    <nz-tab nzTitle="Lô - Hạn sử dụng">
+      <div *ngIf="batches.length <= 0">Thuốc không thuốc lô hàng nào</div>
+      <div *ngIf="batches.length > 0">
+      <b style="font-size: 20px">Danh sách lô hàng chứa thuốc {{name}}</b>
+      <br>
+      <br>
+
+      <nz-table #basicTable [nzData]="batches" style="font-size: 18px;">
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col" style="text-align: center;">Mã lô hàng</th>
+            <th scope="col" style="text-align: center;">Barcode lô hàng</th>
+            <th scope="col" style="text-align: center;">Người tạo</th>
+            <th scope="col" style="text-align: center;">Ngày tạo</th>
+            <th scope="col" style="text-align: center;">Ngày sản xuất</th>
+            <th scope="col" style="text-align: center;">Hạn sử dụng</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor="let batches of batches" style="text-align: center;">
+          <tr>
+            <td scope="row" (click)="detailGoodsReceiptNote(batches.id)">{{batches.id}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)"><ngx-barcode bc-value={{batches.batchBarcode}} [bc-display-value]="true" [bc-width]="1" [bc-height]="35"></ngx-barcode></td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdBy.name}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdAt | date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.manufacturingDate | date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.expiryDate | date:'dd-MM-yyyy'}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+      </nz-tab>
+
   </nz-tabset>
 </main>

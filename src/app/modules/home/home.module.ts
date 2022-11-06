@@ -29,6 +29,7 @@ import { TagInputModule } from 'ngx-chips';
 import { DetailCategoryComponent } from './medicine/category/detail-category/detail-category.component';
 import { ListSupplierComponent } from './supplier/list-supplier/list-supplier.component';
 import { CreateSupplierComponent } from './supplier/create-supplier/create-supplier.component';
+import { ListReceiptNoteComponent } from './medicine/goodsreceiptnote/list-receipt-note/list-receipt-note.component';
 
 const homeRoutes: Routes = [
   {
@@ -49,7 +50,8 @@ const homeRoutes: Routes = [
       { path: 'medicine-activeSubstance/:id', component: ListProductOfActiveSubstanceComponent},
       { path: 'detail-category/:id' , component: DetailCategoryComponent},
       { path: 'supplier',component: ListSupplierComponent},
-      { path: 'create-supplier', component: CreateSupplierComponent}
+      { path: 'create-supplier', component: CreateSupplierComponent},
+      { path: 'goodsreceiptnote/:id', component: ListReceiptNoteComponent}
     ]
   }
 ]
@@ -78,7 +80,8 @@ const homeRoutes: Routes = [
     CreateMedicineComponent,
     DetailCategoryComponent,
     ListSupplierComponent,
-    CreateSupplierComponent
+    CreateSupplierComponent,
+    ListReceiptNoteComponent
   ],
   imports: [
     CommonModule,

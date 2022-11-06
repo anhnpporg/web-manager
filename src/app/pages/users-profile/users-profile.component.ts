@@ -19,13 +19,18 @@ export class UsersProfileComponent implements OnInit {
   createdAt: string = '';
   id: string = '';
   newPasswordData = this.fb.group({
-    newPassword: ['', Validators.required],
+    currentPassword: ['',Validators.required],
+    newPassword: ['',[ Validators.required,Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
   });
   changeProfile = this.fb.group({
     fullname: [''],
     email: [''],
   });
+
+  get statusError() {
+    return this.newPasswordData.controls;
+  }
 
   constructor(
     private user: UserService,
@@ -48,7 +53,7 @@ export class UsersProfileComponent implements OnInit {
         this.user.changeInfo(newInfo).subscribe(
           (rs: any) => {
             console.log(rs);
-            this.notification.create('success', 'Đổi thông tin thành công', '');
+            this.notification.create('success', rs.message, '');
             this.router.navigate(['dashboard/user-profile']);
           },
           (err: { error: { message: string } }) => {
@@ -72,22 +77,20 @@ export class UsersProfileComponent implements OnInit {
       nzClosable: false,
       nzOnOk: () => {
         var formData: any = new FormData();
+        formData.append('currentPassword', this.newPasswordData.value.currentPassword)
         formData.append('newPassword', this.newPasswordData.value.newPassword);
-        formData.append(
-          'confirmPassword',
-          this.newPasswordData.value.confirmPassword
+        formData.append('confirmPassword', this.newPasswordData.value.confirmPassword
         );
-        this.user.changePassword(this.id, formData).subscribe(
+        this.user.changePassword(formData).subscribe(
           (rs: any) => {
             console.log(rs);
-            this.notification.create('success', 'Đổi mật khẩu thành công', '');
+            this.notification.create('success', rs.message, '');
             this.newPasswordData.value.newPassword = null;
             this.newPasswordData.value.confirmPassword = null;
             this.router.navigate(['dashboard/user-profile']);
           },
           (err: { error: { message: string } }) => {
             console.log(err);
-
             this.notification.create(
               'error',
               'Đổi mật khẩu không thành công',
@@ -110,6 +113,7 @@ export class UsersProfileComponent implements OnInit {
       this.gender = result?.genderId;
       this.createdAt = result?.createdAt;
       this.id = result?.userId;
+      this.email = result?.email
     });
   }
 }

@@ -1,7 +1,6 @@
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { ProductService } from './../../../../../_core/services/product/product.service';
-import { Customer } from 'src/app/_core/utils/interface';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 

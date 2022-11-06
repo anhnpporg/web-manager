@@ -12,8 +12,8 @@
         <div>
             <button nz-button nzType="primary" (click)="showModal()" nzSize="large"><i class="bi bi-plus"></i>
                 <span>Tạo phân loại thuốc</span></button>
-            <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo phân loại thuốc" nzOkText="Tạo phân loại thuốc"
-                nzCancelText="hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo kệ hàng" nzOkText="Tạo kệ hàng"
+                nzCancelText="Hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                 <ng-container *nzModalContent>
                     <nz-form-label nzRequired for="inputName5" class="form-label">Tên kệ hàng</nz-form-label>
                     <input type="text" class="form-control" id="inputName" [(ngModel)]="activeSubstanceName">
@@ -33,8 +33,8 @@
         <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
-                    <nz-option nzValue="searchID" nzLabel="Mã loại thuốc"></nz-option>
-                    <nz-option nzValue="SearchName" nzLabel="Tên loại thuốc"></nz-option>
+                    <nz-option nzValue="searchID" nzLabel="Mã kệ hàng"></nz-option>
+                    <nz-option nzValue="SearchName" nzLabel="Tên kệ hàng"></nz-option>
                 </nz-select>
             </button>
         </ng-template>
@@ -45,8 +45,8 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th style="text-align: center">Mã</th>
-                    <th style="text-align: center">Tên loại thuốc</th>
+                    <th style="text-align: center">Mã kệ hàng</th>
+                    <th style="text-align: center">Tên kệ hàng</th>
                     <th style="text-align: center">Ngày tạo</th>
                     <th [nzFilters]="nameList"
                     [nzFilterMultiple]="true"

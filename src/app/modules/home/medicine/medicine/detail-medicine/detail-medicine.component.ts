@@ -65,7 +65,11 @@ export class DetailMedicineComponent implements OnInit {
     );
   }
 
-  detail(id: number) {
+  detailActiveSubstence(id: number) {
     this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
+  detailGoodsReceiptNote(id: number){
+    this.router.navigate(['dashboard/goodsreceiptnote/' + id]);
+  }
+
 }

@@ -106,7 +106,6 @@ export class ListSupplierComponent implements OnInit {
       var formdata = new FormData()
       formdata.append('name', this.supplierName);
       this.isVisible = false;
-
       this.supplier.createSupplier(formdata).subscribe((result: any) => {
         console.log(result)
         this.notification.create(
