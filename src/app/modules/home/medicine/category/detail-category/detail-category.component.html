@@ -16,38 +16,34 @@
     </div>
   </div>
   <div *ngIf="shelfs.length <= 0">Kệ hàng này chưa có thuốc</div>
+  <b *ngIf="shelfs.length > 0" style="font-size: 20px">Các thuốc có trong kệ hàng</b>
+  <br>
+  <br>
+  <div class="col-12">
+    <nz-table #basicTable [nzData]="shelfs" style="text-align: center; font-size: 18px;">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center;">#</th>
+          <th scope="col" style="text-align: center;">Tên thuốc</th>
+          <th scope="col" style="text-align: center;"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let shelfs of basicTable.data" style="text-align: center;">
+        <tr>
+          <td scope="row"></td>
+          <td>{{shelfs.name}}</td>
+          <td><button
+            (click)="detail(shelfs.id)"
+            style="
+              background-color: rgba(0, 162, 255, 0.836);
+                    color: white;
+                    font-size: 17px;
+                    border-radius: 17px;
+                    border-color: rgba(0, 162, 255, 0.836); ">
+            Xem chi tiết thuốc
+          </button></td>
+      </tbody>
+    </nz-table>
+  </div>
 
-  <nz-collapse nzAccordion style="box-shadow: 1px 1px 1px 1px;" *ngIf="shelfs.length > 0">
-    <nz-collapse-panel
-      *ngFor="let listshelf of shelfs"
-      [nzHeader]="listshelf.name"
-      [nzActive]="listshelf.active"
-      [nzDisabled]="listshelf.disabled"
-      style="background-color: white;"
-    >
-      <div class="container" >
-      <div class="row">
-        <div class="col-sm">Kệ hàng: {{ listshelf.shelf.name }}</div>
-        <div class="col-sm">Nhà cung cấp: {{ listshelf.brand.name }}</div>
-        <div class="col-sm">
-          <ngx-barcode
-            bc-value="{{ listshelf.barcode }}"
-            [bc-display-value]="true"
-            [bc-width]="1"
-            [bc-height]="30"
-          ></ngx-barcode>
-        </div>
-      </div>
-      <button
-        (click)="detail(listshelf.id)"
-        style="
-          background-color: rgba(0, 132, 255, 0.253);
-          color: rgb(0, 4, 8);
-        "
-      >
-        Xem chi tiết thuốc
-      </button>
-    </div>
-    </nz-collapse-panel>
-  </nz-collapse>
 </main>

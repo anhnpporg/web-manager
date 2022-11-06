@@ -44,13 +44,13 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger [nzScroll]="{ x: '1150px', y: '600px' }">
             <thead>
                 <tr>
-                    <th>Mã</th>
-                    <th>Tên hoạt chất</th>
-                    <th>Ngày tạo</th>
-                    <th [nzFilters]="nameList" [nzFilterMultiple]="true" [nzFilterFn]="nameFilterFn">Hoạt động</th>
+                    <th style="text-align: center">Mã hoạt chất</th>
+                    <th style="text-align: center">Tên hoạt chất</th>
+                    <th style="text-align: center">Ngày tạo</th>
+                    <th [nzFilters]="nameList" [nzFilterMultiple]="true" [nzFilterFn]="nameFilterFn" style="text-align: center">Hoạt động</th>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
                   <td (click)="detail(data.id)">{{ data.id }}</td>
                   <td (click)="detail(data.id)">{{ data.name || null }}</td>
                   <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>

@@ -41,20 +41,21 @@
     <section class="section">
         <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
             <thead>
-                <tr>
-                    <th>Mã số đăng kí</th>
-                    <th>Mã barcode</th>
-                    <th>Tên thuốc</th>
-                    <th>Giá bán</th>
+                <tr >
+                    <th style="text-align: center">Mã số đăng kí</th>
+                    <th style="text-align: center">Mã barcode</th>
+                    <th style="text-align: center">Tên thuốc</th>
+                    <th style="text-align: center">Giá bán</th>
                     <th [nzFilters]="nameList"
                     [nzFilterMultiple]="true"
-                    [nzFilterFn]="nameFilterFn">Trạng thái hoạt động</th>
+                    [nzFilterFn]="nameFilterFn"
+                    style="text-align: center">Trạng thái hoạt động</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
                     <td (click)="detail(data.id)">
                         {{data.drugRegistrationNumber}}
                     </td>
@@ -62,7 +63,7 @@
                         <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
                             [bc-height]="height"></ngx-barcode>
                     </td>
-                    <td (click)="detail(data.id)">{{ data.name || null }}</td>
+                    <td (click)="detail(data.id)">{{ data.name}}</td>
                     <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">

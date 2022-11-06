@@ -10,13 +10,19 @@
           </nav>
       </div>
       <div>
-          <button id="create-button" nz-button nzType="primary" nzSize="large">
-              <a routerLink="/dashboard/create-supplier">
-                  <i class="bi bi-plus"></i>
-                  <span>Tạo nhà cung cấp</span>
-              </a>
-          </button>
-      </div>
+        <button nz-button nzType="primary" (click)="showModal()"><i class="bi bi-plus"></i>
+            <span>Tạo nhà cung cấp</span></button>
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo nhà cung cấp" nzOkText="Tạo nhà cung cấp"
+            nzCancelText="Hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+            <ng-container *nzModalContent>
+                <nz-form-label nzRequired for="inputName5" class="form-label">Tên nhà cung cấp</nz-form-label>
+                <input type="text" class="form-control" id="inputName" [(ngModel)]="supplierName">
+                <div *ngIf="checkError == true">
+                    <small style="color: red;">Vui lòng nhập tên nhà cung cấp</small>
+                </div>
+            </ng-container>
+        </nz-modal>
+    </div>
   </div>
   <div id="search">
     <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
@@ -32,27 +38,27 @@
         </button>
     </ng-template>
 </div>
-  <section class="section">
+  <section class="section" >
       <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
       <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
           [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
           <thead>
               <tr>
-                  <th>ID</th>
-                  <th>Họ và Tên</th>
-                  <th>Ngày tạo</th>
+                  <th style="text-align: center;">ID</th>
+                  <th style="text-align: center;">Tên nhà cung cấp</th>
+                  <th style="text-align: center;">Ngày tạo</th>
                   <th [nzFilters]="nameList"
                   [nzFilterMultiple]="true"
-                  [nzFilterFn]="nameFilterFn">Hoạt động</th>
+                  [nzFilterFn]="nameFilterFn" style="text-align: center;">Hoạt động</th>
                   <th></th>
               </tr>
           </thead>
           <tbody>
-              <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+              <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
                   <td>{{ data.id}}</td>
                   <td>{{ data.name || null }}</td>
                   <td>{{ data.createdAt | date: 'dd-MM-yyyy'}}</td>
-                  <td *ngIf="data.isActive; else ElseActve">Còn hoạt động</td>
+                  <td *ngIf="data.isActive; else ElseActve">Hoạt động</td>
                   <ng-template #ElseActve>
                     <td >Đã bị chặn</td>
                 </ng-template>

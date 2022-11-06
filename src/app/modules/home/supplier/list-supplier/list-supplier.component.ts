@@ -1,3 +1,4 @@
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { SupplierService } from './../../../../_core/services/supplier/supplier.service';
 import { Supplier } from './../../../../_core/utils/interface';
 import { Component, OnInit } from '@angular/core';
@@ -15,17 +16,21 @@ export class ListSupplierComponent implements OnInit {
   searchData: string = ''
   listsearch: any
   selectedProvince = 'searchID'
+  isVisible = false
+  supplierName: string =''
+  checkError: boolean = false
   loading: boolean = true;
-  confirmModal?: NzModalRef;
+  confirmModal?: NzModalRef
   nameList = [
-    { text: 'Còn hoạt động', value: true },
+    { text: 'Hoạt động', value: true },
     { text: 'Đã bị chặn', value: false }
   ];
   nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
   constructor(
     private supplier: SupplierService,
     private router: Router,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notification: NzNotificationService
   ) { }
 
   ngOnInit(): void {
@@ -90,5 +95,38 @@ export class ListSupplierComponent implements OnInit {
         // })
       },
     });
+  }
+  showModal(): void {
+    this.isVisible = true;
+  }
+  handleOk(): void {
+    if (this.supplierName == '') {
+      this.checkError = true
+    } else {
+      var formdata = new FormData()
+      formdata.append('name', this.supplierName);
+      this.isVisible = false;
+
+      this.supplier.createSupplier(formdata).subscribe((result: any) => {
+        console.log(result)
+        this.notification.create(
+          'success',
+          'Tạo nhà cung cấp mới thành công', ''
+        )
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentUrl]);
+          console.log(currentUrl);
+        });
+      }, (err: any) => {
+        this.notification.create(
+          'error',
+          'Tạo nhà cung cấp mới thất bại', ''
+        )
+      })
+    }
+  }
+  handleCancel(): void {
+    this.isVisible = false;
   }
 }

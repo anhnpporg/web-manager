@@ -39,22 +39,22 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
             <thead>
                 <tr>
-                    <th>Ảnh đại diện</th>
-                    <th>Mã nhân viên</th>
-                    <th>Họ và Tên</th>
-                    <th>Số điện thoại</th>
+                    <th style="text-align: center;">Ảnh đại diện</th>
+                    <th style="text-align: center;">Mã nhân viên</th>
+                    <th style="text-align: center;">Họ và Tên</th>
+                    <th style="text-align: center;">Số điện thoại</th>
                     <th [nzFilters]="nameList"
                     [nzFilterMultiple]="true"
-                    [nzFilterFn]="nameFilterFn">Hoạt động</th>
+                    [nzFilterFn]="nameFilterFn" style="text-align: center;">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
                     <td (click)="detail(data.userId)">
                         <img src={{data.avatar}} alt="avatar" width="50" height="50">
                     </td>
                     <td (click)="detail(data.userId)">{{ data.userId}}</td>
-                    <td (click)="detail(data.userId)">{{ data.fullname || null }}</td>
+                    <td (click)="detail(data.userId)">{{ data.fullname}}</td>
                     <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
                     <td>
                         <!-- <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a> -->

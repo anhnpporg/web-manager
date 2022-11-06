@@ -45,18 +45,18 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th>Mã</th>
-                    <th>Tên loại thuốc</th>
-                    <th>Ngày tạo</th>
+                    <th style="text-align: center">Mã</th>
+                    <th style="text-align: center">Tên loại thuốc</th>
+                    <th style="text-align: center">Ngày tạo</th>
                     <th [nzFilters]="nameList"
                     [nzFilterMultiple]="true"
-                    [nzFilterFn]="nameFilterFn">Hoạt động</th>
+                    [nzFilterFn]="nameFilterFn" style="text-align: center">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
                     <td (click)="detail(data.id,data.name)">{{ data.id}}</td>
-                    <td (click)="detail(data.id,data.name)">{{ data.name || null }}</td>
+                    <td (click)="detail(data.id,data.name)">{{ data.name}}</td>
                     <td (click)="detail(data.id,data.name)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">

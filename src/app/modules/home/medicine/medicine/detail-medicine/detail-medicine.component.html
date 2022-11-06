@@ -52,22 +52,29 @@
           </div>
 
           <div class="col-12" >
-            <table class="table table-bordered">
-              <thead>
+            <nz-table #basicTable [nzData]="productUnits" style="text-align: center; font-size: 18px;">
+              <thead style="text-align: center">
                 <tr>
-                  <th scope="col">Đơn vị</th>
-                  <th scope="col">Giá trị quy đổi</th>
-                  <th scope="col">Giá bán</th>
+                  <th scope="col" style="text-align: center;">Đơn vị</th>
+                  <th scope="col" style="text-align: center;">Giá trị quy đổi</th>
+                  <th scope="col" style="text-align: center;">Giá bán</th>
+                  <th scope="col" style="text-align: center;">Giá bán cơ bản</th>
                 </tr>
               </thead>
-              <tbody  *ngFor="let productUnit of productUnits">
+              <tbody  *ngFor="let productUnit of basicTable.data" style="text-align: center;">
                 <tr>
                   <td scope="row">{{productUnit.unit}}</td>
                   <td>{{productUnit.conversionValue}}</td>
                   <td>{{productUnit.price}}</td>
+                  <td *ngIf="productUnit.isBaseUnit">
+                    <img src="../../../../../../assets/img/correct.jpg" alt="correct" style="height: 15px;width: 15px">
+                  </td>
+                  <td *ngIf="productUnit.isBaseUnit == false">
+                    <img src="../../../../../../assets/img/incorrect.jpg" alt="correct" style="height: 15px;width: 15px">
+                  </td>
                 </tr>
               </tbody>
-            </table>
+            </nz-table>
           </div>
         </div>
       </div>
@@ -95,6 +102,9 @@
                 style="
                   background-color: rgba(0, 162, 255, 0.836);
                   color: white;
+                  font-size: 18px;
+                  border-radius: 18px;
+                  border-color: rgba(0, 162, 255, 0.836);
                 ">
                 Xem thuốc có cùng hoạt chất
               </button>

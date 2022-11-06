@@ -25,4 +25,7 @@ export class SupplierService {
   isBan(id: number): Observable<any> {
     return this.httpClient.patch(DOMAIN + `suppliers-management/suppliers/${id}`,{}, { headers: this.headers });
   }
+  createSupplier(supplierName: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `suppliers-management/suppliers`,supplierName, { headers: this.headers });
+  }
 }

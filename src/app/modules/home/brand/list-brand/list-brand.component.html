@@ -21,12 +21,12 @@
                 <button nz-button nzType="primary" (click)="showModal()"><i class="bi bi-plus"></i>
                     <span>Tạo nhà sản xuất</span></button>
                 <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo nhà sản xuất" nzOkText="Tạo nhà sản xuất"
-                    nzCancelText="hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                    nzCancelText="Hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                     <ng-container *nzModalContent>
                         <nz-form-label nzRequired for="inputName5" class="form-label">Tên nhà sản xuất</nz-form-label>
                         <input type="text" class="form-control" id="inputName" [(ngModel)]="factoryName">
                         <div *ngIf="checkError == true">
-                            <small style="color: red;">vui lòng nhập tên nhà sản xuất</small>
+                            <small style="color: red;">Vui lòng nhập tên nhà sản xuất</small>
                         </div>
                     </ng-container>
                 </nz-modal>
@@ -52,18 +52,18 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th>Mã</th>
-                    <th>Tên nhà sản xuất</th>
-                    <th>Ngày tạo</th>
+                    <th style="text-align: center;">Mã</th>
+                    <th style="text-align: center;">Tên nhà sản xuất</th>
+                    <th style="text-align: center;">Ngày tạo</th>
                     <th
                     [nzFilters]="nameList"
                     [nzFilterMultiple]="true"
-                    [nzFilterFn]="nameFilterFn"
+                    [nzFilterFn]="nameFilterFn" style="text-align: center;"
                     >Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
                     <td>{{ data.id}}</td>
                     <td>{{ data.name || null }}</td>
                     <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
