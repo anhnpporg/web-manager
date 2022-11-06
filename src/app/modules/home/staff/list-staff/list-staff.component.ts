@@ -18,7 +18,7 @@ export class ListStaffComponent implements OnInit {
   loading: boolean = true;
   confirmModal?: NzModalRef;
   nameList = [
-    { text: 'Còn hoạt động', value: true },
+    { text: 'Hoạt động', value: true },
     { text: 'Đã bị chặn', value: false }
   ];
   nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)

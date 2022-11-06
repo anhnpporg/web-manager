@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Chi tiết thuốc</h1>
+      <h1>Chi tiết thuốc {{name}}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -17,12 +17,12 @@
   </div>
   <nz-tabset>
     <nz-tab nzTitle="Thông tin">
-      <div class="container">
+      <div class="container" style="font-size: 16px">
         <div class="row" >
-          <div class="col-12">Tên thuốc: {{name}}</div>
-          <div class="col-12">
+          <!-- <div class="col-6">Tên thuốc: {{name}}</div> -->
+          <div class="col-6">
             <ngx-barcode bc-value={{barcode}} [bc-display-value]="true" [bc-width]="1"
-                            [bc-height]="50"></ngx-barcode>
+                            [bc-height]="30"></ngx-barcode>
           </div>
           <div class="col-6">Nhà cung cấp: {{brand}}</div>
           <div class="col-6">Kệ hàng: {{shelf}}</div>
@@ -31,24 +31,43 @@
           <!-- <div class="col-6">Hạn sử dụng:</div> -->
           <div class="col-6">Đường dùng: {{routeOfAdministration}}</div>
           <div class="col-6">Mức tồn kho tối thiểu: {{mininumInventory}}</div>
-          <div class="col-12">
+          <div class="col-4">
             <nz-form-label [nzSpan]="6">Bán theo liều</nz-form-label>
             <nz-switch
               [ngModel]="isUseDose"
               id="isUseDose"></nz-switch>
           </div>
-          <div class="col-8">
+          <div class="col-6">
             <nz-form-label [nzSpan]="8">Quản lý theo lô, hạn sử dụng</nz-form-label>
             <nz-switch
               [ngModel] = "isManagedInBatches"
               id="isManagedInBatches"></nz-switch>
           </div>
           <div class="col-6">
-            <nz-form-label [nzSpan]="6">Trạng thái hoạt động</nz-form-label>
+            <nz-form-label [nzSpan]="8">Trạng thái hoạt động</nz-form-label>
             <nz-switch
             [ngModel] = "isActive"
               id="isActive"
             ></nz-switch>
+          </div>
+
+          <div class="col-12" >
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Đơn vị</th>
+                  <th scope="col">Giá trị quy đổi</th>
+                  <th scope="col">Giá bán</th>
+                </tr>
+              </thead>
+              <tbody  *ngFor="let productUnit of productUnits">
+                <tr>
+                  <td scope="row">{{productUnit.unit}}</td>
+                  <td>{{productUnit.conversionValue}}</td>
+                  <td>{{productUnit.price}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -56,23 +75,26 @@
     <nz-tab nzTitle="Hoạt chất">
       <div *ngIf="activeSubstances.length <= 0">Thuốc chưa có thông tin hoạt chất</div>
       <div *ngIf="activeSubstances.length > 0">
+      <b style="font-size: 20px">Danh sách hoạt chất của thuốc {{name}}</b>
+      <br>
+      <br>
         <nz-collapse nzAccordion style="box-shadow: 1px 1px 1px 1px;"  >
           <nz-collapse-panel
-            *ngFor="let panel of activeSubstances"
-            [nzHeader]="panel.name"
-            [nzActive]="panel.active"
-            [nzDisabled]="panel.disabled"
+            *ngFor="let activeSubstance of activeSubstances"
+            [nzHeader]="activeSubstance.name"
+            [nzActive]="activeSubstance.active"
+            [nzDisabled]="activeSubstance.disabled"
             style="background-color: white;">
             <div class="container">
               <div class="row">
-                <div class="col-sm">Ngày tạo</div>
-                <div class="col-sm">Trạng thái hoạt động</div>
+                <div class="col-sm">Mã hoạt chất: {{activeSubstance.id}}</div>
+                <div class="col-sm">Tên hoạt chất: {{activeSubstance.name}}</div>
                 <div class="col-sm">
                   <button
-                (click)="detail(panel.id)"
+                (click)="detail(activeSubstance.id)"
                 style="
-                  background-color: rgba(0, 132, 255, 0.253);
-                  color: rgb(0, 4, 8);
+                  background-color: rgba(0, 162, 255, 0.836);
+                  color: white;
                 ">
                 Xem thuốc có cùng hoạt chất
               </button>

@@ -23,8 +23,8 @@ export class ListActiveSubstanceComponent implements OnInit {
   checkError: boolean = false
   isVisible: boolean = false
   nameList = [
-    { text: 'còn hoạt động', value: true },
-    { text: 'ngừng hoạt động', value: false }
+    { text: 'Hoạt động', value: true },
+    { text: 'Ngừng hoạt động', value: false }
   ];
   nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
@@ -105,10 +105,10 @@ export class ListActiveSubstanceComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  deleteBrand(id: number) {
+  deleteActiveSubstance(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho hoạt chất này ngừng hoạt động',
       nzOnOk: () => {
         this.product.deleteActiveSubstance(id).subscribe(() => {
           let currentUrl = this.router.url;

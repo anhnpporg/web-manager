@@ -63,7 +63,7 @@
                             [bc-height]="height"></ngx-barcode>
                     </td>
                     <td (click)="detail(data.id)">{{ data.name || null }}</td>
-                    <td (click)="detail(data.id)">{{ data.price || 1000 }}</td>
+                    <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
                             <nz-tag [nzColor]="'green'">Còn bán</nz-tag>

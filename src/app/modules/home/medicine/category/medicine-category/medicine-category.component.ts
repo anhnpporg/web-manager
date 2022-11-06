@@ -23,8 +23,8 @@ export class MedicineCategoryComponent implements OnInit {
   checkError: boolean = false
   isVisible: boolean = false
   nameList = [
-    { text: 'còn hoạt động', value: true },
-    { text: 'ngừng hoạt động', value: false }
+    { text: 'Hoạt động', value: true },
+    { text: 'Ngừng hoạt động', value: false }
   ];
   nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
@@ -100,7 +100,7 @@ export class MedicineCategoryComponent implements OnInit {
   deleteBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
       nzOnOk: () => {
         this.product.deleteCategory(id).subscribe(() => {
           let currentUrl = this.router.url;

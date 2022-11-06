@@ -39,16 +39,14 @@ export class ListMedicineComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.product.getAllProduct().subscribe((result: any[]) => {
+    this.product.getAllProduct().subscribe((result) => {
       console.log(result);
       this.listData = result;
       this.listsearch = this.listData
       this.loading = false
     })
 
-
   }
-
 
   SearchOption(value: string) {
     this.selectedProvince = value
@@ -98,24 +96,24 @@ export class ListMedicineComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  deleteBrand(id: number) {
-    this.confirmModal = this.modal.confirm({
-      nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
-      nzOnOk: () => {
-        this.product.deleteCategory(id).subscribe(() => {
-          let currentUrl = this.router.url;
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.router.navigate([currentUrl]);
-            console.log(currentUrl);
-          });
-        }, (err: any) => {
-          console.log(err)
+  // deleteBrand(id: number) {
+  //   this.confirmModal = this.modal.confirm({
+  //     nzTitle: 'Ngừng hoạt động',
+  //     nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+  //     nzOnOk: () => {
+  //       this.product.deleteCategory(id).subscribe(() => {
+  //         let currentUrl = this.router.url;
+  //         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //           this.router.navigate([currentUrl]);
+  //           console.log(currentUrl);
+  //         });
+  //       }, (err: any) => {
+  //         console.log(err)
 
-        })
-      },
-    });
-  }
+  //       })
+  //     },
+  //   });
+  // }
 
   detail(id: number) {
     this.router.navigate(['dashboard/detail-medicine/' + id]);

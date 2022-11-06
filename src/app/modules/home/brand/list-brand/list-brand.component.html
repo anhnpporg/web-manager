@@ -69,11 +69,11 @@
                     <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">còn hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Hoạt động</nz-tag>
                         </div>
                         <ng-template #isActive>
                             <div>
-                                <nz-tag [nzColor]="'red'">ngừng hoạt động</nz-tag>
+                                <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
                             </div>
                         </ng-template>
                     </td>

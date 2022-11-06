@@ -12,7 +12,7 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên, số điện thoại khách hàng" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="Nhập tên, số điện thoại khách hàng" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
@@ -38,8 +38,7 @@
                 <tr *ngFor="let data of basicTable.data">
                   <td (click)="detail(data.id)">{{ data.phoneNumber }}</td>
                     <td (click)="detail(data.id)">{{ data.fullName }}</td>
-                    <td (click)="detail(data.id)">{{ data.createdAt.substring(8,10) }} - {{
-                        data.createdAt.substring(5,7) }} - {{ data.createdAt.substring(0,4) }}</td>
+                    <td (click)="detail(data.id)">{{ data.createdAt|date:'dd-MM-yyyy'}}</td>
 
                 </tr>
 
