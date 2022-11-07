@@ -8,7 +8,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ImageService } from 'src/app/_core/services/image/image.service';
 import { getStorage, ref } from 'firebase/storage';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-detail-staff',
@@ -20,9 +20,8 @@ export class DetailStaffComponent implements OnInit {
   path: string = '';
   nameImage: string = '';
   imageURL: string = './assets/img/avatar.png';
-  isVisibleChangePassword: boolean = false
   isVisibleChangeInfo : boolean = false
-  id: string = '';
+  id: number = 1
   userAccount: string =''
   avatar: string = ''
   dateOfBirth: string = ''
@@ -31,6 +30,7 @@ export class DetailStaffComponent implements OnInit {
   fullname: string = ''
   createdAt: string = ''
   email: string =''
+
   newAvatar: string =''
   newDateOfBirth: string = ''
   newPhoneNumber: string = ''
@@ -39,8 +39,6 @@ export class DetailStaffComponent implements OnInit {
 
   checkError: boolean = false
   subParam!: Subscription;
-
-
 
   newPassword: string = ''
   comfirmPassword: string = ''
@@ -53,6 +51,7 @@ export class DetailStaffComponent implements OnInit {
     private storageImage: AngularFireStorage,
     private GetImg: ImageService,
     private notification: NzNotificationService,
+    private modal: NzModalService
   ) { }
 
   ngOnInit(): void {
@@ -68,6 +67,7 @@ export class DetailStaffComponent implements OnInit {
         this.phoneNumber = result?.phoneNumber;
         this.email = result?.email
         this.userAccount = result?.userAccount
+        this.id = result?.userId
       })
     }, err => {
       this.route.navigate(['/404'])
@@ -75,34 +75,76 @@ export class DetailStaffComponent implements OnInit {
   }
 
   // change password of staff
-  changePassword() {
-
+  onSubmit(){
+    this.modal.create({
+      nzTitle: 'Thay đổi mật khẩu nhân viên',
+      nzContent: 'Bạn có chắc chắn đặt lại mật khẩu cho nhân viên không ?',
+      nzClosable: false,
+      nzOnOk: () => {
+        console.log(this.id)
+        this.user.changePasswordforStaff(this.id).subscribe(
+          (rs: any) => {
+            console.log(rs);
+            // this.notification.create('success', rs.message, '');
+            // this.route.navigate(['dashboard/detail-staff/'+this.id])
+            this.modal.success({
+              nzTitle: rs.message,
+              nzContent: rs.data,
+              nzWidth: 550,
+              nzOnOk: () => {this.route.navigate(['dashboard/detail-staff/'+this.id])
+              this.notification.create('success', rs.message, '');
+            }})
+          },
+          (err: { error: { message: string } }) => {
+            console.log(err);
+            this.notification.create(
+              'error',
+              'Đặt lại mật khẩu không thành công',
+              err.error.message
+            );
+          }
+        );
+      },
+    });
   }
-
-  showModalChangePassword(): void {
-    this.isVisibleChangePassword = true;
-  }
-
-  handleChangePasswordOk(){
-
-  }
-
-  handleChangePasswordCancel(){
-    this.isVisibleChangePassword = false;
-  }
-
 
   // change information of staff
-  changeInfo(){
-
-  }
 
   showModalChangeInfo(): void {
     this.isVisibleChangeInfo = true;
   }
 
   handleChangeInfoOk(){
+    this.modal.create({
+      nzTitle: 'Thay đổi thông tin cá nhân',
+      nzContent: 'Bạn có chắc chắn thay đổi thông tin không ?',
+      nzClosable: false,
+      nzOnOk: () => {
+        var newInfo: any = new FormData();
+        newInfo.append('avatar', this.newAvatar);
+        newInfo.append('fullName', this.newFullname)
+        newInfo.append('dateOfBirth', this.newDateOfBirth)
+        newInfo.append('phoneNumber', this.newPhoneNumber)
+        newInfo.append('isMale', this.newIsMale)
+        console.log(newInfo);
+        this.user.changeInfoStaff(this.id,newInfo).subscribe(
+          (rs: any) => {
+            console.log(rs);
+            this.notification.create('success', rs.message, '');
+            this.route.navigate(['dashboard/detail-staff'+this.id]);
+          },
+          (err: { error: { message: string } }) => {
+            console.log(err);
 
+            this.notification.create(
+              'error',
+              'Đổi thông tin không thành công',
+              err.error.message
+            );
+          }
+        );
+      },
+    });
   }
 
   handleChangeInfoCancel(){

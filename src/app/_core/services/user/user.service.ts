@@ -53,11 +53,14 @@ export class UserService {
     return this.httpClient.put(DOMAIN + `user-management/accounts/change-password`, data, { headers: this.headers })
   }
 
-  changePasswordforStaff(id: string): Observable<any> {
-    return this.httpClient.put(DOMAIN + `user-management/users/recovery-password/${id}`, { headers: this.headers })
+  changePasswordforStaff(id: number): Observable<any> {
+    return this.httpClient.put(DOMAIN + `user-management/users/recovery-password/${id}`,{}, { headers: this.headers })
   }
   changeInfo(data: FormData): Observable<any> {
     return this.httpClient.put(DOMAIN + `user-management/managers/profile`, data, { headers: this.headers })
+  }
+  changeInfoStaff(id:number, data: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `user-management/staffs/profile/${id}`, data, { headers: this.headers })
   }
 
   // Customer

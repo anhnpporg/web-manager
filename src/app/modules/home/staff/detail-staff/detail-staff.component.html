@@ -69,14 +69,9 @@
                   </div>
                     <div class="row" style="text-align: center;">
                         <div class="col-lg-3 col-md-4 label">
-                          <button nz-button nzType="primary" (click)="showModalChangePassword()"><i></i>
-                            <span>Đặt lại mật khẩu</span></button>
-                        <nz-modal [(nzVisible)]="isVisibleChangePassword" nzTitle="Đặt lại mật khẩu" nzOkText="Đặt lại mật khẩu"
-                            nzCancelText="Hủy" (nzOnOk)="handleChangePasswordOk()" (nzOnCancel)="handleChangePasswordCancel()">
-                        </nz-modal>
+                          <button (click)="onSubmit()" nz-button nzType="primary">Đặt lại mật khẩu</button>
                         </div>
-
-                        <div class="col-lg-4 col-md-5 label">
+                        <div class="col-lg-4 col-md-5 label" >
                           <button nz-button nzType="primary" (click)="showModalChangeInfo()" class="col-lg-9 col-md-8"><i></i>
                             <span>Thay đổi thông tin</span></button>
                             <nz-modal [(nzVisible)]="isVisibleChangeInfo" nzTitle="Thay đổi thông tin nhân viên" nzOkText="Thay đổi thông tin nhân viên"
@@ -85,19 +80,21 @@
                                 <nz-form-label for="inputAvatar" class="form-label">Ảnh đại diện</nz-form-label>
                                 <input type="file" (change)="uploadImage($event)" class="form-control">
                                 <!-- <img [src]="imageURL" alt="avatar" width="50" height="50" style="border-radius: 20px;"> -->
-                                <input type="hidden" formControlName="avatar" [value]="imageURL">
+                                <input type="hidden" [(ngModel)]="avatar" [value]="imageURL">
                                 <nz-form-label for="inputName" class="form-label">Họ và tên</nz-form-label>
-                                <input type="text" class="form-control" id="inputName"  id="inputName" formControlName="newfullName" placeholder="{{fullname}}">
+                                <input type="text" class="form-control" id="inputName"  id="inputName" [(ngModel)]="newFullname" placeholder="{{fullname}}">
                                 <nz-form-label for="inputDate" class="form-label">Ngày sinh</nz-form-label>
-                                <input type="date" class="form-control" formControlName="newDateOfBirth">
+                                <input type="date" class="form-control" [(ngModel)]="newDateOfBirth">
                                 <nz-form-label for="inputPhonenumber" class="form-label" >Số điện thoại</nz-form-label>
                                 <input type="text" class="form-control" id="inputPhonenumber" placeholder="{{phoneNumber}}"
-                                formControlName="newPhoneNumber">
+                                [(ngModel)]="newPhoneNumber">
                                 <nz-form-label class="form-label">Giới tính</nz-form-label>
-                                <select class="form-control" formControlName="newIsMale">
-                                  <option *ngIf="isMale">Nam</option>
-                                  <option *ngIf="!isMale">Nữ</option>
+                                <select class="form-control" [(ngModel)]="newIsMale">
+                                  <option value="true">Nam</option>
+                                  <option value="false">Nữ</option>
                                 </select>
+                                <br>
+                                <!-- <button>Cập nhật thông tin</button> -->
                             </ng-container>
                         </nz-modal>
                         </div>
