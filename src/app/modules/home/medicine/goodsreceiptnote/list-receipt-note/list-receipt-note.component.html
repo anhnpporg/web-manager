@@ -12,26 +12,58 @@
       </nav>
     </div>
   </div>
-  <nz-table #basicTable [nzData]="goodReceiptNote" style="font-size: 18px;">
-    <thead style="text-align: center">
-      <tr>
-        <th scope="col" style="text-align: center;">Mã lô hàng</th>
-        <th scope="col" style="text-align: center;">Barcode lô hàng</th>
-        <th scope="col" style="text-align: center;">Người tạo</th>
-        <th scope="col" style="text-align: center;">Ngày tạo</th>
-        <th scope="col" style="text-align: center;">Ngày sản xuất</th>
-        <th scope="col" style="text-align: center;">Hạn sử dụng</th>
-      </tr>
-    </thead>
-    <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
-      <tr>
-        <td scope="row"></td>
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td ></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </nz-table>
+
+  <nz-tabset>
+    <nz-tab nzTitle="Phiếu nhập">
+      <nz-table #basicTable [nzData]="goodReceiptNote" style="font-size: 18px;">
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col" style="text-align: center;">Dạng nhập</th>
+            <th scope="col" style="text-align: center;">Tên nơi cung cấp</th>
+            <th scope="col" style="text-align: center;">Người tạo</th>
+            <th scope="col" style="text-align: center;">Ngày tạo</th>
+            <th scope="col" style="text-align: center;">Số lượng</th>
+            <th scope="col" style="text-align: center;">Tổng tiền</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
+          <tr>
+            <td scope="row">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
+            <td >{{goodReceiptNotes.supplier.name}}</td>
+            <td >{{goodReceiptNotes.createdBy.name}}</td>
+            <td >{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
+            <td >{{goodReceiptNotes.quantity}}</td>
+            <td >{{goodReceiptNotes.totalPrice}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+
+    <nz-tab nzTitle="Phiếu xuất">
+      <nz-table #basicTable [nzData]="goodReceiptNote" style="font-size: 18px;">
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col" style="text-align: center;">Dạng nhập</th>
+            <th scope="col" style="text-align: center;">Tên nơi cung cấp</th>
+            <th scope="col" style="text-align: center;">Người tạo</th>
+            <th scope="col" style="text-align: center;">Ngày tạo</th>
+            <th scope="col" style="text-align: center;">Số lượng</th>
+            <th scope="col" style="text-align: center;">Tổng tiền</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
+          <tr>
+            <td scope="row">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
+            <td >{{goodReceiptNotes.supplier.name}}</td>
+            <td >{{goodReceiptNotes.createdBy.name}}</td>
+            <td >{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
+            <td >{{goodReceiptNotes.quantity}}</td>
+            <td >{{goodReceiptNotes.totalPrice}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-tab>
+  </nz-tabset>
+
+
 </main>
