@@ -77,10 +77,13 @@
                             <nz-modal [(nzVisible)]="isVisibleChangeInfo" nzTitle="Thay đổi thông tin nhân viên" nzOkText="Thay đổi thông tin nhân viên"
                             nzCancelText="Hủy" (nzOnOk)="handleChangeInfoOk()" (nzOnCancel)="handleChangeInfoCancel()">
                             <ng-container  *nzModalContent>
-                                <nz-form-label for="inputAvatar" class="form-label">Ảnh đại diện</nz-form-label>
-                                <input type="file" (change)="uploadImage($event)" class="form-control">
-                                <!-- <img [src]="imageURL" alt="avatar" width="50" height="50" style="border-radius: 20px;"> -->
-                                <input type="hidden" [(ngModel)]="avatar" [value]="imageURL">
+                                  <nz-form-label for="inputAvatar" class="form-label">Ảnh đại diện</nz-form-label>
+                                  <div class="row">
+                                    <div class="col-lg-9 col-md-8 label"><input type="file" (change)="uploadImage($event)" class="form-control"></div>
+                                    <div class="col-lg-3 col-md-4"><img [src]="imageURL" alt="avatar" width="42" height="42" style="border-radius: 20px;">
+                                      <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL"></div>
+                                  </div>
+                                <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL">
                                 <nz-form-label for="inputName" class="form-label">Họ và tên</nz-form-label>
                                 <input type="text" class="form-control" id="inputName"  id="inputName" [(ngModel)]="newFullname" placeholder="{{fullname}}">
                                 <nz-form-label for="inputDate" class="form-label">Ngày sinh</nz-form-label>
@@ -90,7 +93,7 @@
                                 [(ngModel)]="newPhoneNumber">
                                 <nz-form-label class="form-label">Giới tính</nz-form-label>
                                 <select class="form-control" [(ngModel)]="newIsMale">
-                                  <option value="true">Nam</option>
+                                  <option value="true" selected>Nam</option>
                                   <option value="false">Nữ</option>
                                 </select>
                                 <br>

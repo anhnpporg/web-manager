@@ -65,7 +65,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12">
+               <div class="col-6">
                   <nz-form-label nzRequired for="inputFullname" class="form-label">Họ và tên</nz-form-label>
                   <input type="text" class="form-control" id="inputFullname" placeholder="Nguyễn Văn A"
                      formControlName="fullname">
@@ -78,6 +78,22 @@
                      </div>
                   </div>
                </div>
+               <div class="col-6">
+                <nz-form-label nzRequired for="inputEmail" class="form-label">Email</nz-form-label>
+                <input type="text" class="form-control" id="inputEmail" placeholder="abc1234@gmail.com"
+                   formControlName="email">
+                <div
+                   *ngIf="statusError.email.invalid && (statusError.email.dirty || statusError.email.touched) ">
+                   <div *ngIf="statusError.email.errors">
+                      <div *ngIf="statusError.email.errors!['required']">
+                         <small style="color: red;">Vui lòng nhập email</small>
+                      </div>
+                      <div *ngIf="statusError.email.errors!['email']">
+                        <small style="color: red;">Địa chỉ email không hợp lệ. Vui lòng nhập lại email</small>
+                     </div>
+                   </div>
+                </div>
+             </div>
                <div class="col-md-4">
                   <nz-form-label for="inputPhonenumber" class="form-label" nzRequired>Số điện thoại</nz-form-label>
                   <input type="text" class="form-control" id="inputPhonenumber" placeholder="0912345678"

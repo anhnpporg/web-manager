@@ -26,7 +26,7 @@ export class DetailStaffComponent implements OnInit {
   avatar: string = ''
   dateOfBirth: string = ''
   phoneNumber: string = ''
-  isMale: string = ''
+  isMale: boolean = true
   fullname: string = ''
   createdAt: string = ''
   email: string =''
@@ -34,7 +34,7 @@ export class DetailStaffComponent implements OnInit {
   newAvatar: string =''
   newDateOfBirth: string = ''
   newPhoneNumber: string = ''
-  newIsMale: string = ''
+  newIsMale:  boolean = true
   newFullname: string = ''
 
   checkError: boolean = false
@@ -131,7 +131,12 @@ export class DetailStaffComponent implements OnInit {
           (rs: any) => {
             console.log(rs);
             this.notification.create('success', rs.message, '');
-            this.route.navigate(['dashboard/detail-staff'+this.id]);
+            let currentUrl = this.route.url;
+            this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.route.navigate([currentUrl]);
+          console.log(currentUrl);
+        });
+            this.isVisibleChangeInfo = false
           },
           (err: { error: { message: string } }) => {
             console.log(err);
@@ -154,17 +159,17 @@ export class DetailStaffComponent implements OnInit {
   async uploadImage($event: any) {
     this.path = $event.target.files[0];
     console.log(this.path);
-    await (this.nameImage = 'image' + Math.random());
-    await this.storageImage.upload(this.nameImage, this.path);
+    await (this.newAvatar = 'image' + Math.random());
+    await this.storageImage.upload(this.newAvatar, this.path);
     // await this.receiveURL(this.nameImage);
     const storage = getStorage();
-    const pathReference = ref(storage, 'images/' + this.nameImage);
+    const pathReference = ref(storage, 'images/' + this.newAvatar);
     console.log('path', pathReference);
-    this.GetImg.readlink(this.nameImage).subscribe((result: any) => {
+    this.GetImg.readlink(this.newAvatar).subscribe((result: any) => {
       console.log(result.downloadTokens);
       this.imageURL =
         'https://firebasestorage.googleapis.com/v0/b/utnhandrug.appspot.com/o/' +
-        this.nameImage +
+        this.newAvatar +
         '?alt=media&token=' +
         result.downloadTokens;
     });

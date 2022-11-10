@@ -30,6 +30,9 @@ import { DetailCategoryComponent } from './medicine/category/detail-category/det
 import { ListSupplierComponent } from './supplier/list-supplier/list-supplier.component';
 import { CreateSupplierComponent } from './supplier/create-supplier/create-supplier.component';
 import { ListReceiptNoteComponent } from './medicine/goodsreceiptnote/list-receipt-note/list-receipt-note.component';
+import { CreateSamplePrescriptionComponent } from './sampleprescription/create-sample-prescription/create-sample-prescription.component';
+import { ListSamplePrescriptionComponent } from './sampleprescription/list-sample-prescription/list-sample-prescription.component';
+import { DetailSamplePrescriptionComponent } from './sampleprescription/detail-sample-prescription/detail-sample-prescription.component';
 
 const homeRoutes: Routes = [
   {
@@ -51,7 +54,10 @@ const homeRoutes: Routes = [
       { path: 'detail-category/:id' , component: DetailCategoryComponent},
       { path: 'supplier',component: ListSupplierComponent},
       { path: 'create-supplier', component: CreateSupplierComponent},
-      { path: 'goodsreceiptnote/:id', component: ListReceiptNoteComponent}
+      { path: 'goodsreceiptnote/:id', component: ListReceiptNoteComponent},
+      { path: 'create-sample-prescription', component: CreateSamplePrescriptionComponent},
+      { path: 'list-sample-prescription', component: ListSamplePrescriptionComponent},
+      { path: 'detail-sample-prescription/:id', component: DetailSamplePrescriptionComponent},
     ]
   }
 ]
@@ -81,7 +87,10 @@ const homeRoutes: Routes = [
     DetailCategoryComponent,
     ListSupplierComponent,
     CreateSupplierComponent,
-    ListReceiptNoteComponent
+    ListReceiptNoteComponent,
+    CreateSamplePrescriptionComponent,
+    ListSamplePrescriptionComponent,
+    DetailSamplePrescriptionComponent
   ],
   imports: [
     CommonModule,
