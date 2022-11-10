@@ -9,6 +9,7 @@ import { ImageService } from 'src/app/_core/services/image/image.service';
 import { getStorage, ref } from 'firebase/storage';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
+import { InvoiceById } from 'src/app/_core/utils/interface';
 
 @Component({
   selector: 'app-detail-staff',
@@ -16,6 +17,8 @@ import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
   styleUrls: ['./detail-staff.component.css']
 })
 export class DetailStaffComponent implements OnInit {
+
+  invoices: InvoiceById[]=[]
 
   path: string = '';
   nameImage: string = '';
@@ -69,9 +72,14 @@ export class DetailStaffComponent implements OnInit {
         this.userAccount = result?.userAccount
         this.id = result?.userId
       })
+      this.user.getInvoiceByIdStaff(params['id']).subscribe((invoice)=>{
+        console.log(invoice.data)
+        this.invoices = invoice.data
+      })
     }, err => {
       this.route.navigate(['/404'])
     });
+
   }
 
   // change password of staff
@@ -173,6 +181,10 @@ export class DetailStaffComponent implements OnInit {
         '?alt=media&token=' +
         result.downloadTokens;
     });
+  }
+
+  detailInvoice(id : number){
+    this.route.navigate(["dashboard/list-invoice/" + id])
   }
 
 }

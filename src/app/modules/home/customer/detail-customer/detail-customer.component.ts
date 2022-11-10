@@ -2,12 +2,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/_core/services/user/user.service';
+import { InvoiceById } from 'src/app/_core/utils/interface';
 @Component({
   selector: 'app-detail-customer',
   templateUrl: './detail-customer.component.html',
   styleUrls: ['./detail-customer.component.css'],
 })
 export class DetailCustomerComponent implements OnInit {
+
+  invoice : InvoiceById[]= []
   id: string = '';
   phoneNumber: string = '';
   fullname: string = '';
@@ -16,7 +19,6 @@ export class DetailCustomerComponent implements OnInit {
   createdBy: string = '';
   updatedAt: string = '';
   updatedBy: string = '';
-  invoice: any[] = []
   subParam!: Subscription;
 
   constructor(
@@ -39,15 +41,9 @@ export class DetailCustomerComponent implements OnInit {
           this.updatedAt = result.updatedAt;
           this.updatedBy = result.updatedBy;
         });
-        this.user.getInvoices().subscribe((invoices) => {
-          console.log(invoices)
-        //   invoices.forEach((element:any) => {
-        //   if(element.customer.id == params['id']){
-        //     this.invoice.push(element)
-        //   }
-        // })
-        this.invoice = invoices
-        console.log(this.invoice);
+        this.user.getInvoicesByIdUser(params['id']).subscribe((invoices) => {
+          console.log(invoices.data)
+        this.invoice = invoices.data
         }
         );
       },

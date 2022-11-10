@@ -17,8 +17,15 @@ export class GoodsreceiptnoteService {
       'accept': '*/*',
       'Access-Control-Allow-Origin': '*'})
   }
+
+  // GoodsReceiptNotes
   getGoodsReceiptNotes(id: number):Observable<any> {
     return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
   }
 
+
+  // Invoices
+  getInvoices(id:number):Observable<any> {
+    return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
+  }
 }

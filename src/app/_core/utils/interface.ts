@@ -217,3 +217,21 @@ export interface GoodReceiptNote{
   }
   note:[]
 }
+
+export interface InvoiceById{
+  id: number
+  customer:{
+    id:number
+    phoneNumber: string
+    fullName: string
+  }
+  bodyWeight: string
+  dayUse: string
+  totalPrice: number
+  discount: string
+  createdAt: string
+  createdBy: {
+    id: string
+    name: string
+  }
+}

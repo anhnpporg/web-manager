@@ -33,6 +33,9 @@
           <div class="col-6">Mức tồn kho tối thiểu: {{mininumInventory}}</div>
           <div class="col-6" *ngIf="isUseDose">Bán theo liều</div>
           <div class="col-6" *ngIf="isManagedInBatches">Quản lý theo lô, hạn sử dụng</div>
+          <div class="col-6" *ngFor="let productUnits of productUnits">
+          <div class="col-6" *ngIf="productUnits.isBaseUnit">Giá trị cơ bản: {{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+          </div>
           <br>
           <br>
           <!-- <div class="col-4">
@@ -55,7 +58,7 @@
             ></nz-switch>
           </div> -->
 
-          <div class="col-12" >
+          <!-- <div class="col-12" >
             <nz-table #basicTable [nzData]="productUnits" style="text-align: center; font-size: 18px;">
               <thead style="text-align: center">
                 <tr>
@@ -79,7 +82,7 @@
                 </tr>
               </tbody>
             </nz-table>
-          </div>
+          </div> -->
         </div>
       </div>
     </nz-tab>
