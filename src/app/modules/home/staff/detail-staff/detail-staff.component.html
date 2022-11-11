@@ -119,10 +119,10 @@
                   </thead>
                   <tbody  *ngFor="let invoices of basicTable.data" style="text-align: center;">
                     <tr>
-                      <td scope="row">{{invoices.customer.fullName}}</td>
-                      <td >{{invoices.customer.phoneNumber}}</td>
-                      <td >{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                      <td >{{invoices.totalPrice}}</td>
+                      <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
+                      <td (click)="detailInvoice(invoices.id)">{{invoices.customer.phoneNumber}}</td>
+                      <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
+                      <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
                     </tr>
                   </tbody>
                 </nz-table>

@@ -184,7 +184,7 @@ export class DetailStaffComponent implements OnInit {
   }
 
   detailInvoice(id : number){
-    this.route.navigate(["dashboard/list-invoice/" + id])
+    this.route.navigate(['dashboard/detail-invoice/' + id])
   }
 
 }

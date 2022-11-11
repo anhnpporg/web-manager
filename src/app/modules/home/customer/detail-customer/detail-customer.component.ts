@@ -27,6 +27,10 @@ export class DetailCustomerComponent implements OnInit {
     private user: UserService
   ) {}
 
+  detailInvoice(id : number){
+    this.route.navigate(["dashboard/detail-invoice/" + id])
+  }
+
   ngOnInit(): void {
     this.subParam = this.atvRoute.params.subscribe(
       (params) => {

@@ -28,4 +28,12 @@ export class GoodsreceiptnoteService {
   getInvoices(id:number):Observable<any> {
     return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
   }
+
+  getInvoiceDetail(id:number):Observable<any> {
+    return this.httpClient.get(DOMAIN + `invoice-management/invoices/${id}/invoice-detail`, { headers: this.headers })
+  }
+
+  getInvoice(id: number):Observable<any> {
+    return this.httpClient.get(DOMAIN + `invoice-management/invoices/${id}`, { headers: this.headers })
+  }
 }

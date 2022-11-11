@@ -237,3 +237,29 @@ export interface InvoiceById{
     name: string
   }
 }
+
+export interface InvoiceDetail{
+  id: number,
+  product: {
+    id: number,
+    name: string
+  }
+  dose: string,
+  unitDose: string
+  frequency: string
+  dayUse: string
+  use: string
+  goodsIssueNoteType:{
+    id: number
+    name: string
+  }
+  batch:{
+    id: number
+    name: string
+  }
+  quantity: number
+  unit: string
+  unitPrice: number
+  convertedQuantity: number
+  totalPrice: number
+}
