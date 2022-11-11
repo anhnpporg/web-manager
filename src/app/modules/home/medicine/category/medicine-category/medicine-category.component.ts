@@ -36,10 +36,10 @@ export class MedicineCategoryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.product.getAllCategory().subscribe((result: any[]) => {
-      console.log(result);
+    this.product.getAllCategory().subscribe((result) => {
+      console.log(result.data);
 
-      this.listData = result
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
     })

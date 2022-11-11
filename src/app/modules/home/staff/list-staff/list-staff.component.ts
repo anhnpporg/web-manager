@@ -13,7 +13,7 @@ export class ListStaffComponent implements OnInit {
 
   searchData: string = ''
   listData: StaffInterface[] = []
-  listsearch: any
+  listsearch: StaffInterface[] = []
   selectedProvince = 'searchID'
   loading: boolean = true;
   confirmModal?: NzModalRef;
@@ -30,10 +30,10 @@ export class ListStaffComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.user.getStaffs().subscribe((result: StaffInterface[]) => {
-      console.log(result);
+    this.user.getStaffs().subscribe((result) => {
+      console.log(result.data);
 
-      this.listData = result
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
     })

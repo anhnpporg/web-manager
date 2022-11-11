@@ -60,7 +60,8 @@ const homeRoutes: Routes = [
       { path: 'create-sample-prescription', component: CreateSamplePrescriptionComponent},
       { path: 'list-sample-prescription', component: ListSamplePrescriptionComponent},
       { path: 'detail-sample-prescription/:id', component: DetailSamplePrescriptionComponent},
-      { path: 'list-invoice/:id' , component: ListInvoiceComponent}
+      { path: 'list-invoice' , component: ListInvoiceComponent},
+      { path: 'detail-invoice/:id' , component: DetailInvoiceComponent}
     ]
   }
 ]

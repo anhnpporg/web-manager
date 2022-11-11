@@ -15,8 +15,9 @@
       </nav>
     </div>
   </div>
-  <div *ngIf="shelfs.length <= 0">Kệ hàng này chưa có thuốc</div>
-  <b *ngIf="shelfs.length > 0" style="font-size: 20px">Các thuốc có trong kệ hàng</b>
+  <b *ngIf="shelfs.length <= 0" style="font-size: 20px">Kệ hàng này chưa có thuốc</b>
+  <div *ngIf="shelfs.length > 0">
+    <b style="font-size: 20px">Các thuốc có trong kệ hàng</b>
   <br>
   <br>
   <div class="col-12">
@@ -44,6 +45,7 @@
           </button></td>
       </tbody>
     </nz-table>
+  </div>
   </div>
 
 </main>

@@ -32,14 +32,14 @@ export class DetailCustomerComponent implements OnInit {
       (params) => {
         this.id = params['id'];
         this.user.getCustomer(params['id']).subscribe((result) => {
-          console.log(result);
-          this.fullname = result?.fullName;
-          this.createdAt = result?.createdAt;
-          this.phoneNumber = result?.phoneNumber;
-          this.totalPoint = result?.totalPoint;
-          this.createdBy = result?.createdBy;
-          this.updatedAt = result.updatedAt;
-          this.updatedBy = result.updatedBy;
+          console.log(result.data);
+          this.fullname = result.data?.fullName;
+          this.createdAt = result.data?.createdAt;
+          this.phoneNumber = result.data?.phoneNumber;
+          this.totalPoint = result.data?.totalPoint;
+          this.createdBy = result.data?.createdBy;
+          this.updatedAt = result.data.updatedAt;
+          this.updatedBy = result.data.updatedBy;
         });
         this.user.getInvoicesByIdUser(params['id']).subscribe((invoices) => {
           console.log(invoices.data)

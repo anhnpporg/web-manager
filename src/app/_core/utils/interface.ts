@@ -62,7 +62,9 @@ export interface StaffInterface {
     isActive: boolean,
     isMale: boolean,
     phoneNumber: string,
-    userId: number
+    userId: number,
+    userAccount: string,
+    email: string
 }
 
 export interface CreateStaffInterface {

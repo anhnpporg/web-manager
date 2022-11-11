@@ -31,9 +31,9 @@ export class DetailCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.subParam = this.atvRoute.params.subscribe((params: { [x: string]: number; }) => {
       // this.id = params['id'];
-      this.product.getShelfById(params['id']).subscribe((result: any[])=>{
-        console.log(result)
-        this.shelfs = result
+      this.product.getShelfById(params['id']).subscribe((result)=>{
+        console.log(result.data)
+        this.shelfs = result.data
         console.log(this.shelfs.length)
       })
   }, (err: any) => {

@@ -61,16 +61,16 @@ export class DetailStaffComponent implements OnInit {
     this.subParam = this.atvRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.user.getProfilebyID(params['id']).subscribe((result) => {
-        console.log(result)
-        this.avatar = result?.avatar;
-        this.dateOfBirth = result?.dateOfBirth;
-        this.fullname = result?.fullname;
-        this.isMale = result?.isMale;
-        this.createdAt = result?.createdAt;
-        this.phoneNumber = result?.phoneNumber;
-        this.email = result?.email
-        this.userAccount = result?.userAccount
-        this.id = result?.userId
+        console.log(result.data)
+        this.avatar = result.data?.avatar;
+        this.dateOfBirth = result.data?.dateOfBirth;
+        this.fullname = result.data?.fullname;
+        this.isMale = result.data?.isMale;
+        this.createdAt = result.data?.createdAt;
+        this.phoneNumber = result.data?.phoneNumber;
+        this.email = result.data?.email
+        this.userAccount = result.data?.userAccount
+        this.id = result.data?.userId
       })
       this.user.getInvoiceByIdStaff(params['id']).subscribe((invoice)=>{
         console.log(invoice.data)

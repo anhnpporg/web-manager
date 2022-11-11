@@ -25,8 +25,8 @@ export class ListCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.getCustomers().subscribe((result) => {
-      console.log(result)
-      this.listOfData = result
+      console.log(result.data)
+      this.listOfData = result.data
       this.listsearch = this.listOfData
       this.loading = false
       console.log(this.listOfData)
