@@ -19,15 +19,25 @@ export class GoodsreceiptnoteService {
   }
 
   // GoodsReceiptNotes
-  getGoodsReceiptNotes(id: number):Observable<any> {
+  getGoodsReceiptNote(id: number):Observable<any> {
     return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
   }
-
+  getGoodsReceiptNotes():Observable<any> {
+    return this.httpClient.get(DOMAIN + `goods-receipt-note-management/goods-receipt-notes`, { headers: this.headers })
+  }
 
   // Invoices
-  getInvoices(id:number):Observable<any> {
-    return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
+
+  getInvoices():Observable<any>{
+    return this.httpClient.get(DOMAIN + `invoice-management/invoices`, { headers: this.headers})
   }
+
+
+  // getInvoices(id:number):Observable<any> {
+  //   return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
+  // }
+
+
 
   getInvoiceDetail(id:number):Observable<any> {
     return this.httpClient.get(DOMAIN + `invoice-management/invoices/${id}/invoice-detail`, { headers: this.headers })
@@ -36,4 +46,6 @@ export class GoodsreceiptnoteService {
   getInvoice(id: number):Observable<any> {
     return this.httpClient.get(DOMAIN + `invoice-management/invoices/${id}`, { headers: this.headers })
   }
+
+
 }

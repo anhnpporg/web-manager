@@ -21,10 +21,15 @@ export class ListReceiptNoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.subParam = this.atvRoute.params.subscribe((params)=>{
-      this.GRNService.getGoodsReceiptNotes(params['id']).subscribe((result)=>{
+      // phiếu nhập
+      this.GRNService.getGoodsReceiptNote(params['id']).subscribe((result)=>{
         console.log(result.data)
         this.goodReceiptNote = result.data
       })
+      //phiếu xuất
+      // this.GRNService.getInvoices(params['id']).subscribe((result)=>{
+
+      // })
     })
 
 

@@ -35,6 +35,8 @@ import { ListSamplePrescriptionComponent } from './sampleprescription/list-sampl
 import { DetailSamplePrescriptionComponent } from './sampleprescription/detail-sample-prescription/detail-sample-prescription.component';
 import { ListInvoiceComponent } from './invoice/list-invoice/list-invoice.component';
 import { DetailInvoiceComponent } from './invoice/detail-invoice/detail-invoice.component';
+import { ReceiptNoteComponent } from './report/receipt-note/receipt-note.component';
+import { InvoiceComponent } from './report/invoice/invoice.component';
 
 const homeRoutes: Routes = [
   {
@@ -61,7 +63,9 @@ const homeRoutes: Routes = [
       { path: 'list-sample-prescription', component: ListSamplePrescriptionComponent},
       { path: 'detail-sample-prescription/:id', component: DetailSamplePrescriptionComponent},
       { path: 'list-invoice' , component: ListInvoiceComponent},
-      { path: 'detail-invoice/:id' , component: DetailInvoiceComponent}
+      { path: 'detail-invoice/:id' , component: DetailInvoiceComponent},
+      { path: 'receipt-note' , component: ReceiptNoteComponent},
+      { path: 'invoice' ,component: InvoiceComponent}
     ]
   }
 ]
@@ -96,7 +100,9 @@ const homeRoutes: Routes = [
     ListSamplePrescriptionComponent,
     DetailSamplePrescriptionComponent,
     ListInvoiceComponent,
-    DetailInvoiceComponent
+    DetailInvoiceComponent,
+    ReceiptNoteComponent,
+    InvoiceComponent
   ],
   imports: [
     CommonModule,

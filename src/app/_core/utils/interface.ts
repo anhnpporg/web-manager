@@ -263,3 +263,4 @@ export interface InvoiceDetail{
   convertedQuantity: number
   totalPrice: number
 }
+
