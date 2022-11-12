@@ -197,7 +197,7 @@ export interface GoodReceiptNote{
     name: string
   }
   batch:{
-    id: string
+    id: number
     barcode: string
     manufacturingDate: string
     expiryDate: string

@@ -1,1 +1,46 @@
-<p>invoice works!</p>
+<main id="main" class="main">
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Quản lý xuất</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item active">Quản lý xuất</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="section">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <nz-table #basicData [nzData]="invoices"
+          >
+            <thead style="text-align: center">
+              <tr>
+                <th scope="col" style="text-align: center;">Tên khách hàng</th>
+                <th scope="col" style="text-align: center;">Tên nhân viên</th>
+                <!-- <th scope="col" style="text-align: center;">Tên sản phẩm</th> -->
+                <th scope="col" style="text-align: center;">Ngày tạo</th>
+                <th scope="col" style="text-align: center;">Tổng tiền</th>
+              </tr>
+            </thead>
+            <tbody  *ngFor="let invoices of basicData.data" style="text-align: center;">
+              <tr >
+                <td >{{invoices.customer.fullName}}</td>
+                <td >{{invoices.createdBy.name}}</td>
+                <!-- <td >{{getNameProductByIdBatch(receiptnote.batch.id)}}</td> -->
+                <td >{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
+                <td >{{invoices.totalPrice}}</td>
+              </tr>
+            </tbody>
+
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

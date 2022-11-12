@@ -76,4 +76,9 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/stock-strength-units', { headers: this.headers })
   }
 
+  //Batch
+  getProductByIdBatch(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `batch-management/batches/${id}`, { headers: this.headers })
+  }
+
 }
