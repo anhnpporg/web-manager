@@ -12,11 +12,27 @@
       </nav>
     </div>
   </div>
+
   <div class="section">
+    <div id="search">
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+          <input type="text" nz-input placeholder="Nhập tên ..." [(ngModel)]="searchData"
+              (ngModelChange)="getListSearch()" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+          <button nz-button nzType="primary" nzSize="large" nzSearch>
+              <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)" style="width: 210px">
+                <nz-option nzValue="SearchCustomerName" nzLabel="Tên khách hàng"></nz-option>
+                  <nz-option nzValue="SearchStaffName" nzLabel="Tên nhân viên"></nz-option>
+              </nz-select>
+          </button>
+      </ng-template>
+  </div>
     <div class="col-xl-12">
       <div class="card">
         <div class="card-body pt-3">
-          <nz-table #basicData [nzData]="invoices"
+
+          <nz-table #basicData [nzData]="listsearch" [nzPageSize]="5"  [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger
           >
             <thead style="text-align: center">
               <tr>

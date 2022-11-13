@@ -9,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoiceComponent implements OnInit {
 
-   invoices : InvoiceById[] = []
+  invoices : InvoiceById[] = []
+  searchData: string = ''
+  listsearch: any
+  selectedProvince = 'SearchCustomerName'
   constructor(
     private invoice: GoodsreceiptnoteService
   ) { }
@@ -17,8 +20,22 @@ export class InvoiceComponent implements OnInit {
   ngOnInit(): void {
     this.invoice.getInvoices().subscribe((result)=>{
       this.invoices = result.data
+      this.listsearch = this.invoices
       console.log(this.invoices)
     })
   }
 
+  SearchOption(value: string) {
+    this.selectedProvince = value
+    console.log(this.selectedProvince);
+  }
+
+  getListSearch() {
+    console.log(this.searchData);
+    if (this.selectedProvince == "SearchCustomerName") {
+      this.listsearch = this.invoices.filter(data => data.customer.fullName.toString().toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    } else if (this.selectedProvince == "SearchStaffName") {
+      this.listsearch = this.invoices.filter(data => data.createdBy.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    }
+  }
 }

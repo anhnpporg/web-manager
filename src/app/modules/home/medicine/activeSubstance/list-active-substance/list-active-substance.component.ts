@@ -36,9 +36,9 @@ export class ListActiveSubstanceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.product.getAllActiveSubstance().subscribe((result: any[]) => {
+    this.product.getAllActiveSubstance().subscribe((result) => {
       console.log(result);
-      this.listData = result
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
       // result.forEach((element: { id: number }) => {

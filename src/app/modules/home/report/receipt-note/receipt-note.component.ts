@@ -11,7 +11,9 @@ import { GoodReceiptNote } from 'src/app/_core/utils/interface';
 export class ReceiptNoteComponent implements OnInit {
 
   receiptnote: GoodReceiptNote[] = []
-
+  searchData: string = ''
+  listsearch: any
+  selectedProvince = 'SearchBatchName'
   constructor(
     private receiptnotes: GoodsreceiptnoteService,
     private product: ProductService
@@ -20,6 +22,7 @@ export class ReceiptNoteComponent implements OnInit {
   ngOnInit(): void {
     this.receiptnotes.getGoodsReceiptNotes().subscribe((result)=>{
       this.receiptnote = result.data
+      this.listsearch = this.receiptnote
       console.log(this.receiptnote)
     })
   }
@@ -29,4 +32,18 @@ export class ReceiptNoteComponent implements OnInit {
   //     return product.data.product.name
   //   })
   // }
+
+  SearchOption(value: string) {
+    this.selectedProvince = value
+    console.log(this.selectedProvince);
+  }
+
+  getListSearch() {
+    console.log(this.searchData);
+    if (this.selectedProvince == "SearchBatchName") {
+      this.listsearch = this.receiptnote.filter(data => data.batch.barcode.toString().toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    } else if (this.selectedProvince == "SearchReceiptType") {
+      this.listsearch = this.receiptnote.filter(data => data.goodsReceiptNoteType.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    }
+  }
 }

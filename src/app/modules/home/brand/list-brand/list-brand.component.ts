@@ -34,10 +34,10 @@ export class ListBrandComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((result: any[]) => {
+    this.brand.getAllBrand().subscribe((result) => {
       console.log(result);
 
-      this.listData = result,
+      this.listData = result.data,
         this.listsearch = this.listData
       this.loading = false
     })
@@ -48,8 +48,6 @@ export class ListBrandComponent implements OnInit {
   }
   getListSearch() {
     console.log(this.searchValue);
-
-
     if (this.selectedProvince == "searchID") {
       this.listsearch = this.listData.filter(data => data.id.toString().includes(this.searchValue.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {

@@ -33,7 +33,7 @@ export class ListProductOfActiveSubstanceComponent implements OnInit {
     console.log(params['id'])
     this.product.getActiveSubstanceById(params['id']).subscribe((result)=>{
       console.log(result)
-      this.productHaveActiveSubstance = result
+      this.productHaveActiveSubstance = result.data
     })
   },err => {
     console.log(err)
