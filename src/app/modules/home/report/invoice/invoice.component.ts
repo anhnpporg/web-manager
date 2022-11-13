@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { GoodsreceiptnoteService } from './../../../../_core/services/goodsreceiptnote/goodsreceiptnote.service';
 import { InvoiceById } from './../../../../_core/utils/interface';
 import { Component, OnInit } from '@angular/core';
@@ -14,8 +15,13 @@ export class InvoiceComponent implements OnInit {
   listsearch: any
   selectedProvince = 'SearchCustomerName'
   constructor(
-    private invoice: GoodsreceiptnoteService
+    private invoice: GoodsreceiptnoteService,
+    private router: Router
   ) { }
+
+  detailInvoice(id : number){
+    this.router.navigate(["dashboard/detail-invoice/" + id])
+  }
 
   ngOnInit(): void {
     this.invoice.getInvoices().subscribe((result)=>{

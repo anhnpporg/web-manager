@@ -38,18 +38,16 @@
               <tr>
                 <th scope="col" style="text-align: center;">Tên khách hàng</th>
                 <th scope="col" style="text-align: center;">Tên nhân viên</th>
-                <!-- <th scope="col" style="text-align: center;">Tên sản phẩm</th> -->
                 <th scope="col" style="text-align: center;">Ngày tạo</th>
                 <th scope="col" style="text-align: center;">Tổng tiền</th>
               </tr>
             </thead>
             <tbody  *ngFor="let invoices of basicData.data" style="text-align: center;">
               <tr >
-                <td >{{invoices.customer.fullName}}</td>
-                <td >{{invoices.createdBy.name}}</td>
-                <!-- <td >{{getNameProductByIdBatch(receiptnote.batch.id)}}</td> -->
-                <td >{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                <td >{{invoices.totalPrice}}</td>
+                <td (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
+                <td (click)="detailInvoice(invoices.id)">{{invoices.createdBy.name}}</td>
+                <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
+                <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
               </tr>
             </tbody>
 
