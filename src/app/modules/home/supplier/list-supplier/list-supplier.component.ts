@@ -37,7 +37,7 @@ export class ListSupplierComponent implements OnInit {
     this.supplier.getSupplier().subscribe((result) => {
       console.log(result);
 
-      this.suppliers = result
+      this.suppliers = result.data
       this.loading = false
       this.listsearch = this.suppliers
     })
@@ -83,16 +83,16 @@ export class ListSupplierComponent implements OnInit {
       nzTitle: 'Bỏ chặn',
       nzContent: 'Bạn có muốn bỏ chặn nhân viên này',
       nzOnOk: () => {
-        // this.supplier.isUnBan(id).subscribe((rs: string) => {
-        //   console.log('rs:', rs);
-        //   let currentUrl = this.router.url;
-        //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        //     this.router.navigate([currentUrl]);
-        //     console.log(currentUrl);
-        //   });
-        // }, err => {
-        //   console.log(err)
-        // })
+        this.supplier.isBan(id).subscribe(() => {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
+
+        })
       },
     });
   }

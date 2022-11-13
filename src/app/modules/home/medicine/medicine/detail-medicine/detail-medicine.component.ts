@@ -1,3 +1,4 @@
+import { UserService } from './../../../../../_core/services/user/user.service';
 import { routeOfAdministration } from './../../../../../_core/utils/interface';
 import { ProductService } from 'src/app/_core/services/product/product.service';
 import { Subscription } from 'rxjs';
@@ -32,7 +33,7 @@ export class DetailMedicineComponent implements OnInit {
   constructor(
     private atvRoute: ActivatedRoute,
     private product: ProductService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -41,22 +42,22 @@ export class DetailMedicineComponent implements OnInit {
         this.id = params['id'];
         this.product.getProductById(this.id).subscribe((productDetails) => {
           console.log(productDetails);
-          this.medicineDetail = productDetails
-          this.drugRegistrationNumber = productDetails.drugRegistrationNumber
-          this.name = productDetails.name
-          this.barcode = productDetails.barcode
-          this.mininumInventory = productDetails.mininumInventory
-          this.isUseDose = productDetails.isUseDose
-          this.isManagedInBatches = productDetails.isManagedInBatches
-          this.isActive = productDetails.isActive
-          this.brand = productDetails.brand.name
-         this.routeOfAdministration = productDetails.routeOfAdministration.name
-         this.createdAt = productDetails.createdAt
-         this.createdBy = productDetails.createdBy.name
-         this.shelf = productDetails.shelf.name
-         this.activeSubstances = productDetails.activeSubstances
-         this.productUnits = productDetails.productUnits
-         this.batches = productDetails.batches
+          this.medicineDetail = productDetails.data
+          this.drugRegistrationNumber = productDetails.data.drugRegistrationNumber
+          this.name = productDetails.data.name
+          this.barcode = productDetails.data.barcode
+          this.mininumInventory = productDetails.data.mininumInventory
+          this.isUseDose = productDetails.data.isUseDose
+          this.isManagedInBatches = productDetails.data.isManagedInBatches
+          this.isActive = productDetails.data.isActive
+          this.brand = productDetails.data.brand.name
+         this.routeOfAdministration = productDetails.data.routeOfAdministration.name
+         this.createdAt = productDetails.data.createdAt
+         this.createdBy = productDetails.data.createdBy.name
+         this.shelf = productDetails.data.shelf.name
+         this.activeSubstances = productDetails.data.activeSubstances
+         this.productUnits = productDetails.data.productUnits
+         this.batches = productDetails.data.batches
         });
       },
       (err) => {

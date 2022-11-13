@@ -41,7 +41,7 @@ export class ListMedicineComponent implements OnInit {
 
     this.product.getAllProduct().subscribe((result) => {
       console.log(result);
-      this.listData = result;
+      this.listData = result.data;
       this.listsearch = this.listData
       this.loading = false
     })

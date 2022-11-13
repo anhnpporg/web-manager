@@ -59,8 +59,8 @@
                           <nz-tag [nzColor]="'green'" (click)="deleteActiveSubstance(data.id)">Hoạt động</nz-tag>
                       </div>
                       <ng-template #isActive>
-                          <div>
-                              <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
+                          <div >
+                              <nz-tag [nzColor]="'red'" (click)="deleteActiveSubstance(data.id)">Ngừng hoạt động</nz-tag>
                           </div>
                       </ng-template>
                   </td>

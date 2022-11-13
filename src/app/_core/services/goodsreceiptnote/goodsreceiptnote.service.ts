@@ -33,9 +33,9 @@ export class GoodsreceiptnoteService {
   }
 
 
-  // getInvoices(id:number):Observable<any> {
-  //   return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
-  // }
+  getInvoiceByIdBatch(id:number):Observable<any> {
+    return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-issue-note`, { headers: this.headers })
+  }
 
 
 

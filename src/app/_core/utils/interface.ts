@@ -264,3 +264,53 @@ export interface InvoiceDetail{
   totalPrice: number
 }
 
+export interface BatchInfo{
+  id: number,
+  batchBarcode: string,
+  product: {
+    id: number,
+    name: string
+  }
+  currentQuantity:{
+    id: number
+    unit: string
+    currentQuantity: number
+  }
+  manufacturingDate: string
+  expiryDate: string
+  isActive: boolean
+  createdAt: string
+  createdBy:{
+    id: number
+    name: string
+  }
+  updatedAt: string
+  updatedBy: string
+}
+
+export interface GoodIssueNote{
+  id: string
+  goodsIssueNoteType:{
+    id: string
+    name: string
+  }
+  batch:{
+    id: number
+    name: string
+  }
+  invoiceId: string
+  supplier: {
+    id: string
+    name: string
+  }
+  quantity: number
+  unit: string
+  totalPrice: number
+  convertedQuantity: number
+  unitPrice: number
+  createdAt: string
+  createdBy: {
+    id: string
+    name: string
+  }
+}
