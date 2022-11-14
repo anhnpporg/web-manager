@@ -191,7 +191,7 @@ export interface Supplier{
 }
 
 export interface GoodReceiptNote{
-  id: string
+  id: number
   goodsReceiptNoteType:{
     id: string
     name: string
@@ -289,7 +289,7 @@ export interface BatchInfo{
 }
 
 export interface GoodIssueNote{
-  id: string
+  id: number
   goodsIssueNoteType:{
     id: string
     name: string

@@ -22,10 +22,16 @@ export class SupplierService {
   getSupplier(): Observable<any> {
     return this.httpClient.get(DOMAIN + `suppliers-management/suppliers`, { headers: this.headers })
   }
+  getSupplierById(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `suppliers-management/suppliers/${id}`, { headers: this.headers })
+  }
   isBan(id: number): Observable<any> {
     return this.httpClient.patch(DOMAIN + `suppliers-management/suppliers/${id}`,{}, { headers: this.headers });
   }
   createSupplier(supplierName: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'suppliers-management/suppliers',supplierName, { headers: this.headers });
+  }
+  getListBatchOfSupplier(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `suppliers-management/suppliers/${id}/batches`, { headers: this.headers });
   }
 }

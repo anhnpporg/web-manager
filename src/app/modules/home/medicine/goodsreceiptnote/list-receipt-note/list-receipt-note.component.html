@@ -81,11 +81,11 @@
         <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
           <tr>
             <td scope="row">{{goodReceiptNotes.id}}</td>
-            <td >{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
-            <td >{{goodReceiptNotes.supplier.name}}</td>
-            <td >{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
-            <td >{{goodReceiptNotes.quantity}}</td>
-            <td >{{goodReceiptNotes.totalPrice}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.supplier.name}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice}}</td>
           </tr>
         </tbody>
       </nz-table>
@@ -108,12 +108,12 @@
         <tbody  *ngFor="let goodIssueNotes of goodIssueNote" style="text-align: center;">
           <tr>
             <td scope="row">{{goodIssueNotes.id}}</td>
-            <td >{{goodIssueNotes.goodsIssueNoteType.name}}</td>
-            <td >{{goodIssueNotes.batch.name}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.goodsIssueNoteType.name}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.batch.name}}</td>
             <!-- <td >{{goodIssueNotes.createdAt|date:'dd-MM-yyyy'}}</td> -->
-            <td >{{goodIssueNotes.quantity}}</td>
-            <td >{{goodIssueNotes.unit}}</td>
-            <td >{{goodIssueNotes.totalPrice}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.quantity}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.unit}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice}}</td>
           </tr>
         </tbody>
       </nz-table>

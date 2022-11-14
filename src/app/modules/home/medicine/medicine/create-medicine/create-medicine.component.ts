@@ -90,39 +90,23 @@ export class CreateMedicineComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((listBrand: Brand[]) => {
+    this.brand.getAllBrand().subscribe((listBrand) => {
       console.log(listBrand);
-      listBrand.forEach((element) => {
-        if (element.isActive) {
-          this.listBrand.push(element);
-        }
-      });
+      this.listBrand = listBrand.data
     });
-    this.product.getAllShelf().subscribe((listShelf: Shelf[]) => {
+    this.product.getAllShelf().subscribe((listShelf) => {
       console.log(listShelf);
-      listShelf.forEach((element) => {
-        if (element.isActive) {
-          this.listShelf.push(element);
-        }
-      });
+      this.listShelf = listShelf.data
     });
-    // this.product.getStockStrengthUnit().subscribe((listUnit: Unit[]) => {
-    //   console.log(listUnit);
-    //   this.listUnit = listUnit;
-    // });
-    this.product.getROA().subscribe((listROA: routeOfAdministration[]) => {
+    this.product.getROA().subscribe((listROA) => {
       console.log(listROA);
-      this.listROA = listROA;
+      this.listROA = listROA.data;
     });
     this.product
       .getAllActiveSubstance()
-      .subscribe((listActiveSubstance: ActiveSubstance[]) => {
+      .subscribe((listActiveSubstance) => {
         console.log(listActiveSubstance);
-        listActiveSubstance.forEach((element) => {
-          if (element.isActive) {
-            this.listActiveSubstance.push(element);
-          }
-        });
+        this.listActiveSubstance = listActiveSubstance.data
       });
   }
 

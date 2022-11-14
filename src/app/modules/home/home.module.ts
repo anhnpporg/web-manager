@@ -37,6 +37,7 @@ import { DetailInvoiceComponent } from './report/detail-invoice/detail-invoice.c
 import { ReceiptNoteComponent } from './report/receipt-note/receipt-note.component';
 import { InvoiceComponent } from './report/invoice/invoice.component';
 import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-receipt-note.component';
+import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
 
 const homeRoutes: Routes = [
   {
@@ -66,6 +67,7 @@ const homeRoutes: Routes = [
       { path: 'detail-invoice/:id' , component: DetailInvoiceComponent},
       { path: 'receipt-note' , component: ReceiptNoteComponent},
       { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
+      { path: 'detail-supplier/:id' , component: DetailSupplierComponent}
     ]
   }
 ]
@@ -102,7 +104,8 @@ const homeRoutes: Routes = [
     DetailInvoiceComponent,
     ReceiptNoteComponent,
     InvoiceComponent,
-    DetailReceiptNoteComponent
+    DetailReceiptNoteComponent,
+    DetailSupplierComponent
   ],
   imports: [
     CommonModule,

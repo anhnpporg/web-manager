@@ -43,6 +43,10 @@ export class ListSupplierComponent implements OnInit {
     })
   }
 
+  Detail(id: number){
+    this.router.navigate(['dashboard/detail-supplier/' + id]);
+  }
+
   SearchOption(value: string) {
     this.selectedProvince = value
     console.log(this.selectedProvince);

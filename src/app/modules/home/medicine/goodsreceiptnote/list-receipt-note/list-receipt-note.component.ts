@@ -7,7 +7,7 @@ import {
 } from './../../../../../_core/utils/interface';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-receipt-note',
@@ -35,7 +35,8 @@ export class ListReceiptNoteComponent implements OnInit {
   constructor(
     private atvRoute: ActivatedRoute,
     private GRNService: GoodsreceiptnoteService,
-    private batch: ProductService
+    private batch: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,5 +65,12 @@ export class ListReceiptNoteComponent implements OnInit {
         this.currentQuantityUnit = batchInfo.data.currentQuantity[0].unit;
       });
     });
+  }
+
+  detailReceiptNote(id : number){
+    this.router.navigate(["dashboard/detail-receipt-note/" + id])
+  }
+  detailIssueNote(id : number){
+    this.router.navigate(["dashboard/detail-invoice/" + id])
   }
 }
