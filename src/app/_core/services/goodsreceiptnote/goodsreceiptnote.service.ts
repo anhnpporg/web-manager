@@ -22,6 +22,9 @@ export class GoodsreceiptnoteService {
   getGoodsReceiptNote(id: number):Observable<any> {
     return this.httpClient.get(DOMAIN + `batch-management/batches/${id}/goods-receipt-note`, { headers: this.headers })
   }
+  getGoodsReceiptNoteByID(id: number):Observable<any> {
+    return this.httpClient.get(DOMAIN + `goods-receipt-note-management/goods-receipt-notes/${id}`, { headers: this.headers })
+  }
   getGoodsReceiptNotes():Observable<any> {
     return this.httpClient.get(DOMAIN + `goods-receipt-note-management/goods-receipt-notes`, { headers: this.headers })
   }

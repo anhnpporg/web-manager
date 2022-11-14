@@ -45,13 +45,13 @@
             </thead>
             <tbody  *ngFor="let receiptnote of basicData.data" style="text-align: center;">
               <tr >
-                <td >{{receiptnote.batch.barcode}}</td>
-                <td >{{receiptnote.goodsReceiptNoteType.name}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.batch.barcode}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.goodsReceiptNoteType.name}}</td>
                 <!-- <td >{{getNameProductByIdBatch(receiptnote.batch.id)}}</td> -->
-                <td >{{receiptnote.quantity}}</td>
-                <td >{{receiptnote.unit}}</td>
-                <td >{{receiptnote.baseUnitPrice}}</td>
-                <td >{{receiptnote.totalPrice}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.quantity}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.unit}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.baseUnitPrice}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.totalPrice}}</td>
               </tr>
             </tbody>
 

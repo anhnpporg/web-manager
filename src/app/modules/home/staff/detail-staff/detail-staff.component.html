@@ -80,9 +80,11 @@
                               <ng-container  *nzModalContent>
                                     <nz-form-label for="inputAvatar" class="form-label">Ảnh đại diện</nz-form-label>
                                     <div class="row">
-                                      <div class="col-lg-9 col-md-8 label"><input type="file" (change)="uploadImage($event)" class="form-control"></div>
-                                      <div class="col-lg-3 col-md-4"><img [src]="imageURL" alt="avatar" width="42" height="42" style="border-radius: 20px;">
-                                        <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL"></div>
+                                      <div class="col-lg-9 col-md-8 label"><input type="file" (change)="uploadImage($event)" class="form-label"></div>
+                                      <div class="col-lg-3 col-md-4">
+                                        <img [src]="imageURL" alt="newAvatar" width="42" height="42" style="border-radius: 20px;">
+                                        <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL">
+                                      </div>
                                     </div>
                                   <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL">
                                   <nz-form-label for="inputName" class="form-label">Họ và tên</nz-form-label>
@@ -107,7 +109,11 @@
                       </div>
               </nz-tab>
               <nz-tab nzTitle="Đơn hàng đã bán">
-                <nz-table #basicTable [nzData]="invoices" style="font-size: 18px;" [nzPageSize]="5"
+                <b *ngIf="invoices.length <= 0">
+                  Nhân viên chưa có đơn hàng
+                </b>
+                <div *ngIf="invoices.length < 0">
+                  <nz-table #basicTable [nzData]="invoices" style="font-size: 18px;" [nzPageSize]="5"
                 [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
                   <thead style="text-align: center">
                     <tr>
@@ -126,6 +132,7 @@
                     </tr>
                   </tbody>
                 </nz-table>
+                </div>
               </nz-tab>
             </nz-tabset>
                     </div>

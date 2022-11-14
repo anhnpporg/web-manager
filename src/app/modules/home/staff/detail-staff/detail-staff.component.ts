@@ -2,13 +2,12 @@ import { UserService } from './../../../../_core/services/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { use } from 'echarts';
 import { FormBuilder } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ImageService } from 'src/app/_core/services/image/image.service';
 import { getStorage, ref } from 'firebase/storage';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { InvoiceById } from 'src/app/_core/utils/interface';
 
 @Component({
@@ -34,7 +33,7 @@ export class DetailStaffComponent implements OnInit {
   createdAt: string = ''
   email: string =''
 
-  newAvatar: string =''
+  newAvatar: string = ''
   newDateOfBirth: string = ''
   newPhoneNumber: string = ''
   newIsMale:  boolean = true
@@ -99,7 +98,12 @@ export class DetailStaffComponent implements OnInit {
               nzTitle: rs.message,
               nzContent: rs.data,
               nzWidth: 550,
-              nzOnOk: () => {this.route.navigate(['dashboard/detail-staff/'+this.id])
+              nzOnOk: () => {
+                let currentUrl = this.route.url;
+            this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.route.navigate([currentUrl]);
+          console.log(currentUrl);
+        });
               this.notification.create('success', rs.message, '');
             }})
           },
@@ -167,17 +171,17 @@ export class DetailStaffComponent implements OnInit {
   async uploadImage($event: any) {
     this.path = $event.target.files[0];
     console.log(this.path);
-    await (this.newAvatar = 'image' + Math.random());
-    await this.storageImage.upload(this.newAvatar, this.path);
+    await (this.nameImage = 'image' + Math.random());
+    await this.storageImage.upload(this.nameImage, this.path);
     // await this.receiveURL(this.nameImage);
     const storage = getStorage();
-    const pathReference = ref(storage, 'images/' + this.newAvatar);
+    const pathReference = ref(storage, 'images/' + this.nameImage);
     console.log('path', pathReference);
     this.GetImg.readlink(this.newAvatar).subscribe((result: any) => {
       console.log(result.downloadTokens);
       this.imageURL =
         'https://firebasestorage.googleapis.com/v0/b/utnhandrug.appspot.com/o/' +
-        this.newAvatar +
+        this.nameImage +
         '?alt=media&token=' +
         result.downloadTokens;
     });

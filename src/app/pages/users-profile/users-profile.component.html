@@ -34,7 +34,7 @@
                         <h5 class="card-title">Thông tin chi tiết</h5>
                         <div class="row">
                            <div class="col-lg-3 col-md-4 label ">Họ và tên</div>
-                           <input class="col-lg-9 col-md-8" type="email" placeholder="{{fullname}}" id = "fullname" formControlName="fullname">
+                           <input class="col-lg-9 col-md-8" type="email" placeholder="{{fullname}}" id = "fullname" formControlName="fullname" value="{{fullname}}">
                         </div>
                         <div class="row">
                            <div class="col-lg-3 col-md-4 label">Nhà thuốc</div>
@@ -76,7 +76,7 @@
                               </div>
                             <div class="row mb-3">
                                <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Mật khẩu mới</label>
-                               <div class="col-md-8 col-lg-9"> <input name="newpassword" type="password" class="form-control" id="newPassword" formControlName="newPassword"></div>
+                               <div class="col-md-8 col-lg-9"> <input name="newPassword" type="password" class="form-control" id="newPassword" formControlName="newPassword"></div>
                                <div
                      *ngIf="statusError.newPassword.invalid && (statusError.newPassword.dirty || statusError.newPassword.touched) ">
                      <div *ngIf="statusError.newPassword.errors">

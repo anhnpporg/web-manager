@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/_core/services/product/product.service';
 import { GoodsreceiptnoteService } from './../../../../_core/services/goodsreceiptnote/goodsreceiptnote.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,8 +17,13 @@ export class ReceiptNoteComponent implements OnInit {
   selectedProvince = 'SearchBatchName'
   constructor(
     private receiptnotes: GoodsreceiptnoteService,
-    private product: ProductService
+    private product: ProductService,
+    private router: Router
   ) { }
+
+  detailReceiptNote(id : number){
+    this.router.navigate(["dashboard/detail-receipt-note/" + id])
+  }
 
   ngOnInit(): void {
     this.receiptnotes.getGoodsReceiptNotes().subscribe((result)=>{

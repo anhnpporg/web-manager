@@ -1,13 +1,13 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Thông tin hoá đơn {{id}}</h1>
+      <h1>Thông tin xuất hàng</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
-          <li class="breadcrumb-item active">Thông tin hoá đơn</li>
+          <li class="breadcrumb-item active">Thông tin xuất hàng</li>
         </ol>
       </nav>
     </div>
@@ -16,30 +16,36 @@
     <div class="col-xl-12">
       <div class="card">
         <div class="card-body pt-3">
+          <b style="font-size: 20px;">Thông tin xuất hàng</b>
 
-          <!-- <div class="tab-pane fade show active profile-overview" id="profile-overview" *ngFor="let invoiceInfo of invoiceInfo">
+          <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
+            <br>
             <div class="row">
-              <div class="col-lg-3 col-md-4 label">Tên nhân viên</div>
-              <div class="col-lg-9 col-md-8">{{ invoiceInfo.createdBy.name }}</div>
+              <b class="col-lg-3 col-md-4 label">Tên nhân viên</b>
+              <div class="col-lg-9 col-md-8">{{ staffName }}</div>
             </div>
+            <br>
             <div class="row">
-              <div class="col-lg-3 col-md-4 label">Tên khách hàng</div>
-              <div class="col-lg-9 col-md-8">{{ invoiceInfo.customer.fullName }}</div>
+              <b class="col-lg-3 col-md-4 label">Tên khách hàng</b>
+              <div class="col-lg-9 col-md-8">{{ customerName }}</div>
             </div>
+            <br>
             <div class="row">
-              <div class="col-lg-3 col-md-4 label">Số điện thoại khách hàng</div>
-              <div class="col-lg-9 col-md-8">{{ invoiceInfo.customer.phoneNumber }}</div>
+              <b class="col-lg-3 col-md-4 label">Số điện thoại khách hàng</b>
+              <div class="col-lg-9 col-md-8">{{ customerPhone }}</div>
             </div>
+            <br>
             <div class="row">
-              <div class="col-lg-3 col-md-4 label">Khuyến mãi</div>
-              <div class="col-lg-9 col-md-8">{{ invoiceInfo.discount }}</div>
+              <b class="col-lg-3 col-md-4 label">Khuyến mãi</b>
+              <div class="col-lg-9 col-md-8">{{ discount }}</div>
             </div>
+            <br>
             <div class="row">
-              <div class="col-lg-3 col-md-4 label">Ngày tạo hoá đơn</div>
-              <div class="col-lg-9 col-md-8">{{ invoiceInfo.createdAt| date: 'dd-MM-yyyy' }}</div>
+              <b class="col-lg-3 col-md-4 label">Ngày tạo hoá đơn</b>
+              <div class="col-lg-9 col-md-8">{{ createdAt| date: 'dd-MM-yyyy' }}</div>
             </div>
-          </div> -->
-
+          </div>
+          <br>
           <nz-table [nzData]="invoiceDetails"
           [nzFrontPagination]="false"
           [nzShowPagination]="false">

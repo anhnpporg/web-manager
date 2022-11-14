@@ -1,3 +1,4 @@
+import { DashboardService } from './../../_core/services/dashboard/dashboard.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import * as echarts from 'echarts';
 
@@ -8,7 +9,24 @@ import * as echarts from 'echarts';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef) { }
+  // recent-sales
+  day: boolean = true
+  month: boolean = false
+  year: boolean = false
+  size: number = 5
+  recentSales: any[] = []
+
+  // Top selling
+  Tday: boolean = true
+  Tmonth: boolean = false
+  Tyear: boolean = false
+  Tsize: number = 5
+  topSelling : any[] = []
+
+  constructor(
+    private elementRef: ElementRef,
+    private dashboard: DashboardService
+    ) { }
 
   option: echarts.EChartsOption = {
     tooltip: {
@@ -59,6 +77,16 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.dashboard.getRecentSales(this.day, this.month, this.year, this.size).subscribe((result)=>{
+      this.recentSales = result.data
+      console.log(result.data)
+    })
+
+    this.dashboard.getTopSelling(this.Tday, this.Tmonth, this.Tyear, this.Tsize).subscribe((result)=>{
+      this.topSelling = result.data
+      console.log(result.data)
+    })
+
 
     var s = document.createElement("script");
     s.type = "text/javascript";

@@ -19,8 +19,8 @@ export class UsersProfileComponent implements OnInit {
   createdAt: string = '';
   id: string = '';
   newPasswordData = this.fb.group({
-    currentPassword: ['',Validators.required],
-    newPassword: ['',[ Validators.required,Validators.minLength(6)]],
+    currentPassword: ['', Validators.required],
+    newPassword: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
   });
   changeProfile = this.fb.group({
@@ -47,14 +47,19 @@ export class UsersProfileComponent implements OnInit {
       nzClosable: false,
       nzOnOk: () => {
         var newInfo: any = new FormData();
-        newInfo.append('fullname', this.changeProfile.value.fullname);
-        newInfo.append('email', this.changeProfile.value.email);
+          newInfo.append('fullName', this.changeProfile.value.fullname);
+          newInfo.append('email', this.changeProfile.value.email);
         console.log(newInfo);
         this.user.changeInfo(newInfo).subscribe(
           (rs: any) => {
             console.log(rs);
+            let currentUrl = this.router.url;
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+          });
             this.notification.create('success', rs.message, '');
-            this.router.navigate(['dashboard/user-profile']);
+            this.fullname = ''
+            this.email =''
           },
           (err: { error: { message: string } }) => {
             console.log(err);
@@ -77,9 +82,14 @@ export class UsersProfileComponent implements OnInit {
       nzClosable: false,
       nzOnOk: () => {
         var formData: any = new FormData();
-        formData.append('currentPassword', this.newPasswordData.value.currentPassword)
+        formData.append(
+          'currentPassword',
+          this.newPasswordData.value.currentPassword
+        );
         formData.append('newPassword', this.newPasswordData.value.newPassword);
-        formData.append('confirmPassword', this.newPasswordData.value.confirmPassword
+        formData.append(
+          'confirmPassword',
+          this.newPasswordData.value.confirmPassword
         );
         this.user.changePassword(formData).subscribe(
           (rs: any) => {
@@ -107,13 +117,13 @@ export class UsersProfileComponent implements OnInit {
   ngOnInit(): void {
     this.user.getProfile().subscribe((result) => {
       console.log(result);
-      this.avatar = result?.avatar;
-      this.phone = result?.phoneNumber;
-      this.fullname = result?.fullname;
-      this.gender = result?.genderId;
-      this.createdAt = result?.createdAt;
-      this.id = result?.userId;
-      this.email = result?.email
+      this.avatar = result.data?.avatar;
+      this.phone = result.data?.phoneNumber;
+      this.fullname = result.data?.fullname;
+      this.gender = result.data?.genderId;
+      this.createdAt = result.data?.createdAt;
+      this.id = result.data?.userId;
+      this.email = result.data?.email;
     });
   }
 }
