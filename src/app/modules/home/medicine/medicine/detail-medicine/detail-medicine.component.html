@@ -1,16 +1,162 @@
 <main id="main" class="main">
-    <div class="pagetitle d-flex justify-content-between">
-        <div>
-            <h1>Detail a medicine</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a routerLink="/dashboard">dashboard</a></li>
-                    <li class="breadcrumb-item"><a routerLink="/dashboard/manager">Manager</a></li>
-                    <li class="breadcrumb-item active">Detail manager</li>
-                </ol>
-            </nav>
-        </div>
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Chi tiết thuốc {{name}}</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/manager">Thuốc</a>
+          </li>
+          <li class="breadcrumb-item active">Chi tiết thuốc</li>
+        </ol>
+      </nav>
     </div>
-    <p>detail-manager works!</p>
-    <h1>{{id}}</h1>
+  </div>
+  <nz-tabset>
+    <nz-tab nzTitle="Thông tin">
+      <div class="container" style="font-size: 16px">
+        <div class="row" >
+          <!-- <div class="col-6">Tên thuốc: {{name}}</div> -->
+          <!-- <div class="col-8" style="text-align: center">
+            <ngx-barcode bc-value={{barcode}} [bc-display-value]="true" [bc-width]="1"
+                            [bc-height]="30"></ngx-barcode>
+          </div> -->
+          <div class="col-6">Nhà cung cấp: {{brand}}</div>
+          <div class="col-6">Kệ hàng: {{shelf}}</div>
+          <div class="col-6">Ngày tạo: {{createdAt | date:"dd-MM-yyyy"}}</div>
+          <div class="col-6">Người tạo: {{createdBy}}</div>
+          <!-- <div class="col-6">Hạn sử dụng:</div> -->
+          <div class="col-6">Đường dùng: {{routeOfAdministration}}</div>
+          <div class="col-6">Mức tồn kho tối thiểu: {{mininumInventory}}</div>
+          <div class="col-6" *ngIf="isUseDose">Bán theo liều</div>
+          <div class="col-6" *ngIf="isManagedInBatches">Quản lý theo lô, hạn sử dụng</div>
+          <div class="col-6" *ngFor="let productUnits of productUnits">
+          <div class="col-6" *ngIf="productUnits.isBaseUnit">Giá trị cơ bản: {{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+          </div>
+          <br>
+          <br>
+          <!-- <div class="col-4">
+            <nz-form-label [nzSpan]="10"  style="font-size: 20px">Bán theo liều</nz-form-label>
+            <nz-switch
+              [ngModel]="isUseDose"
+              id="isUseDose"></nz-switch>
+          </div>
+          <div class="col-6" style="font-size: 20px">
+            <nz-form-label [nzSpan]="10">Quản lý theo lô, hạn sử dụng</nz-form-label>
+            <nz-switch
+              [ngModel] = "isManagedInBatches"
+              id="isManagedInBatches"></nz-switch>
+          </div>
+          <div class="col-6" style="font-size: 20px">
+            <nz-form-label [nzSpan]="10">Trạng thái hoạt động</nz-form-label>
+            <nz-switch
+            [ngModel] = "isActive"
+              id="isActive"
+            ></nz-switch>
+          </div> -->
+
+          <!-- <div class="col-12" >
+            <nz-table #basicTable [nzData]="productUnits" style="text-align: center; font-size: 18px;">
+              <thead style="text-align: center">
+                <tr>
+                  <th scope="col" style="text-align: center;">Đơn vị</th>
+                  <th scope="col" style="text-align: center;">Giá trị quy đổi</th>
+                  <th scope="col" style="text-align: center;">Giá bán</th>
+                  <th scope="col" style="text-align: center;">Giá bán cơ bản</th>
+                </tr>
+              </thead>
+              <tbody  *ngFor="let productUnit of basicTable.data" style="text-align: center;">
+                <tr>
+                  <td scope="row" style="text-transform: capitalize;">{{productUnit.unit}}</td>
+                  <td>{{productUnit.conversionValue}}</td>
+                  <td>{{productUnit.price}}</td>
+                  <td *ngIf="productUnit.isBaseUnit">
+                    <img src="../../../../../../assets/img/correct.jpg" alt="correct" style="height: 15px;width: 15px">
+                  </td>
+                  <td *ngIf="productUnit.isBaseUnit == false">
+                    <img src="../../../../../../assets/img/incorrect.jpg" alt="correct" style="height: 15px;width: 15px">
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div> -->
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="Hoạt chất">
+      <div *ngIf="activeSubstances.length <= 0">Thuốc chưa có thông tin hoạt chất</div>
+      <div *ngIf="activeSubstances.length > 0">
+      <b style="font-size: 20px">Danh sách hoạt chất của thuốc {{name}}</b>
+      <br>
+      <br>
+      <div class="col-12" >
+        <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;">
+          <thead style="text-align: center">
+            <tr>
+              <th scope="col" style="text-align: center;">Mã hoạt chất</th>
+              <th scope="col" style="text-align: center;">Tên hoạt chất</th>
+              <th scope="col" style="text-align: center;"></th>
+            </tr>
+          </thead>
+          <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
+            <tr>
+              <td scope="row">{{activeSubstances.id}}</td>
+              <td>{{activeSubstances.name}}</td>
+              <td>
+                <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                <!-- <button
+                (click)="detailActiveSubstence(activeSubstances.id)"
+                style="
+                  background-color: rgba(0, 162, 255, 0.836);
+                  color: white;
+                  font-size: 16px;
+                  border-radius: 18px;
+                  border-color: rgba(0, 162, 255, 0.836);
+                ">
+                Xem thuốc có cùng hoạt chất
+              </button> -->
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+      </div>
+    </nz-tab>
+
+    <nz-tab nzTitle="Lô - Hạn sử dụng">
+      <div *ngIf="batches.length <= 0">Thuốc không thuốc lô hàng nào</div>
+      <div *ngIf="batches.length > 0">
+      <b style="font-size: 20px">Danh sách lô hàng chứa thuốc {{name}}</b>
+      <br>
+      <br>
+
+      <nz-table #basicTable [nzData]="batches" style="font-size: 18px;">
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col" style="text-align: center;">Mã lô hàng</th>
+            <th scope="col" style="text-align: center;">Barcode lô hàng</th>
+            <th scope="col" style="text-align: center;">Người tạo</th>
+            <th scope="col" style="text-align: center;">Ngày tạo</th>
+            <th scope="col" style="text-align: center;">Ngày sản xuất</th>
+            <th scope="col" style="text-align: center;">Hạn sử dụng</th>
+          </tr>
+        </thead>
+        <tbody  *ngFor="let batches of batches" style="text-align: center;">
+          <tr>
+            <td scope="row" (click)="detailGoodsReceiptNote(batches.id)">{{batches.id}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)"><ngx-barcode bc-value={{batches.batchBarcode}} [bc-display-value]="true" [bc-width]="1" [bc-height]="35"></ngx-barcode></td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdBy.name}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdAt | date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.manufacturingDate | date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.expiryDate | date:'dd-MM-yyyy'}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+      </nz-tab>
+
+  </nz-tabset>
 </main>

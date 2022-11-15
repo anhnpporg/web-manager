@@ -13,6 +13,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     NzModalModule,
     NzNotificationModule,
     NzTagModule,
-    NzSwitchModule
+    NzSwitchModule,
+    NzCollapseModule,
+    NzStatisticModule,
+    NzCardModule
   ]
 })
 export class AntdModule { }

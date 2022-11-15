@@ -1,10 +1,9 @@
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ProductService } from './../../../../../_core/services/product/product.service';
-import { UserService } from './../../../../../_core/services/user/user.service';
-import { StaffInterface } from './../../../../../_core/utils/interface';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+
 @Component({
   selector: 'app-list-active-substance',
   templateUrl: './list-active-substance.component.html',
@@ -15,6 +14,7 @@ export class ListActiveSubstanceComponent implements OnInit {
   value:string = '127381'
   searchData: string = ''
   listData: any[] = []
+  listProductHaveActiveSubstance : any[] = []
   listsearch: any
   selectedProvince = 'searchID'
   loading: boolean = true;
@@ -22,6 +22,11 @@ export class ListActiveSubstanceComponent implements OnInit {
   activeSubstanceName: string = ''
   checkError: boolean = false
   isVisible: boolean = false
+  nameList = [
+    { text: 'Hoạt động', value: true },
+    { text: 'Ngừng hoạt động', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private product: ProductService,
@@ -31,18 +36,27 @@ export class ListActiveSubstanceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.product.getAllActiveSubstance().subscribe((result) => {
       console.log(result);
-
-      this.listData = result
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
+      // result.forEach((element: { id: number }) => {
+      //   this.product.getActiveSubstanceById(element.id).subscribe((productHaveActiveSubstance)=>{
+      //     console.log(productHaveActiveSubstance)
+      //     this.listProductHaveActiveSubstance.push({
+      //       products:productHaveActiveSubstance,
+      //       id: element.id
+      //     })
+      //   })
+      //   console.log(this.listProductHaveActiveSubstance)
+      // });
     })
+
   }
 
   detail(id: number) {
-    // this.router.navigate(['dashboard/detail-staff/' + id]);
+    this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
 
   SearchOption(value: string) {
@@ -70,7 +84,7 @@ export class ListActiveSubstanceComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createActiveSubstance(formdata).subscribe((result) => {
+      this.product.createActiveSubstance(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo hoạt chất mới thành công', ''
@@ -80,7 +94,7 @@ export class ListActiveSubstanceComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo hoạt chất mới thất bại', ''
@@ -91,10 +105,10 @@ export class ListActiveSubstanceComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  deleteBrand(id: number) {
+  deleteActiveSubstance(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho hoạt chất này ngừng hoạt động',
       nzOnOk: () => {
         this.product.deleteActiveSubstance(id).subscribe(() => {
           let currentUrl = this.router.url;
@@ -102,7 +116,7 @@ export class ListActiveSubstanceComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })

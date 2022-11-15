@@ -24,17 +24,25 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
   }
 
+  getProductById(id : string):Observable<any> {
+    return this.httpClient.get(DOMAIN + `product-management/products/${id}`, { headers: this.headers })
+  }
 
   //activesubstance
 
   getAllActiveSubstance(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'active-substance-management/active-substances', { headers: this.headers })
   }
+
+  getActiveSubstanceById(id: number): Observable<any>{
+    return this.httpClient.get(DOMAIN + `active-substance-management/active-substances/${id}/products`, {headers: this.headers})
+  }
+
   createActiveSubstance(name: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'active-substance-management/active-substances', name, { headers: this.headers })
   }
   deleteActiveSubstance(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'active-substance-management/active-substances', {}, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + 'active-substance-management/active-substances', id, { headers: this.headers })
   }
 
   //product
@@ -46,14 +54,31 @@ export class ProductService {
     return this.httpClient.post(DOMAIN + 'shelves-management/shelves', name, { headers: this.headers })
   }
   deleteCategory(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'shelves-management/shelves', id, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + `shelves-management/shelves/${id}`, { headers: this.headers })
+  }
+  createProduct (product: any): Observable<any> {
+    return this.httpClient.post(DOMAIN + 'product-management/products', product, { headers: this.headers })
   }
 
   //Shelf
   getAllShelf(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
   }
-  
+  getShelfById(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}/products`, { headers: this.headers })
+  }
 
+  getROA(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/route-of-administrations', { headers: this.headers })
+  }
+
+  getStockStrengthUnit(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/stock-strength-units', { headers: this.headers })
+  }
+
+  //Batch
+  getProductByIdBatch(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `batch-management/batches/${id}`, { headers: this.headers })
+  }
 
 }

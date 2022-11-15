@@ -1,0 +1,59 @@
+<main id="main" class="main">
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Chi tiết nhà cung cấp {{supplierName}}</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/supplier">Nhà cung cấp</a>
+          </li>
+          <li class="breadcrumb-item active">Chi tiết nhà cung cấp {{supplierName}}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <b *ngIf="supplierDetail.length <= 0"
+  style="font-size:20px">
+    Nhà cung cấp {{supplierName}} chưa cung cấp đơn hàng
+  </b>
+  <div *ngIf="supplierDetail.length > 0">
+    <b style="font-size:20px">
+      Danh sách các lô hàng được nhập từ nhà cung cấp {{supplierName}}
+    </b>
+    <br>
+    <br>
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body pt-3">
+          <nz-table #basicTable [nzData]="supplierDetail" style="font-size: 18px;">
+            <thead style="text-align: center">
+              <tr>
+                <th scope="col" style="text-align: center;">Mã lô hàng</th>
+                <th scope="col" style="text-align: center;">Barcode lô hàng</th>
+                <th scope="col" style="text-align: center;">Người tạo</th>
+                <th scope="col" style="text-align: center;">Ngày tạo</th>
+                <th scope="col" style="text-align: center;">Ngày sản xuất</th>
+                <th scope="col" style="text-align: center;">Hạn sử dụng</th>
+              </tr>
+            </thead>
+            <tbody  *ngFor="let batches of supplierDetail" style="text-align: center;">
+              <tr>
+                <td scope="row" (click)="detailGoodsReceiptNote(batches.id)">{{batches.id}}</td>
+                <td (click)="detailGoodsReceiptNote(batches.id)"><ngx-barcode bc-value={{batches.batchBarcode}} [bc-display-value]="true" [bc-width]="1" [bc-height]="35"></ngx-barcode></td>
+                <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdBy.name}}</td>
+                <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdAt | date:'dd-MM-yyyy'}}</td>
+                <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.manufacturingDate | date:'dd-MM-yyyy'}}</td>
+                <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.expiryDate | date:'dd-MM-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</main>

@@ -24,6 +24,7 @@ export class CreateStaffComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]],
     passwordConfirm: ['', [Validators.required, Validators.minLength(6)],],
     fullname: ['', [Validators.required]],
+    email: ['',[Validators.required, Validators.email]],
     phoneNumber: ['', [Validators.required, Validators.pattern('^0[0-9]{9}$')]],
     dob: ['', [Validators.required]],
     isMale: [true],
@@ -47,7 +48,7 @@ export class CreateStaffComponent implements OnInit {
   onSubmit() {
     console.log(this.statusError);
     console.log(this.StaffData);
-    
+
     var formData: any = new FormData();
     this.StaffData.value.avatar = this.imageURL;
     var date = this.StaffData.value.dob;
@@ -55,12 +56,13 @@ export class CreateStaffComponent implements OnInit {
     formData.append('password', this.StaffData.value.password);
     formData.append('passwordConfirm', this.StaffData.value.passwordConfirm);
     formData.append('fullname', this.StaffData.value.fullname);
+    formData.append('email', this.StaffData.value.email)
     formData.append('phoneNumber', this.StaffData.value.phoneNumber);
     formData.append('dob', date);
     formData.append('isMale', this.StaffData.value.isMale);
     formData.append('avatar', this.StaffData.value.avatar);
 
-    this.user.createStaff(formData).subscribe((rs) => {
+    this.user.createStaff(formData).subscribe((rs: any) => {
       console.log(rs);
       this.isSubmit = true
       this.notification.create(
@@ -68,7 +70,7 @@ export class CreateStaffComponent implements OnInit {
         'Tạo nhân viên mới thành công', ''
       )
       this.router.navigate(['dashboard/staff'])
-    }, err => {
+    }, (err: { error: { message: string; }; }) => {
       console.log(err);
 
       this.notification.create(

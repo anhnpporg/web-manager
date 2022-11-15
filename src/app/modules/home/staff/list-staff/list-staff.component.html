@@ -20,7 +20,7 @@
     </div>
     <div id="search">
         <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="nhập mã, tên, email nhân viên" [(ngModel)]="searchData"
+            <input type="text" nz-input placeholder="Nhập mã, tên, số điện thoại nhân viên" [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
         <ng-template #suffixButton>
@@ -28,7 +28,7 @@
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã nhân viên"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên nhân viên"></nz-option>
-                    <nz-option nzValue="SearchPhone" nzLabel="SĐT nhân viên"></nz-option>
+                    <nz-option nzValue="SearchPhone" nzLabel="Số điện thoại nhân viên"></nz-option>
                 </nz-select>
             </button>
         </ng-template>
@@ -36,23 +36,25 @@
     <section class="section">
         <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
             <thead>
                 <tr>
-                    <th>Ảnh đại diện</th>
-                    <th>Mã</th>
-                    <th>Họ và Tên</th>
-                    <th>Số điện thoại</th>
-                    <th>Action</th>
+                    <th style="text-align: center;">Ảnh đại diện</th>
+                    <th style="text-align: center;">Mã nhân viên</th>
+                    <th style="text-align: center;">Họ và Tên</th>
+                    <th style="text-align: center;">Số điện thoại</th>
+                    <th [nzFilters]="nameList"
+                    [nzFilterMultiple]="true"
+                    [nzFilterFn]="nameFilterFn" style="text-align: center;">Hoạt động</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data">
+                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
                     <td (click)="detail(data.userId)">
                         <img src={{data.avatar}} alt="avatar" width="50" height="50">
                     </td>
                     <td (click)="detail(data.userId)">{{ data.userId}}</td>
-                    <td (click)="detail(data.userId)">{{ data.fullname || null }}</td>
+                    <td (click)="detail(data.userId)">{{ data.fullname}}</td>
                     <td (click)="detail(data.userId)">{{ data.phoneNumber }}</td>
                     <td>
                         <!-- <a><button type="button" class="btn btn-outline-secondary">Cập nhật</button></a> -->
@@ -64,7 +66,7 @@
                     </td>
                     <ng-template #ElseBan>
                         <button type="button" class="btn btn-outline-danger action__button"
-                            (click)="clickBan(data.userId)">chặn</button>
+                            (click)="clickBan(data.userId)">Chặn</button>
                     </ng-template>
                 </tr>
             </tbody>

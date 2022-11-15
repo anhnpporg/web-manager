@@ -21,8 +21,8 @@ export class ListBrandComponent implements OnInit {
   checkError: boolean = false
   confirmModal?: NzModalRef;
   nameList = [
-    { text: 'còn hoạt động', value: true },
-    { text: 'ngừng hoạt động', value: false }
+    { text: 'Hoạt động', value: true },
+    { text: 'Ngừng hoạt động', value: false }
   ];
   nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
@@ -37,7 +37,7 @@ export class ListBrandComponent implements OnInit {
     this.brand.getAllBrand().subscribe((result) => {
       console.log(result);
 
-      this.listData = result,
+      this.listData = result.data,
         this.listsearch = this.listData
       this.loading = false
     })
@@ -48,8 +48,6 @@ export class ListBrandComponent implements OnInit {
   }
   getListSearch() {
     console.log(this.searchValue);
-
-
     if (this.selectedProvince == "searchID") {
       this.listsearch = this.listData.filter(data => data.id.toString().includes(this.searchValue.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchName") {
@@ -67,7 +65,7 @@ export class ListBrandComponent implements OnInit {
       formdata.append('name', this.factoryName);
       this.isVisible = false;
 
-      this.brand.createBrand(formdata).subscribe((result) => {
+      this.brand.createBrand(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo nhà sản xuất mới thành công', ''
@@ -77,7 +75,7 @@ export class ListBrandComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo nhà sản xuất mới thất bại', ''
@@ -91,7 +89,7 @@ export class ListBrandComponent implements OnInit {
   deleteBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
           let currentUrl = this.router.url;

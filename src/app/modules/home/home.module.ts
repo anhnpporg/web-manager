@@ -26,6 +26,18 @@ import { ListBrandComponent } from './brand/list-brand/list-brand.component';
 import { ListActiveSubstanceComponent } from './medicine/activeSubstance/list-active-substance/list-active-substance.component';
 import { ListProductOfActiveSubstanceComponent } from './medicine/activeSubstance/list-product-of-active-substance/list-product-of-active-substance.component';
 import { TagInputModule } from 'ngx-chips';
+import { DetailCategoryComponent } from './medicine/category/detail-category/detail-category.component';
+import { ListSupplierComponent } from './supplier/list-supplier/list-supplier.component';
+import { CreateSupplierComponent } from './supplier/create-supplier/create-supplier.component';
+import { ListReceiptNoteComponent } from './medicine/goodsreceiptnote/list-receipt-note/list-receipt-note.component';
+import { CreateSamplePrescriptionComponent } from './sampleprescription/create-sample-prescription/create-sample-prescription.component';
+import { ListSamplePrescriptionComponent } from './sampleprescription/list-sample-prescription/list-sample-prescription.component';
+import { DetailSamplePrescriptionComponent } from './sampleprescription/detail-sample-prescription/detail-sample-prescription.component';
+import { DetailInvoiceComponent } from './report/detail-invoice/detail-invoice.component';
+import { ReceiptNoteComponent } from './report/receipt-note/receipt-note.component';
+import { InvoiceComponent } from './report/invoice/invoice.component';
+import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-receipt-note.component';
+import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
 
 const homeRoutes: Routes = [
   {
@@ -42,7 +54,20 @@ const homeRoutes: Routes = [
       { path: 'detail-medicine/:id', component: DetailMedicineComponent },
       { path: 'user-profile', component: UsersProfileComponent },
       { path: 'brands', component: ListBrandComponent },
-      { path: 'medicine-activeSubstance', component: ListActiveSubstanceComponent }
+      { path: 'medicine-activeSubstance', component: ListActiveSubstanceComponent },
+      { path: 'medicine-activeSubstance/:id', component: ListProductOfActiveSubstanceComponent},
+      { path: 'detail-category/:id' , component: DetailCategoryComponent},
+      { path: 'supplier',component: ListSupplierComponent},
+      { path: 'create-supplier', component: CreateSupplierComponent},
+      { path: 'goodsreceiptnote/:id', component: ListReceiptNoteComponent},
+      { path: 'create-sample-prescription', component: CreateSamplePrescriptionComponent},
+      { path: 'list-sample-prescription', component: ListSamplePrescriptionComponent},
+      { path: 'detail-sample-prescription/:id', component: DetailSamplePrescriptionComponent},
+      { path: 'invoice' ,component: InvoiceComponent},
+      { path: 'detail-invoice/:id' , component: DetailInvoiceComponent},
+      { path: 'receipt-note' , component: ReceiptNoteComponent},
+      { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
+      { path: 'detail-supplier/:id' , component: DetailSupplierComponent}
     ]
   }
 ]
@@ -69,6 +94,18 @@ const homeRoutes: Routes = [
     ListActiveSubstanceComponent,
     ListProductOfActiveSubstanceComponent,
     CreateMedicineComponent,
+    DetailCategoryComponent,
+    ListSupplierComponent,
+    CreateSupplierComponent,
+    ListReceiptNoteComponent,
+    CreateSamplePrescriptionComponent,
+    ListSamplePrescriptionComponent,
+    DetailSamplePrescriptionComponent,
+    DetailInvoiceComponent,
+    ReceiptNoteComponent,
+    InvoiceComponent,
+    DetailReceiptNoteComponent,
+    DetailSupplierComponent
   ],
   imports: [
     CommonModule,

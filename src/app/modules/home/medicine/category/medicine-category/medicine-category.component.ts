@@ -1,7 +1,6 @@
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { ProductService } from './../../../../../_core/services/product/product.service';
-import { Customer } from 'src/app/_core/utils/interface';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -22,6 +21,11 @@ export class MedicineCategoryComponent implements OnInit {
   activeSubstanceName: string = ''
   checkError: boolean = false
   isVisible: boolean = false
+  nameList = [
+    { text: 'Hoạt động', value: true },
+    { text: 'Ngừng hoạt động', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private product: ProductService,
@@ -33,16 +37,17 @@ export class MedicineCategoryComponent implements OnInit {
   ngOnInit(): void {
 
     this.product.getAllCategory().subscribe((result) => {
-      console.log(result);
+      console.log(result.data);
 
-      this.listData = result
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
     })
   }
 
-  detail(id: number) {
-    // this.router.navigate(['dashboard/detail-staff/' + id]);
+  detail(id: number,name:string) {
+    this.router.navigate(['dashboard/detail-category/' + id],{queryParams: {}});
+
   }
 
   SearchOption(value: string) {
@@ -70,7 +75,7 @@ export class MedicineCategoryComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result) => {
+      this.product.createCategory(formdata).subscribe((result: any) => {
         this.notification.create(
           'success',
           'Tạo phân loại thuốc mới thành công', ''
@@ -80,7 +85,7 @@ export class MedicineCategoryComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, err => {
+      }, (err: any) => {
         this.notification.create(
           'error',
           'Tạo phân loại thuốc mới thất bại', ''
@@ -94,7 +99,7 @@ export class MedicineCategoryComponent implements OnInit {
   deleteBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
       nzOnOk: () => {
         this.product.deleteCategory(id).subscribe(() => {
           let currentUrl = this.router.url;
@@ -102,7 +107,7 @@ export class MedicineCategoryComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })

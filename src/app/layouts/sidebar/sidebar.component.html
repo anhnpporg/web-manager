@@ -9,38 +9,52 @@
          <a class="nav-link collapsed" data-bs-target="#account-nav" data-bs-toggle="collapse">
             <!-- <i class="bi bi-person"></i> -->
             <i class="fa fa-user"></i>
-            <span>Quản lí tài khoản</span>
-            <i class="bi bi-chevron-down ms-auto"></i> 
+            <span>Tài khoản</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
          </a>
          <ul id="account-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li> <a routerLink="/dashboard/staff"> <i class="bi bi-circle"></i><span>Nhân viên</span> </a></li>
             <!-- <li> <a routerLink="/dashboard/manager"> <i class="bi bi-circle"></i><span>Quản lý</span> </a></li> -->
-            <li> <a routerLink="/dashboard/customer"> <i class="bi bi-circle"></i><span>Khách hàng</span> </a></li>
+
          </ul>
       </li>
 
       <li class="nav-item">
          <a class="nav-link collapsed" data-bs-target="#medicine-nav" data-bs-toggle="collapse">
             <i class="fa fa-capsules"></i>
-            <span>Quản lí thuốc</span>
-            <i class="bi bi-chevron-down ms-auto"></i> 
+            <span>Sản phẩm</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
          </a>
          <ul id="medicine-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li> <a routerLink="/dashboard/medicine"> <i class="bi bi-circle"></i><span>Thuốc</span> </a></li>
-            <li> <a routerLink="/dashboard/medicine-category"> <i class="bi bi-circle"></i><span>Phân loại</span> </a></li>
-            <li> <a routerLink="/dashboard/medicine-activeSubstance"> <i class="bi bi-circle"></i><span>Hoạt chất</span> </a></li>
+            <li> <a routerLink="/dashboard/medicine"> <i class="bi bi-circle"></i><span>Sản phẩm</span> </a></li>
+            <li> <a routerLink="/dashboard/list-sample-prescription"> <i class="bi bi-circle"></i><span>Đơn mẫu</span> </a></li>
+            <li> <a routerLink="/dashboard/medicine-category"> <i class="bi bi-circle"></i><span>Kệ hàng</span> </a></li>
+            <li> <a routerLink="/dashboard/medicine-activeSubstance"> <i class="bi bi-circle"></i><span>Hoạt chất</span></a></li>
+            <li> <a routerLink="/dashboard/brands"> <i class="bi bi-circle"></i><span>Nhà sản xuất</span> </a></li>
          </ul>
       </li>
       <li class="nav-item">
          <a class="nav-link collapsed" data-bs-target="#brand-nav" data-bs-toggle="collapse">
             <i class="fa fa-industry"></i>
-            <span>Quản nhà sản xuất</span>
-            <i class="bi bi-chevron-down ms-auto"></i> 
+            <span>Đối tác</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
          </a>
          <ul id="brand-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li> <a routerLink="/dashboard/brands"> <i class="bi bi-circle"></i><span>Nhà sản xuất</span> </a></li>
+          <li> <a routerLink="/dashboard/customer"> <i class="bi bi-circle"></i><span>Khách hàng</span> </a></li>
+            <li> <a routerLink="/dashboard/supplier"> <i class="bi bi-circle"></i><span>Nhà cung cấp</span> </a></li>
          </ul>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#report-nav" data-bs-toggle="collapse">
+           <i class="bi bi-calendar2-check-fill"></i>
+           <span>Báo cáo</span>
+           <i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+         <li> <a routerLink="/dashboard/receipt-note"> <i class="bi bi-circle"></i><span>Quản lý nhập</span> </a></li>
+           <li> <a routerLink="/dashboard/invoice"> <i class="bi bi-circle"></i><span>Quản lý xuất</span> </a></li>
+        </ul>
+     </li>
 
       <!-- <li class="nav-heading">Pages</li>
       <li class="nav-item"> <a class="nav-link collapsed" routerLink="/user-profile"> <i class="bi bi-person"></i>

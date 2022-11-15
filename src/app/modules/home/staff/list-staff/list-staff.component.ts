@@ -13,10 +13,15 @@ export class ListStaffComponent implements OnInit {
 
   searchData: string = ''
   listData: StaffInterface[] = []
-  listsearch: any
+  listsearch: StaffInterface[] = []
   selectedProvince = 'searchID'
   loading: boolean = true;
   confirmModal?: NzModalRef;
+  nameList = [
+    { text: 'Hoạt động', value: true },
+    { text: 'Đã bị chặn', value: false }
+  ];
+  nameFilterFn = (list: string[], item: any): boolean => list.some(value => item.isActive == value)
 
   constructor(
     private user: UserService,
@@ -26,9 +31,9 @@ export class ListStaffComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.getStaffs().subscribe((result) => {
-      console.log(result);
-      
-      this.listData = result
+      console.log(result.data);
+
+      this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
     })
@@ -49,7 +54,7 @@ export class ListStaffComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
 
         })
@@ -70,7 +75,7 @@ export class ListStaffComponent implements OnInit {
             this.router.navigate([currentUrl]);
             console.log(currentUrl);
           });
-        }, err => {
+        }, (err: any) => {
           console.log(err)
         })
       },
