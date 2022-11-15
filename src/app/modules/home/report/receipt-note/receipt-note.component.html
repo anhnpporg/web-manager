@@ -15,7 +15,7 @@
   <div class="section">
     <div id="search">
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-          <input type="text" nz-input placeholder="Nhập tên lô hàng, dạng hoá đơn ..." [(ngModel)]="searchData"
+          <input type="text" nz-input placeholder="Nhập mã lô hàng, dạng hoá đơn ..." [(ngModel)]="searchData"
               (ngModelChange)="getListSearch()" />
       </nz-input-group>
       <ng-template #suffixButton>
@@ -34,7 +34,7 @@
           >
             <thead style="text-align: center">
               <tr>
-                <th scope="col" style="text-align: center;">Tên lô hàng</th>
+                <th scope="col" style="text-align: center;">Mã lô hàng</th>
                 <th scope="col" style="text-align: center;">Dạng hoá đơn</th>
                 <!-- <th scope="col" style="text-align: center;">Tên sản phẩm</th> -->
                 <th scope="col" style="text-align: center;">Số lượng</th>
