@@ -25,18 +25,18 @@
     </div>
   </div>
   <div id="search">
-    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input type="text" nz-input placeholder="Nhập mã, tên nhà cung cấp" [(ngModel)]="searchData"
+    <nz-input-group nzSearch nzSize="large" ><!--[nzAddOnAfter]="suffixButton"-->
+        <input type="text" nz-input placeholder="Nhập tên nhà cung cấp ..." [(ngModel)]="searchData"
             (ngModelChange)="getListSearch()" />
     </nz-input-group>
-    <ng-template #suffixButton>
+    <!-- <ng-template #suffixButton>
         <button nz-button nzType="primary" nzSize="large" nzSearch>
             <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                 <nz-option nzValue="searchID" nzLabel="Mã nhà cung cấp"></nz-option>
                 <nz-option nzValue="SearchName" nzLabel="Tên nhà cung cấp"></nz-option>
             </nz-select>
         </button>
-    </ng-template>
+    </ng-template> -->
 </div>
   <section class="section" >
       <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
@@ -44,7 +44,7 @@
           [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
           <thead>
               <tr>
-                  <th style="text-align: center;">ID</th>
+                  <!-- <th style="text-align: center;">ID</th> -->
                   <th style="text-align: center;">Tên nhà cung cấp</th>
                   <th style="text-align: center;">Ngày tạo</th>
                   <th [nzFilters]="nameList"
@@ -55,7 +55,7 @@
           </thead>
           <tbody>
               <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
-                  <td (click)="Detail(data.id)">{{ data.id}}</td>
+                  <!-- <td (click)="Detail(data.id)">{{ data.id}}</td> -->
                   <td (click)="Detail(data.id)">{{ data.name || null }}</td>
                   <td (click)="Detail(data.id)">{{ data.createdAt | date: 'dd-MM-yyyy'}}</td>
                   <td *ngIf="data.isActive; else ElseActve">Hoạt động</td>

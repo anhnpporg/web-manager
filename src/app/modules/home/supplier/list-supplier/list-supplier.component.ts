@@ -15,7 +15,7 @@ export class ListSupplierComponent implements OnInit {
   suppliers: Supplier[] = []
   searchData: string = ''
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchName'
   isVisible = false
   supplierName: string =''
   checkError: boolean = false

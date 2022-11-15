@@ -24,16 +24,20 @@
     <nz-table #basicTable [nzData]="shelfs" style="text-align: center; font-size: 18px;">
       <thead>
         <tr>
-          <th scope="col" style="text-align: center;">#</th>
+          <th scope="col" style="text-align: center;">Mã đăng kí</th>
           <th scope="col" style="text-align: center;">Tên thuốc</th>
+          <th scope="col" style="text-align: center;">Nhà cung cấp</th>
           <th scope="col" style="text-align: center;"></th>
         </tr>
       </thead>
       <tbody *ngFor="let shelfs of basicTable.data" style="text-align: center;">
         <tr>
-          <td scope="row"></td>
+          <td scope="row">{{shelfs.drugRegistrationNumber}}</td>
           <td>{{shelfs.name}}</td>
-          <td><button
+          <td>{{shelfs.brand.name}}</td>
+          <td>
+            <u (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết thuốc</u>
+            <!-- <button
             (click)="detail(shelfs.id)"
             style="
               background-color: rgba(0, 162, 255, 0.836);
@@ -42,7 +46,9 @@
                     border-radius: 17px;
                     border-color: rgba(0, 162, 255, 0.836); ">
             Xem chi tiết thuốc
-          </button></td>
+          </button> -->
+        </td>
+
       </tbody>
     </nz-table>
   </div>

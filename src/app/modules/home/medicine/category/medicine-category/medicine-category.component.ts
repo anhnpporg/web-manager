@@ -45,8 +45,8 @@ export class MedicineCategoryComponent implements OnInit {
     })
   }
 
-  detail(id: number,name:string) {
-    this.router.navigate(['dashboard/detail-category/' + id],{queryParams: {}});
+  detail(id: number) {
+    this.router.navigate(['dashboard/detail-category/' + id]);
 
   }
 
@@ -96,7 +96,7 @@ export class MedicineCategoryComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  deleteBrand(id: number) {
+  deleteCategory(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
