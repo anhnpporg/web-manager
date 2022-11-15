@@ -52,7 +52,7 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th style="text-align: center;">Mã</th>
+                    <!-- <th style="text-align: center;">Mã</th> -->
                     <th style="text-align: center;">Tên nhà sản xuất</th>
                     <th style="text-align: center;">Ngày tạo</th>
                     <th
@@ -64,7 +64,7 @@
             </thead>
             <tbody>
                 <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center;">
-                    <td>{{ data.id}}</td>
+                    <!-- <td>{{ data.id}}</td> -->
                     <td>{{ data.name || null }}</td>
                     <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
                     <td>
