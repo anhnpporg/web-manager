@@ -30,15 +30,38 @@ export class DashboardService {
     );
   }
 
-  getTopSelling(
-    day: boolean,
-    month: boolean,
-    year: boolean,
+  getTopSellingDay(
     size: number
   ): Observable<any> {
     return this.httpClient.get(
       DOMAIN +
-        `dashboard/top-selling?byDay=${day}&byMonth=${month}&byYear=${year}&size=${size}`,
+        `dashboard/top-selling?byDay=true&byMonth=false&byYear=false&size=${size}`,
+      { headers: this.headers }
+    );
+  }
+  getTopSellingMonth(
+    size: number
+  ): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/top-selling?byDay=false&byMonth=true&byYear=false&size=${size}`,
+      { headers: this.headers }
+    );
+  }
+  getTopSellingYear(
+    size: number
+  ): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/top-selling?byDay=false&byMonth=false&byYear=true&size=${size}`,
+      { headers: this.headers }
+    );
+  }
+
+  getSaleInfo(): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/sale-information`,
       { headers: this.headers }
     );
   }

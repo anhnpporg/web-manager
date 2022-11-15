@@ -22,11 +22,6 @@
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-7 label">Mã lô hàng:</b>
-                <div class="col-lg-7 col-md-6">{{ batchId }}</div>
-              </div>
-              <br>
-              <div class="row">
-                <b class="col-lg-5 col-md-7 label">Mã số lô hàng:</b>
                 <div class="col-lg-7 col-md-6">{{ batchBarcode }}</div>
               </div>
               <br>
@@ -97,9 +92,6 @@
           <tr>
             <th scope="col" style="text-align: center;">Mã xuất hàng</th>
             <th scope="col" style="text-align: center;">Dạng xuất</th>
-            <th scope="col" style="text-align: center;">Tên lô hàng</th>
-            <!-- <th scope="col" style="text-align: center;">Người tạo</th> -->
-
             <th scope="col" style="text-align: center;">Số lượng</th>
              <th scope="col" style="text-align: center;">Đơn vị</th>
             <th scope="col" style="text-align: center;">Tổng tiền</th>
@@ -109,8 +101,6 @@
           <tr>
             <td scope="row">{{goodIssueNotes.id}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.goodsIssueNoteType.name}}</td>
-            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.batch.name}}</td>
-            <!-- <td >{{goodIssueNotes.createdAt|date:'dd-MM-yyyy'}}</td> -->
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.quantity}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.unit}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice}}</td>

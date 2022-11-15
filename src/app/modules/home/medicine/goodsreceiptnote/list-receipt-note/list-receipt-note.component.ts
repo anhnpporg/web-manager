@@ -48,6 +48,7 @@ export class ListReceiptNoteComponent implements OnInit {
       });
       //phiếu xuất
       this.GRNService.getInvoiceByIdBatch(params['id']).subscribe((result) => {
+        console.log(result.data)
         this.goodIssueNote = result.data;
       });
       // thông tin lô hàng
