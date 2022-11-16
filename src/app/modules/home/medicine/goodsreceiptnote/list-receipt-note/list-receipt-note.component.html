@@ -62,18 +62,21 @@
     </nz-tab>
 
     <nz-tab nzTitle="Phiếu nhập">
-      <nz-table #basicTable [nzData]="goodReceiptNote" style="font-size: 18px;">
+      <nz-table #sortTable  [nzData]="goodReceiptNote" style="font-size: 18px;" nzTableLayout="fixed">
         <thead style="text-align: center">
           <tr>
-            <th scope="col" style="text-align: center;">Mã nhập hàng</th>
+            <!-- <th scope="col" style="text-align: center;">Mã nhập hàng</th>
             <th scope="col" style="text-align: center;">Dạng nhập</th>
             <th scope="col" style="text-align: center;">Nơi cung cấp</th>
             <th scope="col" style="text-align: center;">Ngày tạo</th>
             <th scope="col" style="text-align: center;">Số lượng</th>
-            <th scope="col" style="text-align: center;">Tổng tiền</th>
+            <th scope="col" style="text-align: center;">Tổng tiền</th> -->
+            <th *ngFor="let column of goodReceiptNoteTitle" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" style="text-align: center">
+              {{ column.title }}
+            </th>
           </tr>
         </thead>
-        <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
+        <tbody  *ngFor="let goodReceiptNotes of sortTable.data" style="text-align: center;">
           <tr *ngIf="goodReceiptNotes.supplier.isActive" >
             <td scope="row">{{goodReceiptNotes.id}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
@@ -95,17 +98,20 @@
     </nz-tab>
 
     <nz-tab nzTitle="Phiếu xuất">
-      <nz-table #basicTable [nzData]="goodIssueNote" style="font-size: 18px;">
+      <nz-table #sortTable2 [nzData]="goodIssueNote" style="font-size: 18px;">
         <thead style="text-align: center">
           <tr>
-            <th scope="col" style="text-align: center;">Mã xuất hàng</th>
+            <!-- <th scope="col" style="text-align: center;">Mã xuất hàng</th>
             <th scope="col" style="text-align: center;">Dạng xuất</th>
             <th scope="col" style="text-align: center;">Số lượng</th>
              <th scope="col" style="text-align: center;">Đơn vị</th>
-            <th scope="col" style="text-align: center;">Tổng tiền</th>
+            <th scope="col" style="text-align: center;">Tổng tiền</th> -->
+            <th *ngFor="let column of goodIssueNoteTitle" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" style="text-align: center">
+              {{ column.title }}
+            </th>
           </tr>
         </thead>
-        <tbody  *ngFor="let goodIssueNotes of goodIssueNote" style="text-align: center;">
+        <tbody  *ngFor="let goodIssueNotes of sortTable2.data" style="text-align: center;">
           <tr>
             <td scope="row">{{goodIssueNotes.id}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.goodsIssueNoteType.name}}</td>

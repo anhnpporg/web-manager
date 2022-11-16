@@ -18,6 +18,68 @@ export class ListReceiptNoteComponent implements OnInit {
   goodReceiptNote: GoodReceiptNote[] = [];
   goodIssueNote: GoodIssueNote[] = [];
   batchInfo: BatchInfo[] = [];
+
+  goodReceiptNoteTitle = [
+    {
+      title: 'Mã nhập hàng',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.id - b.id,
+      priority: false
+    },
+    {
+      title: 'Dạng nhập hàng',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.goodsReceiptNoteType.name.localeCompare(b.goodsReceiptNoteType.name),
+      priority: false
+    },
+    {
+      title: 'Nơi cung cấp',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.supplier.name.localeCompare(b.supplier.name),
+      priority: false
+    },
+    {
+      title: 'Ngày tạo',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.createdAt.localeCompare(b.createdAt),
+      priority: false
+    },
+    {
+      title: 'Số lượng',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.quantity - b.quantity,
+      priority: 2
+    },
+    {
+      title: 'Tổng tiền',
+      compare: (a: GoodReceiptNote, b: GoodReceiptNote) => a.totalPrice - b.totalPrice,
+      priority: 3
+    }
+  ];
+
+  goodIssueNoteTitle = [
+    {
+      title: 'Mã xuất hàng',
+      compare: (a: GoodIssueNote, b: GoodIssueNote) => a.id - b.id,
+      priority: 1
+    },
+    {
+      title: 'Dạng xuất hàng',
+      compare: (a: GoodIssueNote, b: GoodIssueNote) => a.goodsIssueNoteType.name.localeCompare(b.goodsIssueNoteType.name),
+      priority: false
+    },
+    {
+      title: 'Số lượng',
+      compare: (a: GoodIssueNote, b: GoodIssueNote) => a.quantity - b.quantity,
+      priority: 2
+    },
+    {
+      title: 'Đơn vị',
+      compare: (a: GoodIssueNote, b: GoodIssueNote) => a.unit.localeCompare(b.unit),
+      priority: false
+    },
+    {
+      title: 'Tổng tiền',
+      compare: (a: GoodIssueNote, b: GoodIssueNote) => a.totalPrice - b.totalPrice,
+      priority: 3
+    }
+  ];
+
   batchId: string = '';
   batchBarcode: string = '';
   productName: string = '';

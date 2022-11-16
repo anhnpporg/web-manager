@@ -15,7 +15,7 @@ export class ListBrandComponent implements OnInit {
   listsearch: any[] = []
   listData: any[] = []
   searchValue: string = ''
-  selectedProvince: string = 'searchID'
+  selectedProvince: string = 'SearchName'
   isVisible = false;
   factoryName: string = ''
   checkError: boolean = false
@@ -86,12 +86,16 @@ export class ListBrandComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  deleteBrand(id: number) {
+  isBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động?',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
+          this.notification.create(
+            'success',
+            'Ngừng hoạt động thành công', ''
+          )
           let currentUrl = this.router.url;
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
@@ -99,7 +103,35 @@ export class ListBrandComponent implements OnInit {
           });
         }, err => {
           console.log(err)
-
+          this.notification.create(
+            'error',
+            'Ngừng hoạt động thất bại', ''
+          )
+        })
+      },
+    });
+  }
+  isUnBrand(id: number) {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này hoạt động lại không?',
+      nzOnOk: () => {
+        this.brand.deleteBrand(id).subscribe(() => {
+          this.notification.create(
+            'success',
+            'Mở lại hoạt động thành công', ''
+          )
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
+          this.notification.create(
+            'error',
+            'Mở lại hoạt động thất bại',''
+          )
         })
       },
     });

@@ -34,18 +34,18 @@
         </div>
     </div>
     <div id="search">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã nhà sản xuất, tên nhà sản xuất" [(ngModel)]="searchValue"
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="">          <!-- [nzAddOnAfter]="suffixButton" -->
+            <input type="text" nz-input placeholder="Nhập tên nhà sản xuất ..." [(ngModel)]="searchValue"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
-        <ng-template #suffixButton>
+        <!-- <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã nhà sản xuất"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên nhà sản xuất"></nz-option>
                 </nz-select>
             </button>
-        </ng-template>
+        </ng-template> -->
     </div>
     <section class="section">
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
@@ -69,11 +69,11 @@
                     <td>{{ data.createdAt | date:'dd-MM-yyyy' }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'green'" (click)="isBrand(data.id)">Hoạt động</nz-tag>
                         </div>
                         <ng-template #isActive>
                             <div>
-                                <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
+                                <nz-tag [nzColor]="'red'" (click)="isUnBrand(data.id)">Ngừng hoạt động</nz-tag>
                             </div>
                         </ng-template>
                     </td>
