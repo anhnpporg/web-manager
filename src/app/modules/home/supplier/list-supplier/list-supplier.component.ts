@@ -15,7 +15,7 @@ export class ListSupplierComponent implements OnInit {
   suppliers: Supplier[] = []
   searchData: string = ''
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchName'
   isVisible = false
   supplierName: string =''
   checkError: boolean = false
@@ -65,7 +65,7 @@ export class ListSupplierComponent implements OnInit {
   clickBan(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Chặn',
-      nzContent: 'Bạn có muốn chặn nhân viên này',
+      nzContent: 'Bạn có muốn chặn nhà cung cấp này',
       nzOnOk: () => {
         this.supplier.isBan(id).subscribe(() => {
           let currentUrl = this.router.url;
@@ -85,7 +85,7 @@ export class ListSupplierComponent implements OnInit {
   clickUnBan(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Bỏ chặn',
-      nzContent: 'Bạn có muốn bỏ chặn nhân viên này',
+      nzContent: 'Bạn có muốn bỏ chặn nhà cung cấp này',
       nzOnOk: () => {
         this.supplier.isBan(id).subscribe(() => {
           let currentUrl = this.router.url;

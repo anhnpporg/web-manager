@@ -84,7 +84,7 @@ export class ListActiveSubstanceComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createActiveSubstance(formdata).subscribe((result: any) => {
+      this.product.createActiveSubstance(formdata).subscribe((result) => {
         this.notification.create(
           'success',
           'Tạo hoạt chất mới thành công', ''
@@ -94,7 +94,7 @@ export class ListActiveSubstanceComponent implements OnInit {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, (err: any) => {
+      }, (err) => {
         this.notification.create(
           'error',
           'Tạo hoạt chất mới thất bại', ''

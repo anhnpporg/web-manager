@@ -206,6 +206,7 @@ export interface GoodReceiptNote{
   supplier: {
     id: string
     name: string
+    isActive: boolean
   }
   quantity: number
   unit: string
@@ -313,4 +314,24 @@ export interface GoodIssueNote{
     id: string
     name: string
   }
+}
+
+export interface SaleInfo{
+  quantityOrder: number
+  percentQuantityOrder: number
+  cost: number
+  percentCost: number
+  turnover: number
+  percentTurnover: number
+  profit: number
+  percentProfit: number
+}
+
+export interface TopSelling{
+  productId: number,
+  productName: string,
+  price: number,
+  sold: number,
+  unit: string,
+  revenue: number
 }

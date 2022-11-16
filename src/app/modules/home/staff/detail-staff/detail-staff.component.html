@@ -112,7 +112,7 @@
                 <b *ngIf="invoices.length <= 0">
                   Nhân viên chưa có đơn hàng
                 </b>
-                <div *ngIf="invoices.length < 0">
+                <div *ngIf="invoices.length > 0">
                   <nz-table #basicTable [nzData]="invoices" style="font-size: 18px;" [nzPageSize]="5"
                 [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
                   <thead style="text-align: center">

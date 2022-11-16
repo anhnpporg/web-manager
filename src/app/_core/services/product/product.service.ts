@@ -42,7 +42,7 @@ export class ProductService {
     return this.httpClient.post(DOMAIN + 'active-substance-management/active-substances', name, { headers: this.headers })
   }
   deleteActiveSubstance(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + 'active-substance-management/active-substances', id, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + `active-substance-management/active-substances/${id}`, {}, { headers: this.headers })
   }
 
   //product
@@ -54,7 +54,7 @@ export class ProductService {
     return this.httpClient.post(DOMAIN + 'shelves-management/shelves', name, { headers: this.headers })
   }
   deleteCategory(id: number): Observable<any> {
-    return this.httpClient.patch(DOMAIN + `shelves-management/shelves/${id}`, { headers: this.headers })
+    return this.httpClient.patch(DOMAIN + `shelves-management/shelves/${id}`,{}, { headers: this.headers })
   }
   createProduct (product: any): Observable<any> {
     return this.httpClient.post(DOMAIN + 'product-management/products', product, { headers: this.headers })

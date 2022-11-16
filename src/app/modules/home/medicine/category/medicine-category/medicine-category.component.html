@@ -45,7 +45,7 @@
             [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
             <thead>
                 <tr>
-                    <th style="text-align: center">Mã kệ hàng</th>
+                    <!-- <th style="text-align: center">Mã kệ hàng</th> -->
                     <th style="text-align: center">Tên kệ hàng</th>
                     <th style="text-align: center">Ngày tạo</th>
                     <th [nzFilters]="nameList"
@@ -55,12 +55,12 @@
             </thead>
             <tbody>
                 <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
-                    <td (click)="detail(data.id,data.name)">{{ data.id}}</td>
-                    <td (click)="detail(data.id,data.name)">{{ data.name}}</td>
-                    <td (click)="detail(data.id,data.name)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
+                    <!-- <td (click)="detail(data.id)">{{ data.id}}</td> -->
+                    <td (click)="detail(data.id)">{{ data.name}}</td>
+                    <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
                     <td>
                         <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'" (click)="deleteBrand(data.id)">Hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'green'" (click)="deleteCategory(data.id)">Hoạt động</nz-tag>
                         </div>
                         <ng-template #isActive>
                             <div>
@@ -73,6 +73,6 @@
         </nz-table>
     </section>
 </main>
-<script src="components/angular-query-params/dist/angular-query-params.js">
+<!-- <script src="components/angular-query-params/dist/angular-query-params.js">
 
-</script>
+</script> -->
