@@ -74,7 +74,15 @@
           </tr>
         </thead>
         <tbody  *ngFor="let goodReceiptNotes of goodReceiptNote" style="text-align: center;">
-          <tr>
+          <tr *ngIf="goodReceiptNotes.supplier.isActive" >
+            <td scope="row">{{goodReceiptNotes.id}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.supplier.name}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice}}</td>
+          </tr>
+          <tr *ngIf="goodReceiptNotes.supplier.isActive == false" style="background-color: rgba(255, 0, 0, 0.253)">
             <td scope="row">{{goodReceiptNotes.id}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.supplier.name}}</td>

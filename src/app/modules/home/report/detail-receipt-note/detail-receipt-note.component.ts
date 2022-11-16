@@ -20,6 +20,7 @@ export class DetailReceiptNoteComponent implements OnInit {
   manufacturingDate: string =''
   expiryDate: string =''
   supplierName: string =''
+  isActiveSupplier: boolean = true
   quantity: number = 0
   unit: string =''
   totalPrice: number = 0
@@ -47,6 +48,7 @@ export class DetailReceiptNoteComponent implements OnInit {
         this.manufacturingDate = result.data.batch.manufacturingDate
         this.expiryDate = result.data.batch.expiryDate
         this.supplierName = result.data.supplier.name
+        this.isActiveSupplier = result.data.supplier.isActive
         this.quantity = result.data.quantity
         this.unit = result.data.unit
         this.totalPrice = result.data.totalPrice

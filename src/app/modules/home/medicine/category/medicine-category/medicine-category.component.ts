@@ -101,7 +101,11 @@ export class MedicineCategoryComponent implements OnInit {
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
       nzOnOk: () => {
-        this.product.deleteCategory(id).subscribe(() => {
+        this.product.deleteCategory(id).subscribe((rs) => {
+          this.notification.create(
+            'success',
+            rs.message, ''
+          )
           let currentUrl = this.router.url;
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate([currentUrl]);
@@ -109,7 +113,10 @@ export class MedicineCategoryComponent implements OnInit {
           });
         }, (err: any) => {
           console.log(err)
-
+          this.notification.create(
+            'error',
+            err.error.message, ''
+          )
         })
       },
     });

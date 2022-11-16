@@ -31,9 +31,13 @@
                 <div class="col-lg-7 col-md-6">{{ goodsReceiptNoteType }}</div>
               </div>
               <br>
-              <div class="row">
+              <div class="row" *ngIf="isActiveSupplier" >
                 <b class="col-lg-5 col-md-6 label">Nơi cung cấp</b>
                 <div class="col-lg-7 col-md-6">{{ supplierName }}</div>
+              </div>
+              <div class="row" *ngIf="isActiveSupplier == false" >
+                <b class="col-lg-5 col-md-6 label">Nơi cung cấp</b>
+                <div class="col-lg-7 col-md-6">{{ supplierName }} đã ngừng hoạt động</div>
               </div>
               <br>
               <div class="row">

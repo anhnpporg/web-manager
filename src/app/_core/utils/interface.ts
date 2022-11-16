@@ -206,6 +206,7 @@ export interface GoodReceiptNote{
   supplier: {
     id: string
     name: string
+    isActive: boolean
   }
   quantity: number
   unit: string
