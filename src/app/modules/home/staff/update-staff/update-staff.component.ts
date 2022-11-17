@@ -1,3 +1,5 @@
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { UserService } from 'src/app/_core/services/user/user.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { ImageService } from 'src/app/_core/services/image/image.service';
@@ -23,23 +25,33 @@ export class UpdateStaffComponent implements OnInit {
     fullName: '',
     dateOfBirth: '',
     phoneNumber: '',
-    isMale: ''
+    isMale: false
   }
+
+  confirmModal?: NzModalRef;
 
 
   constructor(
     private GetImg: ImageService,
     private storageImage: AngularFireStorage,
-    private userService: UserService
+    private userService: UserService,
+    private modal: NzModalService,
+    private notification: NzNotificationService
   ) { }
 
   ngOnInit(): void {
     console.log(this.staffID);
 
     this.userService.getProfilebyID(this.staffID).subscribe((result) => {
-      console.log(result.data);
-
+      this.updateInfo.avartar = result.data.avatar
+      this.updateInfo.fullName = result.data.fullname
+      this.updateInfo.dateOfBirth = result.data.dateOfBirth
+      this.updateInfo.phoneNumber = result.data.phoneNumber
+      this.updateInfo.isMale = result.data.isMale
     })
+
+    console.log(this.updateInfo);
+
 
 
   }
@@ -50,6 +62,41 @@ export class UpdateStaffComponent implements OnInit {
 
   handleChangeInfoOk() {
     this.isVisibleChangeInfo = false
+
+    console.log(this.updateInfo);
+
+    let dataform = new FormData()
+    dataform.append('avartar', this.updateInfo.avartar),
+      dataform.append('fullName', this.updateInfo.fullName),
+      dataform.append('dateOfBirth', this.updateInfo.dateOfBirth),
+      dataform.append('phoneNumber', this.updateInfo.phoneNumber),
+      dataform.append('isMale', this.updateInfo.isMale + ''),
+
+
+      this.confirmModal = this.modal.confirm({
+        nzTitle: 'Do you Want to delete these items?',
+        nzContent: 'When clicked the OK button, this dialog will be closed after 1 second',
+        nzOnOk: () => {
+          this.userService.changeInfoStaff(this.staffID, dataform).subscribe((result) => {
+            console.log(result);
+            this.notification.create(
+              'success',
+              result.message,
+              ''
+            );
+          }, err => {
+            this.notification.create(
+              'error',
+              err.error.message,
+              ''
+            );
+          })
+        }
+      });
+
+
+
+
   }
 
   handleChangeInfoCancel() {
@@ -73,7 +120,18 @@ export class UpdateStaffComponent implements OnInit {
         this.nameImage +
         '?alt=media&token=' +
         result.downloadTokens;
+      this.updateInfo.avartar = 'https://firebasestorage.googleapis.com/v0/b/utnhandrug.appspot.com/o/' +
+        this.nameImage +
+        '?alt=media&token=' +
+        result.downloadTokens;
     });
   }
+
+  changeInfo() {
+    console.log(this.updateInfo);
+
+  }
+
+
 
 }

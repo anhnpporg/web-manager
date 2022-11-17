@@ -9,19 +9,18 @@
             <div class="col-lg-9 col-md-8 label"><input type="file" (change)="uploadImage($event)" class="form-label">
             </div>
             <div class="col-lg-3 col-md-4">
-                <img [src]="imageURL" alt="newAvatar" width="42" height="42" style="border-radius: 20px;">
+                <img [src]="updateInfo.avartar" alt="newAvatar" width="42" height="42" style="border-radius: 20px;">
             </div>
         </div>
         <nz-form-label for="inputName" class="form-label">Họ và tên</nz-form-label>
-        <input type="text" class="form-control" id="inputName" id="inputName" 
-            placeholder="">
+        <input type="text" class="form-control" id="inputName" id="inputName" [placeholder]="updateInfo.fullName" [(ngModel)]="updateInfo.fullName" (ngModelChange)="changeInfo()">
         <nz-form-label for="inputDate" class="form-label">Ngày sinh</nz-form-label>
-        <input type="date" class="form-control">
+        <input type="datetime-local" class="form-control" [(ngModel)]="updateInfo.dateOfBirth" (ngModelChange)="changeInfo()">
         <nz-form-label for="inputPhonenumber" class="form-label">Số điện thoại</nz-form-label>
-        <input type="text" class="form-control" id="inputPhonenumber" placeholder="">
+        <input type="text" class="form-control" id="inputPhonenumber" [placeholder]="updateInfo.phoneNumber" [(ngModel)]="updateInfo.phoneNumber"  (ngModelChange)="changeInfo()">
         <nz-form-label class="form-label">Giới tính</nz-form-label>
-        <select class="form-control" [(ngModel)]="gender">
-            <option value="true" selected>Nam</option>
+        <select class="form-control" [(ngModel)]="updateInfo.isMale"  (ngModelChange)="changeInfo()">
+            <option value="true">Nam</option>
             <option value="false">Nữ</option>
         </select>
         <br>
