@@ -100,6 +100,7 @@ export class MedicineCategoryComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
+
       nzOnOk: () => {
         this.product.deleteCategory(id).subscribe((rs) => {
           this.notification.create(
