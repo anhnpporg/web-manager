@@ -21,47 +21,27 @@
         <h5 class="card-title"></h5>
         <form class="row g-3" (ngSubmit)="onSubmit()" [formGroup]="productData">
           <div class="col-md-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Mã số đăng kí</nz-form-label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="inputName"
-              formControlName="drugRegistrationNumber"
-            />
-            <div
-              *ngIf="
+            <nz-form-label nzRequired for="inputName5" class="form-label">Mã số đăng kí</nz-form-label>
+            <input type="text" class="form-control" id="inputName" formControlName="drugRegistrationNumber" />
+            <div *ngIf="
                 statusError.drugRegistrationNumber.invalid &&
                 (statusError.drugRegistrationNumber.dirty ||
                   statusError.drugRegistrationNumber.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.drugRegistrationNumber.errors">
-                <div
-                  *ngIf="statusError.drugRegistrationNumber.errors!['required']"
-                >
+                <div *ngIf="statusError.drugRegistrationNumber.errors!['required']">
                   <small style="color: red">Vui lòng nhập mã số đăng kí</small>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Tên thuốc</nz-form-label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="inputName"
-              formControlName="name"
-            />
-            <div
-              *ngIf="
+            <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
+            <input type="text" class="form-control" id="inputName" formControlName="name" />
+            <div *ngIf="
                 statusError.name.invalid &&
                 (statusError.name.dirty || statusError.name.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.name.errors">
                 <div *ngIf="statusError.name.errors!['required']">
                   <small style="color: red">Vui lòng nhập tên thuốc</small>
@@ -70,28 +50,17 @@
             </div>
           </div>
           <div class="col-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Nhà cung cấp</nz-form-label
-            >
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              formControlName="brandId"
-            >
+            <nz-form-label nzRequired for="inputName5" class="form-label">Nhà cung cấp</nz-form-label>
+            <select class="form-select" aria-label="Default select example" formControlName="brandId">
               <!-- <option selected>Open this select menu</option> -->
-              <option
-                *ngFor="let listBrands of listBrand"
-                value="{{ listBrands.id }}"
-              >
+              <option *ngFor="let listBrands of listBrand" value="{{ listBrands.id }}">
                 {{ listBrands.name }}
               </option>
             </select>
-            <div
-              *ngIf="
+            <div *ngIf="
                 statusError.brandId.invalid &&
                 (statusError.brandId.dirty || statusError.brandId.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.brandId.errors">
                 <div *ngIf="statusError.brandId.errors!['required']">
                   <small style="color: red">Vui lòng chọn nhà cung cấp</small>
@@ -100,28 +69,17 @@
             </div>
           </div>
           <div class="col-2">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Kệ hàng</nz-form-label
-            >
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              formControlName="shelfId"
-            >
+            <nz-form-label nzRequired for="inputName5" class="form-label">Kệ hàng</nz-form-label>
+            <select class="form-select" aria-label="Default select example" formControlName="shelfId">
               <!-- <option selected>Open this select menu</option> -->
-              <option
-                *ngFor="let listShelfs of listShelf"
-                value="{{ listShelfs.id }}"
-              >
+              <option *ngFor="let listShelfs of listShelf" value="{{ listShelfs.id }}">
                 {{ listShelfs.name }}
               </option>
             </select>
-            <div
-              *ngIf="
+            <div *ngIf="
                 statusError.shelfId.invalid &&
                 (statusError.shelfId.dirty || statusError.shelfId.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.shelfId.errors">
                 <div *ngIf="statusError.shelfId.errors!['required']">
                   <small style="color: red">Vui lòng chọn kệ hàng</small>
@@ -130,61 +88,39 @@
             </div>
           </div>
           <div class="col-2">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Mức tồn kho tối thiểu
+            <nz-form-label nzRequired for="inputName5" class="form-label">Mức tồn kho tối thiểu
             </nz-form-label>
-            <input
-              type="text"
-              class="form-control"
-              id="mininumInventory"
-              formControlName="mininumInventory"
-            />
-            <div
-              *ngIf="
+            <input type="text" class="form-control" id="mininumInventory" formControlName="mininumInventory" />
+            <div *ngIf="
                 statusError.mininumInventory.invalid &&
                 (statusError.mininumInventory.dirty ||
                   statusError.mininumInventory.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.mininumInventory.errors">
                 <div *ngIf="statusError.mininumInventory.errors!['required']">
-                  <small style="color: red"
-                    >Vui lòng nhập số lượng tối thiểu trong kho</small
-                  >
+                  <small style="color: red">Vui lòng nhập số lượng tối thiểu trong kho</small>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="col-2">
-            <nz-form-label nzRequired for="inputName5" class="form-label"
-              >Đường dùng</nz-form-label
-            >
-            <select
-              class="form-select"
-              formControlName="routeOfAdministrationId"
-            >
+            <nz-form-label nzRequired for="inputName5" class="form-label">Đường dùng</nz-form-label>
+            <select class="form-select" formControlName="routeOfAdministrationId">
               <!-- <option selected>Open this select menu</option> -->
-              <option
-                *ngFor="let listROAs of listROA"
-                value="{{ listROAs.id }}"
-              >
+              <option *ngFor="let listROAs of listROA" value="{{ listROAs.id }}">
                 {{ listROAs.name }}
               </option>
             </select>
-            <div
-              *ngIf="
+            <div *ngIf="
                 statusError.routeOfAdministrationId.invalid &&
                 (statusError.routeOfAdministrationId.dirty ||
                   statusError.routeOfAdministrationId.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.routeOfAdministrationId.errors">
-                <div
-                  *ngIf="
+                <div *ngIf="
                     statusError.routeOfAdministrationId.errors!['required']
-                  "
-                >
+                  ">
                   <small style="color: red">Vui lòng chọn cách dùng</small>
                 </div>
               </div>
@@ -192,28 +128,16 @@
           </div>
 
           <div class="col-6">
-            <nz-form-label nzRequired for="activeSubstances" class="form-label"
-              >Hoạt chất</nz-form-label
-            >
-            <nz-select
-              nzAllowClear
-              nzPlaceHolder="Hoạt chất"
-              nzMode="multiple"
-              formControlName="activeSubstances"
-            >
-              <nz-option
-                *ngFor="let listActiveSubstance of listActiveSubstance"
-                nzLabel="{{ listActiveSubstance.name }}"
-                nzValue="{{ listActiveSubstance.id }}"
-              ></nz-option>
+            <nz-form-label nzRequired for="activeSubstances" class="form-label">Hoạt chất</nz-form-label>
+            <nz-select nzAllowClear nzPlaceHolder="Hoạt chất" nzMode="multiple" formControlName="activeSubstances">
+              <nz-option *ngFor="let listActiveSubstance of listActiveSubstance"
+                nzLabel="{{ listActiveSubstance.name }}" nzValue="{{ listActiveSubstance.id }}"></nz-option>
             </nz-select>
-            <div
-              *ngIf="
+            <div *ngIf="
                 statusError.activeSubstances.invalid &&
                 (statusError.activeSubstances.dirty ||
                   statusError.activeSubstances.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.activeSubstances.errors">
                 <div *ngIf="statusError.activeSubstances.errors!['required']">
                   <small style="color: red">Vui lòng chọn hoạt chất</small>
@@ -222,40 +146,12 @@
             </div>
           </div>
           <div class="col-6">
-            <nz-form-label [nzSpan]="6">Bán theo liều</nz-form-label>
-            <nz-switch
-              (click)="clickIsUseDose()"
-              id="isUseDose"
-              formControlName="isUseDose"
-            ></nz-switch>
-          </div>
-          <div class="col-6">
-            <nz-form-label [nzSpan]="10"
-              >Quản lý theo lô, Hạn sử dụng</nz-form-label
-            >
-            <nz-switch
-              (click)="clickIsManagedInBatches()"
-              id="isManagedInBatches"
-              formControlName="isManagedInBatches"
-            >
-            </nz-switch>
-          </div>
-          <div class="col-3">
-            <nz-form-label class="form-label" nzRequired for="unit"
-              >Đơn vị cơ sở</nz-form-label>
-            <input
-              type="text"
-              class="form-control"
-              id="unit"
-              formControlName="unit"
-              style="margin-bottom: 15px"
-            />
-            <div
-              *ngIf="
+            <nz-form-label class="form-label" nzRequired for="unit">Đơn vị cơ sở</nz-form-label>
+            <input type="text" class="form-control" id="unit" formControlName="unit" style="margin-bottom: 15px" />
+            <div *ngIf="
                 statusError.unit.invalid &&
                 (statusError.unit.dirty || statusError.unit.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.unit.errors">
                 <div *ngIf="statusError.unit.errors!['required']">
                   <small style="color: red">Vui lòng nhập đơn vị cơ sở</small>
@@ -264,21 +160,12 @@
             </div>
           </div>
           <div class="col-6">
-            <nz-form-label nzRequired for="price" class="form-label"
-              >Giá bán</nz-form-label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="price"
-              formControlName="price"
-            />
-            <div
-              *ngIf="
+            <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
+            <input type="text" class="form-control" id="price" formControlName="price" />
+            <div *ngIf="
                 statusError.price.invalid &&
                 (statusError.price.dirty || statusError.price.touched)
-              "
-            >
+              ">
               <div *ngIf="statusError.price.errors">
                 <div *ngIf="statusError.price.errors!['required']">
                   <small style="color: red">Vui lòng nhập giá thuốc</small>
@@ -286,40 +173,75 @@
               </div>
             </div>
           </div>
-          <nz-collapse
-            style="border-radius: 15px;"
-            id="productUnits"
-            formControlName="productUnits" nzRequired for="productUnits">
-            <nz-collapse-panel [nzHeader]="header">
-                      <ng-container formArrayName="contacts" *ngFor="let contact of productUnits.controls; index as i" style="margin: auto">
-                        <ng-container [formGroupName]="i">
-                          <div class="col-6">
-                            <nz-form-label [nzSpan]="6">Quy cách đóng gói</nz-form-label>
-                            <nz-switch
-                              (click)="clickIsPackingSpecification()"
-                              id="productUnits.isPackingSpecification"
-                              formControlName="productUnits.isPackingSpecification">
-                            </nz-switch>
-                            <nz-form-label [nzSpan]="6" style="margin-left: 10px">Đơn vị cắt liều</nz-form-label>
-                            <nz-switch
-                              (click)="clickIsDoseBasedOnBodyWeightUnit()"
-                              id="productUnits.isDoseBasedOnBodyWeightUnit"
-                              formControlName="productUnits.isDoseBasedOnBodyWeightUnit">
-                            </nz-switch>
-                          </div>
 
-                          <label for="productUnits.unit" style="margin-right: 5px">Tên đơn vị: </label>
-                          <input type="text" id="unit" name="productUnits.unit" formControlName="unit" style="margin-right: 5px">
-                          <label for="productUnits.conversionValue" style="margin-right: 5px;">Giá trị quy đổi: </label>
-                          <input type="productUnits.number" id="productUnits.conversionValue" name="conversionValue" formControlName="conversionValue" min="1" style="margin-right: 5px">
-                          <label for="productUnits.price" style="margin-right: 5px">Giá bán: </label>
-                          <input type="number" id="productUnits.price" name="productUnits.price" formControlName="price" min="1" style="margin-right: 5px">
-                          <button class="btn-remove" type="button" (click)="removeContactField(i)" style="margin-left: 5px">
-                            <span nz-icon nzType="delete" nzTheme="outline"></span></button>
-                          <br><br>
-                        </ng-container>
-                      </ng-container>
-                    <button class="btn-add" type="button" (click)="addContactField()" style="margin-left:2px;border-radius: 5px;">Thêm đơn vị bán</button>
+          <div class="row mt-3">
+            <div class="col-3">
+              <nz-form-label [nzSpan]="16">Quản lý theo lô, Hạn sử dụng</nz-form-label>
+              <nz-switch (click)="clickIsManagedInBatches()" id="isManagedInBatches"
+                formControlName="isManagedInBatches">
+              </nz-switch>
+            </div>
+            <div class="col-3">
+              <nz-form-label [nzSpan]="10">Bán theo liều</nz-form-label>
+              <nz-switch (click)="clickIsUseDose()" id="isUseDose" formControlName="isUseDose"></nz-switch>
+            </div>
+            <div class="col-6" *ngIf="productData.value.isUseDose">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Tên đơn vị</label>
+                    <select class="form-control" name="doseUnit" (change)="changeDoseUnit($event)">
+                      <option value=""></option>
+                      <option value="mg">mg</option>
+                      <option value="ml">ml</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="">Đơn vị quy đổi</label>
+                    <input type="number" class="form-control" name="conversionValue" id="conversionValue" aria-describedby="emailHelpId"  (change)="changeDoseUnit($event)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nz-collapse style="border-radius: 15px;" id="productUnits" formControlName="productUnits" nzRequired
+            for="productUnits" class="mt-3">
+            <nz-collapse-panel [nzHeader]="header">
+              <ng-container formArrayName="contacts" *ngFor="let contact of listPorductUnit; index as i"
+                style="margin: auto">
+                <ng-container [formGroupName]="i">
+                  <div class="row">
+                    <div class="col-11">
+                      <div class="row">
+                        <div class="col-4">
+                          <nz-form-label nzRequired for="price" class="form-label">Tên đơn vị</nz-form-label>
+                          <input type="text" class="form-control" id="unit" name="unit" style="margin-right: 5px"
+                            (change)="changeModel($event, i)">
+                        </div>
+                        <div class="col-4">
+                          <nz-form-label nzRequired for="price" class="form-label">Giá trị quy đổi</nz-form-label>
+                          <input class="form-control" type="productUnits.number" id="conversionValue"
+                            name="conversionValue" min="1" style="margin-right: 5px" (change)="changeModel($event, i)">
+                        </div>
+                        <div class="col-4">
+                          <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
+                          <input class="form-control" type="number" id="price" name="price" min="1"
+                            style="margin-right: 5px" (change)="changeModel($event, i)">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-1">
+                      <i class="fa fa-trash-alt" role="button" (click)="removeProductUnit(i)"></i>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <div class="d-flex justify-content-end">
+                <button class="btn-add btn btn-outline-secondary mt-3" type="button" (click)="addNewProductUnit()"
+                  style="margin-left:2px;border-radius: 5px;">Thêm đơn vị bán</button>
+              </div>
             </nz-collapse-panel>
           </nz-collapse>
           <div class="d-flex justify-content-end">

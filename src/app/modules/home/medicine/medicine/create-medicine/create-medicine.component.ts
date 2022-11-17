@@ -1,3 +1,5 @@
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { productUnitsInterface } from './medicin-model';
 import { ProductService } from 'src/app/_core/services/product/product.service';
 import {
   routeOfAdministration,
@@ -17,6 +19,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 })
 export class CreateMedicineComponent implements OnInit {
   switchValue: boolean = true;
+  confirmModal?: NzModalRef
 
   listActiveSubstance: ActiveSubstance[] = [];
   listBrand: Brand[] = [];
@@ -24,34 +27,8 @@ export class CreateMedicineComponent implements OnInit {
   listUnit: Unit[] = [];
   listROA: routeOfAdministration[] = [];
 
-  contact = {
-    firstName: 'Harry',
-    lastName: 'Potter',
-    productUnits: [{ unit: 12, conversionValue: 10 , price: 12}]
-  }
-  form: FormGroup = this.formBuilder.group({
-    firstName: this.contact.firstName,
-    lastName: this.contact.lastName,
-    productUnits: this.buildContacts(this.contact.productUnits)
-  });
-  get productUnits(): FormArray {
-    return this.form.get('productUnits') as FormArray;
-  }
-
-  buildContacts(productUnits: {unit: number; conversionValue: number; price: number}[] = []) {
-    return this.formBuilder.array(productUnits.map(productUnit => this.formBuilder.group(productUnit)));
-  }
-
-  addContactField() {
-    this.productUnits.push(this.formBuilder.group({phoneNo: null, conversionValue: null, price: null}))
-  }
-
-  removeContactField(index: number): void {
-    if (this.productUnits.length >= 1) this.productUnits.removeAt(index);
-    else this.productUnits.patchValue([{unit: null, conversionValue: null, price: null}]);
-  }
-
   header: string = 'Đơn vị tính'
+  listPorductUnit: productUnitsInterface[] = []
 
   productData = this.fb.group({
     drugRegistrationNumber: ['', [Validators.required]], //mã số đăng kí
@@ -60,20 +37,17 @@ export class CreateMedicineComponent implements OnInit {
     shelfId: ['', Validators.required], // mã kệ thuốc
     mininumInventory: ['', Validators.required], //mức tồn kho tối thiểu
     routeOfAdministrationId: ['', Validators.required], // đường dùng
-    isUseDose: [false], // bán theo liều
+    // bán theo liều
     isManagedInBatches: [false], // quản lý theo lô, hạn sử dụng
     activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
-    isPackingSpecification: [false], // hiển thị quy cách đóng gói
-    isDoseBasedOnBodyWeightUnit: [false], // đơn vị liều dùng
-    productUnits: [{
-      unit: [],
-      conversionValue: [], // giá trị quy đổi
-      price: [],
-      isPackingSpecification: [false],
-      isDoseBasedOnBodyWeightUnit: [false],
-    }],
+    productUnits: [this.listPorductUnit],
+    isUseDose: [false],
+    doseUnitPrice: {
+      doseUnit: '',
+      conversionValue: 0
+    }
   });
 
   get statusError() {
@@ -86,8 +60,9 @@ export class CreateMedicineComponent implements OnInit {
     private product: ProductService,
     private router: Router,
     private notification: NzNotificationService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private modal: NzModalService
+  ) { }
 
   ngOnInit(): void {
     this.brand.getAllBrand().subscribe((listBrand) => {
@@ -112,45 +87,53 @@ export class CreateMedicineComponent implements OnInit {
 
   clickIsUseDose() {
     this.productData.value.isUseDose = !this.productData.value.isUseDose;
+
+    if (this.productData.value.isUseDose == true) {
+      this.productData.value.doseUnitPrice = {
+        doseUnit: 'mg',
+        conversionValue: 0
+      }
+    } else {
+      this.productData.value.doseUnitPrice = null
+    }
+  }
+  changeDoseUnit(event: any) {
+    let name = event.target.name
+    let value = event.target.value
+
+
+    if (this.productData.value.doseUnitPrice != null) {
+      let tempConversion = this.productData.value.doseUnitPrice?.conversionValue
+      let tempUnit = this.productData.value.doseUnitPrice?.doseUnit      
+      if (name == 'conversionValue') {
+        this.productData.value.doseUnitPrice = {
+          doseUnit: tempUnit,
+          conversionValue: value
+        }
+      }else if (name == "doseUnit") {
+        this.productData.value.doseUnitPrice = {
+          doseUnit: value,
+          conversionValue: tempConversion
+        }
+      }
+    }
+
+    console.log(this.productData.value);
+    
   }
 
   clickIsManagedInBatches() {
     this.productData.value.isManagedInBatches = !this.productData.value.isManagedInBatches;
   }
 
-  clickIsPackingSpecification(){
-    this.productData.value.isPackingSpecification = !this.productData.value.isPackingSpecification;
-  }
-
-  clickIsDoseBasedOnBodyWeightUnit(){
-    this.productData.value.isDoseBasedOnBodyWeightUnit = !this.productData.value.isDoseBasedOnBodyWeightUnit;
-  }
-
   onSubmit() {
-    console.log(this.productData);
-    // var product: any = new FormData();
-    // product.append(
-    //   'drugRegistrationNumber',
-    //   this.productData.value.drugRegistrationNumber
-    // );
-    // product.append('name', this.productData.value.name);
-    // product.append('brandId', this.productData.value.brandId);
-    // product.append('shelfId', this.productData.value.shelfId);
-    // product.append('mininumInventory', this.productData.value.mininumInventory);
-    // product.append(
-    //   'routeOfAdministrationId',
-    //   this.productData.value.routeOfAdministrationId
-    // );
-    // product.append('activeSubstances', this.productData.value.activeSubstances);
-    // product.append('isUseDose' , this.productData.value.isUseDose)
-    // product.append('isManagedInBatches', this.productData.value.isManagedInBatches)
-    // product.append('unit', this.productData.value.unit);
-    // product.append('price', this.productData.value.price);
-      console.log(this.productUnits)
-    this.product.createProduct(this.productData).subscribe(
+    console.log(this.productData.value);
+
+
+
+    this.product.createProduct(this.productData.value).subscribe(
       (rs: any) => {
         console.log(rs);
-        // this.isSubmit = true
         this.notification.create('success', 'Tạo thuốc mới thành công', '');
         this.router.navigate(['dashboard/medicine']);
       },
@@ -165,4 +148,46 @@ export class CreateMedicineComponent implements OnInit {
       }
     );
   }
+
+  addNewProductUnit() {
+    this.listPorductUnit.push({
+      unit: '',
+      conversionValue: 0, // giá trị quy đổi
+      price: 0,
+    })
+  }
+
+  removeProductUnit(index: number) {
+
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Cảnh báo',
+      nzContent: 'bạn muốn xóa đơn vị sản phẩm này',
+      nzOnOk: () => {
+        this.listPorductUnit.splice(index, 1)
+      }
+    });
+
+  }
+
+  changeModel(event: any, index: number) {
+    let name = event.target.name
+    let value = event.target.value
+
+    if (name == "unit") {
+      this.listPorductUnit[index].unit = value
+    } else if (name == "conversionValue") {
+      this.listPorductUnit[index].conversionValue = value
+    } else if (name == 'price') {
+      this.listPorductUnit[index].price = value
+    }
+
+    console.log(this.listPorductUnit);
+    console.log(this.productData.value);
+
+
+
+  }
+
+
+
 }
