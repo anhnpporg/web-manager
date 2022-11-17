@@ -38,6 +38,7 @@ import { ReceiptNoteComponent } from './report/receipt-note/receipt-note.compone
 import { InvoiceComponent } from './report/invoice/invoice.component';
 import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-receipt-note.component';
 import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
+import { UpdateStaffComponent } from './staff/update-staff/update-staff.component';
 
 const homeRoutes: Routes = [
   {
@@ -105,7 +106,8 @@ const homeRoutes: Routes = [
     ReceiptNoteComponent,
     InvoiceComponent,
     DetailReceiptNoteComponent,
-    DetailSupplierComponent
+    DetailSupplierComponent,
+    UpdateStaffComponent
   ],
   imports: [
     CommonModule,

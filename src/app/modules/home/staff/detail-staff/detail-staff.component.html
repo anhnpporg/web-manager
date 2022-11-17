@@ -68,45 +68,16 @@
                       <div class="col-lg-3 col-md-4 label">Email</div>
                       <div class="col-lg-9 col-md-8">{{email|| 'mail@gmail.com'}}</div>
                     </div>
-                      <div class="row" style="text-align: center;">
-                          <div class="col-lg-3 col-md-4 label">
-                            <button (click)="onSubmit()" nz-button nzType="primary">Đặt lại mật khẩu</button>
-                          </div>
-                          <div class="col-lg-4 col-md-5 label" >
-                            <button nz-button nzType="primary" (click)="showModalChangeInfo()" class="col-lg-9 col-md-8"><i></i>
-                              <span>Thay đổi thông tin</span></button>
-                              <nz-modal [(nzVisible)]="isVisibleChangeInfo" nzTitle="Thay đổi thông tin nhân viên" nzOkText="Thay đổi thông tin nhân viên"
-                              nzCancelText="Hủy" (nzOnOk)="handleChangeInfoOk()" (nzOnCancel)="handleChangeInfoCancel()">
-                              <ng-container  *nzModalContent>
-                                    <nz-form-label for="inputAvatar" class="form-label">Ảnh đại diện</nz-form-label>
-                                    <div class="row">
-                                      <div class="col-lg-9 col-md-8 label"><input type="file" (change)="uploadImage($event)" class="form-label"></div>
-                                      <div class="col-lg-3 col-md-4">
-                                        <img [src]="imageURL" alt="newAvatar" width="42" height="42" style="border-radius: 20px;">
-                                        <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL">
-                                      </div>
-                                    </div>
-                                  <input type="hidden" [(ngModel)]="newAvatar" [value]="imageURL">
-                                  <nz-form-label for="inputName" class="form-label">Họ và tên</nz-form-label>
-                                  <input type="text" class="form-control" id="inputName"  id="inputName" [(ngModel)]="newFullname" placeholder="{{fullname}}">
-                                  <nz-form-label for="inputDate" class="form-label">Ngày sinh</nz-form-label>
-                                  <input type="date" class="form-control" [(ngModel)]="newDateOfBirth">
-                                  <nz-form-label for="inputPhonenumber" class="form-label" >Số điện thoại</nz-form-label>
-                                  <input type="text" class="form-control" id="inputPhonenumber" placeholder="{{phoneNumber}}"
-                                  [(ngModel)]="newPhoneNumber">
-                                  <nz-form-label class="form-label">Giới tính</nz-form-label>
-                                  <select class="form-control" [(ngModel)]="newIsMale">
-                                    <option value="true" selected>Nam</option>
-                                    <option value="false">Nữ</option>
-                                  </select>
-                                  <br>
-                                  <!-- <button>Cập nhật thông tin</button> -->
-                              </ng-container>
-                          </nz-modal>
-                          </div>
-                        </div>
-                        </div>
+                    <div class="row" style="text-align: center;">
+                      <div class="col-lg-3 col-md-4 label">
+                        <button (click)="onSubmit()" nz-button nzType="primary">Đặt lại mật khẩu</button>
                       </div>
+                      <div class="col-lg-4 col-md-5 label">
+                        <app-update-staff (staffID)="id"></app-update-staff>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </nz-tab>
               <nz-tab nzTitle="Đơn hàng đã bán">
                 <b *ngIf="invoices.length <= 0">
@@ -114,30 +85,30 @@
                 </b>
                 <div *ngIf="invoices.length > 0">
                   <nz-table #basicTable [nzData]="invoices" style="font-size: 18px;" [nzPageSize]="5"
-                [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
-                  <thead style="text-align: center">
-                    <tr>
-                      <th scope="col" style="text-align: center;">Tên khách hàng</th>
-                      <th scope="col" style="text-align: center;">Số điện thoại khách hàng</th>
-                      <th scope="col" style="text-align: center;">Ngày tạo</th>
-                      <th scope="col" style="text-align: center;">Tổng tiền</th>
-                    </tr>
-                  </thead>
-                  <tbody  *ngFor="let invoices of basicTable.data" style="text-align: center;">
-                    <tr>
-                      <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
-                      <td (click)="detailInvoice(invoices.id)">{{invoices.customer.phoneNumber}}</td>
-                      <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                      <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
-                    </tr>
-                  </tbody>
-                </nz-table>
+                    [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
+                    <thead style="text-align: center">
+                      <tr>
+                        <th scope="col" style="text-align: center;">Tên khách hàng</th>
+                        <th scope="col" style="text-align: center;">Số điện thoại khách hàng</th>
+                        <th scope="col" style="text-align: center;">Ngày tạo</th>
+                        <th scope="col" style="text-align: center;">Tổng tiền</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let invoices of basicTable.data" style="text-align: center;">
+                      <tr>
+                        <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
+                        <td (click)="detailInvoice(invoices.id)">{{invoices.customer.phoneNumber}}</td>
+                        <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
+                        <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
+                      </tr>
+                    </tbody>
+                  </nz-table>
                 </div>
               </nz-tab>
             </nz-tabset>
-                    </div>
-                </div>
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
