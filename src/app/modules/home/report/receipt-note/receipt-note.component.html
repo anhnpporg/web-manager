@@ -36,6 +36,7 @@
               <tr>
                 <th scope="col" style="text-align: center;">Mã lô hàng</th>
                 <th scope="col" style="text-align: center;">Dạng hoá đơn</th>
+                <th scope="col" style="text-align: center;">Ngày nhập</th>
                 <!-- <th scope="col" style="text-align: center;">Tên sản phẩm</th> -->
                 <th scope="col" style="text-align: center;">Số lượng</th>
                 <th scope="col" style="text-align: center;">Đơn vị</th>
@@ -47,6 +48,7 @@
               <tr >
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.batch.barcode}}</td>
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.goodsReceiptNoteType.name}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.createdAt|date:'dd-MM-yyyy'}}</td>
                 <!-- <td >{{getNameProductByIdBatch(receiptnote.batch.id)}}</td> -->
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.quantity}}</td>
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.unit}}</td>

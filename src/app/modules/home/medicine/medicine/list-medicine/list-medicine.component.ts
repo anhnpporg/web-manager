@@ -50,7 +50,6 @@ export class ListMedicineComponent implements OnInit {
     });
 
     // get inactive product because brand
-
     this.product.getAllProductIsBrandInactive().subscribe((result) => {
       console.log(result);
       this.listProductWithBrandInactive = result.data;

@@ -41,10 +41,7 @@
               </button>
           </ng-template>
       </div>
-      <b *ngIf="listData.length <= 0">Không có thuốc còn hoạt động </b>
-      <div *ngIf="listData.length > 0">
         <section class="section">
-          <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
           <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
               [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
               <thead>
@@ -85,7 +82,7 @@
               </tbody>
           </nz-table>
       </section>
-      </div>
+
       </nz-tab>
       <nz-tab nzTitle="Sản phẩm có lỗi từ hoạt chất" (nzClick)="changeTab(2)" >
         <br>
@@ -105,8 +102,6 @@
               </button>
           </ng-template>
       </div>
-      <b *ngIf="listProductWithASInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi hoạt chất </b>
-      <div *ngIf="listProductWithASInactive.length > 0">
       <section class="section">
           <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
           <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
@@ -125,7 +120,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
+                 <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
                       <td (click)="detail(data.id)">
                           {{data.drugRegistrationNumber}}
                       </td>
@@ -149,7 +144,7 @@
               </tbody>
           </nz-table>
       </section>
-      </div>
+
       </nz-tab>
       <nz-tab nzTitle="Sản phẩm có lỗi từ nhà cung cấp" (nzClick)="changeTab(3)">
         <br>
@@ -169,8 +164,7 @@
               </button>
           </ng-template>
       </div>
-      <b *ngIf="listProductWithSupplierInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi từ nhà cung cấp </b>
-      <div *ngIf="listProductWithSupplierInactive.length > 0">
+
       <section class="section">
           <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
           <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
@@ -213,7 +207,7 @@
               </tbody>
           </nz-table>
       </section>
-      </div>
+
 
       </nz-tab>
       <nz-tab nzTitle="Sản phẩm có lỗi từ nhà sản xuất" (nzClick)="changeTab(4)">
@@ -234,8 +228,7 @@
               </button>
           </ng-template>
       </div>
-      <b *ngIf="listProductWithBrandInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi từ nhà sản xuất </b>
-      <div *ngIf="listProductWithBrandInactive.length > 0">
+
       <section class="section">
           <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
           <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
@@ -278,7 +271,6 @@
               </tbody>
           </nz-table>
       </section>
-      </div>
 
       </nz-tab>
     </nz-tabset>

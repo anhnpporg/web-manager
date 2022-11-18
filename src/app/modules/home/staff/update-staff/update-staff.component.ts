@@ -74,8 +74,8 @@ export class UpdateStaffComponent implements OnInit {
 
 
       this.confirmModal = this.modal.confirm({
-        nzTitle: 'Do you Want to delete these items?',
-        nzContent: 'When clicked the OK button, this dialog will be closed after 1 second',
+        nzTitle: 'Thay đổi thông tin nhân viên',
+        nzContent: 'Bạn có muốn thay đổi thông tin nhân viên này không ?',
         nzOnOk: () => {
           this.userService.changeInfoStaff(this.staffID, dataform).subscribe((result) => {
             console.log(result);
