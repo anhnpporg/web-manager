@@ -57,8 +57,11 @@ export class DetailStaffComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
+    
     this.subParam = this.atvRoute.params.subscribe((params) => {
       this.id = params['id'];
+      console.log(this.id);
       this.user.getProfilebyID(params['id']).subscribe((result) => {
         console.log(result.data)
         this.avatar = result.data?.avatar;

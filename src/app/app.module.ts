@@ -16,6 +16,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { vi_VN } from 'ng-zorro-antd/i18n';
+import { DatePipe } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -37,7 +38,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     HomeModule,
     RouterModule,
-    
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
