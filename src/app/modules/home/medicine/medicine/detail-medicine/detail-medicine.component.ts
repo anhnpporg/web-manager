@@ -57,6 +57,7 @@ export class DetailMedicineComponent implements OnInit {
          this.shelf = productDetails.data.shelf.name
          this.activeSubstances = productDetails.data.activeSubstances
          this.productUnits = productDetails.data.productUnits
+
          this.batches = productDetails.data.batches
         });
       },
