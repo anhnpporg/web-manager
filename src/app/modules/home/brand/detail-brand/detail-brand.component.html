@@ -1,0 +1,48 @@
+<main id="main" class="main">
+  <div class="pagetitle d-flex justify-content-between">
+    <div>
+      <h1>Danh sách thuốc được cung cấp từ {{brandName}}</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/brands">Nhà sản xuất</a>
+          </li>
+          <li class="breadcrumb-item active">Danh sách thuốc được cung cấp từ {{brandName}}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <nz-table #basicTable [nzData]="brandDetail" style="text-align: center; font-size: 18px;">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center;">Mã đăng kí</th>
+          <th scope="col" style="text-align: center;">Tên thuốc</th>
+          <th scope="col" style="text-align: center;"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let products of basicTable.data" style="text-align: center;">
+        <tr>
+          <td scope="row">{{products.drugRegistrationNumber}}</td>
+          <td >{{products.name}}</td>
+          <td>
+            <u (click)="detail(products.id)" style="color: rgb(55, 158, 248)">Xem chi tiết thuốc</u>
+            <!-- <button
+            (click)="detail(products.id)"
+            style="
+              background-color: rgba(0, 162, 255, 0.836);
+                    color: white;
+                    font-size: 17px;
+                    border-radius: 17px;
+                    border-color: rgba(0, 162, 255, 0.836); ">
+            Xem chi tiết thuốc
+          </button> -->
+        </td>
+      </tbody>
+    </nz-table>
+  </div>
+</main>

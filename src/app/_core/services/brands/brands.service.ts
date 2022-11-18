@@ -23,6 +23,13 @@ export class BrandsService {
   getAllBrand(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'brand-management/brands', { headers: this.headers })
   }
+  getDetailByBrandID(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `brand-management/brands/${id}/products`, { headers: this.headers })
+  }
+  getBrandName(id:number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `brand-management/brands/${id}`, { headers: this.headers })
+  }
+
   getAllBrandActive(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'brand-management/brands-active', { headers: this.headers })
   }

@@ -56,7 +56,7 @@
                     <b class="col-lg-5 col-md-6 label">Mức tồn kho tối thiểu</b>
                     <div class="col-lg-7 col-md-6">{{ mininumInventory }}</div>
                   </div>
-                  <br>
+
                   <div *ngFor="let productUnits of productUnits">
                     <div class="row" *ngIf="productUnits.isBaseUnit">
                       <b class="col-lg-5 col-md-6 label">Giá bán cơ bản</b>
@@ -66,12 +66,13 @@
                   <br>
                   <div class="row" *ngIf="isUseDose">
                     <b class="col-lg-5 col-md-6 label">Có bán theo liều</b>
+                    <br>
                   </div>
-                  <br>
                   <div class="row" *ngIf="isManagedInBatches">
                     <b class="col-lg-12 col-md-12 label">Có quản lý theo lô - hạn sử dụng</b>
+                    <br>
                   </div>
-                  <br>
+
                 </div>
               </div>
             </div>
@@ -81,36 +82,25 @@
               <div class="card-body pt-3">
                 <div *ngIf="activeSubstances.length <= 0">Thuốc chưa có thông tin hoạt chất</div>
       <div *ngIf="activeSubstances.length > 0">
-      <b style="font-size: 20px">Danh sách hoạt chất của thuốc {{name}}</b>
+      <b style="font-size: 20px">Hoạt chất của thuốc {{name}}</b>
       <br>
       <br>
       <div class="col-12" >
         <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;" [nzFrontPagination]="false"
         [nzShowPagination]="false">
-          <thead style="text-align: center">
+          <!-- <thead style="text-align: center">
             <tr>
-              <!-- <th scope="col" style="text-align: center;">Mã hoạt chất</th> -->
+              <th scope="col" style="text-align: center;">Mã hoạt chất</th>
               <th scope="col" style="text-align: center;">Tên hoạt chất</th>
               <th scope="col" style="text-align: center;"></th>
             </tr>
-          </thead>
+          </thead> -->
           <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
             <tr>
               <!-- <td scope="row">{{activeSubstances.id}}</td> -->
-              <td>{{activeSubstances.name}}</td>
+              <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
               <td>
                 <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
-                <!-- <button
-                (click)="detailActiveSubstence(activeSubstances.id)"
-                style="
-                  background-color: rgba(0, 162, 255, 0.836);
-                  color: white;
-                  font-size: 16px;
-                  border-radius: 18px;
-                  border-color: rgba(0, 162, 255, 0.836);
-                ">
-                Xem thuốc có cùng hoạt chất
-              </button> -->
               </td>
             </tr>
           </tbody>
@@ -129,8 +119,7 @@
     </nz-tab> -->
 
     <nz-tab nzTitle="Lô - Hạn sử dụng">
-      <div *ngIf="batches.length <= 0">Thuốc không thuốc lô hàng nào</div>
-      <div *ngIf="batches.length > 0">
+
       <b style="font-size: 20px">Danh sách lô hàng chứa thuốc {{name}}</b>
       <br>
       <br>
@@ -157,7 +146,6 @@
           </tr>
         </tbody>
       </nz-table>
-    </div>
       </nz-tab>
 
   </nz-tabset>

@@ -254,4 +254,55 @@ export class ListMedicineComponent implements OnInit {
       this.searchData =''
     }
   }
+
+  isInActiveProduct(id: number) {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho sản phẩm này ngừng hoạt động?',
+      nzOnOk: () => {
+        this.product.ActiveProduct(id).subscribe(() => {
+          this.notification.create(
+            'success',
+            'Ngừng hoạt động thành công', ''
+          )
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
+          this.notification.create(
+            'error',
+            'Ngừng hoạt động thất bại', ''
+          )
+        })
+      },
+    });
+  }
+  isActiveProduct(id: number) {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho sản phẩm này hoạt động lại không?',
+      nzOnOk: () => {
+        this.product.ActiveProduct(id).subscribe(() => {
+          this.notification.create(
+            'success',
+            'Mở lại hoạt động thành công', ''
+          )
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, err => {
+          console.log(err)
+          this.notification.create(
+            'error',
+            'Mở lại hoạt động thất bại',''
+          )
+        })
+      },
+    });
+  }
 }

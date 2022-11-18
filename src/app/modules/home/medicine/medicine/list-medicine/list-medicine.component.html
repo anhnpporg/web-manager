@@ -69,14 +69,14 @@
                       <td (click)="detail(data.id)">{{ data.name}}</td>
                       <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
                       <td>
-                          <div *ngIf="data.isActive == true; else isActive" >
-                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                        <div *ngIf="data.isActive == true; else isActive" >
+                          <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
+                      </div>
+                      <ng-template #isActive>
+                          <div>
+                              <nz-tag [nzColor]="'red'" (click)="isActiveProduct(data.id)">Ngừng bán</nz-tag>
                           </div>
-                          <ng-template #isActive>
-                              <div>
-                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
-                              </div>
-                          </ng-template>
+                      </ng-template>
                       </td>
                   </tr>
               </tbody>
@@ -116,7 +116,7 @@
                       [nzFilterMultiple]="true"
                       [nzFilterFn]="nameFilterFn"
                       style="text-align: center">Trạng thái hoạt động</th> -->
-                      <th style="text-align: center">Trạng thái hoạt động</th>
+                      <!-- <th style="text-align: center">Trạng thái hoạt động</th> -->
                   </tr>
               </thead>
               <tbody>
@@ -130,16 +130,16 @@
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
                       <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
-                      <td>
+                      <!-- <td>
                           <div *ngIf="data.isActive == true; else isActive" >
-                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                              <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
                           </div>
                           <ng-template #isActive>
                               <div>
-                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
+                                  <nz-tag [nzColor]="'red'" (click)="isActiveProduct(data.id)">Ngừng bán</nz-tag>
                               </div>
                           </ng-template>
-                      </td>
+                      </td> -->
                   </tr>
               </tbody>
           </nz-table>
@@ -179,7 +179,7 @@
                       [nzFilterMultiple]="true"
                       [nzFilterFn]="nameFilterFn"
                       style="text-align: center">Trạng thái hoạt động</th> -->
-                      <th style="text-align: center">Trạng thái hoạt động</th>
+                      <!-- <th style="text-align: center">Trạng thái hoạt động</th> -->
                   </tr>
               </thead>
               <tbody>
@@ -193,16 +193,16 @@
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
                       <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
-                      <td>
-                          <div *ngIf="data.isActive == true; else isActive" >
-                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                      <!-- <td>
+                        <div *ngIf="data.isActive == true; else isActive" >
+                          <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
+                      </div>
+                      <ng-template #isActive>
+                          <div>
+                              <nz-tag [nzColor]="'red'" (click)="isActiveProduct(data.id)">Ngừng bán</nz-tag>
                           </div>
-                          <ng-template #isActive>
-                              <div>
-                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
-                              </div>
-                          </ng-template>
-                      </td>
+                      </ng-template>
+                      </td> -->
                   </tr>
               </tbody>
           </nz-table>
@@ -243,7 +243,7 @@
                       [nzFilterMultiple]="true"
                       [nzFilterFn]="nameFilterFn"
                       style="text-align: center">Trạng thái hoạt động</th> -->
-                      <th style="text-align: center">Trạng thái hoạt động</th>
+                      <!-- <th style="text-align: center">Trạng thái hoạt động</th> -->
                   </tr>
               </thead>
               <tbody>
@@ -257,16 +257,16 @@
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
                       <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
-                      <td>
-                          <div *ngIf="data.isActive == true; else isActive" >
-                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                      <!-- <td>
+                        <div *ngIf="data.isActive == true; else isActive" >
+                          <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
+                      </div>
+                      <ng-template #isActive>
+                          <div>
+                              <nz-tag [nzColor]="'red'" (click)="isActiveProduct(data.id)">Ngừng bán</nz-tag>
                           </div>
-                          <ng-template #isActive>
-                              <div>
-                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
-                              </div>
-                          </ng-template>
-                      </td>
+                      </ng-template>
+                      </td> -->
                   </tr>
               </tbody>
           </nz-table>

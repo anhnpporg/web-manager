@@ -39,6 +39,7 @@ import { InvoiceComponent } from './report/invoice/invoice.component';
 import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-receipt-note.component';
 import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
 import { UpdateStaffComponent } from './staff/update-staff/update-staff.component';
+import { DetailBrandComponent } from './brand/detail-brand/detail-brand.component';
 
 const homeRoutes: Routes = [
   {
@@ -68,7 +69,8 @@ const homeRoutes: Routes = [
       { path: 'detail-invoice/:id' , component: DetailInvoiceComponent},
       { path: 'receipt-note' , component: ReceiptNoteComponent},
       { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
-      { path: 'detail-supplier/:id' , component: DetailSupplierComponent}
+      { path: 'detail-supplier/:id' , component: DetailSupplierComponent},
+      { path: 'detail-brand/:id' , component: DetailBrandComponent}
     ]
   }
 ]
@@ -107,7 +109,8 @@ const homeRoutes: Routes = [
     InvoiceComponent,
     DetailReceiptNoteComponent,
     DetailSupplierComponent,
-    UpdateStaffComponent
+    UpdateStaffComponent,
+    DetailBrandComponent
   ],
   imports: [
     CommonModule,

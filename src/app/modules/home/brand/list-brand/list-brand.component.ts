@@ -33,6 +33,10 @@ export class ListBrandComponent implements OnInit {
     private modal: NzModalService
   ) { }
 
+    DetailBrand(id: number){
+      this.router.navigate(['dashboard/detail-brand/' + id]);
+    }
+
   ngOnInit(): void {
     this.brand.getAllBrand().subscribe((result) => {
       console.log(result);
