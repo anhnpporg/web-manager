@@ -35,7 +35,7 @@
                               <span class="text-success small pt-1 fw-bold"> {{percentQuantityOrder}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentQuantityOrder == 0">
-                            <h6>{{profit}}</h6>
+                            <h6>{{quantityOrder}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentQuantityOrder}}%</span>
                          </div>
@@ -73,7 +73,7 @@
                               <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentCost == 0">
-                            <h6>{{profit}}</h6>
+                            <h6>{{cost}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
                          </div>
@@ -111,7 +111,7 @@
                               <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentTurnover == 0">
-                            <h6>{{profit}}</h6>
+                            <h6>{{turnover}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
                          </div>
@@ -242,6 +242,7 @@
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.price}}</td>
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.revenue}}</td>
                               </tr>
+
                            </tbody>
                         </nz-table>
                         <br>

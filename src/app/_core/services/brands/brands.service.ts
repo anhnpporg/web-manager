@@ -23,6 +23,9 @@ export class BrandsService {
   getAllBrand(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'brand-management/brands', { headers: this.headers })
   }
+  getAllBrandActive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'brand-management/brands-active', { headers: this.headers })
+  }
   createBrand(factoryName: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + `brand-management/brands`, factoryName, { headers: this.headers })
   }

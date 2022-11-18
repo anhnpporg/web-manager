@@ -16,7 +16,7 @@ export class ListActiveSubstanceComponent implements OnInit {
   listData: any[] = []
   listProductHaveActiveSubstance : any[] = []
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchName'
   loading: boolean = true;
   confirmModal?: NzModalRef;
   activeSubstanceName: string = ''
@@ -97,7 +97,7 @@ export class ListActiveSubstanceComponent implements OnInit {
       }, (err) => {
         this.notification.create(
           'error',
-          'Tạo hoạt chất mới thất bại', ''
+          'Tạo hoạt chất mới thất bại', err.error.message
         )
       })
     }
@@ -108,7 +108,27 @@ export class ListActiveSubstanceComponent implements OnInit {
   deleteActiveSubstance(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho hoạt chất này ngừng hoạt động',
+      nzContent: 'Bạn có muốn cho hoạt chất này ngừng hoạt động không ?',
+      nzOnOk: () => {
+        this.product.deleteActiveSubstance(id).subscribe(() => {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, (err: any) => {
+          console.log(err)
+
+        })
+      },
+    });
+  }
+
+  ActiveSubstance(id: number) {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Mở lại hoạt động',
+      nzContent: 'Bạn có muốn cho hoạt chất này hoạt động trở lại không ?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.product.deleteActiveSubstance(id).subscribe(() => {
           let currentUrl = this.router.url;

@@ -16,67 +16,271 @@
                 <button id="create-button" nz-button nzType="primary" nzSize="large">
                     <a routerLink="/dashboard/create-medicine">
                         <i class="bi bi-plus"></i>
-                        <span>Tạo thuốc</span>
+                        <span>Tạo sản phẩm</span>
                     </a>
                 </button>
             </div>
         </div>
     </div>
-    <div id="search">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, barcode, tên thuốc" [(ngModel)]="searchData"
-                (ngModelChange)="getListSearch()" />
-        </nz-input-group>
-        <ng-template #suffixButton>
-            <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
-                <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
-                    <nz-option nzValue="searchID" nzLabel="Mã thuốc"></nz-option>
-                    <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
-                    <nz-option nzValue="SearchName" nzLabel="Tên thuốc"></nz-option>
+    <nz-tabset [nzSize]="'small'">
+      <nz-tab nzTitle="Sản phẩm đang bán" (nzClick)="changeTab(1)">
+        <br>
+        <div id="search">
+          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input placeholder="Nhập mã, barcode, tên sản phẩm" [(ngModel)]="searchData"
+                  (ngModelChange)="getListSearch()" />
+          </nz-input-group>
+          <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
+                  <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                      <nz-option nzValue="searchID" nzLabel="Mã sản phẩm"></nz-option>
+                      <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
+                      <nz-option nzValue="SearchName" nzLabel="Tên sản phẩm"></nz-option>
 
-                </nz-select>
-            </button>
-        </ng-template>
-    </div>
-    <section class="section">
-        <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
-        <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
-            <thead>
-                <tr >
-                    <th style="text-align: center">Mã số đăng kí</th>
-                    <th style="text-align: center">Mã barcode</th>
-                    <th style="text-align: center">Tên thuốc</th>
-                    <th style="text-align: center">Giá bán</th>
-                    <th [nzFilters]="nameList"
-                    [nzFilterMultiple]="true"
-                    [nzFilterFn]="nameFilterFn"
-                    style="text-align: center">Trạng thái hoạt động</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
-                    <td (click)="detail(data.id)">
-                        {{data.drugRegistrationNumber}}
-                    </td>
-                    <td (click)="detail(data.id)">
-                        <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
-                            [bc-height]="height"></ngx-barcode>
-                    </td>
-                    <td (click)="detail(data.id)">{{ data.name}}</td>
-                    <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
-                    <td>
-                        <div *ngIf="data.isActive == true; else isActive">
-                            <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
-                        </div>
-                        <ng-template #isActive>
-                            <div>
-                                <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
-                            </div>
-                        </ng-template>
-                    </td>
-                </tr>
-            </tbody>
-        </nz-table>
-    </section>
+                  </nz-select>
+              </button>
+          </ng-template>
+      </div>
+      <b *ngIf="listData.length <= 0">Không có thuốc còn hoạt động </b>
+      <div *ngIf="listData.length > 0">
+        <section class="section">
+          <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+          <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+              [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
+              <thead>
+                  <tr >
+                      <th style="text-align: center">Mã số đăng kí</th>
+                      <th style="text-align: center">Mã barcode</th>
+                      <th style="text-align: center">Tên sản phẩm</th>
+                      <th style="text-align: center">Giá bán</th>
+                      <!-- <th [nzFilters]="nameList"
+                      [nzFilterMultiple]="true"
+                      [nzFilterFn]="nameFilterFn"
+                      style="text-align: center">Trạng thái hoạt động</th> -->
+                      <th style="text-align: center">Trạng thái hoạt động</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
+                      <td (click)="detail(data.id)">
+                          {{data.drugRegistrationNumber}}
+                      </td>
+                      <td (click)="detail(data.id)">
+                          <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
+                              [bc-height]="height"></ngx-barcode>
+                      </td>
+                      <td (click)="detail(data.id)">{{ data.name}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td>
+                          <div *ngIf="data.isActive == true; else isActive" >
+                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                          </div>
+                          <ng-template #isActive>
+                              <div>
+                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
+                              </div>
+                          </ng-template>
+                      </td>
+                  </tr>
+              </tbody>
+          </nz-table>
+      </section>
+      </div>
+      </nz-tab>
+      <nz-tab nzTitle="Sản phẩm có lỗi từ hoạt chất" (nzClick)="changeTab(2)" >
+        <br>
+        <div id="search">
+          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input placeholder="Nhập mã, barcode, tên sản phẩm" [(ngModel)]="searchData"
+                  (ngModelChange)="getListSearchAS()" />
+          </nz-input-group>
+          <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
+                  <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                      <nz-option nzValue="searchID" nzLabel="Mã sản phẩm"></nz-option>
+                      <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
+                      <nz-option nzValue="SearchName" nzLabel="Tên sản phẩm"></nz-option>
+
+                  </nz-select>
+              </button>
+          </ng-template>
+      </div>
+      <b *ngIf="listProductWithASInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi hoạt chất </b>
+      <div *ngIf="listProductWithASInactive.length > 0">
+      <section class="section">
+          <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+          <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+              [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
+              <thead>
+                  <tr >
+                      <th style="text-align: center">Mã số đăng kí</th>
+                      <th style="text-align: center">Mã barcode</th>
+                      <th style="text-align: center">Tên sản phẩm</th>
+                      <th style="text-align: center">Giá bán</th>
+                      <!-- <th [nzFilters]="nameList"
+                      [nzFilterMultiple]="true"
+                      [nzFilterFn]="nameFilterFn"
+                      style="text-align: center">Trạng thái hoạt động</th> -->
+                      <th style="text-align: center">Trạng thái hoạt động</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
+                      <td (click)="detail(data.id)">
+                          {{data.drugRegistrationNumber}}
+                      </td>
+                      <td (click)="detail(data.id)">
+                          <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
+                              [bc-height]="height"></ngx-barcode>
+                      </td>
+                      <td (click)="detail(data.id)">{{ data.name}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td>
+                          <div *ngIf="data.isActive == true; else isActive" >
+                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                          </div>
+                          <ng-template #isActive>
+                              <div>
+                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
+                              </div>
+                          </ng-template>
+                      </td>
+                  </tr>
+              </tbody>
+          </nz-table>
+      </section>
+      </div>
+      </nz-tab>
+      <nz-tab nzTitle="Sản phẩm có lỗi từ nhà cung cấp" (nzClick)="changeTab(3)">
+        <br>
+        <div id="search">
+          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input placeholder="Nhập mã, barcode, tên sản phẩm" [(ngModel)]="searchData"
+                  (ngModelChange)="getListSearchSupplier()" />
+          </nz-input-group>
+          <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
+                  <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                      <nz-option nzValue="searchID" nzLabel="Mã sản phẩm"></nz-option>
+                      <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
+                      <nz-option nzValue="SearchName" nzLabel="Tên sản phẩm"></nz-option>
+
+                  </nz-select>
+              </button>
+          </ng-template>
+      </div>
+      <b *ngIf="listProductWithSupplierInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi từ nhà cung cấp </b>
+      <div *ngIf="listProductWithSupplierInactive.length > 0">
+      <section class="section">
+          <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+          <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+              [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
+              <thead>
+                  <tr >
+                      <th style="text-align: center">Mã số đăng kí</th>
+                      <th style="text-align: center">Mã barcode</th>
+                      <th style="text-align: center">Tên sản phẩm</th>
+                      <th style="text-align: center">Giá bán</th>
+                      <!-- <th [nzFilters]="nameList"
+                      [nzFilterMultiple]="true"
+                      [nzFilterFn]="nameFilterFn"
+                      style="text-align: center">Trạng thái hoạt động</th> -->
+                      <th style="text-align: center">Trạng thái hoạt động</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
+                      <td (click)="detail(data.id)">
+                          {{data.drugRegistrationNumber}}
+                      </td>
+                      <td (click)="detail(data.id)">
+                          <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
+                              [bc-height]="height"></ngx-barcode>
+                      </td>
+                      <td (click)="detail(data.id)">{{ data.name}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td>
+                          <div *ngIf="data.isActive == true; else isActive" >
+                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                          </div>
+                          <ng-template #isActive>
+                              <div>
+                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
+                              </div>
+                          </ng-template>
+                      </td>
+                  </tr>
+              </tbody>
+          </nz-table>
+      </section>
+      </div>
+
+      </nz-tab>
+      <nz-tab nzTitle="Sản phẩm có lỗi từ nhà sản xuất" (nzClick)="changeTab(4)">
+        <br>
+        <div id="search">
+          <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+              <input type="text" nz-input placeholder="Nhập mã, barcode, tên sản phẩm" [(ngModel)]="searchData"
+                  (ngModelChange)="getListSearchBrand()" />
+          </nz-input-group>
+          <ng-template #suffixButton>
+              <button nz-button nzType="primary" nzSize="large" nzSearch style="min-width: 150px;color: aliceblue;">
+                  <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
+                      <nz-option nzValue="searchID" nzLabel="Mã sản phẩm"></nz-option>
+                      <nz-option nzValue="searchBarcode" nzLabel="Mã barcode"></nz-option>
+                      <nz-option nzValue="SearchName" nzLabel="Tên sản phẩm"></nz-option>
+
+                  </nz-select>
+              </button>
+          </ng-template>
+      </div>
+      <b *ngIf="listProductWithBrandInactive.length <= 0">Không có thuốc ngưng hoạt động vì lỗi từ nhà sản xuất </b>
+      <div *ngIf="listProductWithBrandInactive.length > 0">
+      <section class="section">
+          <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
+          <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
+              [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger style="text-align: center">
+              <thead>
+                  <tr >
+                      <th style="text-align: center">Mã số đăng kí</th>
+                      <th style="text-align: center">Mã barcode</th>
+                      <th style="text-align: center">Tên sản phẩm</th>
+                      <th style="text-align: center">Giá bán</th>
+                      <!-- <th [nzFilters]="nameList"
+                      [nzFilterMultiple]="true"
+                      [nzFilterFn]="nameFilterFn"
+                      style="text-align: center">Trạng thái hoạt động</th> -->
+                      <th style="text-align: center">Trạng thái hoạt động</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
+                      <td (click)="detail(data.id)">
+                          {{data.drugRegistrationNumber}}
+                      </td>
+                      <td (click)="detail(data.id)">
+                          <ngx-barcode bc-value={{data.barcode}} [bc-display-value]="true" [bc-width]="width"
+                              [bc-height]="height"></ngx-barcode>
+                      </td>
+                      <td (click)="detail(data.id)">{{ data.name}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td>
+                          <div *ngIf="data.isActive == true; else isActive" >
+                              <nz-tag [nzColor]="'green'">Còn bán</nz-tag>
+                          </div>
+                          <ng-template #isActive>
+                              <div>
+                                  <nz-tag [nzColor]="'red'">Ngừng bán</nz-tag>
+                              </div>
+                          </ng-template>
+                      </td>
+                  </tr>
+              </tbody>
+          </nz-table>
+      </section>
+      </div>
+
+      </nz-tab>
+    </nz-tabset>
+
 </main>

@@ -65,11 +65,11 @@ export class CreateMedicineComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((listBrand) => {
+    this.brand.getAllBrandActive().subscribe((listBrand) => {
       console.log(listBrand);
       this.listBrand = listBrand.data
     });
-    this.product.getAllShelf().subscribe((listShelf) => {
+    this.product.getAllShelfActive().subscribe((listShelf) => {
       console.log(listShelf);
       this.listShelf = listShelf.data
     });
@@ -78,7 +78,7 @@ export class CreateMedicineComponent implements OnInit {
       this.listROA = listROA.data;
     });
     this.product
-      .getAllActiveSubstance()
+      .getAllActiveSubstanceActive()
       .subscribe((listActiveSubstance) => {
         console.log(listActiveSubstance);
         this.listActiveSubstance = listActiveSubstance.data
@@ -104,7 +104,7 @@ export class CreateMedicineComponent implements OnInit {
 
     if (this.productData.value.doseUnitPrice != null) {
       let tempConversion = this.productData.value.doseUnitPrice?.conversionValue
-      let tempUnit = this.productData.value.doseUnitPrice?.doseUnit      
+      let tempUnit = this.productData.value.doseUnitPrice?.doseUnit
       if (name == 'conversionValue') {
         this.productData.value.doseUnitPrice = {
           doseUnit: tempUnit,
@@ -119,7 +119,7 @@ export class CreateMedicineComponent implements OnInit {
     }
 
     console.log(this.productData.value);
-    
+
   }
 
   clickIsManagedInBatches() {

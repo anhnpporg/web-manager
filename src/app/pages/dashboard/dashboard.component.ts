@@ -123,7 +123,7 @@ export class DashboardComponent implements OnInit {
       this.saleInfo = result.data;
       console.log(result.data);
       this.quantityOrder = result.data.quantityOrder;
-      this.percentQuantityOrder = result.data.percentQuantityOrder;
+      this.percentQuantityOrder = result.data.percentQuantityOrder
       this.cost = result.data.cost;
       this.percentCost = result.data.percentCost;
       this.turnover = result.data.turnover;

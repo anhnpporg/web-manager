@@ -25,7 +25,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -291,10 +291,10 @@
   /**
    * Initiate Datatables
    */
-  const datatables = select('.datatable', true)
-  datatables.forEach(datatable => {
-    new simpleDatatables.DataTable(datatable);
-  })
+  // const datatables = select('.datatable', true)
+  // datatables.forEach(datatable => {
+  //   new simpleDatatables.DataTable(datatable);
+  // })
 
   /**
    * Autoresize echart charts
@@ -406,7 +406,7 @@
 //       ]
 //     }]
 //   });
-  
+
 // //Echart
 // var EareaChart = echarts.init(document.querySelector("#EareaChart")).setOption({
 //   xAxis: {
@@ -417,7 +417,7 @@
 //   yAxis: {
 //     type: 'value'
 //   },
-  
+
 //   series: [{
 //     data: [820, 932, 901, 934, 1290, 1330, 1320],
 //     type: 'line',
@@ -478,9 +478,9 @@
 //   ]
 // });
 
-  
-  
-  
+
+
+
   }, 1);
   // new ApexCharts(document.querySelector("#reportsChart"), {
   //   series: [{
@@ -1212,5 +1212,5 @@
   //   }
   // });
 
- 
+
 })();

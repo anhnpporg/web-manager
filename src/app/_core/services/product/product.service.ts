@@ -21,7 +21,16 @@ export class ProductService {
   }
 
   getAllProduct(): Observable<any> {
-    return this.httpClient.get(DOMAIN + 'product-management/products', { headers: this.headers })
+    return this.httpClient.get(DOMAIN + 'product-management/products?isProductActive=true', { headers: this.headers })
+  }
+  getAllProductIsSupplierInactive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/products?isSupplierActive=true', { headers: this.headers })
+  }
+  getAllProductIsBrandInactive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/products?isBrandActive=true', { headers: this.headers })
+  }
+  getAllProductIsActiveSubstanceInactive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'product-management/products?isActiveActiveSubstance=true', { headers: this.headers })
   }
 
   getProductById(id : string):Observable<any> {
@@ -32,6 +41,9 @@ export class ProductService {
 
   getAllActiveSubstance(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'active-substance-management/active-substances', { headers: this.headers })
+  }
+  getAllActiveSubstanceActive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'active-substance-management/active-substances-active', { headers: this.headers })
   }
 
   getActiveSubstanceById(id: number): Observable<any>{
@@ -64,6 +76,10 @@ export class ProductService {
   getAllShelf(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'shelves-management/shelves', { headers: this.headers })
   }
+  getAllShelfActive(): Observable<any> {
+    return this.httpClient.get(DOMAIN + 'shelves-management/shelves-active', { headers: this.headers })
+  }
+
   getShelfById(id: number): Observable<any> {
     return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}/products`, { headers: this.headers })
   }
@@ -72,9 +88,9 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/route-of-administrations', { headers: this.headers })
   }
 
-  getStockStrengthUnit(): Observable<any> {
-    return this.httpClient.get(DOMAIN + 'product-management/stock-strength-units', { headers: this.headers })
-  }
+  // getStockStrengthUnit(): Observable<any> {
+  //   return this.httpClient.get(DOMAIN + 'product-management/stock-strength-units', { headers: this.headers })
+  // }
 
   //Batch
   getProductByIdBatch(id: number): Observable<any> {
