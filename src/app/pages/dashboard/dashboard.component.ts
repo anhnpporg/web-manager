@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
     },
     yAxis: {
       type: 'value',
@@ -75,19 +75,19 @@ export class DashboardComponent implements OnInit {
       {
         name: 'Chi phí',
         type: 'line',
-        stack: 'Total',
+        // stack: 'Total',
         data: [120, 132, 101, 134, 90, 230, 210],
       },
       {
         name: 'Doanh thu',
         type: 'line',
-        stack: 'Total',
+        // stack: 'Total',
         data: [220, 182, 191, 234, 290, 330, 310],
       },
       {
         name: 'Lợi nhuận',
         type: 'line',
-        stack: 'Total',
+        // stack: 'Total',
         data: [150, 232, 201, 154, 190, 330, 410],
       },
     ],
