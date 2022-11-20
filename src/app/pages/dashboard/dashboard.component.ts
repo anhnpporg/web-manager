@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { Router } from '@angular/router';
 import { SaleInfo, TopSelling } from './../../_core/utils/interface';
 import { DashboardService } from './../../_core/services/dashboard/dashboard.service';
@@ -37,7 +38,9 @@ export class DashboardComponent implements OnInit {
   profit: number = 0;
   percentProfit: number = 0;
 
+  chartData: any[] = []
 
+  chartDay: any[] = []
 
   constructor(
     private elementRef: ElementRef,
@@ -71,29 +74,55 @@ export class DashboardComponent implements OnInit {
     yAxis: {
       type: 'value',
     },
-    series: [
-      {
-        name: 'Chi phí',
-        type: 'line',
-        // stack: 'Total',
-        data: [120, 132, 101, 134, 90, 230, 210],
-      },
-      {
-        name: 'Doanh thu',
-        type: 'line',
-        // stack: 'Total',
-        data: [220, 182, 191, 234, 290, 330, 310],
-      },
-      {
-        name: 'Lợi nhuận',
-        type: 'line',
-        // stack: 'Total',
-        data: [150, 232, 201, 154, 190, 330, 410],
-      },
-    ],
+    series: this.chartData,
+    // series: [
+    //   {
+    //     name: 'Chi phí',
+    //     type: 'line',
+    //     // stack: 'Total',
+    //     data: [120, 132, 101, 134, 90, 230, 210],
+    //   },
+    //   {
+    //     name: 'Doanh thu',
+    //     type: 'line',
+    //     // stack: 'Total',
+    //     data: [220, 182, 191, 234, 290, 330, 310],
+    //   },
+    //   {
+    //     name: 'Lợi nhuận',
+    //     type: 'line',
+    //     // stack: 'Total',
+    //     data: [150, 232, 201, 154, 190, 330, 410],
+    //   },
+    // ],
   };
 
+
   ngOnInit(): void {
+
+    this.chartData = [
+        {
+          name: 'Chi phí',
+          type: 'line',
+          // stack: 'Total',
+          data: [120, 132, 101, 134, 90, 230, 210],
+        },
+        {
+          name: 'Doanh thu',
+          type: 'line',
+          // stack: 'Total',
+          data: [220, 182, 191, 234, 290, 330, 310],
+        },
+        {
+          name: 'Lợi nhuận',
+          type: 'line',
+          // stack: 'Total',
+          data: [150, 232, 201, 154, 190, 330, 410],
+        },
+      ],
+
+    console.log(this.chartData)
+
     this.dashboard
       .getRecentSales(this.day, this.month, this.year, this.size)
       .subscribe((result) => {

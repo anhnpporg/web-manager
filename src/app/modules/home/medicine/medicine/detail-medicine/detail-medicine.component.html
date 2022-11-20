@@ -56,18 +56,22 @@
                     <b class="col-lg-5 col-md-6 label">Mức tồn kho tối thiểu</b>
                     <div class="col-lg-7 col-md-6">{{ mininumInventory }}</div>
                   </div>
-
+                  <br>
                   <div *ngFor="let productUnits of productUnits">
-                    <div class="row" *ngIf="productUnits.isBaseUnit">
+                    <div class="row" *ngIf="productUnits.isBaseUnit" >
                       <b class="col-lg-5 col-md-6 label">Giá bán cơ bản</b>
+                      <div class="col-lg-7 col-md-6" style="background-color: rgb(185, 255, 185)">{{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+                    </div>
+                    <div class="row" *ngIf="productUnits.isBaseUnit == false">
+                      <b class="col-lg-5 col-md-6 label"></b>
                       <div class="col-lg-7 col-md-6" >{{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
                     </div>
                   </div>
                   <br>
                   <div class="row" *ngIf="isUseDose">
                     <b class="col-lg-5 col-md-6 label">Có bán theo liều</b>
-                    <br>
                   </div>
+                  <br>
                   <div class="row" *ngIf="isManagedInBatches">
                     <b class="col-lg-12 col-md-12 label">Có quản lý theo lô - hạn sử dụng</b>
                     <br>
@@ -96,7 +100,14 @@
             </tr>
           </thead> -->
           <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
-            <tr>
+            <tr *ngIf="activeSubstances.isActive==true">
+              <!-- <td scope="row">{{activeSubstances.id}}</td> -->
+              <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
+              <td>
+                <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+              </td>
+            </tr>
+            <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
               <!-- <td scope="row">{{activeSubstances.id}}</td> -->
               <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
               <td>
