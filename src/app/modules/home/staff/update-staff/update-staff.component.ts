@@ -76,6 +76,7 @@ export class UpdateStaffComponent implements OnInit {
       this.confirmModal = this.modal.confirm({
         nzTitle: 'Thay đổi thông tin nhân viên',
         nzContent: 'Bạn có muốn thay đổi thông tin nhân viên này không ?',
+        nzOkText: 'Có',
         nzOnOk: () => {
           this.userService.changeInfoStaff(this.staffID, dataform).subscribe((result) => {
             console.log(result);

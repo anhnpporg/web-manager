@@ -162,6 +162,7 @@ export class CreateMedicineComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Cảnh báo',
       nzContent: 'bạn muốn xóa đơn vị sản phẩm này',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.listPorductUnit.splice(index, 1)
       }

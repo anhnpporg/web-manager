@@ -44,6 +44,7 @@ export class UsersProfileComponent implements OnInit {
     this.modal.create({
       nzTitle: 'Thay đổi thông tin cá nhân',
       nzContent: 'Bạn có chắc chắn thay đổi thông tin không ?',
+      nzOkText: 'Có',
       nzClosable: false,
       nzOnOk: () => {
         var newInfo: any = new FormData();
@@ -79,6 +80,7 @@ export class UsersProfileComponent implements OnInit {
     this.modal.create({
       nzTitle: 'Thay đổi mật khẩu',
       nzContent: 'Bạn có chắc chắn thay đổi mật khẩu không ?',
+      nzOkText: 'Có',
       nzClosable: false,
       nzOnOk: () => {
         var formData: any = new FormData();

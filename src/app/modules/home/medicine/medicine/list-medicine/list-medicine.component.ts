@@ -212,24 +212,6 @@ export class ListMedicineComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  // deleteBrand(id: number) {
-  //   this.confirmModal = this.modal.confirm({
-  //     nzTitle: 'Ngừng hoạt động',
-  //     nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động',
-  //     nzOnOk: () => {
-  //       this.product.deleteCategory(id).subscribe(() => {
-  //         let currentUrl = this.router.url;
-  //         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //           this.router.navigate([currentUrl]);
-  //           console.log(currentUrl);
-  //         });
-  //       }, (err: any) => {
-  //         console.log(err)
-
-  //       })
-  //     },
-  //   });
-  // }
 
   detail(id: number) {
     this.router.navigate(['dashboard/detail-medicine/' + id]);
@@ -258,7 +240,8 @@ export class ListMedicineComponent implements OnInit {
   isInActiveProduct(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho sản phẩm này ngừng hoạt động?',
+      nzContent: 'Bạn có muốn cho sản phẩm này ngừng hoạt động không?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.product.ActiveProduct(id).subscribe(() => {
           this.notification.create(
@@ -284,6 +267,7 @@ export class ListMedicineComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho sản phẩm này hoạt động lại không?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.product.ActiveProduct(id).subscribe(() => {
           this.notification.create(

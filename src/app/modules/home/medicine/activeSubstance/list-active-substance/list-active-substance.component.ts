@@ -41,16 +41,6 @@ export class ListActiveSubstanceComponent implements OnInit {
       this.listData = result.data
       this.loading = false
       this.listsearch = this.listData
-      // result.forEach((element: { id: number }) => {
-      //   this.product.getActiveSubstanceById(element.id).subscribe((productHaveActiveSubstance)=>{
-      //     console.log(productHaveActiveSubstance)
-      //     this.listProductHaveActiveSubstance.push({
-      //       products:productHaveActiveSubstance,
-      //       id: element.id
-      //     })
-      //   })
-      //   console.log(this.listProductHaveActiveSubstance)
-      // });
     })
 
   }
@@ -109,6 +99,7 @@ export class ListActiveSubstanceComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho hoạt chất này ngừng hoạt động không ?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.product.deleteActiveSubstance(id).subscribe(() => {
           let currentUrl = this.router.url;

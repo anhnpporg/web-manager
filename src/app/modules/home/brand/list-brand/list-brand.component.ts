@@ -94,6 +94,7 @@ export class ListBrandComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
           this.notification.create(
@@ -119,6 +120,7 @@ export class ListBrandComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho nhà sản xuất này hoạt động lại không?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
           this.notification.create(

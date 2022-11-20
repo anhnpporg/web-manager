@@ -74,27 +74,27 @@ export class DashboardComponent implements OnInit {
     yAxis: {
       type: 'value',
     },
-    series: this.chartData,
-    // series: [
-    //   {
-    //     name: 'Chi phí',
-    //     type: 'line',
-    //     // stack: 'Total',
-    //     data: [120, 132, 101, 134, 90, 230, 210],
-    //   },
-    //   {
-    //     name: 'Doanh thu',
-    //     type: 'line',
-    //     // stack: 'Total',
-    //     data: [220, 182, 191, 234, 290, 330, 310],
-    //   },
-    //   {
-    //     name: 'Lợi nhuận',
-    //     type: 'line',
-    //     // stack: 'Total',
-    //     data: [150, 232, 201, 154, 190, 330, 410],
-    //   },
-    // ],
+    // series: this.chartData,
+    series: [
+      {
+        name: 'Chi phí',
+        type: 'line',
+        // stack: 'Total',
+        data: [120, 132, 101, 134, 90, 230, 210],
+      },
+      {
+        name: 'Doanh thu',
+        type: 'line',
+        // stack: 'Total',
+        data: [220, 182, 191, 234, 290, 330, 310],
+      },
+      {
+        name: 'Lợi nhuận',
+        type: 'line',
+        // stack: 'Total',
+        data: [150, 232, 201, 154, 190, 330, 410],
+      },
+    ],
   };
 
 

@@ -20,7 +20,6 @@ export class ListCustomerComponent implements OnInit {
   constructor(
     private user: UserService,
     private router: Router,
-
   ) { }
 
   ngOnInit(): void {
@@ -39,32 +38,6 @@ export class ListCustomerComponent implements OnInit {
   SearchOptionForCustomer(value: string) {
     this.selectedProvince = value
     console.log(this.selectedProvince);
-  }
-
-  clickBan(id: number) {
-    this.user.isBan(id).subscribe(() => {
-      let currentUrl = this.router.url;
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentUrl]);
-        console.log(currentUrl);
-      });
-    }, err => {
-      console.log(err);
-
-    })
-  }
-
-  clickUnBan(id: number) {
-    this.user.isUnBan(id).subscribe((rs: string) => {
-      console.log('rs:', rs);
-      let currentUrl = this.router.url;
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentUrl]);
-        console.log(currentUrl);
-      });
-    }, err => {
-      console.log(err)
-    })
   }
 
   SearchOption(value: string) {
