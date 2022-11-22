@@ -17,7 +17,9 @@ export class DetailMedicineComponent implements OnInit {
   barcode: string = '';
   name: string = '';
   brand: string = ''
+  brandId: number = 0
   shelf : string =''
+  shelfId: number = 0
   mininumInventory: string = '';
   routeOfAdministration: string =''
   isUseDose: boolean = true;
@@ -51,10 +53,12 @@ export class DetailMedicineComponent implements OnInit {
           this.isManagedInBatches = productDetails.data.isManagedInBatches
           this.isActive = productDetails.data.isActive
           this.brand = productDetails.data.brand.name
+          this.brandId = productDetails.data.brand.id
          this.routeOfAdministration = productDetails.data.routeOfAdministration.name
          this.createdAt = productDetails.data.createdAt
          this.createdBy = productDetails.data.createdBy.name
          this.shelf = productDetails.data.shelf.name
+         this.shelfId = productDetails.data.shelf.id
          this.activeSubstances = productDetails.data.activeSubstances
          this.productUnits = productDetails.data.productUnits
          this.batches = productDetails.data.batches
@@ -64,6 +68,14 @@ export class DetailMedicineComponent implements OnInit {
         this.router.navigate(['/404']);
       }
     );
+  }
+
+  detailBrand(id: number) {
+    this.router.navigate(['dashboard/detail-brand/' + id]);
+  }
+
+  detailShelf(id: number) {
+    this.router.navigate(['dashboard/detail-category/' + id]);
   }
 
   detailActiveSubstence(id: number) {

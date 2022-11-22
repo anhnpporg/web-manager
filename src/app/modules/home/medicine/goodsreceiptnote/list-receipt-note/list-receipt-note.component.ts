@@ -136,4 +136,8 @@ export class ListReceiptNoteComponent implements OnInit {
   detailIssueNote(id : number){
     this.router.navigate(["dashboard/detail-invoice/" + id])
   }
+
+  detailSupplier(id : number){
+    this.router.navigate(["dashboard/detail-supplier/" + id])
+  }
 }

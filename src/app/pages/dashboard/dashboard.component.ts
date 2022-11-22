@@ -133,6 +133,7 @@ export class DashboardComponent implements OnInit {
       .getTopSellingDay(this.Tsize)
       .subscribe((result) => {
         this.topSellingDay = result.data;
+        this.topSelling = this.topSellingDay
         console.log(result.data);
       });
       this.dashboard

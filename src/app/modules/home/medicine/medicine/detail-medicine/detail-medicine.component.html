@@ -1,16 +1,16 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Chi tiết thuốc {{name}}</h1>
+      <h1>Chi tiết sản phẩm {{name}}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/dashboard/manager">Thuốc</a>
+            <a routerLink="/dashboard/manager">Sản phẩm</a>
           </li>
-          <li class="breadcrumb-item active">Chi tiết thuốc</li>
+          <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
         </ol>
       </nav>
     </div>
@@ -23,18 +23,18 @@
           <div class="col-xl-7">
             <div class="card">
               <div class="card-body pt-3">
-                <b style="font-size: 20px;">Thông tin chi tiết thuốc {{name}}</b>
+                <b style="font-size: 20px;">Thông tin chi tiết sản phẩm {{name}}</b>
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Nhà sản xuất</b>
-                    <div class="col-lg-7 col-md-6">{{ brand }}</div>
+                    <div class="col-lg-7 col-md-6" (click)="detailBrand(brandId)">{{ brand }}</div>
                   </div>
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Kệ hàng</b>
-                    <div class="col-lg-7 col-md-6">{{ shelf }}</div>
+                    <div class="col-lg-7 col-md-6" (click)="detailShelf(shelfId)">{{ shelf }}</div>
                   </div>
                   <br>
                   <div class="row">
@@ -59,13 +59,13 @@
                   <br>
                   <div *ngFor="let productUnits of productUnits">
                     <div class="row" *ngIf="productUnits.isBaseUnit" >
-                      <b class="col-lg-5 col-md-6 label">Giá bán cơ bản</b>
-                      <div class="col-lg-7 col-md-6" style="background-color: rgb(185, 255, 185)">{{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+                      <b class="col-lg-5 col-md-6 label">Giá bán đơn vị cơ bản</b>
+                      <div class="col-lg-7 col-md-6" >{{productUnits.price | currency : 'VND'}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
                     </div>
-                    <div class="row" *ngIf="productUnits.isBaseUnit == false">
+                    <!-- <div class="row" *ngIf="productUnits.isBaseUnit == false">
                       <b class="col-lg-5 col-md-6 label"></b>
                       <div class="col-lg-7 col-md-6" >{{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
-                    </div>
+                    </div> -->
                   </div>
                   <br>
                   <div class="row" *ngIf="isUseDose">
@@ -85,39 +85,39 @@
             <div class="card">
               <div class="card-body pt-3">
                 <div *ngIf="activeSubstances.length <= 0">Thuốc chưa có thông tin hoạt chất</div>
-      <div *ngIf="activeSubstances.length > 0">
-      <b style="font-size: 20px">Hoạt chất của thuốc {{name}}</b>
-      <br>
-      <br>
-      <div class="col-12" >
-        <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;" [nzFrontPagination]="false"
-        [nzShowPagination]="false">
-          <!-- <thead style="text-align: center">
-            <tr>
-              <th scope="col" style="text-align: center;">Mã hoạt chất</th>
-              <th scope="col" style="text-align: center;">Tên hoạt chất</th>
-              <th scope="col" style="text-align: center;"></th>
-            </tr>
-          </thead> -->
-          <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
-            <tr *ngIf="activeSubstances.isActive==true">
-              <!-- <td scope="row">{{activeSubstances.id}}</td> -->
-              <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
-              <td>
-                <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
-              </td>
-            </tr>
-            <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
-              <!-- <td scope="row">{{activeSubstances.id}}</td> -->
-              <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
-              <td>
-                <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
-              </td>
-            </tr>
-          </tbody>
-        </nz-table>
-      </div>
-      </div>
+                <div *ngIf="activeSubstances.length > 0">
+                  <b style="font-size: 20px">Hoạt chất của sản phẩm {{name}}</b>
+                  <br>
+                  <br>
+                  <div class="col-12" >
+                  <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;" [nzFrontPagination]="false"
+                            [nzShowPagination]="false">
+                        <!-- <thead style="text-align: center">
+                          <tr>
+                            <th scope="col" style="text-align: center;">Mã hoạt chất</th>
+                            <th scope="col" style="text-align: center;">Tên hoạt chất</th>
+                            <th scope="col" style="text-align: center;"></th>
+                          </tr>
+                        </thead> -->
+                    <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
+                      <tr *ngIf="activeSubstances.isActive==true">
+                        <!-- <td scope="row">{{activeSubstances.id}}</td> -->
+                        <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
+                        <td>
+                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                        </td>
+                      </tr>
+                      <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
+                        <!-- <td scope="row">{{activeSubstances.id}}</td> -->
+                        <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
+                        <td>
+                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                        </td>
+                      </tr>
+                    </tbody>
+                    </nz-table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -131,14 +131,14 @@
 
     <nz-tab nzTitle="Lô - Hạn sử dụng">
 
-      <b style="font-size: 20px">Danh sách lô hàng chứa thuốc {{name}}</b>
+      <b style="font-size: 20px">Danh sách lô hàng chứa sản phẩm {{name}}</b>
       <br>
       <br>
 
       <nz-table #basicTable [nzData]="batches" style="font-size: 18px;">
         <thead style="text-align: center">
           <tr>
-            <th scope="col" style="text-align: center;">Mã lô hàng</th>
+            <!-- <th scope="col" style="text-align: center;">Mã lô hàng</th> -->
             <th scope="col" style="text-align: center;">Barcode lô hàng</th>
             <th scope="col" style="text-align: center;">Người tạo</th>
             <th scope="col" style="text-align: center;">Ngày tạo</th>
@@ -148,7 +148,7 @@
         </thead>
         <tbody  *ngFor="let batches of batches" style="text-align: center;">
           <tr>
-            <td scope="row" (click)="detailGoodsReceiptNote(batches.id)">{{batches.id}}</td>
+            <!-- <td scope="row" (click)="detailGoodsReceiptNote(batches.id)">{{batches.id}}</td> -->
             <td (click)="detailGoodsReceiptNote(batches.id)"><ngx-barcode bc-value={{batches.batchBarcode}} [bc-display-value]="true" [bc-width]="1" [bc-height]="35"></ngx-barcode></td>
             <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdBy.name}}</td>
             <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdAt | date:'dd-MM-yyyy'}}</td>

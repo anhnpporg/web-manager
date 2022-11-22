@@ -251,7 +251,7 @@ export interface GoodReceiptNote {
   };
   invoiceId: string;
   supplier: {
-    id: string;
+    id: number;
     name: string;
     isActive: boolean;
   };
@@ -348,7 +348,7 @@ export interface GoodIssueNote {
   };
   invoiceId: string;
   supplier: {
-    id: string;
+    id: number;
     name: string;
   };
   quantity: number;
