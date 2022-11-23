@@ -67,7 +67,7 @@
                               [bc-height]="height"></ngx-barcode>
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
-                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price | currency : 'VND'}}/{{data.productUnits[0].unit}}</td>
                       <td>
                         <div *ngIf="data.isActive == true; else isActive" >
                           <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
@@ -129,7 +129,7 @@
                               [bc-height]="height"></ngx-barcode>
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
-                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price | currency : 'VND'}}/{{data.productUnits[0].unit}}</td>
                       <!-- <td>
                           <div *ngIf="data.isActive == true; else isActive" >
                               <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
@@ -192,7 +192,7 @@
                               [bc-height]="height"></ngx-barcode>
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
-                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price| currency : 'VND'}}/{{data.productUnits[0].unit}}</td>
                       <!-- <td>
                         <div *ngIf="data.isActive == true; else isActive" >
                           <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>
@@ -256,7 +256,7 @@
                               [bc-height]="height"></ngx-barcode>
                       </td>
                       <td (click)="detail(data.id)">{{ data.name}}</td>
-                      <td (click)="detail(data.id)">{{ data.productUnits[0].price}}/{{data.productUnits[0].unit}}</td>
+                      <td (click)="detail(data.id)">{{ data.productUnits[0].price| currency : 'VND'}}/{{data.productUnits[0].unit}}</td>
                       <!-- <td>
                         <div *ngIf="data.isActive == true; else isActive" >
                           <nz-tag [nzColor]="'green'" (click)="isInActiveProduct(data.id)">Còn bán</nz-tag>

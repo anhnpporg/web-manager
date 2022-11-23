@@ -52,6 +52,9 @@ export class ProductService {
   getActiveSubstanceById(id: number): Observable<any>{
     return this.httpClient.get(DOMAIN + `active-substance-management/active-substances/${id}/products`, {headers: this.headers})
   }
+  getNameActiveSubstanceById(id: number): Observable<any>{
+    return this.httpClient.get(DOMAIN + `active-substance-management/active-substances/${id}`, {headers: this.headers})
+  }
 
   createActiveSubstance(name: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'active-substance-management/active-substances', name, { headers: this.headers })
@@ -85,6 +88,9 @@ export class ProductService {
 
   getShelfById(id: number): Observable<any> {
     return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}/products`, { headers: this.headers })
+  }
+  getNameShelfById(id: number): Observable<any> {
+    return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}`, { headers: this.headers })
   }
 
   getROA(): Observable<any> {

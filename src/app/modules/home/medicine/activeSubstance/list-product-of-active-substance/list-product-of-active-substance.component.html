@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Danh sách thuốc cùng hoạt chất</h1>
+      <h1>Danh sách thuốc cùng hoạt chất {{name}}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -10,7 +10,7 @@
           <li class="breadcrumb-item">
             <a routerLink="/dashboard/medicine-activeSubstance">Hoạt chất</a>
           </li>
-          <li class="breadcrumb-item active">Danh sách thuốc cùng hoạt chất</li>
+          <li class="breadcrumb-item active">Danh sách sản phẩm cùng hoạt chất {{name}}</li>
         </ol>
       </nav>
     </div>
@@ -21,7 +21,7 @@
       <thead>
         <tr>
           <th scope="col" style="text-align: center;">Mã đăng kí</th>
-          <th scope="col" style="text-align: center;">Tên thuốc</th>
+          <th scope="col" style="text-align: center;">Tên sản phẩm</th>
           <th scope="col" style="text-align: center;">Nhà cung cấp</th>
           <th scope="col" style="text-align: center;"></th>
         </tr>
@@ -32,17 +32,7 @@
           <td >{{products.name}}</td>
           <td>{{products.brand.name}}</td>
           <td>
-            <u (click)="detail(products.id)" style="color: rgb(55, 158, 248)">Xem chi tiết thuốc</u>
-            <!-- <button
-            (click)="detail(products.id)"
-            style="
-              background-color: rgba(0, 162, 255, 0.836);
-                    color: white;
-                    font-size: 17px;
-                    border-radius: 17px;
-                    border-color: rgba(0, 162, 255, 0.836); ">
-            Xem chi tiết thuốc
-          </button> -->
+            <u (click)="detail(products.id)" style="color: rgb(55, 158, 248)">Xem chi tiết sản phẩm</u>
         </td>
       </tbody>
     </nz-table>

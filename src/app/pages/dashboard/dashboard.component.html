@@ -68,17 +68,17 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentCost > 0">
-                              <h6>{{cost}}</h6>
+                              <h6>{{cost| currency : 'VND'}}</h6>
                               <span class="text-muted small pt-2 ps-1">Tăng</span>
                               <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentCost == 0">
-                            <h6>{{cost}}</h6>
+                            <h6>{{cost| currency : 'VND'}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentCost < 0">
-                            <h6>{{cost}}</h6>
+                            <h6>{{cost| currency : 'VND'}}</h6>
                             <span class="text-muted small pt-2 ps-1">Giảm</span>
                             <span class="text-danger small pt-1 fw-bold"> {{percentCost*-1}}%</span>
                          </div>
@@ -106,17 +106,17 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentTurnover > 0">
-                              <h6>{{turnover}}</h6>
+                              <h6>{{turnover| currency : 'VND'}}</h6>
                               <span class="text-muted small pt-2 ps-1 ">Tăng</span>
                               <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentTurnover == 0">
-                            <h6>{{turnover}}</h6>
+                            <h6>{{turnover| currency : 'VND'}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentTurnover < 0">
-                            <h6>{{turnover}}</h6>
+                            <h6>{{turnover| currency : 'VND'}}</h6>
                             <span class="text-muted small pt-2 ps-1 ">Giảm</span>
                             <span class="text-danger small pt-1 fw-bold"> {{percentTurnover*-1}}%</span>
                          </div>
@@ -144,17 +144,17 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentProfit > 0">
-                              <h6>{{profit}}</h6>
+                              <h6>{{profit| currency : 'VND'}}</h6>
                               <span class="text-muted small pt-2 ps-1">Tăng</span>
                               <span class="text-success small pt-1 fw-bold"> {{percentProfit}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentProfit == 0">
-                            <h6>{{profit}}</h6>
+                            <h6>{{profit| currency : 'VND'}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
                             <span class="text-success small pt-1 fw-bold"> {{percentProfit}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentProfit < 0">
-                            <h6>{{profit}}</h6>
+                            <h6>{{profit| currency : 'VND'}}</h6>
                             <span class="text-muted small pt-2 ps-1">Giảm</span>
                             <span class="text-danger small pt-1 fw-bold"> {{percentProfit*-1}}%</span>
                          </div>
@@ -201,7 +201,7 @@
                               <tr >
                                  <td scope="row" (click)="detailRecentSale(recentSales.id)">{{recentSales.id}}</td>
                                  <td (click)="detailRecentSale(recentSales.id)">{{recentSales.customer.name}}</td>
-                                 <td (click)="detailRecentSale(recentSales.id)">{{recentSales.totalPrice}}</td>
+                                 <td (click)="detailRecentSale(recentSales.id)">{{recentSales.totalPrice| currency : 'VND'}}</td>
                                  <td (click)="detailRecentSale(recentSales.id)">{{recentSales.createAt|date:'dd-MM-yyyy'}}</td>
                               </tr>
                            </tbody>
@@ -240,8 +240,8 @@
                                  <td scope="row" (click)="detailProduct(topSelling.productId)">{{topSelling.productName}}</td>
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.sold}}</td>
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.unit}}</td>
-                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.price}}</td>
-                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.revenue}}</td>
+                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.price| currency : 'VND'}}</td>
+                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.revenue| currency : 'VND'}}</td>
                               </tr>
 
                            </tbody>

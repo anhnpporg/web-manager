@@ -60,7 +60,7 @@
                   <div *ngFor="let productUnits of productUnits">
                     <div class="row" *ngIf="productUnits.isBaseUnit" >
                       <b class="col-lg-5 col-md-6 label">Giá bán đơn vị cơ bản</b>
-                      <div class="col-lg-7 col-md-6" >{{productUnits.price | currency : 'VND'}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+                      <div class="col-lg-7 col-md-6">{{productUnits.price | currency : 'VND' }} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
                     </div>
                     <!-- <div class="row" *ngIf="productUnits.isBaseUnit == false">
                       <b class="col-lg-5 col-md-6 label"></b>
@@ -84,7 +84,7 @@
           <div class="col-xl-5">
             <div class="card">
               <div class="card-body pt-3">
-                <div *ngIf="activeSubstances.length <= 0">Thuốc chưa có thông tin hoạt chất</div>
+                <div *ngIf="activeSubstances.length <= 0">Sản phẩm chưa có thông tin hoạt chất</div>
                 <div *ngIf="activeSubstances.length > 0">
                   <b style="font-size: 20px">Hoạt chất của sản phẩm {{name}}</b>
                   <br>
@@ -92,26 +92,19 @@
                   <div class="col-12" >
                   <nz-table #basicTable [nzData]="activeSubstances" style="text-align: center; font-size: 18px;" [nzFrontPagination]="false"
                             [nzShowPagination]="false">
-                        <!-- <thead style="text-align: center">
-                          <tr>
-                            <th scope="col" style="text-align: center;">Mã hoạt chất</th>
-                            <th scope="col" style="text-align: center;">Tên hoạt chất</th>
-                            <th scope="col" style="text-align: center;"></th>
-                          </tr>
-                        </thead> -->
                     <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
                       <tr *ngIf="activeSubstances.isActive==true">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
                         <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
                         <td>
-                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</u>
                         </td>
                       </tr>
                       <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
                         <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
                         <td>
-                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem thuốc có cùng hoạt chất</u>
+                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</u>
                         </td>
                       </tr>
                     </tbody>

@@ -1,3 +1,4 @@
+import { Medicine } from './../../../../../_core/utils/interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/_core/services/product/product.service';
@@ -14,7 +15,7 @@ export class DetailCategoryComponent implements OnInit {
   id: string = ''
   name: string = ''
 
-  shelfs: any[]=[]
+  shelfs: Medicine[]=[]
 
   subParam!: Subscription;
 
@@ -29,12 +30,15 @@ export class DetailCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subParam = this.atvRoute.params.subscribe((params: { [x: string]: number; }) => {
+    this.subParam = this.atvRoute.params.subscribe((params) => {
       // this.id = params['id'];
       this.product.getShelfById(params['id']).subscribe((result)=>{
         console.log(result.data)
         this.shelfs = result.data
-        console.log(this.shelfs.length)
+        for (const shelf of this.shelfs) {
+          this.name = shelf.shelf.name
+        }
+        console.log(result.data.length)
       })
   }, (err: any) => {
     this.router.navigate(['/404'])

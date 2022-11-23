@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class ListProductOfActiveSubstanceComponent implements OnInit {
 
   id: string = ''
+  name: string = ''
   width: number = 1
   height: number = 50
   productHaveActiveSubstance: any[] = []
@@ -34,6 +35,9 @@ export class ListProductOfActiveSubstanceComponent implements OnInit {
     this.product.getActiveSubstanceById(params['id']).subscribe((result)=>{
       console.log(result)
       this.productHaveActiveSubstance = result.data
+    })
+    this.product.getNameActiveSubstanceById(params['id']).subscribe((result)=>{
+      this.name = result.data.name
     })
   },err => {
     console.log(err)

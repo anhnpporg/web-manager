@@ -1,7 +1,7 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Chi tiết kệ hàng</h1>
+      <h1>Chi tiết kệ hàng {{name}}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -10,14 +10,14 @@
           <li class="breadcrumb-item">
             <a routerLink="/dashboard/medicine-category">Kệ hàng</a>
           </li>
-          <li class="breadcrumb-item active">Chi tiết kệ hàng</li>
+          <li class="breadcrumb-item active">Chi tiết kệ hàng {{name}}</li>
         </ol>
       </nav>
     </div>
   </div>
-  <b *ngIf="shelfs.length <= 0" style="font-size: 20px">Kệ hàng này chưa có thuốc</b>
+  <b *ngIf="shelfs.length <= 0" style="font-size: 20px">Kệ hàng này chưa có sản phẩm</b>
   <div *ngIf="shelfs.length > 0">
-    <b style="font-size: 20px">Các thuốc có trong kệ hàng</b>
+    <b style="font-size: 20px">Các sản phẩm có trong kệ hàng {{name}}</b>
   <br>
   <br>
   <div class="col-12">
@@ -25,7 +25,7 @@
       <thead>
         <tr>
           <th scope="col" style="text-align: center;">Mã đăng kí</th>
-          <th scope="col" style="text-align: center;">Tên thuốc</th>
+          <th scope="col" style="text-align: center;">Tên sản phẩm</th>
           <th scope="col" style="text-align: center;">Nhà cung cấp</th>
           <th scope="col" style="text-align: center;"></th>
         </tr>
@@ -36,17 +36,7 @@
           <td>{{shelfs.name}}</td>
           <td>{{shelfs.brand.name}}</td>
           <td>
-            <u (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết thuốc</u>
-            <!-- <button
-            (click)="detail(shelfs.id)"
-            style="
-              background-color: rgba(0, 162, 255, 0.836);
-                    color: white;
-                    font-size: 17px;
-                    border-radius: 17px;
-                    border-color: rgba(0, 162, 255, 0.836); ">
-            Xem chi tiết thuốc
-          </button> -->
+            <u (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết sản phẩm</u>
         </td>
 
       </tbody>

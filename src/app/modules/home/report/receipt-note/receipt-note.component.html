@@ -52,8 +52,8 @@
                 <!-- <td >{{getNameProductByIdBatch(receiptnote.batch.id)}}</td> -->
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.quantity}}</td>
                 <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.unit}}</td>
-                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.baseUnitPrice}}</td>
-                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.totalPrice}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.baseUnitPrice| currency : 'VND'}}</td>
+                <td (click)="detailReceiptNote(receiptnote.id)">{{receiptnote.totalPrice| currency : 'VND'}}</td>
               </tr>
             </tbody>
 

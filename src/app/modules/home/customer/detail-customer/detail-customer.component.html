@@ -10,7 +10,7 @@
           <li class="breadcrumb-item">
             <a routerLink="/dashboard/customer">Khách hàng</a>
           </li>
-          <li class="breadcrumb-item active">Thông tin khách hàng {{ id }}</li>
+          <li class="breadcrumb-item active">Thông tin khách hàng {{ fullname }}</li>
         </ol>
       </nav>
     </div>
@@ -76,7 +76,7 @@
                         <tr>
                           <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.createdBy.name}}</td>
                           <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
+                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice | currency : 'VND'}}</td>
                         </tr>
                       </tbody>
                     </nz-table>

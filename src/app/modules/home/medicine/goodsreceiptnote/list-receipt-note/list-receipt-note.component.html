@@ -65,12 +65,6 @@
       <nz-table #sortTable  [nzData]="goodReceiptNote" style="font-size: 18px;" nzTableLayout="fixed">
         <thead style="text-align: center">
           <tr>
-            <!-- <th scope="col" style="text-align: center;">Mã nhập hàng</th>
-            <th scope="col" style="text-align: center;">Dạng nhập</th>
-            <th scope="col" style="text-align: center;">Nơi cung cấp</th>
-            <th scope="col" style="text-align: center;">Ngày tạo</th>
-            <th scope="col" style="text-align: center;">Số lượng</th>
-            <th scope="col" style="text-align: center;">Tổng tiền</th> -->
             <th *ngFor="let column of goodReceiptNoteTitle" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" style="text-align: center">
               {{ column.title }}
             </th>
@@ -106,7 +100,7 @@
             <th scope="col" style="text-align: center;">Số lượng</th>
              <th scope="col" style="text-align: center;">Đơn vị</th>
             <th scope="col" style="text-align: center;">Tổng tiền</th> -->
-            <th *ngFor="let column of goodIssueNoteTitle" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" style="text-align: center">
+            <th scope="col" *ngFor="let column of goodIssueNoteTitle" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" style="text-align: center">
               {{ column.title }}
             </th>
           </tr>
@@ -117,7 +111,7 @@
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.goodsIssueNoteType.name}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.quantity}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.unit}}</td>
-            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice|currency: 'VND'}}</td>
           </tr>
         </tbody>
       </nz-table>

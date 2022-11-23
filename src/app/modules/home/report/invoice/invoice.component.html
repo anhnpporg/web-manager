@@ -47,7 +47,7 @@
                 <td (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
                 <td (click)="detailInvoice(invoices.id)">{{invoices.createdBy.name}}</td>
                 <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
+                <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice| currency : 'VND'}}</td>
               </tr>
             </tbody>
 

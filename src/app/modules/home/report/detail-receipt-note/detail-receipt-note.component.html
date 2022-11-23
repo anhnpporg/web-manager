@@ -46,13 +46,13 @@
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-6 label">Giá bán trên {{unit}}</b>
-                <div class="col-lg-7 col-md-6">{{ baseUnitPrice }} VNĐ</div>
+                <b class="col-lg-5 col-md-6 label">Giá bán đơn vị cơ bản</b>
+                <div class="col-lg-7 col-md-6">{{ baseUnitPrice | currency : 'VND'}} / {{unit}}</div>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Tổng tiền</b>
-                <div class="col-lg-7 col-md-6">{{ totalPrice }} VNĐ</div>
+                <div class="col-lg-7 col-md-6">{{ totalPrice | currency : 'VND'}} </div>
               </div>
               <br>
               <div class="row">

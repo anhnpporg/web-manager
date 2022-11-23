@@ -67,8 +67,8 @@
                 <td >{{invoiceDetail.product.name}}</td>
                 <td >{{invoiceDetail.quantity}}</td>
                 <td >{{invoiceDetail.unit}}</td>
-                <td >{{invoiceDetail.unitPrice}}</td>
-                <td >{{invoiceDetail.totalPrice}}</td>
+                <td >{{invoiceDetail.unitPrice| currency : 'VND'}}</td>
+                <td >{{invoiceDetail.totalPrice| currency : 'VND'}}</td>
               </tr>
             </tbody>
             <br>
@@ -79,7 +79,7 @@
                 <td></td>
                 <td></td>
                 <th style="text-align: center">Tổng tiền</th>
-                <th style="text-align: center">{{totalPrice}}</th>
+                <th style="text-align: center">{{totalPrice| currency : 'VND'}}</th>
               </tr>
           </nz-table>
         </div>
