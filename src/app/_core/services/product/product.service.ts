@@ -92,6 +92,9 @@ export class ProductService {
   getNameShelfById(id: number): Observable<any> {
     return this.httpClient.get(DOMAIN + `shelves-management/shelves/${id}`, { headers: this.headers })
   }
+  updateShelf(id: number, name: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `shelves-management/shelves/${id}`,name, { headers: this.headers })
+  }
 
   getROA(): Observable<any> {
     return this.httpClient.get(DOMAIN + 'product-management/route-of-administrations', { headers: this.headers })

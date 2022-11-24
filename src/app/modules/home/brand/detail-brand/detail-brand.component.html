@@ -19,8 +19,8 @@
   <div class="row" *ngIf="brandDetail == null">
     <b class="col-8" style="font-size: 20px">Chưa có sản phẩm từ nhà cung cấp {{brandOld}}</b>
     <div class="col-4" style="text-align: right">
-                <button nz-button (click)="showModal()" style=" border-radius: 20px; background-color: rgb(71, 160, 243); color: rgba(24, 20, 20, 0.205);">
-                  <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 15px">Thay đổi tên nhà sản xuất</span></button>
+                <button nz-button (click)="showModal()" style=" border-radius: 20px; background-color: rgb(71, 160, 243); color: white">
+                  <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px">Thay đổi tên nhà sản xuất</span></button>
                 <nz-modal [(nzVisible)]="isVisible" nzTitle="Sửa tên nhà sản xuất" nzOkText="Sửa tên nhà sản xuất"
                     nzCancelText="Hủy" nzOkText="Thay đổi" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
                     <ng-container *nzModalContent>
