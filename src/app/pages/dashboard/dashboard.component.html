@@ -68,19 +68,19 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentCost > 0">
-                              <h6>{{cost| currency : 'VND'}}</h6>
+                              <h6>{{costStr}}</h6>
                               <span class="text-muted small pt-2 ps-1">Tăng</span>
-                              <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
+                              <span class="text-success small pt-1 fw-bold"> {{percentCostStr}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentCost == 0">
-                            <h6>{{cost| currency : 'VND'}}</h6>
+                            <h6>{{costStr}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
-                            <span class="text-success small pt-1 fw-bold"> {{percentCost}}%</span>
+                            <span class="text-success small pt-1 fw-bold"> {{percentCostStr}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentCost < 0">
-                            <h6>{{cost| currency : 'VND'}}</h6>
+                            <h6>{{costStr}}</h6>
                             <span class="text-muted small pt-2 ps-1">Giảm</span>
-                            <span class="text-danger small pt-1 fw-bold"> {{percentCost*-1}}%</span>
+                            <span class="text-danger small pt-1 fw-bold"> {{percentCostStr}}%</span>
                          </div>
                         </div>
                      </div>
@@ -106,19 +106,19 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentTurnover > 0">
-                              <h6>{{turnover| currency : 'VND'}}</h6>
+                              <h6>{{turnoverStr}}</h6>
                               <span class="text-muted small pt-2 ps-1 ">Tăng</span>
-                              <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
+                              <span class="text-success small pt-1 fw-bold"> {{percentTurnoverStr}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentTurnover == 0">
-                            <h6>{{turnover| currency : 'VND'}}</h6>
+                            <h6>{{turnoverStr}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
-                            <span class="text-success small pt-1 fw-bold"> {{percentTurnover}}%</span>
+                            <span class="text-success small pt-1 fw-bold"> {{percentTurnoverStr}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentTurnover < 0">
-                            <h6>{{turnover| currency : 'VND'}}</h6>
+                            <h6>{{turnoverStr}}</h6>
                             <span class="text-muted small pt-2 ps-1 ">Giảm</span>
-                            <span class="text-danger small pt-1 fw-bold"> {{percentTurnover*-1}}%</span>
+                            <span class="text-danger small pt-1 fw-bold"> {{percentTurnoverStr}}%</span>
                          </div>
                         </div>
                      </div>
@@ -144,19 +144,19 @@
                               <i class="bi bi-currency-dollar"></i>
                            </div>
                            <div class="ps-3" *ngIf="percentProfit > 0">
-                              <h6>{{profit| currency : 'VND'}}</h6>
+                              <h6>{{profitStr}}</h6>
                               <span class="text-muted small pt-2 ps-1">Tăng</span>
-                              <span class="text-success small pt-1 fw-bold"> {{percentProfit}}%</span>
+                              <span class="text-success small pt-1 fw-bold"> {{percentProfitStr}}%</span>
                            </div>
                            <div class="ps-3" *ngIf="percentProfit == 0">
-                            <h6>{{profit| currency : 'VND'}}</h6>
+                            <h6>{{profitStr}}</h6>
                             <!-- <span class="text-muted small pt-2 ps-1">Tăng</span> -->
-                            <span class="text-success small pt-1 fw-bold"> {{percentProfit}}%</span>
+                            <span class="text-success small pt-1 fw-bold"> {{percentProfitStr}}%</span>
                          </div>
                            <div class="ps-3" *ngIf="percentProfit < 0">
-                            <h6>{{profit| currency : 'VND'}}</h6>
+                            <h6>{{profitStr}}</h6>
                             <span class="text-muted small pt-2 ps-1">Giảm</span>
-                            <span class="text-danger small pt-1 fw-bold"> {{percentProfit*-1}}%</span>
+                            <span class="text-danger small pt-1 fw-bold"> {{percentProfitStr}}%</span>
                          </div>
                         </div>
                      </div>
