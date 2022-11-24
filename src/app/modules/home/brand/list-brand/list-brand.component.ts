@@ -93,7 +93,7 @@ export class ListBrandComponent implements OnInit {
   isBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động?',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động không?',
       nzOkText: 'Có',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {

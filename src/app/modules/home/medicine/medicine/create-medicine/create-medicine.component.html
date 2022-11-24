@@ -1,16 +1,16 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Tạo thuốc mới</h1>
+      <h1>Tạo sản phẩm mới</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/dashboard/staff">Thuốc</a>
+            <a routerLink="/dashboard/staff">Sản phẩm</a>
           </li>
-          <li class="breadcrumb-item active">Tạo thuốc mới</li>
+          <li class="breadcrumb-item active">Tạo sản phẩm mới</li>
         </ol>
       </nav>
     </div>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
+            <nz-form-label nzRequired for="inputName5" class="form-label">Tên sản phẩm</nz-form-label>
             <input type="text" class="form-control" id="inputName" formControlName="name" />
             <div *ngIf="
                 statusError.name.invalid &&
@@ -44,7 +44,7 @@
               ">
               <div *ngIf="statusError.name.errors">
                 <div *ngIf="statusError.name.errors!['required']">
-                  <small style="color: red">Vui lòng nhập tên thuốc</small>
+                  <small style="color: red">Vui lòng nhập tên sản phẩm</small>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@
               ">
               <div *ngIf="statusError.price.errors">
                 <div *ngIf="statusError.price.errors!['required']">
-                  <small style="color: red">Vui lòng nhập giá thuốc</small>
+                  <small style="color: red">Vui lòng nhập giá sản phẩm</small>
                 </div>
               </div>
             </div>
@@ -226,9 +226,9 @@
                             name="conversionValue" min="1" style="margin-right: 5px" (change)="changeModel($event, i)">
                         </div>
                         <div class="col-4">
-                          <nz-form-label for="price" class="form-label">Giá bán</nz-form-label>
+                          <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
                           <input class="form-control" type="number" id="price" name="price" min="1"
-                            style="margin-right: 5px" (change)="changeModel($event, i)">
+                            style="margin-right: 5px" (change)="changeModel($event, i)" > <!--value="{{productData.value.price}}"-->
                         </div>
                       </div>
                     </div>

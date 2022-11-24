@@ -42,7 +42,7 @@ export class CreateMedicineComponent implements OnInit {
     activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
-    productUnits: [this.listProductUnit],
+    productUnits: [[],this.listProductUnit],
     isUseDose: [false],
     doseUnitPrice: {
       doseUnit: '',
@@ -117,9 +117,7 @@ export class CreateMedicineComponent implements OnInit {
         }
       }
     }
-
     console.log(this.productData.value);
-
   }
 
   clickIsManagedInBatches() {
@@ -128,9 +126,6 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData.value);
-
-
-
     this.product.createProduct(this.productData.value).subscribe(
       (rs: any) => {
         console.log(rs);

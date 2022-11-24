@@ -39,5 +39,8 @@ export class BrandsService {
   deleteBrand(id: number) {
     return this.httpClient.patch(DOMAIN + `brand-management/brands/${id}`, {}, { headers: this.headers })
   }
+  updateBrand(id: number,brand: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `brand-management/brands/${id}`, brand, { headers: this.headers })
+  }
 
 }
