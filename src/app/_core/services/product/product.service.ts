@@ -63,6 +63,9 @@ export class ProductService {
     return this.httpClient.patch(DOMAIN + `active-substance-management/active-substances/${id}`, {}, { headers: this.headers })
   }
 
+  updateAS(id: number,AS: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `active-substance-management/active-substances/${id}`, AS, { headers: this.headers })
+  }
   //product
 
   getAllCategory(): Observable<any> {
