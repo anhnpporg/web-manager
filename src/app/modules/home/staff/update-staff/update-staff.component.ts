@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { UserService } from 'src/app/_core/services/user/user.service';
@@ -36,7 +37,8 @@ export class UpdateStaffComponent implements OnInit {
     private storageImage: AngularFireStorage,
     private userService: UserService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -85,6 +87,11 @@ export class UpdateStaffComponent implements OnInit {
               result.message,
               ''
             );
+            let currentUrl = this.router.url;
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([currentUrl]);
+              console.log(currentUrl);
+            });
           }, err => {
             this.notification.create(
               'error',

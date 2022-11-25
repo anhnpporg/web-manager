@@ -34,4 +34,7 @@ export class SupplierService {
   getListBatchOfSupplier(id: number): Observable<any> {
     return this.httpClient.get(DOMAIN + `suppliers-management/suppliers/${id}/batches`, { headers: this.headers });
   }
+  updateSupplier(id: number,supplier: FormData): Observable<any> {
+    return this.httpClient.put(DOMAIN + `suppliers-management/suppliers/${id}`, supplier, { headers: this.headers })
+  }
 }

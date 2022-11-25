@@ -57,8 +57,8 @@ export class DetailStaffComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
-    
+
+
     this.subParam = this.atvRoute.params.subscribe((params) => {
       this.id = params['id'];
       console.log(this.id);
@@ -143,17 +143,17 @@ export class DetailStaffComponent implements OnInit {
         newInfo.append('isMale', this.newIsMale)
         console.log(newInfo);
         this.user.changeInfoStaff(this.id,newInfo).subscribe(
-          (rs: any) => {
+          (rs) => {
             console.log(rs);
             this.notification.create('success', rs.message, '');
             let currentUrl = this.route.url;
             this.route.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.route.navigate([currentUrl]);
-          console.log(currentUrl);
-        });
+              this.route.navigate([currentUrl]);
+              console.log(currentUrl);
+            });
             this.isVisibleChangeInfo = false
           },
-          (err: { error: { message: string } }) => {
+          (err) => {
             console.log(err);
 
             this.notification.create(
