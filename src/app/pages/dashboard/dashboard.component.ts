@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   saleInfo: SaleInfo[] = [];
   quantityOrder: number = 0;
   percentQuantityOrder: number = 0;
+  percentQuantityOrderStr: string ='';
   cost: number = 0;
   costStr: string = '';
   percentCost: number = 0;
@@ -163,6 +164,11 @@ export class DashboardComponent implements OnInit {
       console.log(result.data);
       this.quantityOrder = result.data.quantityOrder;
       this.percentQuantityOrder = result.data.percentQuantityOrder
+      if(this.percentQuantityOrder >= 0 ){
+        this.percentQuantityOrderStr = new Intl.NumberFormat('vi-VN', configPercent).format(result.data.percentQuantityOrder)
+      }else{
+        this.percentQuantityOrderStr = new Intl.NumberFormat('vi-VN', configPercent).format(result.data.percentQuantityOrder*-1)
+      }
       // this.cost = result.data.cost;
       this.costStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.cost)
       this.percentCost = result.data.percentCost;

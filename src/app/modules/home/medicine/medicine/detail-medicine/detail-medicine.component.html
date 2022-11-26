@@ -17,9 +17,8 @@
   </div>
   <nz-tabset>
     <nz-tab nzTitle="Thông tin">
-      <div class="container" style="font-size: 16px">
+      <div class="container">
         <div class="row" >
-
           <div class="col-xl-7">
             <div class="card">
               <div class="card-body pt-3">
@@ -29,22 +28,22 @@
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Nhà sản xuất</b>
-                    <div class="col-lg-7 col-md-6" (click)="detailBrand(brandId)">{{ brand }}</div>
+                    <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailBrand(brandId)">{{ brand }}</a>
                   </div>
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Kệ hàng</b>
-                    <div class="col-lg-7 col-md-6" (click)="detailShelf(shelfId)">{{ shelf }}</div>
+                    <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailShelf(shelfId)">{{ shelf }}</a>
                   </div>
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Ngày tạo</b>
-                    <div class="col-lg-7 col-md-6">{{ createdAt | date:"dd-MM-yyyy" }}</div>
+                    <div class="col-lg-7 col-md-6">  {{ createdAt | date:"dd-MM-yyyy" }}</div>
                   </div>
                   <br>
                   <div class="row">
                     <b class="col-lg-5 col-md-6 label">Người tạo</b>
-                    <div class="col-lg-7 col-md-6">{{ createdBy }}</div>
+                    <div class="col-lg-7 col-md-6">  {{ createdBy }}</div>
                   </div>
                   <br>
                   <div class="row">
@@ -52,20 +51,16 @@
                     <div class="col-lg-7 col-md-6">{{ routeOfAdministration }}</div>
                   </div>
                   <br>
-                  <div class="row">
-                    <b class="col-lg-5 col-md-6 label">Mức tồn kho tối thiểu</b>
-                    <div class="col-lg-7 col-md-6">{{ mininumInventory }}</div>
+                  <div class="row" *ngFor="let productUnits of productUnits">
+                    <b class="col-lg-5 col-md-6 label" *ngIf="productUnits.isBaseUnit">Mức tồn kho tối thiểu</b>
+                    <div class="col-lg-7 col-md-6" *ngIf="productUnits.isBaseUnit">  {{ mininumInventory }} {{productUnits.unit}}</div>
                   </div>
                   <br>
                   <div *ngFor="let productUnits of productUnits">
                     <div class="row" *ngIf="productUnits.isBaseUnit" >
                       <b class="col-lg-5 col-md-6 label">Giá bán đơn vị cơ bản</b>
-                      <div class="col-lg-7 col-md-6">{{productUnits.price | currency : 'VND' }} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
+                      <div class="col-lg-7 col-md-6">  {{productUnits.price | currency : 'VND' }} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
                     </div>
-                    <!-- <div class="row" *ngIf="productUnits.isBaseUnit == false">
-                      <b class="col-lg-5 col-md-6 label"></b>
-                      <div class="col-lg-7 col-md-6" >{{productUnits.price}} / {{productUnits.conversionValue}} {{productUnits.unit}}</div>
-                    </div> -->
                   </div>
                   <br>
                   <div class="row" *ngIf="isUseDose">
@@ -97,14 +92,14 @@
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
                         <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
                         <td>
-                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</u>
+                          <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
                         </td>
                       </tr>
                       <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
                         <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
                         <td>
-                          <u (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</u>
+                          <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
                         </td>
                       </tr>
                     </tbody>

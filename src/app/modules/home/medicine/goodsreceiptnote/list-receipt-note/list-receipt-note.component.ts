@@ -82,6 +82,7 @@ export class ListReceiptNoteComponent implements OnInit {
 
   batchId: string = '';
   batchBarcode: string = '';
+  productId: number = 0
   productName: string = '';
   currentQuantity: string = '';
   currentQuantityUnit: string = '';
@@ -118,6 +119,7 @@ export class ListReceiptNoteComponent implements OnInit {
         console.log(batchInfo.data);
         this.batchId = batchInfo.data.id;
         this.batchBarcode = batchInfo.data.batchBarcode;
+        this.productId = batchInfo.data.product.id
         this.productName = batchInfo.data.product.name;
         this.manufacturingDate = batchInfo.data.manufacturingDate;
         this.expiryDate = batchInfo.data.expiryDate;
@@ -136,8 +138,10 @@ export class ListReceiptNoteComponent implements OnInit {
   detailIssueNote(id : number){
     this.router.navigate(["dashboard/detail-invoice/" + id])
   }
-
   detailSupplier(id : number){
     this.router.navigate(["dashboard/detail-supplier/" + id])
+  }
+  detailMedicine(id: number) {
+    this.router.navigate(['dashboard/detail-medicine/' + id]);
   }
 }

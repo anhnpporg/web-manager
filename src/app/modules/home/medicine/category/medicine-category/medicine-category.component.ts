@@ -75,20 +75,20 @@ export class MedicineCategoryComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result: any) => {
+      this.product.createCategory(formdata).subscribe((result) => {
         this.notification.create(
           'success',
-          'Tạo phân loại thuốc mới thành công', ''
+          result.message, ''
         )
         let currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, (err: any) => {
+      }, (err) => {
         this.notification.create(
           'error',
-          'Tạo phân loại thuốc mới thất bại', ''
+          err.error.message, ''
         )
       })
     }

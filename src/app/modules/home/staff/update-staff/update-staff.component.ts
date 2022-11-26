@@ -31,7 +31,6 @@ export class UpdateStaffComponent implements OnInit {
 
   confirmModal?: NzModalRef;
 
-
   constructor(
     private GetImg: ImageService,
     private storageImage: AngularFireStorage,

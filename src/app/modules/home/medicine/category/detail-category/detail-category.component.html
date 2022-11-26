@@ -56,7 +56,6 @@
         <tr>
           <th scope="col" style="text-align: center;">Mã đăng kí</th>
           <th scope="col" style="text-align: center;">Tên sản phẩm</th>
-          <th scope="col" style="text-align: center;">Nhà cung cấp</th>
           <th scope="col" style="text-align: center;"></th>
         </tr>
       </thead>
@@ -64,9 +63,8 @@
         <tr>
           <td scope="row">{{shelfs.drugRegistrationNumber}}</td>
           <td>{{shelfs.name}}</td>
-          <td>{{shelfs.brand.name}}</td>
           <td>
-            <u (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết sản phẩm</u>
+            <a (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết sản phẩm</a>
         </td>
 
       </tbody>

@@ -21,37 +21,37 @@
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Mã lô hàng:</b>
+                <b class="col-lg-5 col-md-7 label">Mã lô hàng</b>
                 <div class="col-lg-7 col-md-6">{{ batchBarcode }}</div>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Tên sản phẩm:</b>
-                <div class="col-lg-7 col-md-6">{{ productName }}</div>
+                <b class="col-lg-5 col-md-7 label">Tên sản phẩm</b>
+                <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailMedicine(productId)">{{ productName }}</a>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Ngày sản xuất:</b>
+                <b class="col-lg-5 col-md-7 label">Ngày sản xuất</b>
                 <div class="col-lg-7 col-md-6">{{ manufacturingDate | date:'dd-MM-yyyy' }}</div>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Hạn sử dụng:</b>
+                <b class="col-lg-5 col-md-7 label">Hạn sử dụng</b>
                 <div class="col-lg-7 col-md-6">{{ expiryDate | date:'dd-MM-yyyy' }}</div>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Ngày tạo lô hàng:</b>
+                <b class="col-lg-5 col-md-7 label">Ngày tạo lô hàng</b>
                 <div class="col-lg-7 col-md-6">{{ createdAt | date:'dd-MM-yyyy' }}</div>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Người tạo lô hàng:</b>
+                <b class="col-lg-5 col-md-7 label">Người tạo lô hàng</b>
                 <div class="col-lg-7 col-md-6">{{ createdBy}}</div>
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-7 label">Số lượng sản phẩm hiện tại:</b>
+                <b class="col-lg-5 col-md-7 label">Số lượng sản phẩm hiện tại</b>
                 <div class="col-lg-7 col-md-6">{{ currentQuantity }} {{ currentQuantityUnit}}</div>
               </div>
               <br>
@@ -74,7 +74,7 @@
           <tr *ngIf="goodReceiptNotes.supplier.isActive" >
             <td scope="row">{{goodReceiptNotes.id}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
-            <td (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</td>
+            <td ><a (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</a></td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|currency: 'VND'}}</td>
@@ -82,7 +82,7 @@
           <tr *ngIf="goodReceiptNotes.supplier.isActive == false" style="background-color: rgba(255, 0, 0, 0.253)">
             <td scope="row">{{goodReceiptNotes.id}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.goodsReceiptNoteType.name}}</td>
-            <td (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</td>
+            <td ><a (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</a></td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|currency: 'VND'}</td>
