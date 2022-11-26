@@ -76,7 +76,7 @@
                         <tr>
                           <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.createdBy.name}}</td>
                           <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice | currency : 'VND'}}</td>
+                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice | number}} đ</td>
                         </tr>
                       </tbody>
                     </nz-table>

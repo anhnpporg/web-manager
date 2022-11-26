@@ -99,7 +99,7 @@
                         <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
                         <td (click)="detailInvoice(invoices.id)">{{invoices.customer.phoneNumber}}</td>
                         <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                        <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice| currency : 'VND'}}</td>
+                        <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice| number}} đ</td>
                       </tr>
                     </tbody>
                   </nz-table>

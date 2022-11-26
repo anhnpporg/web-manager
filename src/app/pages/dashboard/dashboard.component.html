@@ -202,7 +202,7 @@
                               <tr >
                                  <td scope="row" (click)="detailRecentSale(recentSales.id)">{{recentSales.id}}</td>
                                  <td (click)="detailRecentSale(recentSales.id)">{{recentSales.customer.name}}</td>
-                                 <td (click)="detailRecentSale(recentSales.id)">{{recentSales.totalPrice| currency : 'VND'}}</td>
+                                 <td (click)="detailRecentSale(recentSales.id)">{{recentSales.totalPrice| number}} đ</td>
                                  <td (click)="detailRecentSale(recentSales.id)">{{recentSales.createAt|date:'dd-MM-yyyy'}}</td>
                               </tr>
                            </tbody>
@@ -241,8 +241,8 @@
                                  <td scope="row" (click)="detailProduct(topSelling.productId)">{{topSelling.productName}}</td>
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.sold}}</td>
                                  <td (click)="detailProduct(topSelling.productId)">{{topSelling.unit}}</td>
-                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.price| currency : 'VND'}}</td>
-                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.revenue| currency : 'VND'}}</td>
+                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.price| number}} đ</td>
+                                 <td (click)="detailProduct(topSelling.productId)">{{topSelling.revenue| number}} đ</td>
                               </tr>
 
                            </tbody>

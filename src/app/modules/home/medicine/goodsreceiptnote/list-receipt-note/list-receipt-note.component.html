@@ -77,7 +77,7 @@
             <td ><a (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</a></td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
-            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|currency: 'VND'}}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|number }} đ</td>
           </tr>
           <tr *ngIf="goodReceiptNotes.supplier.isActive == false" style="background-color: rgba(255, 0, 0, 0.253)">
             <td scope="row">{{goodReceiptNotes.id}}</td>
@@ -85,7 +85,7 @@
             <td ><a (click)="detailSupplier(goodReceiptNotes.supplier.id)">{{goodReceiptNotes.supplier.name}}</a></td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.createdAt|date:'dd-MM-yyyy'}}</td>
             <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.quantity}}</td>
-            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|currency: 'VND'}</td>
+            <td (click)="detailReceiptNote(goodReceiptNotes.id)">{{goodReceiptNotes.totalPrice|number }} đ</td>
           </tr>
         </tbody>
       </nz-table>
@@ -111,7 +111,7 @@
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.goodsIssueNoteType.name}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.quantity}}</td>
             <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.unit}}</td>
-            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice|currency: 'VND'}}</td>
+            <td (click)="detailIssueNote(goodIssueNotes.id)">{{goodIssueNotes.totalPrice|number }} đ</td>
           </tr>
         </tbody>
       </nz-table>
