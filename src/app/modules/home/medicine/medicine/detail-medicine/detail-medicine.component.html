@@ -22,16 +22,21 @@
           <div class="col-xl-7">
             <div class="card">
               <div class="card-body pt-3">
-                <b style="font-size: 20px;">Thông tin chi tiết sản phẩm {{name}}</b>
+                <div class="row">
+                  <b class="col-10" style="font-size: 20px;">Thông tin chi tiết sản phẩm {{name}}</b>
+                  <div class="col-2">
+                    <app-update-info-medicine [productId]="id"></app-update-info-medicine>
+                  </div>
+                </div>
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
                   <br>
-                  <div class="row">
+                  <div class="row" style="margin-bottom: -10px ">
                     <b class="col-lg-5 col-md-6 label">Nhà sản xuất</b>
                     <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailBrand(brandId)">{{ brand }}</a>
                   </div>
                   <br>
-                  <div class="row">
+                  <div class="row" style="margin-bottom: -10px ">
                     <b class="col-lg-5 col-md-6 label">Kệ hàng</b>
                     <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailShelf(shelfId)">{{ shelf }}</a>
                   </div>
@@ -90,14 +95,14 @@
                     <tbody  *ngFor="let activeSubstances of basicTable.data" style="text-align: center;">
                       <tr *ngIf="activeSubstances.isActive==true">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
-                        <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
+                        <td>{{activeSubstances.name}}</td>
                         <td>
                           <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
                         </td>
                       </tr>
                       <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
-                        <td (click)="detailActiveSubstence(activeSubstances.id)">{{activeSubstances.name}}</td>
+                        <td >{{activeSubstances.name}}</td>
                         <td>
                           <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
                         </td>
@@ -171,6 +176,5 @@
         </tbody>
       </nz-table>
       </nz-tab>
-
   </nz-tabset>
 </main>

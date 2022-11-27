@@ -12,30 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailMedicineComponent implements OnInit {
   medicineDetail: any[] = [];
-  id: string = '';
+  id: number = 0;
   drugRegistrationNumber: string = '';
   barcode: string = '';
   name: string = '';
-  brand: string = ''
-  brandId: number = 0
-  shelf : string =''
-  shelfId: number = 0
+  brand: string = '';
+  brandId: number = 0;
+  shelf: string = '';
+  shelfId: number = 0;
   mininumInventory: string = '';
-  routeOfAdministration: string =''
+  routeOfAdministration: string = '';
   isUseDose: boolean = true;
   isManagedInBatches: boolean = true;
   isActive: boolean = true;
   createdAt: string = '';
-  createdBy: string = ''
+  createdBy: string = '';
   activeSubstances: any[] = [];
   productUnits: any[] = [];
-  batches: any[] = []
+  batches: any[] = [];
   subParam!: Subscription;
 
   constructor(
     private atvRoute: ActivatedRoute,
     private product: ProductService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,25 +44,27 @@ export class DetailMedicineComponent implements OnInit {
         this.id = params['id'];
         this.product.getProductById(this.id).subscribe((productDetails) => {
           console.log(productDetails);
-          this.medicineDetail = productDetails.data
-          this.drugRegistrationNumber = productDetails.data.drugRegistrationNumber
-          this.name = productDetails.data.name
-          this.barcode = productDetails.data.barcode
-          this.mininumInventory = productDetails.data.mininumInventory
-          this.isUseDose = productDetails.data.isUseDose
-          this.isManagedInBatches = productDetails.data.isManagedInBatches
-          this.isActive = productDetails.data.isActive
-          this.brand = productDetails.data.brand.name
-          this.brandId = productDetails.data.brand.id
-         this.routeOfAdministration = productDetails.data.routeOfAdministration.name
-         this.createdAt = productDetails.data.createdAt
-         this.createdBy = productDetails.data.createdBy.name
-         this.shelf = productDetails.data.shelf.name
-         this.shelfId = productDetails.data.shelf.id
-         this.activeSubstances = productDetails.data.activeSubstances
-         this.productUnits = productDetails.data.productUnits
-         console.log(this.productUnits)
-         this.batches = productDetails.data.batches
+          this.medicineDetail = productDetails.data;
+          this.drugRegistrationNumber =
+            productDetails.data.drugRegistrationNumber;
+          this.name = productDetails.data.name;
+          this.barcode = productDetails.data.barcode;
+          this.mininumInventory = productDetails.data.mininumInventory;
+          this.isUseDose = productDetails.data.isUseDose;
+          this.isManagedInBatches = productDetails.data.isManagedInBatches;
+          this.isActive = productDetails.data.isActive;
+          this.brand = productDetails.data.brand.name;
+          this.brandId = productDetails.data.brand.id;
+          this.routeOfAdministration =
+            productDetails.data.routeOfAdministration.name;
+          this.createdAt = productDetails.data.createdAt;
+          this.createdBy = productDetails.data.createdBy.name;
+          this.shelf = productDetails.data.shelf.name;
+          this.shelfId = productDetails.data.shelf.id;
+          this.activeSubstances = productDetails.data.activeSubstances;
+          this.productUnits = productDetails.data.productUnits;
+          console.log(this.productUnits);
+          this.batches = productDetails.data.batches;
         });
       },
       (err) => {
@@ -82,8 +84,8 @@ export class DetailMedicineComponent implements OnInit {
   detailActiveSubstence(id: number) {
     this.router.navigate(['dashboard/medicine-activeSubstance/' + id]);
   }
-  detailGoodsReceiptNote(id: number){
+
+  detailGoodsReceiptNote(id: number) {
     this.router.navigate(['dashboard/goodsreceiptnote/' + id]);
   }
-
 }

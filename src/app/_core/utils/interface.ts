@@ -269,7 +269,9 @@ export interface GoodReceiptNote {
 }
 
 export interface InvoiceById {
+
   id: number;
+  barcode: string
   customer: {
     id: number;
     phoneNumber: string;

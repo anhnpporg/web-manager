@@ -40,6 +40,7 @@ import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-
 import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
 import { UpdateStaffComponent } from './staff/update-staff/update-staff.component';
 import { DetailBrandComponent } from './brand/detail-brand/detail-brand.component';
+import { UpdateInfoMedicineComponent } from './medicine/medicine/update-info-medicine/update-info-medicine/update-info-medicine.component';
 
 const homeRoutes: Routes = [
   {
@@ -110,7 +111,8 @@ const homeRoutes: Routes = [
     DetailReceiptNoteComponent,
     DetailSupplierComponent,
     UpdateStaffComponent,
-    DetailBrandComponent
+    DetailBrandComponent,
+    UpdateInfoMedicineComponent
   ],
   imports: [
     CommonModule,

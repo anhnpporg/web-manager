@@ -15,7 +15,7 @@ export class DetailReceiptNoteComponent implements OnInit {
   receiptNoteDetails: GoodReceiptNote[] = []
   id: string =''
   goodsReceiptNoteType: string = ''
-  batchId: string = ''
+  batchId: number = 0
   batchBarcode: string =''
   manufacturingDate: string =''
   expiryDate: string =''
@@ -39,6 +39,10 @@ export class DetailReceiptNoteComponent implements OnInit {
 
   detailSupplier(id: number) {
     this.router.navigate(['dashboard/detail-supplier/' + id]);
+  }
+
+  detailGoodsReceiptNote(id: number){
+    this.router.navigate(['dashboard/goodsreceiptnote/' + id]);
   }
 
   ngOnInit(): void {

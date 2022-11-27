@@ -33,7 +33,7 @@ export class ProductService {
     return this.httpClient.get(DOMAIN + 'product-management/products?isActiveActiveSubstance=true', { headers: this.headers })
   }
 
-  getProductById(id : string):Observable<any> {
+  getProductById(id : number):Observable<any> {
     return this.httpClient.get(DOMAIN + `product-management/products/${id}`, { headers: this.headers })
   }
   ActiveProduct(id : number):Observable<any> {

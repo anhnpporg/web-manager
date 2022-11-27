@@ -16,11 +16,12 @@
     <div class="col-xl-12">
       <div class="card">
         <div class="card-body pt-3">
-          <b style="font-size: 20px;">Thông tin xuất hàng</b>
-
+          <b  style="font-size: 20px;">Thông tin xuất hàng</b>
+          <ngx-barcode bc-value={{barcodeInvoice}} [bc-display-value]="true" [bc-width]="1"
+                              [bc-height]="30"></ngx-barcode>
           <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
             <br>
-            <div class="row">
+            <div class="row" style="margin-bottom: -10px ">
               <b class="col-lg-3 col-md-4 label">Tên nhân viên</b>
               <a class="col-lg-9 col-md-8" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailStaff(staffId)">{{ staffName }}</a>
             </div>

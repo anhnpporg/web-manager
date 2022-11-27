@@ -50,11 +50,7 @@ export class UpdateStaffComponent implements OnInit {
       this.updateInfo.phoneNumber = result.data.phoneNumber
       this.updateInfo.isMale = result.data.isMale
     })
-
     console.log(this.updateInfo);
-
-
-
   }
 
   showModalChangeInfo() {
@@ -72,7 +68,6 @@ export class UpdateStaffComponent implements OnInit {
       dataform.append('dateOfBirth', this.updateInfo.dateOfBirth),
       dataform.append('phoneNumber', this.updateInfo.phoneNumber),
       dataform.append('isMale', this.updateInfo.isMale + ''),
-
 
       this.confirmModal = this.modal.confirm({
         nzTitle: 'Thay đổi thông tin nhân viên',
@@ -100,10 +95,6 @@ export class UpdateStaffComponent implements OnInit {
           })
         }
       });
-
-
-
-
   }
 
   handleChangeInfoCancel() {

@@ -15,7 +15,7 @@ export class MedicineCategoryComponent implements OnInit {
   searchData: string = ''
   listData: any[] = []
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchName'
   loading: boolean = true;
   confirmModal?: NzModalRef;
   activeSubstanceName: string = ''

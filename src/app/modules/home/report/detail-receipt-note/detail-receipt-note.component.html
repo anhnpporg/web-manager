@@ -30,7 +30,6 @@
                 <b class="col-lg-5 col-md-6 label">Dạng nhập hàng</b>
                 <div class="col-lg-7 col-md-6">{{ goodsReceiptNoteType }}</div>
               </div>
-              <br>
               <div class="row" *ngIf="isActiveSupplier" >
                 <b class="col-lg-5 col-md-6 label">Nơi cung cấp</b>
                 <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailSupplier(supplierId)">{{ supplierName }}</a>
@@ -78,17 +77,17 @@
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Mã lô hàng</b>
-                <div class="col-lg-7 col-md-6">{{ batchBarcode }}</div>
+                <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailGoodsReceiptNote(batchId)">{{ batchBarcode }}</a>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Ngày sản xuất</b>
-                <div class="col-lg-7 col-md-6">{{ manufacturingDate }}</div>
+                <div class="col-lg-7 col-md-6">{{ manufacturingDate |date:'dd-MM-yyyy'}}</div>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Hạn sử dụng</b>
-                <div class="col-lg-7 col-md-6">{{ expiryDate }}</div>
+                <div class="col-lg-7 col-md-6">{{ expiryDate |date:'dd-MM-yyyy'}}</div>
               </div>
               <br>
 

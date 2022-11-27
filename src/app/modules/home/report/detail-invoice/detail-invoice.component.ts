@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailInvoiceComponent implements OnInit {
   id: string = '';
   invoiceDetails: InvoiceDetail[] = [];
+  barcodeInvoice: string = ''
   quantity: number = 0;
   unit: string = '';
   unitPrice: number = 0;
@@ -45,6 +46,7 @@ export class DetailInvoiceComponent implements OnInit {
           console.log(this.invoiceInfo);
           this.totalPrice = result.data.totalPrice;
           this.quantity = result.data.quantity;
+          this.barcodeInvoice = result.data.barcode
           this.unit = result.data.unit;
           this.unitPrice = result.data.unitPrice;
           this.convertedQuantity = result.data.convertedQuantity

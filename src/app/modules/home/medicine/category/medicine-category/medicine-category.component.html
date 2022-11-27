@@ -26,18 +26,18 @@
     </div>
 
     <div id="search">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên kệ hàng" [(ngModel)]="searchData"
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="">
+            <input type="text" nz-input placeholder="Nhập tên kệ hàng ..." [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
-        <ng-template #suffixButton>
+        <!-- <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã kệ hàng"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên kệ hàng"></nz-option>
                 </nz-select>
             </button>
-        </ng-template>
+        </ng-template> -->
     </div>
     <section class="section">
         <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->

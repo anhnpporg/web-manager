@@ -13,7 +13,7 @@ export class InvoiceComponent implements OnInit {
   invoices : InvoiceById[] = []
   searchData: string = ''
   listsearch: any
-  selectedProvince = 'SearchCustomerName'
+  selectedProvince = 'SearchBarcode'
   constructor(
     private invoice: GoodsreceiptnoteService,
     private router: Router
@@ -38,7 +38,10 @@ export class InvoiceComponent implements OnInit {
 
   getListSearch() {
     console.log(this.searchData);
-    if (this.selectedProvince == "SearchCustomerName") {
+    if (this.selectedProvince == "SearchBarcode") {
+      this.listsearch = this.invoices.filter(data => data.barcode.toString().toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
+    }
+    else if (this.selectedProvince == "SearchCustomerName") {
       this.listsearch = this.invoices.filter(data => data.customer.fullName.toString().toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))
     } else if (this.selectedProvince == "SearchStaffName") {
       this.listsearch = this.invoices.filter(data => data.createdBy.name.toLocaleLowerCase().includes(this.searchData.toLocaleLowerCase()))

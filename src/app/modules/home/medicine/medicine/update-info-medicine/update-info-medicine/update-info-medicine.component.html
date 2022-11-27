@@ -1,0 +1,22 @@
+<button (click)="showModalChangeInfo()" nz-button nzType="primary" [nzSize]="'default'">
+  <span nz-icon nzType="edit" nzTheme="outline"></span>
+  Thay đổi
+</button>
+<nz-modal [(nzVisible)]="isVisibleChangeInfo" nzTitle="Thay đổi thông tin sản phẩm"
+  nzOkText="Thay đổi thông tin sản phẩm" nzCancelText="Hủy" (nzOnOk)="handleChangeInfoOk()"
+  (nzOnCancel)="handleChangeInfoCancel()">
+  <ng-container *nzModalContent>
+      <nz-form-label for="inputName" class="form-label">Tên sản phẩm</nz-form-label>
+      <input type="text" class="form-control" id="inputName" id="inputName" [placeholder]="updateInfoProduct.name" [(ngModel)]="updateInfoProduct.name" (ngModelChange)="changeInfo()">
+      <!-- <nz-form-label for="inputDate" class="form-label">Ngày sinh</nz-form-label>
+      <input type="datetime-local" class="form-control" [(ngModel)]="updateInfo.dateOfBirth" (ngModelChange)="changeInfo()">
+      <nz-form-label for="inputPhonenumber" class="form-label">Số điện thoại</nz-form-label>
+      <input type="text" class="form-control" id="inputPhonenumber" [placeholder]="updateInfo.phoneNumber" [(ngModel)]="updateInfo.phoneNumber"  (ngModelChange)="changeInfo()">
+      <nz-form-label class="form-label">Giới tính</nz-form-label>
+      <select class="form-control" [(ngModel)]="updateInfo.isMale"  (ngModelChange)="changeInfo()">
+          <option value="true">Nam</option>
+          <option value="false">Nữ</option>
+      </select> -->
+      <br>
+  </ng-container>
+</nz-modal>
