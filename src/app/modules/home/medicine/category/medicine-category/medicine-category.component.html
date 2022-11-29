@@ -10,7 +10,7 @@
             </nav>
         </div>
         <div>
-            <button nz-button nzType="primary" (click)="showModal()" nzSize="large"><i class="bi bi-plus"></i>
+            <button nz-button nzType="primary" (click)="showModal()" nzSize="large" style="border-radius: 10px"><i class="bi bi-plus"></i>
                 <span>Tạo kệ hàng</span></button>
             <nz-modal [(nzVisible)]="isVisible" nzTitle="Tạo kệ hàng" nzOkText="Tạo kệ hàng"
                 nzCancelText="Hủy" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
