@@ -129,7 +129,7 @@ export class CreateMedicineComponent implements OnInit {
     this.product.createProduct(this.productData.value).subscribe(
       (rs: any) => {
         console.log(rs);
-        this.notification.create('success', 'Tạo thuốc mới thành công', '');
+        this.notification.create('success', 'Tạo sản phẩm mới thành công', '');
         this.router.navigate(['dashboard/medicine']);
       },
       (err: { error: { message: any } }) => {

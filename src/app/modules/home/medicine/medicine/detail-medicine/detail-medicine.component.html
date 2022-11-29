@@ -24,7 +24,7 @@
               <div class="card-body pt-3">
                 <div class="row">
                   <b class="col-10" style="font-size: 20px;">Thông tin chi tiết sản phẩm {{name}}</b>
-                  <div class="col-2">
+                  <div class="col-2" style="text-align: right">
                     <app-update-info-medicine [productId]="id"></app-update-info-medicine>
                   </div>
                 </div>
@@ -131,7 +131,7 @@
                       <tr *ngIf="productUnits.isBaseUnit == false">
                         <td>{{productUnits.unit}}</td>
                         <td>{{productUnits.conversionValue}}</td>
-                        <td>{{productUnits.price|currency: 'VND'}}</td>
+                        <td>{{productUnits.price|number}} đ</td>
                       </tr>
                     </tbody>
                     </nz-table>

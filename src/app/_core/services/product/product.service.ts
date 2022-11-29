@@ -40,6 +40,10 @@ export class ProductService {
     return this.httpClient.patch(DOMAIN + `product-management/products/${id}`, { headers: this.headers })
   }
 
+  updateInfoProduct(id : number,data: FormData):Observable<any> {
+    return this.httpClient.put(DOMAIN + `product-management/products/${id}`,data, { headers: this.headers })
+  }
+
   //activesubstance
 
   getAllActiveSubstance(): Observable<any> {
