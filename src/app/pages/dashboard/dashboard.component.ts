@@ -74,40 +74,19 @@ export class DashboardComponent implements OnInit {
       },
     },
     xAxis: {
-      type: 'category',
-      boundaryGap: false,
+      // type: 'category',
+      // boundaryGap: false,
       data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
     },
     yAxis: {
       type: 'value',
     },
-    // series: this.chartData,
-    series: [
-      {
-        name: 'Chi phí',
-        type: 'line',
-        // stack: 'Total',
-        data: [120, 132, 101, 134, 90, 230, 210],
-      },
-      {
-        name: 'Doanh thu',
-        type: 'line',
-        // stack: 'Total',
-        data: [220, 182, 191, 234, 290, 330, 310],
-      },
-      {
-        name: 'Lợi nhuận',
-        type: 'line',
-        // stack: 'Total',
-        data: [150, 232, 201, 154, 190, 330, 410],
-      },
-    ],
   };
 
 
   ngOnInit(): void {
 
-    this.chartData = [
+    this.option.series = [
         {
           name: 'Chi phí',
           type: 'line',

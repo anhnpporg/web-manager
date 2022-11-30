@@ -384,3 +384,9 @@ export interface TopSelling {
   unit: string;
   revenue: number;
 }
+
+export interface ActiveSubstances{
+  id: number,
+  name: string,
+  isActive: boolean
+}

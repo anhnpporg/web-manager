@@ -101,7 +101,6 @@ export class CreateMedicineComponent implements OnInit {
     let name = event.target.name
     let value = event.target.value
 
-
     if (this.productData.value.doseUnitPrice != null) {
       let tempConversion = this.productData.value.doseUnitPrice?.conversionValue
       let tempUnit = this.productData.value.doseUnitPrice?.doseUnit
