@@ -90,7 +90,7 @@
           <div class="col-2">
             <nz-form-label nzRequired for="inputName5" class="form-label">Mức tồn kho tối thiểu
             </nz-form-label>
-            <input type="text" class="form-control" id="mininumInventory" formControlName="mininumInventory" />
+            <input type="number" class="form-control" id="mininumInventory" formControlName="mininumInventory" />
             <div *ngIf="
                 statusError.mininumInventory.invalid &&
                 (statusError.mininumInventory.dirty ||
@@ -161,7 +161,7 @@
           </div>
           <div class="col-6">
             <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
-            <input type="text" class="form-control" id="price" formControlName="price" />
+            <input type="number" class="form-control" id="price" formControlName="price" />
             <div *ngIf="
                 statusError.price.invalid &&
                 (statusError.price.dirty || statusError.price.touched)

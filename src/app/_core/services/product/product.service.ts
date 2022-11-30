@@ -77,6 +77,9 @@ export class ProductService {
   deleteProductUnit(id: number): Observable<any> {
     return this.httpClient.delete(DOMAIN + `product-units-management/products-units/${id}`, { headers: this.headers})
   }
+  addProductUnit(data: any): Observable<any> {
+    return this.httpClient.post(DOMAIN + `product-units-management/product-units` , [data] ,{ headers: this.headers})
+  }
 
   //product
 
