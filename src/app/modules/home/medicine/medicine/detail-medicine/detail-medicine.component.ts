@@ -117,4 +117,25 @@ export class DetailMedicineComponent implements OnInit {
       },
     });
   }
+
+  deleteProductUnit(productUnitId: number){
+
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Xoá đơn vị bán',
+      nzContent: 'Bạn có muốn xoá đơn vị bán này ra khỏi sản phẩm này không ?',
+      nzOkText: 'Có',
+      nzOnOk: () => {
+        this.product.deleteProductUnit(productUnitId).subscribe(() => {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, (err: any) => {
+          console.log(err)
+
+        })
+      },
+    });
+  }
 }

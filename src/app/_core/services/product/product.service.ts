@@ -74,6 +74,10 @@ export class ProductService {
   updateAS(id: number,AS: FormData): Observable<any> {
     return this.httpClient.put(DOMAIN + `active-substance-management/active-substances/${id}`, AS, { headers: this.headers })
   }
+  deleteProductUnit(id: number): Observable<any> {
+    return this.httpClient.delete(DOMAIN + `product-units-management/products-units/${id}`, { headers: this.headers})
+  }
+
   //product
 
   getAllCategory(): Observable<any> {

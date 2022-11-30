@@ -134,8 +134,13 @@
             </div>
 
             <div class="card">
-              <div class="card-body pt-3">
-                  <b style="font-size: 20px">Đơn vị bán khác của {{name}}</b>
+              <div class="card-body pt-3" *ngIf="productUnits.length != 1">
+                <div class="row">
+                  <b class="col-10" style="font-size: 20px">Đơn vị bán khác của {{name}}</b>
+                  <div class="col-2" style="text-align: right">
+                    <app-add-product-unit [productId]="id"></app-add-product-unit>
+                  </div>
+                </div>
                   <br>
                   <br>
                   <div class="col-12" >
@@ -151,9 +156,24 @@
                         <td>{{productUnits.unit}}</td>
                         <td>{{productUnits.conversionValue}}</td>
                         <td>{{productUnits.price|number}} đ</td>
+                        <td>
+                          <button nz-button nzType="primary" [nzSize]="'default'" style="border-radius: 10px" nzDanger
+                          (click)="deleteProductUnit(productUnits.id)"
+                          >
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                          </button>
+                        </td>
                       </tr>
                     </tbody>
                     </nz-table>
+                  </div>
+                </div>
+                <div class="card-body pt-3" *ngIf="productUnits.length == 1">
+                  <div class="row">
+                    <b class="col-10" style="font-size: 20px">Chưa có đơn vị bán khác cho {{name}}</b>
+                    <div class="col-2" style="text-align: right">
+                      <app-add-product-unit [productId]="id"></app-add-product-unit>
+                    </div>
                   </div>
                 </div>
               </div>
