@@ -15,18 +15,47 @@
       </nav>
     </div>
   </div>
-  <b *ngIf="shelfs.length <= 0" style="font-size: 20px">Kệ hàng này chưa có thuốc</b>
-  <div *ngIf="shelfs.length > 0">
-    <b style="font-size: 20px">Các thuốc có trong kệ hàng</b>
-  <br>
-  <br>
+  <div class="row" *ngIf="shelfs == null">
+    <b class="col-8" style="font-size: 20px">Chưa có sản phẩm trong kệ hàng {{nameOld}}</b>
+    <div class="col-4" style="text-align: right">
+                <button nz-button (click)="showModal()" style=" border-radius: 20px; background-color: rgb(71, 160, 243); color: white;">
+                  <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px">Thay đổi tên kệ hàng</span></button>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="Thay đổi tên kệ hàng" nzOkText="Thay đổi tên kệ hàng"
+                    nzCancelText="Hủy" nzOkText="Thay đổi" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                    <ng-container *nzModalContent>
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Tên kệ hàng</nz-form-label>
+                        <input type="text" class="form-control" id="inputName" [(ngModel)]="name" >
+                        <div *ngIf="checkError == true">
+                            <small style="color: red;">Vui lòng nhập tên kệ hàng mới</small>
+                        </div>
+                    </ng-container>
+                </nz-modal>
+            </div>
+  </div>
+  <div *ngIf="shelfs != null">
+    <div class="row">
+      <b class="col-8" style="font-size: 20px">Sản phẩm trong kệ hàng {{nameOld}}</b>
+    <div class="col-4" style="text-align: right">
+                <button nz-button (click)="showModal()" style=" border-radius: 20px; background-color: rgb(71, 160, 243); color: white">
+                  <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px">Thay đổi tên kệ hàng</span></button>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="Thay đổi tên kệ hàng" nzOkText="Thay đổi tên kệ hàng"
+                    nzCancelText="Hủy" nzOkText="Thay đổi" (nzOnOk)="handleOk()" (nzOnCancel)="handleCancel()">
+                    <ng-container *nzModalContent>
+                        <nz-form-label nzRequired for="inputName5" class="form-label">Tên kệ hàng</nz-form-label>
+                        <input type="text" class="form-control" id="inputName" [(ngModel)]="name" >
+                        <div *ngIf="checkError == true">
+                            <small style="color: red;">Vui lòng nhập tên kệ hàng mới</small>
+                        </div>
+                    </ng-container>
+                </nz-modal>
+            </div>
+    </div>
   <div class="col-12">
     <nz-table #basicTable [nzData]="shelfs" style="text-align: center; font-size: 18px;">
       <thead>
         <tr>
           <th scope="col" style="text-align: center;">Mã đăng kí</th>
-          <th scope="col" style="text-align: center;">Tên thuốc</th>
-          <th scope="col" style="text-align: center;">Nhà cung cấp</th>
+          <th scope="col" style="text-align: center;">Tên sản phẩm</th>
           <th scope="col" style="text-align: center;"></th>
         </tr>
       </thead>
@@ -34,19 +63,8 @@
         <tr>
           <td scope="row">{{shelfs.drugRegistrationNumber}}</td>
           <td>{{shelfs.name}}</td>
-          <td>{{shelfs.brand.name}}</td>
           <td>
-            <u (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết thuốc</u>
-            <!-- <button
-            (click)="detail(shelfs.id)"
-            style="
-              background-color: rgba(0, 162, 255, 0.836);
-                    color: white;
-                    font-size: 17px;
-                    border-radius: 17px;
-                    border-color: rgba(0, 162, 255, 0.836); ">
-            Xem chi tiết thuốc
-          </button> -->
+            <a (click)="detail(shelfs.id)" style="color: rgb(55, 158, 248)">Xem chi tiết sản phẩm</a>
         </td>
 
       </tbody>

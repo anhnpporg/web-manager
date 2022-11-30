@@ -19,7 +19,7 @@
             <nz-table [nzData]="listSick"
             [nzFrontPagination]="false"
             [nzShowPagination]="false"
-            [nzScroll]="{ y: '350px' }">
+            >
               <tbody>
                 <tr *ngFor="let listSicks of listSick">
                   <td (click)="detailSick(listSicks.id)">{{listSicks.name}}</td>
@@ -37,7 +37,7 @@
             <nz-table [nzData]="listSample"
             [nzFrontPagination]="false"
             [nzShowPagination]="false"
-            [nzScroll]="{ y: '350px' }">
+            >
               <tbody>
                 <tr *ngFor="let listSamples of listSample">
                   <td (click)="detailMedicine(listSamples.id)">{{listSamples.name}}</td>
@@ -55,7 +55,7 @@
             <nz-table [nzData]="listMedicine"
             [nzFrontPagination]="false"
             [nzShowPagination]="false"
-            [nzScroll]="{ y: '350px' }" >
+            >
               <tbody *ngFor="let listMedicines of listMedicine">
                 <tr>
                   <div class="row" style="font-size: 16px">

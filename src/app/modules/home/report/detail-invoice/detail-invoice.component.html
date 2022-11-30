@@ -16,13 +16,14 @@
     <div class="col-xl-12">
       <div class="card">
         <div class="card-body pt-3">
-          <b style="font-size: 20px;">Thông tin xuất hàng</b>
-
+          <b  style="font-size: 20px;">Thông tin xuất hàng</b>
+          <ngx-barcode bc-value={{barcodeInvoice}} [bc-display-value]="true" [bc-width]="1"
+                              [bc-height]="30"></ngx-barcode>
           <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
             <br>
-            <div class="row">
+            <div class="row" style="margin-bottom: -10px ">
               <b class="col-lg-3 col-md-4 label">Tên nhân viên</b>
-              <div class="col-lg-9 col-md-8">{{ staffName }}</div>
+              <a class="col-lg-9 col-md-8" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailStaff(staffId)">{{ staffName }}</a>
             </div>
             <br>
             <div class="row">
@@ -62,13 +63,13 @@
             </thead>
             <tbody  *ngFor="let invoiceDetail of invoiceDetails" style="text-align: center;">
               <tr>
-                <td >{{invoiceDetail.batch.name}}</td>
+                <td ><a (click)="detailGoodsReceiptNote(invoiceDetail.batch.id)">{{invoiceDetail.batch.name}}</a></td>
                 <td >{{invoiceDetail.goodsIssueNoteType.name}}</td>
-                <td >{{invoiceDetail.product.name}}</td>
+                <td ><a (click)="detailMedicine(invoiceDetail.product.id)">{{invoiceDetail.product.name}}</a></td>
                 <td >{{invoiceDetail.quantity}}</td>
                 <td >{{invoiceDetail.unit}}</td>
-                <td >{{invoiceDetail.unitPrice}}</td>
-                <td >{{invoiceDetail.totalPrice}}</td>
+                <td >{{invoiceDetail.unitPrice| number}} đ</td>
+                <td >{{invoiceDetail.totalPrice| number}} đ</td>
               </tr>
             </tbody>
             <br>
@@ -79,7 +80,7 @@
                 <td></td>
                 <td></td>
                 <th style="text-align: center">Tổng tiền</th>
-                <th style="text-align: center">{{totalPrice}}</th>
+                <th style="text-align: center">{{totalPrice| number}} đ</th>
               </tr>
           </nz-table>
         </div>

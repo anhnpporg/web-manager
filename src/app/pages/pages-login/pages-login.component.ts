@@ -60,16 +60,16 @@ export class PagesLoginComponent implements OnInit {
         }else{
           this.noti.create(
             'error',
-            'không hợp lệ',
-            'vui lòng sử dụng tài khoản quản lý để đăng nhập'
+            'Không hợp lệ',
+            'Vui lòng sử dụng tài khoản quản lý để đăng nhập'
           )
         }
       }
       } else {
         this.noti.create(
           'error',
-          'không hợp lệ',
-          'vui lòng kiểm tra lại thông tin tài khoản và mật khẩu'
+          'Không hợp lệ',
+          'Vui lòng kiểm tra lại thông tin tài khoản và mật khẩu'
         )
       }
 

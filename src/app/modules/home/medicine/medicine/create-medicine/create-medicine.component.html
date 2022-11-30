@@ -1,16 +1,16 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
     <div>
-      <h1>Tạo thuốc mới</h1>
+      <h1>Tạo sản phẩm mới</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/dashboard/staff">Thuốc</a>
+            <a routerLink="/dashboard/staff">Sản phẩm</a>
           </li>
-          <li class="breadcrumb-item active">Tạo thuốc mới</li>
+          <li class="breadcrumb-item active">Tạo sản phẩm mới</li>
         </ol>
       </nav>
     </div>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label">Tên thuốc</nz-form-label>
+            <nz-form-label nzRequired for="inputName5" class="form-label">Tên sản phẩm</nz-form-label>
             <input type="text" class="form-control" id="inputName" formControlName="name" />
             <div *ngIf="
                 statusError.name.invalid &&
@@ -44,13 +44,13 @@
               ">
               <div *ngIf="statusError.name.errors">
                 <div *ngIf="statusError.name.errors!['required']">
-                  <small style="color: red">Vui lòng nhập tên thuốc</small>
+                  <small style="color: red">Vui lòng nhập tên sản phẩm</small>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-4">
-            <nz-form-label nzRequired for="inputName5" class="form-label">Nhà cung cấp</nz-form-label>
+            <nz-form-label nzRequired for="inputName5" class="form-label">Nhà sản xuất</nz-form-label>
             <select class="form-select" aria-label="Default select example" formControlName="brandId">
               <!-- <option selected>Open this select menu</option> -->
               <option *ngFor="let listBrands of listBrand" value="{{ listBrands.id }}">
@@ -90,7 +90,7 @@
           <div class="col-2">
             <nz-form-label nzRequired for="inputName5" class="form-label">Mức tồn kho tối thiểu
             </nz-form-label>
-            <input type="text" class="form-control" id="mininumInventory" formControlName="mininumInventory" />
+            <input type="number" class="form-control" id="mininumInventory" formControlName="mininumInventory" />
             <div *ngIf="
                 statusError.mininumInventory.invalid &&
                 (statusError.mininumInventory.dirty ||
@@ -161,28 +161,22 @@
           </div>
           <div class="col-6">
             <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
-            <input type="text" class="form-control" id="price" formControlName="price" />
+            <input type="number" class="form-control" id="price" formControlName="price" />
             <div *ngIf="
                 statusError.price.invalid &&
                 (statusError.price.dirty || statusError.price.touched)
               ">
               <div *ngIf="statusError.price.errors">
                 <div *ngIf="statusError.price.errors!['required']">
-                  <small style="color: red">Vui lòng nhập giá thuốc</small>
+                  <small style="color: red">Vui lòng nhập giá sản phẩm</small>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="row mt-3">
-            <div class="col-3">
-              <nz-form-label [nzSpan]="16">Quản lý theo lô, Hạn sử dụng</nz-form-label>
-              <nz-switch (click)="clickIsManagedInBatches()" id="isManagedInBatches"
-                formControlName="isManagedInBatches">
-              </nz-switch>
-            </div>
-            <div class="col-3">
-              <nz-form-label [nzSpan]="10">Bán theo liều</nz-form-label>
+
+            <div class="col-6">
+              <nz-form-label [nzSpan]="6">Bán theo liều</nz-form-label>
               <nz-switch (click)="clickIsUseDose()" id="isUseDose" formControlName="isUseDose"></nz-switch>
             </div>
             <div class="col-6" *ngIf="productData.value.isUseDose">
@@ -205,11 +199,17 @@
                 </div>
               </div>
             </div>
+            <div class="col-12">
+              <nz-form-label [nzSpan]="6">Quản lý theo lô, Hạn sử dụng</nz-form-label>
+              <nz-switch (click)="clickIsManagedInBatches()" id="isManagedInBatches"
+                formControlName="isManagedInBatches">
+              </nz-switch>
+            </div>
           </div>
           <nz-collapse style="border-radius: 15px;" id="productUnits" formControlName="productUnits" nzRequired
             for="productUnits" class="mt-3">
             <nz-collapse-panel [nzHeader]="header">
-              <ng-container formArrayName="contacts" *ngFor="let contact of listPorductUnit; index as i"
+              <ng-container formArrayName="contacts" *ngFor="let contact of listProductUnit; index as i"
                 style="margin: auto">
                 <ng-container [formGroupName]="i">
                   <div class="row">
@@ -228,7 +228,7 @@
                         <div class="col-4">
                           <nz-form-label nzRequired for="price" class="form-label">Giá bán</nz-form-label>
                           <input class="form-control" type="number" id="price" name="price" min="1"
-                            style="margin-right: 5px" (change)="changeModel($event, i)">
+                            style="margin-right: 5px" (change)="changeModel($event, i)" > <!--value="{{productData.value.price}}"-->
                         </div>
                       </div>
                     </div>

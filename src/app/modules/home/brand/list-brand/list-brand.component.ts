@@ -33,6 +33,10 @@ export class ListBrandComponent implements OnInit {
     private modal: NzModalService
   ) { }
 
+    DetailBrand(id: number){
+      this.router.navigate(['dashboard/detail-brand/' + id]);
+    }
+
   ngOnInit(): void {
     this.brand.getAllBrand().subscribe((result) => {
       console.log(result);
@@ -89,7 +93,8 @@ export class ListBrandComponent implements OnInit {
   isBrand(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
-      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động?',
+      nzContent: 'Bạn có muốn cho nhà sản xuất này ngừng hoạt động không?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
           this.notification.create(
@@ -115,6 +120,7 @@ export class ListBrandComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho nhà sản xuất này hoạt động lại không?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.brand.deleteBrand(id).subscribe(() => {
           this.notification.create(

@@ -10,7 +10,7 @@
           <li class="breadcrumb-item">
             <a routerLink="/dashboard/customer">Khách hàng</a>
           </li>
-          <li class="breadcrumb-item active">Thông tin khách hàng {{ id }}</li>
+          <li class="breadcrumb-item active">Thông tin khách hàng {{ fullname }}</li>
         </ol>
       </nav>
     </div>
@@ -57,15 +57,7 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Người tạo tài khoản</div>
-                  <div class="col-lg-9 col-md-8">{{ createdBy || 'Võ Tấn Đạt' }}</div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Ngày sửa tài khoản</div>
-                  <div class="col-lg-9 col-md-8">{{ updatedAt | date: 'dd-MM-yyyy'}}</div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Người sửa tài khoản</div>
-                  <div class="col-lg-9 col-md-8">{{ updatedBy || 'Võ Tấn Đạt' }}</div>
+                  <div class="col-lg-9 col-md-8">{{ createByName}}</div>
                 </div>
               </div>
               </nz-tab>
@@ -84,7 +76,7 @@
                         <tr>
                           <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.createdBy.name}}</td>
                           <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
+                          <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice | number}} đ</td>
                         </tr>
                       </tbody>
                     </nz-table>

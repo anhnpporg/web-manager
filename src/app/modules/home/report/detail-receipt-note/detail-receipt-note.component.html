@@ -30,10 +30,9 @@
                 <b class="col-lg-5 col-md-6 label">Dạng nhập hàng</b>
                 <div class="col-lg-7 col-md-6">{{ goodsReceiptNoteType }}</div>
               </div>
-              <br>
               <div class="row" *ngIf="isActiveSupplier" >
                 <b class="col-lg-5 col-md-6 label">Nơi cung cấp</b>
-                <div class="col-lg-7 col-md-6">{{ supplierName }}</div>
+                <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailSupplier(supplierId)">{{ supplierName }}</a>
               </div>
               <div class="row" *ngIf="isActiveSupplier == false" >
                 <b class="col-lg-5 col-md-6 label">Nơi cung cấp</b>
@@ -46,13 +45,13 @@
               </div>
               <br>
               <div class="row">
-                <b class="col-lg-5 col-md-6 label">Giá bán trên {{unit}}</b>
-                <div class="col-lg-7 col-md-6">{{ baseUnitPrice }} VNĐ</div>
+                <b class="col-lg-5 col-md-6 label">Giá bán đơn vị cơ bản</b>
+                <div class="col-lg-7 col-md-6">{{ baseUnitPrice | number}} đ / {{unit}}</div>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Tổng tiền</b>
-                <div class="col-lg-7 col-md-6">{{ totalPrice }} VNĐ</div>
+                <div class="col-lg-7 col-md-6">{{ totalPrice | number}} đ </div>
               </div>
               <br>
               <div class="row">
@@ -75,25 +74,20 @@
           <div class="card-body pt-3">
             <b style="font-size: 20px;">Thông tin lô hàng</b>
             <div class="tab-pane fade show active profile-overview" id="profile-overview" style="margin-right: 20px">
-              <!-- <br>
-              <div class="row">
-                <b class="col-lg-5 col-md-6 label">Mã lô hàng</b>
-                <div class="col-lg-7 col-md-6">{{ batchId }}</div>
-              </div> -->
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Mã lô hàng</b>
-                <div class="col-lg-7 col-md-6">{{ batchBarcode }}</div>
+                <a class="col-lg-7 col-md-6" nz-button nzType="text" style="text-align: left;font-size: 13.9px;padding-left: 10px;" (click)="detailGoodsReceiptNote(batchId)">{{ batchBarcode }}</a>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Ngày sản xuất</b>
-                <div class="col-lg-7 col-md-6">{{ manufacturingDate }}</div>
+                <div class="col-lg-7 col-md-6">{{ manufacturingDate |date:'dd-MM-yyyy'}}</div>
               </div>
               <br>
               <div class="row">
                 <b class="col-lg-5 col-md-6 label">Hạn sử dụng</b>
-                <div class="col-lg-7 col-md-6">{{ expiryDate }}</div>
+                <div class="col-lg-7 col-md-6">{{ expiryDate |date:'dd-MM-yyyy'}}</div>
               </div>
               <br>
 

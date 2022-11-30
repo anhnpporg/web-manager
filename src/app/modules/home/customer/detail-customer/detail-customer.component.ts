@@ -16,9 +16,8 @@ export class DetailCustomerComponent implements OnInit {
   fullname: string = '';
   createdAt: string = '';
   totalPoint: string = '';
-  createdBy: string = '';
-  updatedAt: string = '';
-  updatedBy: string = '';
+  createdBy: number = 0;
+  createByName: string =''
   subParam!: Subscription;
 
   constructor(
@@ -42,8 +41,10 @@ export class DetailCustomerComponent implements OnInit {
           this.phoneNumber = result.data?.phoneNumber;
           this.totalPoint = result.data?.totalPoint;
           this.createdBy = result.data?.createdBy;
-          this.updatedAt = result.data.updatedAt;
-          this.updatedBy = result.data.updatedBy;
+          this.user.getProfilebyID(this.createdBy).subscribe((name)=>{
+            this.createByName = name.data.fullname
+          })
+
         });
         this.user.getInvoicesByIdUser(params['id']).subscribe((invoices) => {
           console.log(invoices.data)

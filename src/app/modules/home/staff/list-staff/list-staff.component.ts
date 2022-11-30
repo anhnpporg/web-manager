@@ -46,7 +46,8 @@ export class ListStaffComponent implements OnInit {
   clickBan(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Chặn',
-      nzContent: 'Bạn có muốn chặn nhân viên này',
+      nzContent: 'Bạn có muốn chặn nhân viên này không ?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.user.isBan(id).subscribe(() => {
           let currentUrl = this.router.url;
@@ -66,7 +67,8 @@ export class ListStaffComponent implements OnInit {
   clickUnBan(id: number) {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Bỏ chặn',
-      nzContent: 'Bạn có muốn bỏ chặn nhân viên này',
+      nzContent: 'Bạn có muốn bỏ chặn nhân viên này không ?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.user.isUnBan(id).subscribe((rs: string) => {
           console.log('rs:', rs);

@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-3 col-md-4 label">Email</div>
-                      <div class="col-lg-9 col-md-8">{{email|| 'mail@gmail.com'}}</div>
+                      <div class="col-lg-9 col-md-8">{{email}}</div>
                     </div>
                     <div class="row" style="text-align: center;">
                       <div class="col-lg-3 col-md-4 label">
@@ -99,7 +99,7 @@
                         <td scope="row" (click)="detailInvoice(invoices.id)">{{invoices.customer.fullName}}</td>
                         <td (click)="detailInvoice(invoices.id)">{{invoices.customer.phoneNumber}}</td>
                         <td (click)="detailInvoice(invoices.id)">{{invoices.createdAt|date:'dd-MM-yyyy'}}</td>
-                        <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice}}</td>
+                        <td (click)="detailInvoice(invoices.id)">{{invoices.totalPrice| number}} đ</td>
                       </tr>
                     </tbody>
                   </nz-table>

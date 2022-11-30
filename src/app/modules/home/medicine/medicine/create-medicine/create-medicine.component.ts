@@ -28,7 +28,7 @@ export class CreateMedicineComponent implements OnInit {
   listROA: routeOfAdministration[] = [];
 
   header: string = 'Đơn vị tính'
-  listPorductUnit: productUnitsInterface[] = []
+  listProductUnit: productUnitsInterface[] = []
 
   productData = this.fb.group({
     drugRegistrationNumber: ['', [Validators.required]], //mã số đăng kí
@@ -42,7 +42,7 @@ export class CreateMedicineComponent implements OnInit {
     activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
-    productUnits: [this.listPorductUnit],
+    productUnits: [[],this.listProductUnit],
     isUseDose: [false],
     doseUnitPrice: {
       doseUnit: '',
@@ -65,11 +65,11 @@ export class CreateMedicineComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.brand.getAllBrand().subscribe((listBrand) => {
+    this.brand.getAllBrandActive().subscribe((listBrand) => {
       console.log(listBrand);
       this.listBrand = listBrand.data
     });
-    this.product.getAllShelf().subscribe((listShelf) => {
+    this.product.getAllShelfActive().subscribe((listShelf) => {
       console.log(listShelf);
       this.listShelf = listShelf.data
     });
@@ -78,7 +78,7 @@ export class CreateMedicineComponent implements OnInit {
       this.listROA = listROA.data;
     });
     this.product
-      .getAllActiveSubstance()
+      .getAllActiveSubstanceActive()
       .subscribe((listActiveSubstance) => {
         console.log(listActiveSubstance);
         this.listActiveSubstance = listActiveSubstance.data
@@ -104,7 +104,7 @@ export class CreateMedicineComponent implements OnInit {
 
     if (this.productData.value.doseUnitPrice != null) {
       let tempConversion = this.productData.value.doseUnitPrice?.conversionValue
-      let tempUnit = this.productData.value.doseUnitPrice?.doseUnit      
+      let tempUnit = this.productData.value.doseUnitPrice?.doseUnit
       if (name == 'conversionValue') {
         this.productData.value.doseUnitPrice = {
           doseUnit: tempUnit,
@@ -117,9 +117,7 @@ export class CreateMedicineComponent implements OnInit {
         }
       }
     }
-
     console.log(this.productData.value);
-    
   }
 
   clickIsManagedInBatches() {
@@ -128,13 +126,10 @@ export class CreateMedicineComponent implements OnInit {
 
   onSubmit() {
     console.log(this.productData.value);
-
-
-
     this.product.createProduct(this.productData.value).subscribe(
       (rs: any) => {
         console.log(rs);
-        this.notification.create('success', 'Tạo thuốc mới thành công', '');
+        this.notification.create('success', 'Tạo sản phẩm mới thành công', '');
         this.router.navigate(['dashboard/medicine']);
       },
       (err: { error: { message: any } }) => {
@@ -150,7 +145,7 @@ export class CreateMedicineComponent implements OnInit {
   }
 
   addNewProductUnit() {
-    this.listPorductUnit.push({
+    this.listProductUnit.push({
       unit: '',
       conversionValue: 0, // giá trị quy đổi
       price: 0,
@@ -162,8 +157,9 @@ export class CreateMedicineComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Cảnh báo',
       nzContent: 'bạn muốn xóa đơn vị sản phẩm này',
+      nzOkText: 'Có',
       nzOnOk: () => {
-        this.listPorductUnit.splice(index, 1)
+        this.listProductUnit.splice(index, 1)
       }
     });
 
@@ -174,14 +170,14 @@ export class CreateMedicineComponent implements OnInit {
     let value = event.target.value
 
     if (name == "unit") {
-      this.listPorductUnit[index].unit = value
+      this.listProductUnit[index].unit = value
     } else if (name == "conversionValue") {
-      this.listPorductUnit[index].conversionValue = value
+      this.listProductUnit[index].conversionValue = value
     } else if (name == 'price') {
-      this.listPorductUnit[index].price = value
+      this.listProductUnit[index].price = value
     }
 
-    console.log(this.listPorductUnit);
+    console.log(this.listProductUnit);
     console.log(this.productData.value);
 
 

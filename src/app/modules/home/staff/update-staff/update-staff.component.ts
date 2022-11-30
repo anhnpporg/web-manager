@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { UserService } from 'src/app/_core/services/user/user.service';
@@ -30,13 +31,13 @@ export class UpdateStaffComponent implements OnInit {
 
   confirmModal?: NzModalRef;
 
-
   constructor(
     private GetImg: ImageService,
     private storageImage: AngularFireStorage,
     private userService: UserService,
     private modal: NzModalService,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,11 +50,7 @@ export class UpdateStaffComponent implements OnInit {
       this.updateInfo.phoneNumber = result.data.phoneNumber
       this.updateInfo.isMale = result.data.isMale
     })
-
     console.log(this.updateInfo);
-
-
-
   }
 
   showModalChangeInfo() {
@@ -72,10 +69,10 @@ export class UpdateStaffComponent implements OnInit {
       dataform.append('phoneNumber', this.updateInfo.phoneNumber),
       dataform.append('isMale', this.updateInfo.isMale + ''),
 
-
       this.confirmModal = this.modal.confirm({
-        nzTitle: 'Do you Want to delete these items?',
-        nzContent: 'When clicked the OK button, this dialog will be closed after 1 second',
+        nzTitle: 'Thay đổi thông tin nhân viên',
+        nzContent: 'Bạn có muốn thay đổi thông tin nhân viên này không ?',
+        nzOkText: 'Có',
         nzOnOk: () => {
           this.userService.changeInfoStaff(this.staffID, dataform).subscribe((result) => {
             console.log(result);
@@ -84,6 +81,11 @@ export class UpdateStaffComponent implements OnInit {
               result.message,
               ''
             );
+            let currentUrl = this.router.url;
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([currentUrl]);
+              console.log(currentUrl);
+            });
           }, err => {
             this.notification.create(
               'error',
@@ -93,10 +95,6 @@ export class UpdateStaffComponent implements OnInit {
           })
         }
       });
-
-
-
-
   }
 
   handleChangeInfoCancel() {

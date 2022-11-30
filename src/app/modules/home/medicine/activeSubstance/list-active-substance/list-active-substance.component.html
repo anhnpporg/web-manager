@@ -25,33 +25,34 @@
         </div>
     </div>
     <div id="search">
-        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-            <input type="text" nz-input placeholder="Nhập mã, tên hoạt chất" [(ngModel)]="searchData"
+        <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="">
+          <!-- [nzAddOnAfter]="suffixButton"> -->
+            <input type="text" nz-input placeholder="Nhập tên hoạt chất ..." [(ngModel)]="searchData"
                 (ngModelChange)="getListSearch()" />
         </nz-input-group>
-        <ng-template #suffixButton>
+        <!-- <ng-template #suffixButton>
             <button nz-button nzType="primary" nzSize="large" nzSearch>
                 <nz-select [(ngModel)]="selectedProvince" nzSize="large" (ngModelChange)="SearchOption($event)">
                     <nz-option nzValue="searchID" nzLabel="Mã hoạt chất"></nz-option>
                     <nz-option nzValue="SearchName" nzLabel="Tên hoạt chất"></nz-option>
                 </nz-select>
             </button>
-        </ng-template>
+        </ng-template> -->
     </div>
     <section class="section">
 
         <nz-table [nzLoading]="loading" [nzData]="listsearch" #basicTable [nzPageSize]="5"
-            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger [nzScroll]="{ x: '1150px', y: '600px' }">
+            [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
             <thead>
                 <tr>
-                    <th style="text-align: center">Mã hoạt chất</th>
+                    <!-- <th style="text-align: center">Mã hoạt chất</th> -->
                     <th style="text-align: center">Tên hoạt chất</th>
                     <th style="text-align: center">Ngày tạo</th>
                     <th [nzFilters]="nameList" [nzFilterMultiple]="true" [nzFilterFn]="nameFilterFn" style="text-align: center">Hoạt động</th>
             </thead>
             <tbody>
                 <tr style="cursor: pointer;" *ngFor="let data of basicTable.data" style="text-align: center">
-                  <td (click)="detail(data.id)">{{ data.id }}</td>
+                  <!-- <td (click)="detail(data.id)">{{ data.id }}</td> -->
                   <td (click)="detail(data.id)">{{ data.name || null }}</td>
                   <td (click)="detail(data.id)">{{ data.createdAt |date:'dd-MM-yyyy' }}</td>
                   <td>
@@ -60,7 +61,7 @@
                       </div>
                       <ng-template #isActive>
                           <div >
-                              <nz-tag [nzColor]="'red'">Ngừng hoạt động</nz-tag>
+                              <nz-tag [nzColor]="'red'" (click)="ActiveSubstance(data.id)">Ngừng hoạt động</nz-tag>
                           </div>
                       </ng-template>
                   </td>

@@ -39,6 +39,10 @@ import { InvoiceComponent } from './report/invoice/invoice.component';
 import { DetailReceiptNoteComponent } from './report/detail-receipt-note/detail-receipt-note.component';
 import { DetailSupplierComponent } from './supplier/detail-supplier/detail-supplier.component';
 import { UpdateStaffComponent } from './staff/update-staff/update-staff.component';
+import { DetailBrandComponent } from './brand/detail-brand/detail-brand.component';
+import { UpdateInfoMedicineComponent } from './medicine/medicine/update-info-medicine/update-info-medicine/update-info-medicine.component';
+import { UpdateActiveSubstanceComponent } from './medicine/medicine/update-activeSubstance/update-active-substance/update-active-substance.component';
+import { AddProductUnitComponent } from './medicine/medicine/add-product-units/add-product-unit/add-product-unit.component';
 
 const homeRoutes: Routes = [
   {
@@ -68,7 +72,8 @@ const homeRoutes: Routes = [
       { path: 'detail-invoice/:id' , component: DetailInvoiceComponent},
       { path: 'receipt-note' , component: ReceiptNoteComponent},
       { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
-      { path: 'detail-supplier/:id' , component: DetailSupplierComponent}
+      { path: 'detail-supplier/:id' , component: DetailSupplierComponent},
+      { path: 'detail-brand/:id' , component: DetailBrandComponent}
     ]
   }
 ]
@@ -107,7 +112,11 @@ const homeRoutes: Routes = [
     InvoiceComponent,
     DetailReceiptNoteComponent,
     DetailSupplierComponent,
-    UpdateStaffComponent
+    UpdateStaffComponent,
+    DetailBrandComponent,
+    UpdateInfoMedicineComponent,
+    UpdateActiveSubstanceComponent,
+    AddProductUnitComponent
   ],
   imports: [
     CommonModule,

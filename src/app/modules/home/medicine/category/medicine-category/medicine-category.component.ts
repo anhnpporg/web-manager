@@ -15,7 +15,7 @@ export class MedicineCategoryComponent implements OnInit {
   searchData: string = ''
   listData: any[] = []
   listsearch: any
-  selectedProvince = 'searchID'
+  selectedProvince = 'SearchName'
   loading: boolean = true;
   confirmModal?: NzModalRef;
   activeSubstanceName: string = ''
@@ -75,20 +75,20 @@ export class MedicineCategoryComponent implements OnInit {
       formdata.append('name', this.activeSubstanceName);
       this.isVisible = false;
 
-      this.product.createCategory(formdata).subscribe((result: any) => {
+      this.product.createCategory(formdata).subscribe((result) => {
         this.notification.create(
           'success',
-          'Tạo phân loại thuốc mới thành công', ''
+          result.message, ''
         )
         let currentUrl = this.router.url;
         this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
           this.router.navigate([currentUrl]);
           console.log(currentUrl);
         });
-      }, (err: any) => {
+      }, (err) => {
         this.notification.create(
           'error',
-          'Tạo phân loại thuốc mới thất bại', ''
+          err.error.message, ''
         )
       })
     }
@@ -100,6 +100,33 @@ export class MedicineCategoryComponent implements OnInit {
     this.confirmModal = this.modal.confirm({
       nzTitle: 'Ngừng hoạt động',
       nzContent: 'Bạn có muốn cho kệ hàng này ngừng hoạt động',
+      nzOkText: 'Có',
+      nzOnOk: () => {
+        this.product.deleteCategory(id).subscribe((rs) => {
+          this.notification.create(
+            'success',
+            rs.message, ''
+          )
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, (err: any) => {
+          console.log(err)
+          this.notification.create(
+            'error',
+            err.error.message, ''
+          )
+        })
+      },
+    });
+  }
+  OpenCategory(id: number) {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Mở lại hoạt động',
+      nzContent: 'Bạn có muốn cho kệ hàng này mở lại hoạt động không ?',
+      nzOkText: 'Có',
       nzOnOk: () => {
         this.product.deleteCategory(id).subscribe((rs) => {
           this.notification.create(
