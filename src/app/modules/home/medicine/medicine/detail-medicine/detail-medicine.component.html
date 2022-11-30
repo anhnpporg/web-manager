@@ -162,6 +162,8 @@
             <th scope="col" style="text-align: center;">Ngày tạo</th>
             <th scope="col" style="text-align: center;">Ngày sản xuất</th>
             <th scope="col" style="text-align: center;">Hạn sử dụng</th>
+            <th scope="col" style="text-align: center;">Số lượng hàng tồn kho</th>
+            <th scope="col" style="text-align: center;">Đơn vị</th>
           </tr>
         </thead>
         <tbody  *ngFor="let batches of batches" style="text-align: center;">
@@ -172,6 +174,8 @@
             <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.createdAt | date:'dd-MM-yyyy'}}</td>
             <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.manufacturingDate | date:'dd-MM-yyyy'}}</td>
             <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.expiryDate | date:'dd-MM-yyyy'}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.currentQuantity[0].currentQuantity}}</td>
+            <td (click)="detailGoodsReceiptNote(batches.id)">{{batches.currentQuantity[0].unit}}</td>
           </tr>
         </tbody>
       </nz-table>
