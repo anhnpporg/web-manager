@@ -86,7 +86,12 @@
               <div class="card-body pt-3">
                 <div *ngIf="activeSubstances.length <= 0">Sản phẩm chưa có thông tin hoạt chất</div>
                 <div *ngIf="activeSubstances.length > 0">
-                  <b style="font-size: 20px">Hoạt chất của sản phẩm {{name}}</b>
+                  <div class="row">
+                    <b class="col-10" style="font-size: 20px">Hoạt chất của sản phẩm {{name}}</b>
+                    <div class="col-2" style="text-align: right">
+                      <app-update-active-substance [productId]="id"></app-update-active-substance>
+                    </div>
+                  </div>
                   <br>
                   <br>
                   <div class="col-12" >
@@ -99,12 +104,26 @@
                         <td>
                           <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
                         </td>
+                        <td>
+                          <button nz-button nzType="primary" [nzSize]="'default'" style="border-radius: 10px" nzDanger
+                          (click)="deleteActiveSubstance(activeSubstances.id)"
+                          >
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                          </button>
+                        </td>
                       </tr>
                       <tr *ngIf="activeSubstances.isActive==false" style="background-color: rgba(255, 0, 0, 0.253)">
                         <!-- <td scope="row">{{activeSubstances.id}}</td> -->
                         <td >{{activeSubstances.name}}</td>
                         <td>
                           <a (click)="detailActiveSubstence(activeSubstances.id)" style="color: rgb(55, 158, 248)">Xem sản phẩm có cùng hoạt chất</a>
+                        </td>
+                        <td>
+                          <button nz-button nzType="primary" [nzSize]="'default'" style="border-radius: 10px" nzDanger
+                          (click)="deleteActiveSubstance(activeSubstances.id)"
+                          >
+                            <span nz-icon nzType="delete" nzTheme="outline"></span>
+                          </button>
                         </td>
                       </tr>
                     </tbody>

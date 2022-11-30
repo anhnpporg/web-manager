@@ -4,6 +4,8 @@ import { ProductService } from 'src/app/_core/services/product/product.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-detail-medicine',
@@ -31,11 +33,14 @@ export class DetailMedicineComponent implements OnInit {
   productUnits: any[] = [];
   batches: any[] = [];
   subParam!: Subscription;
+  confirmModal?: NzModalRef;
 
   constructor(
     private atvRoute: ActivatedRoute,
     private product: ProductService,
-    private router: Router
+    private router: Router,
+    private modal: NzModalService,
+    private notification: NzNotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -87,5 +92,29 @@ export class DetailMedicineComponent implements OnInit {
 
   detailGoodsReceiptNote(id: number) {
     this.router.navigate(['dashboard/goodsreceiptnote/' + id]);
+  }
+
+  deleteActiveSubstance(activeSubtanceId: number){
+
+    let data = new FormData()
+    data.append('productId', this.id+'')
+    data.append('activeSubstanceId',activeSubtanceId+'')
+    this.confirmModal = this.modal.confirm({
+      nzTitle: 'Xoá hoạt chất',
+      nzContent: 'Bạn có muốn xoá hoạt chất này ra khỏi sản phẩm này không ?',
+      nzOkText: 'Có',
+      nzOnOk: () => {
+        this.product.deleteActiveSubstanceInProduct(data).subscribe(() => {
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate([currentUrl]);
+            console.log(currentUrl);
+          });
+        }, (err: any) => {
+          console.log(err)
+
+        })
+      },
+    });
   }
 }

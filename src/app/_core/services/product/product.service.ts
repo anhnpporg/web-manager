@@ -67,6 +67,10 @@ export class ProductService {
     return this.httpClient.patch(DOMAIN + `active-substance-management/active-substances/${id}`, {}, { headers: this.headers })
   }
 
+  deleteActiveSubstanceInProduct(data: FormData): Observable<any> {
+    return this.httpClient.delete(DOMAIN + `product-management/products/active-substance`, { headers: this.headers , body: data})
+  }
+
   updateAS(id: number,AS: FormData): Observable<any> {
     return this.httpClient.put(DOMAIN + `active-substance-management/active-substances/${id}`, AS, { headers: this.headers })
   }

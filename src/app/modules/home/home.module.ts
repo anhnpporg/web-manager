@@ -41,6 +41,7 @@ import { DetailSupplierComponent } from './supplier/detail-supplier/detail-suppl
 import { UpdateStaffComponent } from './staff/update-staff/update-staff.component';
 import { DetailBrandComponent } from './brand/detail-brand/detail-brand.component';
 import { UpdateInfoMedicineComponent } from './medicine/medicine/update-info-medicine/update-info-medicine/update-info-medicine.component';
+import { UpdateActiveSubstanceComponent } from './medicine/medicine/update-activeSubstance/update-active-substance/update-active-substance.component';
 
 const homeRoutes: Routes = [
   {
@@ -112,7 +113,8 @@ const homeRoutes: Routes = [
     DetailSupplierComponent,
     UpdateStaffComponent,
     DetailBrandComponent,
-    UpdateInfoMedicineComponent
+    UpdateInfoMedicineComponent,
+    UpdateActiveSubstanceComponent
   ],
   imports: [
     CommonModule,
