@@ -5,7 +5,7 @@
   nzOkText="Thay đổi thông tin sản phẩm" nzCancelText="Hủy" (nzOnOk)="handleChangeInfoOk()"
   (nzOnCancel)="handleChangeInfoCancel()">
   <ng-container *nzModalContent>
-    <nz-select nzAllowClear nzPlaceHolder="Hoạt chất" nzMode="multiple" class="col-12" style="left: 10px" (ngModelChange)="changeInfo()" [(ngModel)]="listNew">
+    <nz-select nzAllowClear nzPlaceHolder="Hoạt chất" nzMode="multiple" class="col-12" style="left: 10px" [(ngModel)]="listNew" (ngModelChange)="changeInfo()" >
       <nz-option *ngFor="let listActiveSubstance of activeSubstance"
       nzLabel="{{ listActiveSubstance.name }}" nzValue="{{ listActiveSubstance.id }}" nzDisabled="{{!listActiveSubstance.isActive}}"></nz-option>
     </nz-select>

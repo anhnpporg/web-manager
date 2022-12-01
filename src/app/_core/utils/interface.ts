@@ -390,3 +390,4 @@ export interface ActiveSubstances{
   name: string,
   isActive: boolean
 }
+

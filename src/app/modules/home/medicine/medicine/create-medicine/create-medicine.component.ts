@@ -60,7 +60,6 @@ export class CreateMedicineComponent implements OnInit {
     private product: ProductService,
     private router: Router,
     private notification: NzNotificationService,
-    private formBuilder: FormBuilder,
     private modal: NzModalService
   ) { }
 
@@ -162,6 +161,10 @@ export class CreateMedicineComponent implements OnInit {
       }
     });
 
+  }
+
+  Numbers(num: any){
+    return Number(num)
   }
 
   changeModel(event: any, index: number) {

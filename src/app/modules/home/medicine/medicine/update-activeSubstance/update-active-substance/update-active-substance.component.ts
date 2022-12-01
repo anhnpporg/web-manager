@@ -1,5 +1,5 @@
-import { ActiveSubstances } from './../../../../../../_core/utils/interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -16,13 +16,15 @@ export class UpdateActiveSubstanceComponent implements OnInit {
   @Input() listActiveSubstance: any[] = []
   activeSubstance: any[] = []
   listNew: any[] = []
+  listAdd: any[] = []
   confirmModal?: NzModalRef;
   isVisibleChangeInfo: boolean = false
   constructor(
     private notification: NzNotificationService,
-    private modal: NzModalService,
+     private modal: NzModalService,
     private product: ProductService,
-    private router : Router
+    private router : Router,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -47,36 +49,46 @@ export class UpdateActiveSubstanceComponent implements OnInit {
 
   handleChangeInfoOk() {
     this.isVisibleChangeInfo = false
+    for (let index = 0; index < this.listNew.length; index++) {
+      this.listAdd.push({
+        productId : this.productId,
+        activeSubstanceId: this.listNew[index]+''
+      })
+    }
+    console.log(this.listAdd);
+
       this.confirmModal = this.modal.confirm({
-        nzTitle: 'Thay đổi thông tin sản phẩm',
-        nzContent: 'Bạn có muốn thay đổi thông tin sản phẩm này không ?',
+        nzTitle: 'Thêm hoạt chất',
+        nzContent: 'Bạn có muốn thêm hoạt chất cho sản phẩm này không ?',
         nzOkText: 'Có',
         nzOnOk: () => {
-          // this.product.updateInfoProduct(this.productId, dataform).subscribe((result) => {
-          //   console.log(result);
-          //   this.notification.create(
-          //     'success',
-          //     result.message,
-          //     ''
-          //   );
-          //   let currentUrl = this.router.url;
-          //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-          //     this.router.navigate([currentUrl]);
-          //     console.log(currentUrl);
-          //   });
-          // }, err => {
-          //   this.notification.create(
-          //     'error',
-          //     err.error.message,
-          //     ''
-          //   );
-          // })
+          this.product.addActiveSubstance(this.listAdd).subscribe((result) => {
+            console.log(result);
+            this.notification.create(
+              'success',
+              result.message,
+              ''
+            );
+            let currentUrl = this.router.url;
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([currentUrl]);
+              console.log(currentUrl);
+            });
+          }, err => {
+            this.notification.create(
+              'error',
+              err.message,
+              ''
+            );
+          })
         }
       });
   }
 
   handleChangeInfoCancel() {
     this.isVisibleChangeInfo = false
+    this.listNew = []
+    this.listAdd =[]
   }
 
   changeInfo() {

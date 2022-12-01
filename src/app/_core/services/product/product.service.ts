@@ -59,6 +59,9 @@ export class ProductService {
   getNameActiveSubstanceById(id: number): Observable<any>{
     return this.httpClient.get(DOMAIN + `active-substance-management/active-substances/${id}`, {headers: this.headers})
   }
+  addActiveSubstance(data: any): Observable<any>{
+    return this.httpClient.post(DOMAIN + `product-management/products/active-substance`,data, {headers: this.headers})
+  }
 
   createActiveSubstance(name: FormData): Observable<any> {
     return this.httpClient.post(DOMAIN + 'active-substance-management/active-substances', name, { headers: this.headers })
