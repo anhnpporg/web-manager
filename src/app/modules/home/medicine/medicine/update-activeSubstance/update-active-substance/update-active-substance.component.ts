@@ -80,7 +80,7 @@ export class UpdateActiveSubstanceComponent implements OnInit {
   }
 
   changeInfo() {
-    console.log(this.listActiveSubstance);
+    console.log(this.listNew);
 
   }
 

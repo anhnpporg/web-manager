@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
     },
     xAxis: {
       // type: 'category',
-      // boundaryGap: false,
+      boundaryGap: false,
       data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
     },
     yAxis: {
@@ -86,12 +86,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.option.xAxis =
     this.option.series = [
         {
           name: 'Chi phí',
           type: 'line',
           // stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 210],
+          data: [120, 132, 101, 134, 90, 230, 310],
         },
         {
           name: 'Doanh thu',

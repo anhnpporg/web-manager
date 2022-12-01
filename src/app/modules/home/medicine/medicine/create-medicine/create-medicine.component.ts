@@ -42,7 +42,7 @@ export class CreateMedicineComponent implements OnInit {
     activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
-    productUnits: [[],this.listProductUnit],
+    productUnits: [this.listProductUnit],
     isUseDose: [false],
     doseUnitPrice: {
       doseUnit: '',
