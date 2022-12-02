@@ -69,7 +69,7 @@
                 <td >{{invoiceDetail.quantity}}</td>
                 <td >{{invoiceDetail.unit}}</td>
                 <td >{{invoiceDetail.unitPrice| number}} đ</td>
-                <td >{{invoiceDetail.totalPrice| number}} đ</td>
+                <td >{{(invoiceDetail.quantity*invoiceDetail.unitPrice)|number}} đ</td>
               </tr>
             </tbody>
             <br>

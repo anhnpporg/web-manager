@@ -45,10 +45,10 @@ export class UpdateInfoMedicineComponent implements OnInit {
       console.log(result.data)
       this.updateInfoProduct.drugRegistrationNumber = result.data.drugRegistrationNumber
       this.updateInfoProduct.name = result.data.name
-      this.updateInfoProduct.brandId = result.data.brand.id
-      this.updateInfoProduct.shelfId = result.data.shelf.id
+      this.updateInfoProduct.brandId = result.data.brand.id+''
+      this.updateInfoProduct.shelfId = result.data.shelf.id+''
       console.log(this.updateInfoProduct.shelfId)
-      this.updateInfoProduct.routeOfAdministrationId = result.data.routeOfAdministration.id
+      this.updateInfoProduct.routeOfAdministrationId = result.data.routeOfAdministration.id+''
       this.isManagedInBatches = result.data.isManagedInBatches
       this.isUseDose = result.data.isUseDose
       this.updateInfoProduct.mininumInventory = result.data.mininumInventory
