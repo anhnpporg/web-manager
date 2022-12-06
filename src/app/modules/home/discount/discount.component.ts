@@ -72,6 +72,5 @@ export class DiscountComponent implements OnInit {
 
   changeInfo() {
     console.log(this.updatePoint);
-
   }
 }

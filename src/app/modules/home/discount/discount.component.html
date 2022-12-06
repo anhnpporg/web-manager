@@ -6,7 +6,8 @@
     <div class="row">
       <div class="col-6">
         <nz-form-label for="inputSpend" class="form-label">Chi tiêu(VNĐ)</nz-form-label>
-        <input type="number" class="form-control" id="inputSpend" [placeholder]="updatePoint.toPoint" [(ngModel)]="updatePoint.toPoint" (ngModelChange)="changeInfo()">
+        <input type="currency" class="form-control" id="inputSpend"
+        [(ngModel)]="updatePoint.toPoint" (ngModelChange)="changeInfo()" minlength="1" [min]="0">
       </div>
       <div class="col-1">
        <i class="fa fa-arrow-right" aria-hidden="true" id="ten"></i>
@@ -27,7 +28,8 @@
       </div>
       <div class="col-5">
         <nz-form-label for="inputPoint" class="form-label">Tiền(VNĐ)</nz-form-label>
-        <input type="number" class="form-control" id="inputSpend" [placeholder]="updatePoint.toMoney" [(ngModel)]="updatePoint.toMoney" (ngModelChange)="changeInfo()">
+        <input type="number" class="form-control" id="inputSpend"
+        [(ngModel)]="updatePoint.toMoney" (ngModelChange)="changeInfo()" minlength="1" [min]="0">
       </div>
     </div>
     </ng-container>
