@@ -1,3 +1,4 @@
+import { Noti } from './../../utils/interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -84,6 +85,28 @@ export class DashboardService {
     return this.httpClient.get(
       DOMAIN +
         `notification/${date}/detail`,
+      { headers: this.headers }
+    );
+  }
+
+  getChartByDay():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byWeek=true`,
+      { headers: this.headers }
+    );
+  }
+  getChartByMonth():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byMonth=true`,
+      { headers: this.headers }
+    );
+  }
+  getChartByYear():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byYear=true`,
       { headers: this.headers }
     );
   }
