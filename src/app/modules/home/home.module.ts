@@ -44,6 +44,8 @@ import { UpdateInfoMedicineComponent } from './medicine/medicine/update-info-med
 import { UpdateActiveSubstanceComponent } from './medicine/medicine/update-activeSubstance/update-active-substance/update-active-substance.component';
 import { AddProductUnitComponent } from './medicine/medicine/add-product-units/add-product-unit/add-product-unit.component';
 import { DiscountComponent } from './discount/discount.component';
+import { CreateDiseaseComponent } from './disease/create-disease/create-disease.component';
+import { NotificationComponent } from './notification/notification.component';
 
 const homeRoutes: Routes = [
   {
@@ -74,7 +76,8 @@ const homeRoutes: Routes = [
       { path: 'receipt-note' , component: ReceiptNoteComponent},
       { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
       { path: 'detail-supplier/:id' , component: DetailSupplierComponent},
-      { path: 'detail-brand/:id' , component: DetailBrandComponent}
+      { path: 'detail-brand/:id' , component: DetailBrandComponent},
+      { path: 'notification' , component:NotificationComponent}
     ]
   }
 ]
@@ -118,7 +121,9 @@ const homeRoutes: Routes = [
     UpdateInfoMedicineComponent,
     UpdateActiveSubstanceComponent,
     AddProductUnitComponent,
-    DiscountComponent
+    DiscountComponent,
+    CreateDiseaseComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,

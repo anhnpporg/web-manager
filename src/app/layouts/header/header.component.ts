@@ -19,15 +19,12 @@ export class HeaderComponent implements OnInit {
   username = localStorage.getItem(USER_NAME)
   avatar = localStorage.getItem(AVATAR);
   listNoti: any[] = []
-  listNotiHaveProduct: any[] = []
-  countNoti: number  =0
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private auth: AuthService,
     private user: UserService,
     private noti: DashboardService,
-    private product: ProductService,
     private router: Router
   ) { }
 
@@ -37,36 +34,8 @@ export class HeaderComponent implements OnInit {
       console.log(result);
     this.noti.getNotification().subscribe((result)=>{
       this.listNoti = result.data
-
-
-      this.listNoti.forEach(element => {
-        if(!element.isRead){
-          this.countNoti +=1
-        }
-        if(element.productId!=null){
-          this.product.getProductById(element.productId).subscribe((result)=>{
-            this.listNotiHaveProduct.push({
-              data: element, productName: result.data.name
-            })
-          })
-        }else{
-          this.listNotiHaveProduct.push({
-            data: element, productName: element.content
-          })
-        }
-      });
     })
-    console.log(this.listNotiHaveProduct);
-    console.log(this.listNotiHaveProduct.slice(0,3));
     })
-  }
-
-  detailProduct(id: number) {
-    this.router.navigate(['dashboard/detail-medicine/' + id]);
-  }
-
-  detailGoodsReceiptNote(id: number) {
-    this.router.navigate(['dashboard/goodsreceiptnote/' + id]);
   }
 
   sidebarToggle() {

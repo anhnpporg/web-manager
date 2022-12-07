@@ -12,44 +12,27 @@
                   class="bi bi-search"></i> </a></li>
          <li class="nav-item dropdown">
             <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown"> <i class="bi bi-bell"></i> <span
-                  class="badge bg-primary badge-number">{{countNoti}}</span> </a>
+                  class="badge bg-primary badge-number">5</span> </a>
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-               <li class="dropdown-header"> Bạn có {{countNoti}} thông báo sản phẩm chưa xem<a href="#"><span
+               <li class="dropdown-header">Những thông báo gần đây<a href="#"><span
                         class="badge rounded-pill bg-primary p-2 ms-2">Xem danh sách thông báo</span></a></li>
                <li>
                   <hr class="dropdown-divider">
                </li>
-              <div *ngFor="let item of listNotiHaveProduct">
-                <div *ngIf="item.data.productId!=null">
-                  <li class="notification-item" (click)="detailProduct(item.data.productId)">
+              <div *ngFor="let item of listNoti">
+                  <li class="notification-item">
                     <i class="bi bi-exclamation-circle text-warning"></i>
                     <div>
-                       <h4>{{item.productName}}</h4>
-                       <p>{{item.data.title}}</p>
-                       <p>{{item.data.createdAt|date:'hh:mm:ss dd-MM-yyyy'}}</p>
+                       <h4>Ngày {{item.notiDate|date:'dd-MM-yyyy'}}</h4>
+                       <p *ngIf="item.listNotiBatch!=null">{{item.listNotiBatch.title}}</p>
+                       <p *ngIf="item.listNotiQuantity!=null">{{item.listNotiQuantity.title}}</p>
                     </div>
                  </li>
                  <li>
                     <hr class="dropdown-divider">
                  </li>
-                </div>
-
-                <div *ngIf="item.data.productId==null">
-                  <li class="notification-item" (click)="detailGoodsReceiptNote(item.data.batchId)">
-                    <i class="bi bi-exclamation-circle text-warning"></i>
-                    <div>
-                       <h4>{{item.productName}}</h4>
-                       <p>{{item.data.title}}</p>
-                       <p>{{item.data.createdAt|date:'hh:mm:ss dd-MM-yyyy'}}</p>
-                    </div>
-                 </li>
-                 <li>
-                    <hr class="dropdown-divider">
-                 </li>
-                </div>
-
               </div>
-               <li class="dropdown-footer"> <a href="#">Show all notifications</a></li>
+               <li class="dropdown-footer"> <a routerLink="/dashboard/notification">Xem tất cả thông báo</a></li>
             </ul>
          </li>
          <li class="nav-item dropdown pe-3">

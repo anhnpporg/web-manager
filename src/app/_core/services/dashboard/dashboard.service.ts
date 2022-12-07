@@ -69,6 +69,13 @@ export class DashboardService {
   getNotification(): Observable<any> {
     return this.httpClient.get(
       DOMAIN +
+        `notification/filter`,
+      { headers: this.headers }
+    );
+  }
+  getAllNotification(): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
         `notification`,
       { headers: this.headers }
     );
