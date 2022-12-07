@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.user.getProfile().subscribe((result) => {
       // let profile =
       console.log(result);
-    this.noti.getNotification().subscribe((result)=>{
+    this.noti.getNotifications().subscribe((result)=>{
       this.listNoti = result.data
     })
     })

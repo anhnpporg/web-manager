@@ -24,8 +24,8 @@
                     <i class="bi bi-exclamation-circle text-warning"></i>
                     <div>
                        <h4>Ngày {{item.notiDate|date:'dd-MM-yyyy'}}</h4>
-                       <p *ngIf="item.listNotiBatch!=null">{{item.listNotiBatch.title}}</p>
-                       <p *ngIf="item.listNotiQuantity!=null">{{item.listNotiQuantity.title}}</p>
+                       <p *ngIf="item.titleBatch!=null">{{item.titleBatch}}</p>
+                       <p *ngIf="item.titleQuantity!=null">{{item.titleQuantity}}</p>
                     </div>
                  </li>
                  <li>

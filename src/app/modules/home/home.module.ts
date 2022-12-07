@@ -46,6 +46,7 @@ import { AddProductUnitComponent } from './medicine/medicine/add-product-units/a
 import { DiscountComponent } from './discount/discount.component';
 import { CreateDiseaseComponent } from './disease/create-disease/create-disease.component';
 import { NotificationComponent } from './notification/notification.component';
+import { DetailNotificationComponent } from './detail-notification/detail-notification.component';
 
 const homeRoutes: Routes = [
   {
@@ -77,7 +78,8 @@ const homeRoutes: Routes = [
       { path: 'detail-receipt-note/:id' , component: DetailReceiptNoteComponent},
       { path: 'detail-supplier/:id' , component: DetailSupplierComponent},
       { path: 'detail-brand/:id' , component: DetailBrandComponent},
-      { path: 'notification' , component:NotificationComponent}
+      { path: 'notification' , component:NotificationComponent},
+      { path: 'detail-notification/:date',component: DetailNotificationComponent}
     ]
   }
 ]
@@ -123,7 +125,8 @@ const homeRoutes: Routes = [
     AddProductUnitComponent,
     DiscountComponent,
     CreateDiseaseComponent,
-    NotificationComponent
+    NotificationComponent,
+    DetailNotificationComponent
   ],
   imports: [
     CommonModule,

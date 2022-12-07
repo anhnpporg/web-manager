@@ -66,7 +66,7 @@ export class DashboardService {
     );
   }
 
-  getNotification(): Observable<any> {
+  getNotifications(): Observable<any> {
     return this.httpClient.get(
       DOMAIN +
         `notification/filter`,
@@ -77,6 +77,13 @@ export class DashboardService {
     return this.httpClient.get(
       DOMAIN +
         `notification`,
+      { headers: this.headers }
+    );
+  }
+  getNotification(date: string): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `notification/${date}/detail`,
       { headers: this.headers }
     );
   }

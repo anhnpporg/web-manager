@@ -391,3 +391,24 @@ export interface ActiveSubstances{
   isActive: boolean
 }
 
+export interface listNoti{
+  id: number,
+  batchId: number,
+  productId: number,
+  title: string,
+  content: string,
+  isRead: boolean,
+  createdAt: string
+}
+
+export interface Noti{
+  notiDate: string,
+  listNotiBatch:{
+    title: string,
+    listNotification: [listNoti]
+  },
+  listNotiQuantity:{
+    title: string,
+    listNotification: [listNoti]
+  }
+}

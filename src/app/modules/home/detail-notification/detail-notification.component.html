@@ -1,24 +1,30 @@
 <main id="main" class="main">
   <div class="pagetitle d-flex justify-content-between">
-      <div>
-          <h1>Danh sách kệ hàng</h1>
-          <nav>
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a routerLink="/dashboard">Trang chủ</a></li>
-                  <li class="breadcrumb-item active">Quản lý thông báo</li>
-              </ol>
-          </nav>
-      </div>
+    <div>
+      <h1>Chi tiết thông báo</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Trang chủ</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard/notification">Quản lí thông báo</a>
+          </li>
+          <li class="breadcrumb-item active">Chi tiết thông báo ngày {{date}}</li>
+        </ol>
+      </nav>
+    </div>
   </div>
 
-  <section class="section">
-      <!-- [nzScroll]="{ x: '1150px', y: '600px' }" -->
-      <nz-table nzLoading="false" [nzData]="listNoti" #basicTable [nzPageSize]="5"
+  <nz-tabset>
+    <nz-tab nzTitle="Lô hàng">
+
+      <nz-table nzLoading="false" [nzData]="listNotiBatch" #basicTable [nzPageSize]="5"
           [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger>
           <thead>
               <tr>
                   <!-- <th style="text-align: center">Mã kệ hàng</th> -->
-                  <th >Ngày thông báo</th>
+                  <th >Nội dung</th>
                   <th >Nội dung lô hàng</th>
                   <th >Nội dung sản phẩm</th>
                   <th style="text-align: center">Xem chi tiết</th>
@@ -32,13 +38,17 @@
                   <td *ngIf="data.titleQuantity!=null">{{ data.titleQuantity }}</td>
                   <td *ngIf="data.titleQuantity==null">Không có thông báo về tình trạng sản phẩm</td>
                   <td style="text-align: center">
-                    <a (click)="DetailNotification(data.notiDate)">
+                    <a>
                       <span nz-icon nzType="zoom-in" nzTheme="outline" style="color: rgb(119, 219, 250);font-size: 20px;"></span>
                     </a>
                   </td>
               </tr>
           </tbody>
       </nz-table>
-  </section>
-</main>
+    </nz-tab>
+    <nz-tab nzTitle="Sản phẩm">
 
+    </nz-tab>
+  </nz-tabset>
+
+</main>

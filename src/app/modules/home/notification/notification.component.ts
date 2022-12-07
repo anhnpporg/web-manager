@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DashboardService } from 'src/app/_core/services/dashboard/dashboard.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,7 +11,8 @@ export class NotificationComponent implements OnInit {
 
   listNoti: any[] = []
   constructor(
-    private noti: DashboardService
+    private noti: DashboardService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -19,4 +21,7 @@ export class NotificationComponent implements OnInit {
     })
   }
 
+  DetailNotification(date: string){
+    this.router.navigate(['dashboard/detail-notification/' + date]);
+  }
 }
