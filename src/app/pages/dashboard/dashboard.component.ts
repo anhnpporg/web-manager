@@ -59,6 +59,11 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   option: echarts.EChartsOption = {
+    animationEnabled: true,
+    // title: {
+    //   text: 'Biểu đồ tuần này',
+
+    // },
     tooltip: {
       trigger: 'axis',
     },
@@ -71,26 +76,97 @@ export class DashboardComponent implements OnInit {
       bottom: '3%',
       containLabel: true,
     },
-    toolbox: {
-      feature: {
-        saveAsImage: {},
-      },
-    },
-    // xAxis: {
-    //   // type: 'category',
-    //   boundaryGap: false,
-    //   data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+    // toolbox: {
+    //   feature: {
+    //     saveAsImage: {},
+    //   },
     // },
+    xAxis: {},
     yAxis: {
       type: 'value',
     },
+    series: {}
+  };
+  option_Month: echarts.EChartsOption = {
+    animationEnabled: true,
+    // title: {
+    //   text: 'Biểu đồ tháng này'
+    // },
+    tooltip: {
+      trigger: 'axis',
+    },
+    legend: {
+      data: ['Chi phí', 'Doanh thu', 'Lợi nhuận'],
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true,
+    },
+    // toolbox: {
+    //   feature: {
+    //     saveAsImage: {},
+    //   },
+    // },
+    xAxis: {},
+    yAxis: {
+      type: 'value',
+
+    },
+    series: {}
+  };
+  option_Year: echarts.EChartsOption = {
+    animationEnabled: true,
+    // title: {
+    //   text: 'Biểu đồ năm nay'
+    // },
+    tooltip: {
+      trigger: 'axis',
+    },
+    legend: {
+      data: ['Chi phí', 'Doanh thu', 'Lợi nhuận'],
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true,
+    },
+    // toolbox: {
+    //   feature: {
+    //     saveAsImage: {},
+    //   },
+    // },
+    xAxis: {},
+    yAxis: {
+      type: 'value',
+    },
+    series: {}
   };
 
 
   ngOnInit(): void {
 
-    // chart
+    // 4 first
+    this.dashboard.getSaleInfo().subscribe((result) => {
+      const configMoney = { style: 'currency', currency: 'VND' ,maximumFractionDigits: 3, maximumSignificantDigits: 6, }
+      this.saleInfo = result.data;
+      console.log(result.data);
+      this.quantityOrder = result.data.quantityOrder;
 
+      // this.cost = result.data.cost;
+      this.costStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.cost)
+
+      // this.turnover = result.data.turnover;
+      this.turnoverStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.turnover)
+
+      // this.profit = result.data.profit;
+      this.profitStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.profit)
+
+    });
+
+    // chart
     this.dashboard.getChartByWeek().subscribe((result)=>{
       this.option.series = []
       this.option.series = result.data.listLine
@@ -99,36 +175,40 @@ export class DashboardComponent implements OnInit {
         this.dataAxis.push(this.datepipe.transform(element.date, 'dd-MM'))
       });
       this.option.xAxis = {
-        boundaryGap: true,
+        boundaryGap: false,
         data: this.dataAxis,
       }
+      this.option.animationDuration = 10000
     })
 
-    // this.dashboard.getChartByMonth().subscribe((result)=>{
-    //   this.option.series = []
-    //   this.option.series = result.data.listLine
-    //   this.dataAxis = []
-    //   result.data.listDate.forEach((element:any) => {
-    //     this.dataAxis.push(this.datepipe.transform(element.date, 'dd-MM'))
-    //   });
-    //   this.option.xAxis = {
-    //     boundaryGap: false,
-    //     data: this.dataAxis,
-    //   }
-    // })
+    this.dashboard.getChartByMonth().subscribe((result)=>{
+      this.option_Month.series = []
+      this.option_Month.series = result.data.listLine
+      this.dataAxisMonth = []
+      result.data.listDate.forEach((element:any) => {
+        this.dataAxisMonth.push(this.datepipe.transform(element.date, 'dd-MM'))
+      });
+      this.option_Month.xAxis = {
+        boundaryGap: false,
+        data: this.dataAxisMonth,
+      }
+      this.option_Month.animationDuration = 10000
+    })
 
-    // this.dashboard.getChartByYear().subscribe((result)=>{
-    //   this.option.series = []
-    //   this.option.series = result.data.listLine
-    //   this.dataAxis = []
-    //   result.data.listDate.forEach((element:any) => {
-    //     this.dataAxis.push(this.datepipe.transform(element.date, 'MM'))
-    //   });
-    //   this.option.xAxis = {
-    //     boundaryGap: false,
-    //     data: this.dataAxis,
-    //   }
-    // })
+    this.dashboard.getChartByYear().subscribe((result)=>{
+      this.option_Year.series = []
+      this.option_Year.series = result.data.listLine
+      this.dataAxisYear = []
+      result.data.listDate.forEach((element:any) => {
+        this.dataAxisYear.push(this.datepipe.transform(element.date, 'MM'))
+      });
+      this.option_Year.xAxis = {
+        boundaryGap: false,
+        data: this.dataAxisYear,
+
+      }
+      this.option_Year.animationDuration = 10000
+    })
 
     // recent sell
     this.dashboard
@@ -159,23 +239,7 @@ export class DashboardComponent implements OnInit {
         console.log(result.data);
       });
 
-    // 4 first
-    this.dashboard.getSaleInfo().subscribe((result) => {
-      const configMoney = { style: 'currency', currency: 'VND' ,maximumFractionDigits: 3, maximumSignificantDigits: 6, }
-      this.saleInfo = result.data;
-      console.log(result.data);
-      this.quantityOrder = result.data.quantityOrder;
 
-      // this.cost = result.data.cost;
-      this.costStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.cost)
-
-      // this.turnover = result.data.turnover;
-      this.turnoverStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.turnover)
-
-      // this.profit = result.data.profit;
-      this.profitStr = new Intl.NumberFormat('vi-VN', configMoney).format(result.data.profit)
-
-    });
 
     var s = document.createElement('script');
     s.type = 'text/javascript';
