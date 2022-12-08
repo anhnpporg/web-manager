@@ -17,7 +17,9 @@ export class ListSupplierComponent implements OnInit {
   selectedProvince = 'SearchName';
   isVisible = false;
   supplierName: string = '';
+  supplierPhone: string = '';
   checkError: boolean = false;
+  checkErrorPhone: boolean = false;
   loading: boolean = true;
   confirmModal?: NzModalRef;
   nameList = [
@@ -121,9 +123,13 @@ export class ListSupplierComponent implements OnInit {
   handleOk(): void {
     if (this.supplierName == '') {
       this.checkError = true;
-    } else {
+    }else if(this.supplierPhone == ''){
+      this.checkErrorPhone = true;
+    }
+    else {
       var formdata = new FormData();
       formdata.append('name', this.supplierName);
+      formdata.append('phoneNumber', this.supplierPhone+'');
       this.isVisible = false;
       this.supplier.createSupplier(formdata).subscribe(
         (result: any) => {
