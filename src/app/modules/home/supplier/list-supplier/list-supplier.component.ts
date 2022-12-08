@@ -14,7 +14,7 @@ export class ListSupplierComponent implements OnInit {
   suppliers: Supplier[] = [];
   searchData: string = '';
   listsearch: any;
-  selectedProvince = 'SearchName';
+  selectedProvince = 'searchName';
   isVisible = false;
   supplierName: string = '';
   supplierPhone: string = '';
@@ -57,11 +57,11 @@ export class ListSupplierComponent implements OnInit {
   getListSearch() {
     console.log(this.searchData);
 
-    if (this.selectedProvince == 'searchID') {
+    if (this.selectedProvince == 'searchPhone') {
       this.listsearch = this.suppliers.filter((data) =>
-        data.id.toString().includes(this.searchData.toLocaleLowerCase())
+        data.phoneNumber.toString().includes(this.searchData.toLocaleLowerCase())
       );
-    } else if (this.selectedProvince == 'SearchName') {
+    } else if (this.selectedProvince == 'searchName') {
       this.listsearch = this.suppliers.filter((data) =>
         data.name
           .toLocaleLowerCase()
@@ -129,7 +129,7 @@ export class ListSupplierComponent implements OnInit {
     else {
       var formdata = new FormData();
       formdata.append('name', this.supplierName);
-      formdata.append('phoneNumber', this.supplierPhone+'');
+      formdata.append('phoneNumber','0' + this.supplierPhone);
       this.isVisible = false;
       this.supplier.createSupplier(formdata).subscribe(
         (result: any) => {

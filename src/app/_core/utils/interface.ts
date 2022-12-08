@@ -227,6 +227,7 @@ export interface CreateMedicine {
 export interface Supplier {
   id: string;
   name: string;
+  phoneNumber: string;
   isActive: boolean;
   createdAt: string;
   createBy: {
