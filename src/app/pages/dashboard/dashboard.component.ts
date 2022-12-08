@@ -177,6 +177,7 @@ export class DashboardComponent implements OnInit {
       this.option.xAxis = {
         boundaryGap: false,
         data: this.dataAxis,
+        name: 'Ngày'
       }
       this.option.animationDuration = 10000
     })
@@ -191,6 +192,7 @@ export class DashboardComponent implements OnInit {
       this.option_Month.xAxis = {
         boundaryGap: false,
         data: this.dataAxisMonth,
+        name: 'Ngày'
       }
       this.option_Month.animationDuration = 10000
     })
@@ -205,7 +207,7 @@ export class DashboardComponent implements OnInit {
       this.option_Year.xAxis = {
         boundaryGap: false,
         data: this.dataAxisYear,
-
+        name: 'Tháng'
       }
       this.option_Year.animationDuration = 10000
     })

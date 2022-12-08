@@ -143,8 +143,8 @@
                         <h5 class="card-title">Báo cáo <span>/{{getTypeChart}}</span></h5>
                         <!-- <div id="reportChart" style="width: 300px; height: 300px;"></div> -->
                         <div echarts [options]="option" id="reportsChart" *ngIf="getTypeChart=='Tuần này'"></div>
-                        <div echarts [options]="option_Month" id="reportsChart" *ngIf="getTypeChart=='Tháng này'"></div>
-                        <div echarts [options]="option_Year" id="reportsChart" *ngIf="getTypeChart=='Năm nay'"></div>
+                        <div echarts [options]="option_Month" id="reportsChart_2" *ngIf="getTypeChart=='Tháng này'"></div>
+                        <div echarts [options]="option_Year" id="reportsChart_3" *ngIf="getTypeChart=='Năm nay'"></div>
                      </div>
                   </div>
                </div>
