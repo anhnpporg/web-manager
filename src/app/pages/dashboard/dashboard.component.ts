@@ -11,6 +11,7 @@ import * as echarts from 'echarts';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+
   // recent-sales
   day: boolean = false;
   month: boolean = false;
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
 
   getTypeText: string = "Hôm nay"
 
-  getTypeChart: string = "Tuần này"
+  getTypeChart: string = ""
 
   // sale info
   saleInfo: SaleInfo[] = [];
@@ -60,6 +61,7 @@ export class DashboardComponent implements OnInit {
 
   option: echarts.EChartsOption = {
     animationEnabled: true,
+
     // title: {
     //   text: 'Biểu đồ tuần này',
 
@@ -81,11 +83,12 @@ export class DashboardComponent implements OnInit {
     //     saveAsImage: {},
     //   },
     // },
-    xAxis: {},
+
     yAxis: {
       type: 'value',
+      name: "Tiền(đ)"
     },
-    series: {}
+
   };
   option_Month: echarts.EChartsOption = {
     animationEnabled: true,
@@ -109,12 +112,12 @@ export class DashboardComponent implements OnInit {
     //     saveAsImage: {},
     //   },
     // },
-    xAxis: {},
+
     yAxis: {
       type: 'value',
-
+      name: "Tiền(đ)"
     },
-    series: {}
+
   };
   option_Year: echarts.EChartsOption = {
     animationEnabled: true,
@@ -138,18 +141,19 @@ export class DashboardComponent implements OnInit {
     //     saveAsImage: {},
     //   },
     // },
-    xAxis: {},
+
     yAxis: {
       type: 'value',
+      name: "Tiền(đ)"
     },
-    series: {}
+
   };
 
 
   ngOnInit(): void {
 
     // 4 first
-    this.dashboard.getSaleInfo().subscribe((result) => {
+     this.dashboard.getSaleInfo().subscribe((result) => {
       const configMoney = { style: 'currency', currency: 'VND' ,maximumFractionDigits: 3, maximumSignificantDigits: 6, }
       this.saleInfo = result.data;
       console.log(result.data);
@@ -166,24 +170,59 @@ export class DashboardComponent implements OnInit {
 
     });
 
+
     // chart
     this.dashboard.getChartByWeek().subscribe((result)=>{
-      this.option.series = []
-      this.option.series = result.data.listLine
-      this.dataAxis = []
+      // this.option.series = result.data.listLine
       result.data.listDate.forEach((element:any) => {
         this.dataAxis.push(this.datepipe.transform(element.date, 'dd-MM'))
       });
-      this.option.xAxis = {
-        boundaryGap: false,
-        data: this.dataAxis,
-        name: 'Ngày'
+      // this.option.xAxis = {
+      //   boundaryGap: false,
+      //   data: this.dataAxis,
+      //   name: 'Ngày'
+      // }
+      // this.option.animationDuration = 10000
+      this.option = {
+        xAxis: {
+          boundaryGap: false,
+          data: this.dataAxis,
+          name: 'Ngày'
+        },
+        series: result.data.listLine,
+        animationEnabled: true,
+
+        // title: {
+        //   text: 'Biểu đồ tuần này',
+
+        // },
+        tooltip: {
+          trigger: 'axis',
+        },
+        legend: {
+          data: ['Chi phí', 'Doanh thu', 'Lợi nhuận'],
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true,
+        },
+        // toolbox: {
+        //   feature: {
+        //     saveAsImage: {},
+        //   },
+        // },
+
+        yAxis: {
+          type: 'value',
+          name: "Tiền(đ)"
+        },
+
       }
-      this.option.animationDuration = 10000
     })
 
     this.dashboard.getChartByMonth().subscribe((result)=>{
-      this.option_Month.series = []
       this.option_Month.series = result.data.listLine
       this.dataAxisMonth = []
       result.data.listDate.forEach((element:any) => {
@@ -198,7 +237,6 @@ export class DashboardComponent implements OnInit {
     })
 
     this.dashboard.getChartByYear().subscribe((result)=>{
-      this.option_Year.series = []
       this.option_Year.series = result.data.listLine
       this.dataAxisYear = []
       result.data.listDate.forEach((element:any) => {
@@ -210,7 +248,9 @@ export class DashboardComponent implements OnInit {
         name: 'Tháng'
       }
       this.option_Year.animationDuration = 10000
+
     })
+    this.getTypeChart = "Tuần này"
 
     // recent sell
     this.dashboard
@@ -241,12 +281,12 @@ export class DashboardComponent implements OnInit {
         console.log(result.data);
       });
 
-
-
     var s = document.createElement('script');
     s.type = 'text/javascript';
     s.src = '../assets/js/main.js';
     this.elementRef.nativeElement.appendChild(s);
+
+
   }
 
   detailRecentSale(id: number) {
