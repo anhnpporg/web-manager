@@ -131,16 +131,16 @@
                         <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                            <li class="dropdown-header text-start">
-                              <h6>Filter</h6>
+                              <h6>Xem biểu đồ</h6>
                            </li>
-                           <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                           <li><a class="dropdown-item" href="#">Tháng này</a></li>
-                           <li><a class="dropdown-item" href="#">Năm nay</a></li>
+                           <li><a class="dropdown-item" (click)="changeListChart('Week')">Tuần này</a></li>
+                           <li><a class="dropdown-item" (click)="changeListChart('Month')">Tháng này</a></li>
+                           <li><a class="dropdown-item" (click)="changeListChart('Year')">Năm nay</a></li>
                         </ul>
                      </div>
                      <!-- chart -->
                      <div class="card-body">
-                        <h5 class="card-title">Báo cáo <span>/tuần này</span></h5>
+                        <h5 class="card-title">Báo cáo <span>/{{getTypeChart}}</span></h5>
                         <!-- <div id="reportChart" style="width: 300px; height: 300px;"></div> -->
                         <div echarts [options]="option" id="reportsChart"></div>
 

@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment.prod';
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { SaleInfo, TopSelling } from './../../_core/utils/interface';
 import { DashboardService } from './../../_core/services/dashboard/dashboard.service';
@@ -27,6 +27,8 @@ export class DashboardComponent implements OnInit {
 
   getTypeText: string = "Hôm nay"
 
+  getTypeChart: string = "Tuần này"
+
   // sale info
   saleInfo: SaleInfo[] = [];
   quantityOrder: number = 0;
@@ -38,13 +40,22 @@ export class DashboardComponent implements OnInit {
   profitStr: string = '';
 
   chartData: any[] = []
+  dataAxis: any[] = []
 
-  chartDay: any[] = []
+  chartWeek: any[] = []
+  dataAxisWeek: any[] = []
+
+  chartMonth: any[] = []
+  dataAxisMonth: any[] = []
+
+  chartYear: any[] = []
+  dataAxisYear: any[] = []
 
   constructor(
     private elementRef: ElementRef,
     private dashboard: DashboardService,
-    private router: Router
+    private router: Router,
+    public datepipe: DatePipe
   ) {}
 
   option: echarts.EChartsOption = {
@@ -65,11 +76,11 @@ export class DashboardComponent implements OnInit {
         saveAsImage: {},
       },
     },
-    xAxis: {
-      // type: 'category',
-      boundaryGap: false,
-      data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
-    },
+    // xAxis: {
+    //   // type: 'category',
+    //   boundaryGap: false,
+    //   data: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+    // },
     yAxis: {
       type: 'value',
     },
@@ -78,36 +89,56 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.option.xAxis =
-    this.option.series = [
-        {
-          name: 'Chi phí',
-          type: 'line',
-          // stack: 'Total',
-          data: [120, 132, 101, 134, 90, 230, 310],
-        },
-        {
-          name: 'Doanh thu',
-          type: 'line',
-          // stack: 'Total',
-          data: [220, 182, 191, 234, 290, 330, 310],
-        },
-        {
-          name: 'Lợi nhuận',
-          type: 'line',
-          // stack: 'Total',
-          data: [150, 232, 201, 154, 190, 330, 410],
-        },
-      ],
+    // chart
 
-    console.log(this.chartData)
+    this.dashboard.getChartByWeek().subscribe((result)=>{
+      this.option.series = []
+      this.option.series = result.data.listLine
+      this.dataAxis = []
+      result.data.listDate.forEach((element:any) => {
+        this.dataAxis.push(this.datepipe.transform(element.date, 'dd-MM'))
+      });
+      this.option.xAxis = {
+        boundaryGap: true,
+        data: this.dataAxis,
+      }
+    })
 
+    // this.dashboard.getChartByMonth().subscribe((result)=>{
+    //   this.option.series = []
+    //   this.option.series = result.data.listLine
+    //   this.dataAxis = []
+    //   result.data.listDate.forEach((element:any) => {
+    //     this.dataAxis.push(this.datepipe.transform(element.date, 'dd-MM'))
+    //   });
+    //   this.option.xAxis = {
+    //     boundaryGap: false,
+    //     data: this.dataAxis,
+    //   }
+    // })
+
+    // this.dashboard.getChartByYear().subscribe((result)=>{
+    //   this.option.series = []
+    //   this.option.series = result.data.listLine
+    //   this.dataAxis = []
+    //   result.data.listDate.forEach((element:any) => {
+    //     this.dataAxis.push(this.datepipe.transform(element.date, 'MM'))
+    //   });
+    //   this.option.xAxis = {
+    //     boundaryGap: false,
+    //     data: this.dataAxis,
+    //   }
+    // })
+
+    // recent sell
     this.dashboard
       .getRecentSales(this.day, this.month, this.year, this.size)
       .subscribe((result) => {
         this.recentSales = result.data;
         console.log(result.data);
       });
+
+    // top sell
     this.dashboard
       .getTopSellingDay(this.Tsize)
       .subscribe((result) => {
@@ -131,7 +162,6 @@ export class DashboardComponent implements OnInit {
     // 4 first
     this.dashboard.getSaleInfo().subscribe((result) => {
       const configMoney = { style: 'currency', currency: 'VND' ,maximumFractionDigits: 3, maximumSignificantDigits: 6, }
-      const configPercent = { maximumFractionDigits:  2, maximumSignificantDigits: 3, }
       this.saleInfo = result.data;
       console.log(result.data);
       this.quantityOrder = result.data.quantityOrder;
@@ -172,6 +202,19 @@ export class DashboardComponent implements OnInit {
     }else if(getType == "year"){
       this.getTypeText = "Năm nay"
       this.topSelling = this.topSellingYear
+    }
+  }
+
+  // filter chart
+  changeListChart(getType: string){
+    if(getType == "Week"){
+      this.getTypeChart = "Tuần này"
+
+    }else if(getType == "Month"){
+      this.getTypeChart = "Tháng này"
+
+    }else if(getType == "Year"){
+      this.getTypeChart = "Năm nay"
     }
   }
 
