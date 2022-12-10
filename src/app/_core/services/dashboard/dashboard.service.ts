@@ -65,4 +65,48 @@ export class DashboardService {
       { headers: this.headers }
     );
   }
+
+  getNotifications(): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `notification/filter`,
+      { headers: this.headers }
+    );
+  }
+  getAllNotification(): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `notification`,
+      { headers: this.headers }
+    );
+  }
+  getNotification(date: string): Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `notification/${date}/detail`,
+      { headers: this.headers }
+    );
+  }
+
+  getChartByWeek():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byWeek=true`,
+      { headers: this.headers }
+    );
+  }
+  getChartByMonth():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byMonth=true`,
+      { headers: this.headers }
+    );
+  }
+  getChartByYear():Observable<any> {
+    return this.httpClient.get(
+      DOMAIN +
+        `dashboard/chart?byYear=true`,
+      { headers: this.headers }
+    );
+  }
 }

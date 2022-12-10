@@ -44,7 +44,7 @@ export class DetailInvoiceComponent implements OnInit {
         this.invoice.getInvoice(params['id']).subscribe((result) => {
           this.invoiceInfo = result.data;
           console.log(this.invoiceInfo);
-          this.totalPrice = result.data.totalPrice;
+          // this.totalPrice = result.data.totalPrice;
           this.quantity = result.data.quantity;
           this.barcodeInvoice = result.data.barcode
           this.unit = result.data.unit;
@@ -62,6 +62,9 @@ export class DetailInvoiceComponent implements OnInit {
           .subscribe((invoiceDetails) => {
             this.invoiceDetails = invoiceDetails.data;
             console.log(this.invoiceDetails);
+            this.invoiceDetails.forEach(element => {
+              this.totalPrice += (element.quantity*element.unitPrice)
+            });
           });
       },
       (err) => {
@@ -70,6 +73,7 @@ export class DetailInvoiceComponent implements OnInit {
       }
     );
   }
+
 
   detailGoodsReceiptNote(id: number){
     this.router.navigate(['dashboard/goodsreceiptnote/' + id]);

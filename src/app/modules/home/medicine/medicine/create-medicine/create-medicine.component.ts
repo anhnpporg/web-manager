@@ -42,7 +42,7 @@ export class CreateMedicineComponent implements OnInit {
     activeSubstances: [[], Validators.required], // hoạt chất
     unit: ['', Validators.required], // đơn vị cơ sở
     price: ['', Validators.required], // giá bán
-    productUnits: [[],this.listProductUnit],
+    productUnits: [this.listProductUnit],
     isUseDose: [false],
     doseUnitPrice: {
       doseUnit: '',
@@ -60,7 +60,6 @@ export class CreateMedicineComponent implements OnInit {
     private product: ProductService,
     private router: Router,
     private notification: NzNotificationService,
-    private formBuilder: FormBuilder,
     private modal: NzModalService
   ) { }
 
@@ -100,7 +99,6 @@ export class CreateMedicineComponent implements OnInit {
   changeDoseUnit(event: any) {
     let name = event.target.name
     let value = event.target.value
-
 
     if (this.productData.value.doseUnitPrice != null) {
       let tempConversion = this.productData.value.doseUnitPrice?.conversionValue
@@ -163,6 +161,10 @@ export class CreateMedicineComponent implements OnInit {
       }
     });
 
+  }
+
+  Numbers(num: any){
+    return Number(num)
   }
 
   changeModel(event: any, index: number) {

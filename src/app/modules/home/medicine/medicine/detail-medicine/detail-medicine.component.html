@@ -8,7 +8,7 @@
             <a routerLink="/dashboard">Trang chủ</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/dashboard/manager">Sản phẩm</a>
+            <a routerLink="/dashboard/medicine">Sản phẩm</a>
           </li>
           <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
         </ol>
@@ -89,7 +89,7 @@
                   <div class="row">
                     <b class="col-10" style="font-size: 20px">Hoạt chất của sản phẩm {{name}}</b>
                     <div class="col-2" style="text-align: right">
-                      <app-update-active-substance [productId]="id"></app-update-active-substance>
+                      <app-update-active-substance [productId]="id" [listActiveSubstance]="activeSubstances"></app-update-active-substance>
                     </div>
                   </div>
                   <br>

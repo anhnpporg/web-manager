@@ -227,6 +227,7 @@ export interface CreateMedicine {
 export interface Supplier {
   id: string;
   name: string;
+  phoneNumber: string;
   isActive: boolean;
   createdAt: string;
   createBy: {
@@ -384,3 +385,48 @@ export interface TopSelling {
   unit: string;
   revenue: number;
 }
+
+export interface ActiveSubstances{
+  id: number,
+  name: string,
+  isActive: boolean
+}
+
+export interface listNoti{
+  id: number,
+  batchId: number,
+  productId: number,
+  title: string,
+  content: string,
+  isRead: boolean,
+  createdAt: string
+}
+
+export interface Noti{
+  notiDate: string,
+  listNotiBatch:{
+    title: string,
+    listNotification: [listNoti]
+  },
+  listNotiQuantity:{
+    title: string,
+    listNotification: [listNoti]
+  }
+}
+
+// export interface listLine{
+//   name: string,
+//   type: string,
+//   data:[
+//     string
+//   ]
+// }
+
+// export interface listDate{
+//   data: string
+// }
+
+// export interface dataChart{
+//   listLine: listLine[],
+//   listDate: listDate[]
+// }
