@@ -229,7 +229,7 @@
                         <div class="col-4">
                           <nz-form-label nzRequired for="price" class="form-label" >Giá bán</nz-form-label>
                           <input class="form-control" type="number" id="price" name="price" min="1"
-                            style="margin-right: 5px" (change)="changeModel($event, i)" value="{{Numbers(productData.value.price)*listProductUnit[i].conversionValue}}">
+                            style="margin-right: 5px" (change)="changeModel($event, i)" [value]="Numbers(productData.value.price)*listProductUnit[i].conversionValue">
                         </div>
                       </div>
                     </div>
