@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { dataTool } from 'echarts';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 
 @Component({
   selector: 'app-pages-login',
@@ -16,12 +17,14 @@ export class PagesLoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   token: string = ''
+  fcmToken: any
 
   constructor(
     private auth: AuthService,
     private noti: NzNotificationService,
     public translate: TranslateService,
-    private route: Router
+    private route: Router,
+    private angularFireMessaging: AngularFireMessaging
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
@@ -32,6 +35,14 @@ export class PagesLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.angularFireMessaging.requestToken.subscribe((token) => {
+      this.fcmToken = token
+
+    }, err => {
+      console.log(err);
+    })
+
   }
 
   login() {
@@ -42,8 +53,8 @@ export class PagesLoginComponent implements OnInit {
     formData.append(
       'password', this.password
     )
-    formData.append('fCMToken' , 'abc')
-    console.log(this.username + "-" + this.password)
+    formData.append('fCMToken', this.fcmToken)
+    console.log(this.username + "-" + this.password + '-' + this.fcmToken)
 
     this.auth.login(formData).subscribe((result: any) => {
       console.log(result);
@@ -52,20 +63,20 @@ export class PagesLoginComponent implements OnInit {
         this.token = `Bearer ${result.accessToken}`
         localStorage.setItem(ACCESS_TOKEN, this.token)
         if (localStorage.getItem(ACCESS_TOKEN)) {
-          if(result.isAdmin == true){
-          this.route.navigate(['dashboard'])
-          this.noti.create(
-            'success',
-            'Đăng nhập thành công', ''
-          )
-        }else{
-          this.noti.create(
-            'error',
-            'Không hợp lệ',
-            'Vui lòng sử dụng tài khoản quản lý để đăng nhập'
-          )
+          if (result.isAdmin == true) {
+            this.route.navigate(['dashboard'])
+            this.noti.create(
+              'success',
+              'Đăng nhập thành công', ''
+            )
+          } else {
+            this.noti.create(
+              'error',
+              'Không hợp lệ',
+              'Vui lòng sử dụng tài khoản quản lý để đăng nhập'
+            )
+          }
         }
-      }
       } else {
         this.noti.create(
           'error',
