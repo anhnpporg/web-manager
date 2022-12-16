@@ -19,7 +19,7 @@
   <nz-tabset>
     <nz-tab nzTitle="Lô hàng">
       <h6 style>{{titleNotiBatch}}</h6>
-      <nz-table *ngIf="listNotiBatch!=null" #basicTable [nzPageSize]="5"
+      <nz-table *ngIf="listNotiBatch!=null" [nzData]="listNotiBatch" #basicTable [nzPageSize]="5"
           [nzPageSizeOptions]="[5,10,15,20,25,30]" nzShowSizeChanger >
           <thead>
               <tr>
