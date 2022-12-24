@@ -7,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { getStorage, ref } from 'firebase/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-create-staff',
@@ -18,6 +19,13 @@ export class CreateStaffComponent implements OnInit {
   nameImage: string = '';
   imageURL: string = './assets/img/avatar.png';
   isSubmit: boolean = true
+  isCheckDate: boolean = false
+  day: string =''
+  toDay = new Date();
+  dayNow: any
+  dayCreate: any
+  changedDate = '';
+  pipe = new DatePipe('en-US')
 
   StaffData = this.fb.group({
     loginName: ['', [Validators.required, Validators.pattern('^(?=[a-zA-Z0-9._]{6,20}$)(?!.*[_.]{2})[^_.].*[^_.]$'),],],
@@ -58,26 +66,40 @@ export class CreateStaffComponent implements OnInit {
     formData.append('fullname', this.StaffData.value.fullname);
     formData.append('email', this.StaffData.value.email)
     formData.append('phoneNumber', this.StaffData.value.phoneNumber);
-    formData.append('dob', date);
+
+    let changeday = this.pipe.transform(this.toDay,'yyyy-MM-dd')
+    this.dayNow = changeday?.split("-",3);
+    this.dayCreate = date?.split("-",3)
+    console.log(this.dayNow);
+    console.log(this.dayCreate);
+    console.log(this.dayNow[0]-this.dayCreate[0] > 18);
+
+    if(this.dayNow[0]-this.dayCreate[0] >= 18 && this.dayNow[1] >= this.dayCreate[1] && this.dayNow[2] >= this.dayCreate[2]){
+      formData.append('dob', date);
+      this.isCheckDate = false
+    }else{
+      this.isCheckDate = true
+    }
     formData.append('isMale', this.StaffData.value.isMale);
     formData.append('avatar', this.StaffData.value.avatar);
-
-    this.user.createStaff(formData).subscribe((rs: any) => {
-      console.log(rs);
-      this.isSubmit = true
-      this.notification.create(
-        'success',
-        'Tạo nhân viên mới thành công', ''
-      )
-      this.router.navigate(['dashboard/staff'])
-    }, (err: { error: { message: string; }; }) => {
-      console.log(err);
-      this.notification.create(
-        'error',
-        'Không thành công',
-        err.error.message
-      )
-    });
+    if(!this.isCheckDate){
+      this.user.createStaff(formData).subscribe((rs: any) => {
+        console.log(rs);
+        this.isSubmit = true
+        this.notification.create(
+          'success',
+          'Tạo nhân viên mới thành công', ''
+        )
+        this.router.navigate(['dashboard/staff'])
+      }, (err: { error: { message: string; }; }) => {
+        console.log(err);
+        this.notification.create(
+          'error',
+          'Không thành công',
+          err.error.message
+        )
+      })
+    }
   }
 
   async uploadImage($event: any) {
