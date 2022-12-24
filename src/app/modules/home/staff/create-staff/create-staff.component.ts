@@ -72,11 +72,10 @@ export class CreateStaffComponent implements OnInit {
       this.router.navigate(['dashboard/staff'])
     }, (err: { error: { message: string; }; }) => {
       console.log(err);
-
       this.notification.create(
         'error',
         'Không thành công',
-        (err.error.message)
+        err.error.message
       )
     });
   }
