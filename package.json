@@ -31,6 +31,7 @@
     "ng-zorro-antd": "^14.0.0",
     "ngx-chips": "^3.0.0",
     "ngx-echarts": "^14.0.0",
+    "ngx-print": "^1.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
