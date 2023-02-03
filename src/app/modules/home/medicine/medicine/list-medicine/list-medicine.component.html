@@ -91,12 +91,14 @@
                             (click)="isInActiveProduct(data.id)">Chặn</button>
                     </ng-template>
                       <td style="text-align: center;">
-                        <a (click)="detail(data.id)">
+                        <button class="btn btn-outline-primary" (click)="detail(data.id)">
                           <span nz-icon nzType="zoom-in" nzTheme="outline" style="color: rgb(119, 219, 250);font-size: 20px;"></span>
-                        </a>
+                        </button>
                       </td>
                       <td style="text-align: center;">
-                        <button printSectionId="print-barcode" ngxPrint ><i class="fa fa-print" aria-hidden="true" style="color: rgb(119, 219, 250)"></i></button>
+                        <button class="btn btn-outline-primary" printSectionId="print-barcode" ngxPrint >
+                          <i class="fa fa-print" aria-hidden="true" style="color: rgb(119, 219, 250)"></i>
+                        </button>
                       </td>
                   </tr>
               </tbody>
